@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  :root {
+    --color-pop: 255 132 50;
+    --color-sweet: 255 83 132;
+    --color-cool: 0 126 234;
+    --color-invalid: 192 192 192;
+    --color-temp: 255 255 0;
+  }
+  [data-theme='dark'] {
+    --color-pop: 128 67 27;
+    --color-sweet: 131 43 68;
+    --color-cool: 0 72 136;
+    --color-invalid: 64 64 64;
+    --color-temp: 64 64 0;
+  }
+}

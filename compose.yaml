@@ -1,0 +1,18 @@
+name: kinokotogame.club
+services:
+  next-app:
+    image: next-app
+    build:
+      context: .
+    container_name: dev
+    volumes:
+      - .:/workspaces:cached
+      - node_modules:/workspaces/next-app/node_modules
+    environment:
+      - LOG_DEBUG=True
+      - WATCHPACK_POLLING=true
+    ports:
+      - "3000:3000"
+    command: sleep infinity
+volumes:
+  node_modules:

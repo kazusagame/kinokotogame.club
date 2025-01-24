@@ -1,0 +1,24 @@
+{
+  "name": "next-app - kinokotogame.club",
+  "dockerComposeFile": ["../compose.yaml"],
+  "service": "next-app",
+  "shutdownAction": "none",
+  "workspaceFolder": "/workspaces",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "MS-CEINTL.vscode-language-pack-ja",
+        "shardulm94.trailing-spaces",
+        "esbenp.prettier-vscode",
+        "oderwat.indent-rainbow",
+        "ms-azuretools.vscode-docker",
+        "sohamkamani.code-eol",
+        "streetsidesoftware.code-spell-checker",
+        "crystal-spider.jsdoc-generator",
+        "dbaeumer.vscode-eslint",
+        "ecmel.vscode-html-css",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  }
+}

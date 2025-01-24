@@ -1,0 +1,6 @@
+# キャラソート用キャラクターデータ
+/next-app/components/article/characterSort/characterData.ts
+
+# センバツシミュレーター用データ
+/next-app/components/decksim/data/*.ts
+
