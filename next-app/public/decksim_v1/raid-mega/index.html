@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ガールフレンド(仮)のセンバツシミュレーターWeb版のたすけて！マイヒーロー メガ悪男用のページです。ガールの応援力などを入力していくことで発揮値や獲得ポイントの予想値を算出します。"
+    />
+    <link
+      rel="canonical"
+      href="https://kinokotogame.club/decksim_v1/raid-first/"
+    />
+
+    <title>
+      たすけて！マイヒーロー メガ悪男 - センバツシミュレーター -
+      きのことゲーム部
+    </title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/destyle.css@4.0.0/destyle.css"
+    />
+    <link rel="stylesheet" href="/decksim_v1/css/decksim.min.css?20241211" />
+    <link rel="icon" href="/decksim_v1/images/favicon.ico" />
+  </head>
+  <body id="raid-mega">
+    <div>
+      <section id="tools">
+        <div class="internal-links">
+          <div id="simtitle" class="title"></div>
+          <div class="calc-result">
+            <div class="result-header">
+              <p>計算結果</p>
+              <div class="twilink" id="tweet-area"></div>
+              <script
+                src="//platform.twitter.com/widgets.js"
+                charset="utf-8"
+              ></script>
+            </div>
+            <div class="result">
+              <div>
+                最小値 :
+                <span id="min-current" class="min">0</span>
+              </div>
+              <div>
+                期待値 :
+                <span id="exp-current" class="exp">0</span>
+              </div>
+              <div>
+                最大値 :
+                <span id="max-current" class="max">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="mode-selector" class="leading-normal w-360px"></div>
+        <div class="history">
+          保存データ1
+          <input
+            type="button"
+            class="save"
+            value="保存"
+            data-deckid="deck-raid-mega-1"
+          />
+          <input
+            type="button"
+            class="load"
+            value="読出"
+            data-deckid="deck-raid-mega-1"
+          />
+          <div>
+            日時　 :
+            <span id="date-history-1" class="date"></span>
+          </div>
+          <div>
+            最小値 :
+            <span id="min-history-1" class="min"></span>
+          </div>
+          <div>
+            期待値 :
+            <span id="exp-history-1" class="exp"></span>
+          </div>
+          <div>
+            最大値 :
+            <span id="max-history-1" class="max"></span>
+          </div>
+          <div class="memo">
+            メモ　 :
+            <input
+              type="button"
+              class="update"
+              value="更新"
+              data-deckid="deck-raid-mega-1"
+            />
+            <textarea
+              id="memo-history-1"
+              class="memo"
+              rows="2"
+              cols="20"
+            ></textarea>
+          </div>
+        </div>
+        <div class="history">
+          保存データ2
+          <input
+            type="button"
+            class="save"
+            value="保存"
+            data-deckid="deck-raid-mega-2"
+          />
+          <input
+            type="button"
+            class="load"
+            value="読出"
+            data-deckid="deck-raid-mega-2"
+          />
+          <div>
+            日時　 :
+            <span id="date-history-2" class="date"></span>
+          </div>
+          <div>
+            最小値 :
+            <span id="min-history-2" class="min"></span>
+          </div>
+          <div>
+            期待値 :
+            <span id="exp-history-2" class="exp"></span>
+          </div>
+          <div>
+            最大値 :
+            <span id="max-history-2" class="max"></span>
+          </div>
+          <div class="memo">
+            メモ　 :
+            <input
+              type="button"
+              class="update"
+              value="更新"
+              data-deckid="deck-raid-mega-2"
+            />
+            <textarea
+              id="memo-history-2"
+              class="memo"
+              rows="2"
+              cols="20"
+            ></textarea>
+          </div>
+        </div>
+        <div class="history">
+          保存データ3
+          <input
+            type="button"
+            class="save"
+            value="保存"
+            data-deckid="deck-raid-mega-3"
+          />
+          <input
+            type="button"
+            class="load"
+            value="読出"
+            data-deckid="deck-raid-mega-3"
+          />
+          <div>
+            日時　 :
+            <span id="date-history-3" class="date"></span>
+          </div>
+          <div>
+            最小値 :
+            <span id="min-history-3" class="min"></span>
+          </div>
+          <div>
+            期待値 :
+            <span id="exp-history-3" class="exp"></span>
+          </div>
+          <div>
+            最大値 :
+            <span id="max-history-3" class="max"></span>
+          </div>
+          <div class="memo">
+            メモ　 :
+            <input
+              type="button"
+              class="update"
+              value="更新"
+              data-deckid="deck-raid-mega-3"
+            />
+            <textarea
+              id="memo-history-3"
+              class="memo"
+              rows="2"
+              cols="20"
+            ></textarea>
+          </div>
+        </div>
+      </section>
+
+      <div id="form-container">
+        <div id="theme-button-container">
+          <div class="toggle theme">
+            <input type="checkbox" id="theme-switch" name="theme" />
+          </div>
+          <label class="theme" for="theme-switch"></label>
+          <div class="toggle tools">
+            <input type="checkbox" id="tools-switch" name="tools" />
+          </div>
+          <label class="tools" for="tools-switch"></label>
+        </div>
+        <section id="main-scenes"></section>
+        <section id="sub-scenes"></section>
+        <section id="precious-scenes"></section>
+        <section id="petit-girls"></section>
+        <section id="deck-bonus"></section>
+        <section id="player-data"></section>
+      </div>
+
+      <div id="directjson">
+        <h2>保存データのバックアップ</h2>
+        <div class="x-scroll-container">
+          <div>
+            <h3>保存データ1</h3>
+            <div>
+              <label for="load_raw_1">ブラウザ → ローカルファイル に保存</label>
+              <input
+                type="button"
+                class="load_raw"
+                id="load_raw_1"
+                value="ファイルに保存"
+                data-deckid="deck-raid-mega-1"
+              />
+            </div>
+            <div>
+              <label for="save_raw_1" tabindex="0">
+                ローカルファイル → ブラウザ に読出
+              </label>
+              <input
+                type="file"
+                class="save_raw"
+                id="save_raw_1"
+                value="読出"
+                data-deckid="deck-raid-mega-1"
+                accept="text/plain"
+              />
+              <button data-id="save_raw_1">ファイルを選択</button>
+            </div>
+          </div>
+          <div>
+            <h3>保存データ2</h3>
+            <div>
+              <label for="load_raw_2">ブラウザ → ローカルファイル に保存</label>
+              <input
+                type="button"
+                class="load_raw"
+                id="load_raw_2"
+                value="ファイルに保存"
+                data-deckid="deck-raid-mega-2"
+              />
+            </div>
+            <div>
+              <label for="save_raw_2" tabindex="0">
+                ローカルファイル → ブラウザ に読出
+              </label>
+              <input
+                type="file"
+                class="save_raw"
+                id="save_raw_2"
+                value="読出"
+                data-deckid="deck-raid-mega-2"
+                accept="text/plain"
+              />
+              <button data-id="save_raw_2">ファイルを選択</button>
+            </div>
+          </div>
+          <div>
+            <h3>保存データ3</h3>
+            <div>
+              <label for="load_raw_3">ブラウザ → ローカルファイル に保存</label>
+              <input
+                type="button"
+                class="load_raw"
+                id="load_raw_3"
+                value="ファイルに保存"
+                data-deckid="deck-raid-mega-3"
+              />
+            </div>
+            <div>
+              <label for="save_raw_3" tabindex="0">
+                ローカルファイル → ブラウザ に読出
+              </label>
+              <input
+                type="file"
+                class="save_raw"
+                id="save_raw_3"
+                value="読出"
+                data-deckid="deck-raid-mega-3"
+                accept="text/plain"
+              />
+              <button data-id="save_raw_3">ファイルを選択</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="changelog">
+        <h2>更新履歴</h2>
+      </div>
+
+      <div id="importRawData">
+        <h2>デバッグ用機能：rawデータをインポートする</h2>
+        <div>
+          <h3>プレイヤーの部活タイプ</h3>
+          <div class="playerClub selectmark">
+            <select name="playerClub">
+              <option value="clubType_0" selected>未所属</option>
+              <option value="clubType_1">委員会＆団体</option>
+              <option value="clubType_2">運動部</option>
+              <option value="clubType_3">運動部(個人競技)</option>
+              <option value="clubType_4">帰宅部</option>
+              <option value="clubType_5">研究会</option>
+              <option value="clubType_6">文化部</option>
+              <option value="clubType_7">文化部(音楽系)</option>
+              <option value="clubType_8">文化部(日本)</option>
+            </select>
+          </div>
+          <h3>
+            <span>有利ガール(聖櫻学園メモリアルストーリー)</span>
+            /
+            <span>予選ガール(課外活動コンテスト)</span>
+          </h3>
+          <div class="specialGirl">
+            <div>
+              1.
+              <input type="text" id="specialGirl-1" />
+            </div>
+            <div>
+              2.
+              <input type="text" id="specialGirl-2" />
+            </div>
+          </div>
+          <label for="rawData" tabindex="0">
+            ローカルファイル → ブラウザ に読出
+          </label>
+          <input
+            type="file"
+            id="rawData"
+            value="読出"
+            accept="application/json"
+          />
+          <button data-id="rawData">ファイルを選択</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- javascript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="/decksim_v1/js/decksim-theme.js?20241211"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+
+    <script src="/decksim_v1/js/decksim-const.js?20241211"></script>
+    <script src="/decksim_v1/js/decksim-events.js?20241211"></script>
+    <script src="/decksim_v1/js/decksim-calc.js?20241211"></script>
+    <script src="/decksim_v1/js/decksim-changelog.js?20241211"></script>
+    <script src="/decksim_v1/js/decksim-main.js?20241211"></script>
+  </body>
+</html>

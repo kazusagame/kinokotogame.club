@@ -1,0 +1,4011 @@
+html {
+  --pop: #ff8432;
+  --sweet: #ff5384;
+  --cool: #007eea;
+  --pink: #fe7098;
+  --background-main: #ffffff;
+  --background-main-alt: #eeeeee;
+  --background-auto: #ffe8ff;
+  --background-auto-alt: #ffd0ff;
+  --background-invalid: #666666;
+  --text-main: #000000;
+  --text-red: #b20000;
+  --text-blue: #0300b2;
+  --border-main: 1px #000000 solid;
+  --border-color-red: #b20000;
+  --border-color-blue: #0300b2;
+  --tooltips-url: url("data:image/svg+xml;utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%230300b2' viewBox='0 0 16 16'%3E%3Cpath d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/%3E%3Cpath d='M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z'/%3E%3C/svg%3E");
+  --sun: url("data:image/svg+xml;utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000000' viewBox='0 0 16 16'%3E%3Cpath d='M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z'/%3E%3C/svg%3E");
+  --moon: url("data:image/svg+xml;utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000000' viewBox='0 0 16 16'%3E%3Cpath d='M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278'/%3E%3C/svg%3E");
+  --checkbox-border: #808080;
+  --checkbox-blank: #ffffff;
+  --checkbox-background: #0000b1;
+  --checkbox-line: #ffffff;
+}
+html.Dark {
+  --pop: #80431b;
+  --sweet: #832b44;
+  --cool: #004888;
+  --pink: #8f3f55;
+  --background-main: #141920;
+  --background-main-alt: #23282f;
+  --background-auto: #282c30;
+  --background-auto-alt: #383c40;
+  --background-invalid: #666666;
+  --text-main: #e6e6e6;
+  --text-red: #fabea7;
+  --text-blue: #c6cfff;
+  --border-main: 1px #e6e6e6 solid;
+  --border-color-red: #fabea7;
+  --border-color-blue: #c6cfff;
+  --tooltips-url: url("data:image/svg+xml;utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23c6cfff' viewBox='0 0 16 16'%3E%3Cpath d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/%3E%3Cpath d='M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z'/%3E%3C/svg%3E");
+  --sun: url("data:image/svg+xml;utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23e6e6e6' viewBox='0 0 16 16'%3E%3Cpath d='M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z'/%3E%3C/svg%3E");
+  --moon: url("data:image/svg+xml;utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23e6e6e6' viewBox='0 0 16 16'%3E%3Cpath d='M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278'/%3E%3C/svg%3E");
+  --checkbox-border: #e6e6e6;
+  --checkbox-blank: #383c40;
+  --checkbox-background: #383c40;
+  --checkbox-line: #e6e6e6;
+}
+html {
+  font-size: 16px;
+  background-color: var(--background-main);
+  color: var(--text-main);
+}
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+body > div {
+  margin-top: 165px;
+  margin-left: 10px;
+}
+section {
+  margin-bottom: 30px;
+}
+h2 {
+  margin-top: 10px;
+}
+h3 {
+  margin-top: 10px;
+}
+a.anchor {
+  display: block;
+  padding-top: 175px;
+  margin-top: -175px;
+  margin-left: -30px;
+}
+input[type="number"] {
+  -moz-appearance: auto;
+  -webkit-appearance: auto;
+  appearance: auto;
+}
+.w-50px {
+  width: 50px;
+}
+.w-55px {
+  width: 55px;
+}
+.w-60px {
+  width: 60px;
+}
+.w-65px {
+  width: 65px;
+}
+.w-78px {
+  width: 78px;
+}
+.w-80px {
+  width: 80px;
+}
+.w-90px {
+  width: 90px;
+}
+.w-100px {
+  width: 100px;
+}
+.w-120px {
+  width: 120px;
+}
+.w-140px {
+  width: 140px;
+}
+.w-150px {
+  width: 150px;
+}
+.w-160px {
+  width: 160px;
+}
+.w-175px {
+  width: 175px;
+}
+.w-180px {
+  width: 180px;
+}
+.w-190px {
+  width: 190px;
+}
+.w-220px {
+  width: 220px;
+}
+.w-250px {
+  width: 250px;
+}
+.w-280px {
+  width: 280px;
+}
+.w-330px {
+  width: 330px;
+}
+.w-360px {
+  width: 360px;
+}
+.w-400px {
+  width: 400px;
+}
+.w-440px {
+  width: 440px;
+}
+.w-inv78px {
+  width: calc(100% - 78px);
+}
+.w-inv100px {
+  width: calc(100% - 100px);
+}
+.w-inv120px {
+  width: calc(100% - 120px);
+}
+.w-80per {
+  width: 80%;
+}
+.w-100per {
+  width: 100%;
+}
+.h-25px {
+  height: 25px;
+}
+.h-33px {
+  height: 33px;
+}
+.h-100per {
+  height: 100%;
+}
+.mr-5px {
+  margin-right: 5px;
+}
+.mr-10px {
+  margin-right: 10px;
+}
+.ml-5px {
+  margin-left: 5px;
+}
+.ml-10px {
+  margin-left: 10px;
+}
+.ml-45px {
+  margin-left: 45px;
+}
+.mr-30px {
+  margin-right: 30px;
+}
+.mr-50px {
+  margin-right: 50px;
+}
+.mr-60px {
+  margin-right: 60px;
+}
+.mr-70px {
+  margin-right: 70px;
+}
+.mr-80px {
+  margin-right: 80px;
+}
+.mt-20px {
+  margin-top: 20px;
+}
+.mt-30px {
+  margin-top: 30px;
+}
+.mt-40px {
+  margin-top: 40px;
+}
+.mb-5px {
+  margin-bottom: 5px;
+}
+.mb-10px {
+  margin-bottom: 10px;
+}
+.mb-20px {
+  margin-bottom: 20px;
+}
+.mb-30px {
+  margin-bottom: 30px;
+}
+.mb-40px {
+  margin-bottom: 40px;
+}
+.flex {
+  display: flex;
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-col {
+  flex-direction: column;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-left {
+  justify-content: left;
+}
+.items-center {
+  align-items: center;
+}
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+.leading-loose {
+  line-height: 2;
+}
+.text-right {
+  text-align: right;
+}
+.border-t-main {
+  border-top: var(--border-main);
+}
+.border-b-main {
+  border-bottom: var(--border-main);
+}
+.border-l-main {
+  border-left: var(--border-main);
+}
+.border-r-main {
+  border-right: var(--border-main);
+}
+.p-0px-10px {
+  padding: 0px 10px;
+}
+.bg-main {
+  background-color: var(--background-main);
+}
+.bg-auto {
+  background-color: var(--background-auto);
+}
+.custom-checkbox {
+  position: relative;
+}
+.custom-checkbox label {
+  cursor: pointer;
+}
+.custom-checkbox input[type="checkbox"] {
+  opacity: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: absolute;
+}
+.custom-checkbox input[type="checkbox"] + span::before {
+  position: absolute;
+  content: "";
+  width: 24px;
+  height: 24px;
+  top: calc(50% - 12px);
+  left: calc(50% - 12px);
+  border: 1px solid var(--checkbox-border);
+  border-radius: 5px;
+  background: var(--checkbox-blank);
+  margin: 0;
+}
+.custom-checkbox input[type="checkbox"] + span::after {
+  position: absolute;
+  content: "";
+  width: 9px;
+  height: 16px;
+  top: calc(50% - 12px + 2px);
+  left: calc(50% - 12px + 7px);
+  border: solid var(--checkbox-line);
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+}
+.custom-checkbox input[type="checkbox"]:checked + span::before {
+  background-color: var(--checkbox-background);
+}
+.custom-checkbox input[type="checkbox"]:checked + span::after {
+  opacity: 1;
+}
+.inform-tooltips::after {
+  margin-left: 5px;
+  content: var(--tooltips-url);
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: text-top;
+  pointer-events: none;
+}
+#tools {
+  height: 175px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: var(--background-auto);
+  display: flex;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+#tools div.internal-links {
+  margin: 0px 20px 0px 10px;
+  line-height: 1.5;
+}
+#tools div.internal-links div.title {
+  padding: 2px 5px 2px 5px;
+  border: var(--border-main);
+  border-radius: 5px;
+  background-color: var(--background-auto-alt);
+  width: 320px;
+}
+#tools div.internal-links div.title div {
+  width: 100%;
+}
+#tools div.internal-links div.title select {
+  width: 100%;
+  padding-left: 5px;
+  background-color: var(--background-auto-alt);
+}
+#tools div.calc-result {
+  margin: 15px 0px 0px 10px;
+  line-height: 1;
+}
+#tools div.calc-result div.result-header {
+  position: relative;
+}
+#tools div.calc-result div.result-header > div.twilink {
+  position: absolute;
+  top: -3px;
+  left: 80px;
+}
+#tools div.calc-result div.result {
+  width: auto;
+  margin: 5px 0px 0px 10px;
+  padding: 5px 5px 5px 5px;
+  border: var(--border-main);
+  border-radius: 5px;
+  line-height: 1.5;
+}
+#tools div#mode-selector {
+  margin-left: 20px;
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#tools div#mode-selector.leading-normal > div {
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+#tools div#mode-selector.leading-relaxed > div {
+  line-height: 1.625;
+  margin-bottom: 14px;
+}
+#tools div#mode-selector.leading-relaxed div:last-child {
+  margin-bottom: 0px;
+}
+#tools div#mode-selector select,
+#tools div#mode-selector input[type="text"] {
+  border: var(--border-main);
+  border-radius: 5px;
+  padding-left: 10px;
+  background-color: var(--background-auto-alt);
+}
+#tools div#mode-selector select.Pop,
+#tools div#mode-selector input[type="text"].Pop {
+  background-color: var(--pop);
+}
+#tools div#mode-selector select.Sweet,
+#tools div#mode-selector input[type="text"].Sweet {
+  background-color: var(--sweet);
+}
+#tools div#mode-selector select.Cool,
+#tools div#mode-selector input[type="text"].Cool {
+  background-color: var(--cool);
+}
+#tools div#mode-selector input[type="number"] {
+  border: var(--border-main);
+  border-radius: 5px;
+  text-align: center;
+  padding-left: 10px;
+  background-color: var(--background-auto-alt);
+}
+#tools
+  div#mode-selector
+  .custom-checkbox
+  input[type="checkbox"]
+  + span::before {
+  top: calc(50% - 12px);
+  right: -35px;
+  left: auto;
+}
+#tools div#mode-selector .custom-checkbox input[type="checkbox"] + span::after {
+  top: calc(50% - 12px + 2px);
+  right: -28px;
+  left: auto;
+}
+#tools div#mode-selector div.InvalidByAppealType.battle {
+  opacity: 0.1;
+}
+#tools div#mode-selector div.InvalidByPointConverter.false {
+  opacity: 0.1;
+}
+#tools div#mode-selector div.InvalidByRaidwarType.false {
+  opacity: 0.1;
+}
+#tools div.history > div {
+  padding-left: 15px;
+  width: 320px;
+  line-height: 1.3;
+}
+#tools div.history > div span {
+  width: 100%;
+}
+#tools div.history > input[type="button"] {
+  display: inline-block;
+  margin: 0px 3px 0px 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: var(--text-red);
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid var(--border-color-red);
+  border-radius: 5px;
+}
+#tools div.history > input[type="button"]:hover {
+  background-color: var(--background-main-alt);
+}
+#tools div.history > div.memo {
+  position: relative;
+}
+#tools div.history > div.memo > input[type="button"] {
+  position: absolute;
+  top: 27px;
+  left: 35px;
+  background-color: var(--pink);
+  color: #fff;
+  padding: 4px;
+  border-radius: 5px;
+  line-height: 1.2;
+}
+#tools div.history > div.memo > textarea {
+  position: absolute;
+  top: 4px;
+  width: 210px;
+  height: 50px;
+  resize: none;
+  margin-left: 10px;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  background-color: var(--background-main);
+  border: #bbb 1px solid;
+  border-radius: 5px;
+  line-height: 1.2;
+}
+#tools.display-none {
+  display: none;
+}
+#changelog {
+  line-height: 1.5;
+  margin: 200px 0px 50px 0px;
+  padding: 10px;
+  max-width: 800px;
+}
+#changelog table {
+  margin: 10px;
+}
+#changelog table .date {
+  width: 120px;
+}
+#changelog table .change {
+  width: 600px;
+}
+#changelog table td,
+#changelog table td {
+  border: var(--border-main);
+  padding: 10px;
+}
+#changelog #changelogDoor {
+  position: relative;
+  cursor: pointer;
+  padding-left: 24px;
+  background-color: var(--background-auto);
+}
+#changelog #changelogDoor.next-close::before {
+  position: absolute;
+  left: 5px;
+  font-weight: 900;
+  content: "+";
+  color: #bbb;
+  pointer-events: none;
+}
+#changelog #changelogDoor.next-open::before {
+  position: absolute;
+  left: 5px;
+  font-weight: 900;
+  content: "‐";
+  color: #bbb;
+  pointer-events: none;
+}
+#changelog .close {
+  display: none;
+}
+#directjson {
+  line-height: 1.5;
+  margin: 50px 0px 50px 0px;
+  padding: 5px;
+}
+#directjson > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+#directjson > div > div {
+  padding: 10px;
+  margin-top: 10px;
+  margin-right: 40px;
+  border: var(--border-main);
+  border-radius: 5px;
+}
+#directjson > div > div h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 0;
+}
+#directjson > div .load_raw {
+  display: inline-block;
+  margin: 10px;
+  width: auto;
+  height: 40px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: var(--text-red);
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+  border: 2px solid var(--border-color-red);
+  border-radius: 5px;
+}
+#directjson > div .save_raw {
+  display: none;
+}
+#directjson > div button {
+  display: inline-block;
+  margin: 10px;
+  width: auto;
+  height: 40px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: var(--text-blue);
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+  border: 2px solid var(--border-color-blue);
+  border-radius: 5px;
+}
+#importRawData {
+  line-height: 1.5;
+  margin: 50px 0px 50px 0px;
+  padding: 5px;
+}
+#importRawData > div {
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 20px;
+  margin-right: 40px;
+  border: var(--border-main);
+  border-radius: 5px;
+  width: 620px;
+}
+#importRawData h3 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+#importRawData div.playerClub {
+  width: 200px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+#importRawData div.playerClub select {
+  width: 100%;
+  padding: 5px 10px;
+  border: var(--border-main);
+  border-radius: 5px;
+  background-color: var(--background-main);
+}
+#importRawData div.playerClub::after {
+  right: 0.4rem;
+  top: 0.4rem;
+}
+#importRawData div.specialGirl {
+  width: 300px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+#importRawData div.specialGirl input[type="text"] {
+  width: 250px;
+  display: inline-block;
+  border: var(--border-main);
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  padding: 5px 10px;
+}
+#importRawData input[type="file"] {
+  display: none;
+}
+#importRawData button {
+  display: inline-block;
+  margin: 10px;
+  width: auto;
+  height: 40px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: var(--text-blue);
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+  border: 2px solid var(--border-color-blue);
+  border-radius: 5px;
+}
+#importRawData button:active {
+  transform: translateY(2px);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+#theme-button-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+#theme-button-container label:before {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: text-top;
+  pointer-events: none;
+}
+#theme-button-container label:after {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: text-top;
+  pointer-events: none;
+}
+#theme-button-container label.tools:before {
+  width: 150px;
+  top: 0px;
+  right: 210px;
+  content: "ツール部表示ON";
+  text-align: right;
+}
+#theme-button-container label.tools:after {
+  top: 0px;
+  right: 140px;
+  content: "OFF";
+}
+#theme-button-container label.theme:before {
+  top: 0px;
+  right: 70px;
+  content: var(--sun);
+}
+#theme-button-container label.theme:after {
+  top: 0px;
+  right: 0px;
+  content: var(--moon);
+}
+#theme-button-container .toggle {
+  position: relative;
+  width: 44px;
+  height: 16px;
+  margin-right: 22px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+#theme-button-container .toggle.tools {
+  top: -1em;
+  right: 140px;
+}
+#theme-button-container .toggle.theme {
+  top: 0px;
+  right: 0px;
+}
+#theme-button-container .toggle input[type="checkbox"] {
+  display: none;
+}
+#theme-button-container .toggle:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: var(--text-main);
+  transition: 0.2s ease-out;
+}
+#theme-button-container .toggle:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  display: block;
+  border-radius: 6px;
+  background: var(--background-auto);
+  transition: 0.2s ease-out;
+}
+#theme-button-container .toggle.checked:after {
+  left: 30px;
+}
+#theme-button-container .tools {
+  display: none;
+}
+.Pop {
+  background-color: var(--pop);
+}
+.Sweet {
+  background-color: var(--sweet);
+}
+.Cool {
+  background-color: var(--cool);
+}
+.All {
+  background-color: var(--background-main);
+}
+.Red {
+  color: var(--text-red);
+}
+.heading {
+  font-size: 0.75rem;
+  margin: 5px auto 0px auto;
+}
+.selectmark {
+  position: relative;
+}
+.selectmark::after {
+  position: absolute;
+  right: 0.3rem;
+  font-weight: 900;
+  content: "▼";
+  color: #bbb;
+  pointer-events: none;
+}
+div#form-container {
+  width: 1750px;
+  padding-left: 20px;
+  padding-top: 20px;
+  position: relative;
+}
+div.main.scenes {
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  line-height: 2;
+}
+div.main.scenes.heading > div.rowadd,
+div.main.scenes.heading > div.rowdelete {
+  width: 60px;
+  height: 25px;
+  border-bottom: var(--border-main);
+}
+div.main.scenes.heading > div.rowUp,
+div.main.scenes.heading > div.rowDown {
+  width: 40px;
+  height: 25px;
+  border-bottom: var(--border-main);
+}
+div.main.scenes.heading > div.number {
+  width: 40px;
+  height: 25px;
+  border-bottom: var(--border-main);
+}
+div.main.scenes.heading > div.apower,
+div.main.scenes.heading > div.strap {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.main.scenes.heading > div.type,
+div.main.scenes.heading > div.rarity {
+  width: 100px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.main.scenes.heading > div.cost,
+div.main.scenes.heading > div.skilllv {
+  width: 80px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.main.scenes.heading > div.grade {
+  width: 90px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.main.scenes.heading > div.club,
+div.main.scenes.heading > div.date,
+div.main.scenes.heading > div.touch,
+div.main.scenes.heading > div.birth,
+div.main.scenes.heading > div.limit,
+div.main.scenes.heading > div.best,
+div.main.scenes.heading > div.special {
+  width: 90px;
+  padding: 0px 5px;
+  border-bottom: var(--border-main);
+}
+div.main.scenes.heading > div.result-1,
+div.main.scenes.heading > div.result-2,
+div.main.scenes.heading > div.result-event-sp-1,
+div.main.scenes.heading > div.result-event-sp-2 {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.main.scenes.body > div.rowadd,
+div.main.scenes.body > div.rowdelete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 33px;
+  border-bottom: var(--border-main);
+  border-right: var(--border-main);
+}
+div.main.scenes.body > div.rowadd input,
+div.main.scenes.body > div.rowdelete input {
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  height: 75%;
+  width: 75%;
+  line-height: 1.75;
+}
+div.main.scenes.body > div.rowadd > input.rowadd,
+div.main.scenes.body > div.rowdelete > input.rowadd {
+  color: var(--text-red);
+  border: 2px solid var(--border-color-red);
+  text-align: center;
+}
+div.main.scenes.body > div.rowadd > input.rowdelete,
+div.main.scenes.body > div.rowdelete > input.rowdelete {
+  color: var(--text-blue);
+  border: 2px solid var(--border-color-blue);
+  text-align: center;
+}
+div.main.scenes.body > div.rowUp,
+div.main.scenes.body > div.rowDown {
+  width: 40px;
+  height: 33px;
+  text-align: center;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.main.scenes.body > div.rowUp input,
+div.main.scenes.body > div.rowDown input {
+  cursor: pointer;
+  font-size: 24px;
+  height: 75%;
+  width: 75%;
+  line-height: 1;
+}
+div.main.scenes.body > div.number {
+  width: 40px;
+  text-align: right;
+  padding: 0px 10px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.main.scenes.body > input.apower,
+div.main.scenes.body > input.strap {
+  width: 120px;
+  padding: 0px 10px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.main.scenes.body > div.type,
+div.main.scenes.body > div.rarity {
+  width: 100px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.main.scenes.body > div.type select,
+div.main.scenes.body > div.rarity select {
+  width: 100%;
+  padding: 0px 10px;
+}
+div.main.scenes.body > div.rarity select {
+  background-color: inherit;
+}
+div.main.scenes.body > input.cost,
+div.main.scenes.body > input.skilllv {
+  width: 80px;
+  padding: 0px 10px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.main.scenes.body > div.grade {
+  width: 90px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.main.scenes.body > div.grade select {
+  width: 100%;
+  padding: 0px 10px;
+  background-color: inherit;
+}
+div.main.scenes.body > div.club,
+div.main.scenes.body > div.date,
+div.main.scenes.body > div.touch,
+div.main.scenes.body > div.birth,
+div.main.scenes.body > div.limit,
+div.main.scenes.body > div.best,
+div.main.scenes.body > div.special {
+  width: 90px;
+  height: 33px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.main.scenes.body > div.result-1,
+div.main.scenes.body > div.result-2,
+div.main.scenes.body > div.result-event-sp-1,
+div.main.scenes.body > div.result-event-sp-2 {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+  text-align: right;
+}
+div.main.scenes.body > div.result-1 {
+  border-right: var(--border-main);
+}
+div.main.scenes.body > div.result-event-sp-1 {
+  border-left: var(--border-main);
+  border-right: var(--border-main);
+}
+div.main.scenes.body:nth-child(odd) div,
+div.main.scenes.body:nth-child(odd) input {
+  background-color: var(--background-main);
+}
+div.main.scenes.body:nth-child(odd) div.result-1,
+div.main.scenes.body:nth-child(odd) div.result-2,
+div.main.scenes.body:nth-child(odd) div.result-event-sp-1,
+div.main.scenes.body:nth-child(odd) div.result-event-sp-2 {
+  background-color: var(--background-auto);
+}
+div.main.scenes.body:nth-child(even) div,
+div.main.scenes.body:nth-child(even) input {
+  background-color: var(--background-main-alt);
+}
+div.main.scenes.body:nth-child(even) div.result-1,
+div.main.scenes.body:nth-child(even) div.result-2,
+div.main.scenes.body:nth-child(even) div.result-event-sp-1,
+div.main.scenes.body:nth-child(even) div.result-event-sp-2 {
+  background-color: var(--background-auto-alt);
+}
+div.main.skill {
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  line-height: 2;
+}
+div.main.skill.heading {
+  margin-top: 20px;
+}
+div.main.skill.heading > div.rowadd,
+div.main.skill.heading > div.rowdelete {
+  width: 60px;
+  padding: 0px 10px;
+  height: 25px;
+  border-bottom: var(--border-main);
+}
+div.main.skill.heading > div.rowUp,
+div.main.skill.heading > div.rowDown {
+  width: 40px;
+  height: 25px;
+  border-bottom: var(--border-main);
+}
+div.main.skill.heading > div.number {
+  width: 40px;
+  text-align: right;
+  padding: 0px 10px;
+  height: 25px;
+  border-bottom: var(--border-main);
+}
+div.main.skill.heading > div.valid,
+div.main.skill.heading > div.skilllv {
+  width: 90px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.main.skill.heading > div.skill {
+  width: 100px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.main.skill.heading > div.skill.wide {
+  width: 200px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.main.skill.heading > div.s70 {
+  width: 320px;
+  padding: 0px 10px;
+  height: 25px;
+  border-bottom: var(--border-main);
+}
+div.main.skill.heading > div.skill-effect,
+div.main.skill.heading > div.skill-chance,
+div.main.skill.heading > div.skill-total {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.main.skill.body > div.rowadd,
+div.main.skill.body > div.rowdelete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 33px;
+  border-bottom: var(--border-main);
+  border-right: var(--border-main);
+}
+div.main.skill.body > div.rowadd input,
+div.main.skill.body > div.rowdelete input {
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  height: 75%;
+  width: 75%;
+  line-height: 1.75;
+}
+div.main.skill.body > div.rowadd > input.rowadd,
+div.main.skill.body > div.rowdelete > input.rowadd {
+  color: var(--text-red);
+  border: 2px solid var(--border-color-red);
+  text-align: center;
+}
+div.main.skill.body > div.rowadd > input.rowdelete,
+div.main.skill.body > div.rowdelete > input.rowdelete {
+  color: var(--text-blue);
+  border: 2px solid var(--border-color-blue);
+  text-align: center;
+}
+div.main.skill.body > div.rowUp,
+div.main.skill.body > div.rowDown {
+  width: 40px;
+  height: 33px;
+  text-align: center;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.main.skill.body > div.rowUp input,
+div.main.skill.body > div.rowDown input {
+  cursor: pointer;
+  font-size: 24px;
+  height: 75%;
+  width: 75%;
+  line-height: 1;
+}
+div.main.skill.body > div.number {
+  width: 40px;
+  text-align: right;
+  padding: 0px 10px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.main.skill.body > div.valid {
+  width: 90px;
+  height: 33px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.main.skill.body > div.skill {
+  width: 100px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.main.skill.body > div.skill input {
+  width: 100%;
+  padding: 0px 10px;
+}
+div.main.skill.body > div.skill select {
+  width: 100%;
+  padding: 0px 10px;
+}
+div.main.skill.body > div.skill select.skill-2,
+div.main.skill.body > div.skill select.skill-4,
+div.main.skill.body > div.skill select.skill-5,
+div.main.skill.body > div.skill select.skill-6 {
+  background-color: inherit;
+}
+div.main.skill.body > div.skill.wide {
+  width: 200px;
+}
+div.main.skill.body > div.s70 {
+  width: 320px;
+  padding: 0px 10px;
+  height: 33px;
+  border-bottom: var(--border-main);
+}
+div.main.skill.body > div.skill-effect {
+  width: 120px;
+  padding: 0px 10px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+  text-align: right;
+}
+div.main.skill.body > div.skill-total {
+  width: 120px;
+  padding: 0px 10px;
+  border-left: var(--border-main);
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+  text-align: right;
+}
+div.main.skill.body > div.skill-chance {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+  text-align: right;
+}
+div.main.skill.body:nth-child(odd) div,
+div.main.skill.body:nth-child(odd) input {
+  background-color: var(--background-main);
+}
+div.main.skill.body:nth-child(odd) .skill-effect,
+div.main.skill.body:nth-child(odd) .skill-chance,
+div.main.skill.body:nth-child(odd) .skill-total {
+  background-color: var(--background-auto);
+}
+div.main.skill.body:nth-child(even) div,
+div.main.skill.body:nth-child(even) input {
+  background-color: var(--background-main-alt);
+}
+div.main.skill.body:nth-child(even) .skill-effect,
+div.main.skill.body:nth-child(even) .skill-chance,
+div.main.skill.body:nth-child(even) .skill-total {
+  background-color: var(--background-auto-alt);
+}
+div.sub {
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  line-height: 2;
+}
+div.sub.heading > div.rowadd,
+div.sub.heading > div.rowdelete {
+  width: 60px;
+  height: 25px;
+  border-bottom: var(--border-main);
+}
+div.sub.heading > div.rowUp,
+div.sub.heading > div.rowDown {
+  width: 40px;
+  height: 25px;
+  border-bottom: var(--border-main);
+}
+div.sub.heading > div.number {
+  width: 40px;
+  height: 25px;
+  border-bottom: var(--border-main);
+}
+div.sub.heading > div.apower,
+div.sub.heading > div.strap {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.sub.heading > div.type,
+div.sub.heading > div.rarity {
+  width: 100px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.sub.heading > div.cost,
+div.sub.heading > div.skilllv {
+  width: 80px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.sub.heading > div.grade {
+  width: 90px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.sub.heading > div.club,
+div.sub.heading > div.date,
+div.sub.heading > div.touch,
+div.sub.heading > div.birth,
+div.sub.heading > div.limit,
+div.sub.heading > div.best,
+div.sub.heading > div.special {
+  width: 90px;
+  padding: 0px 5px;
+  border-bottom: var(--border-main);
+}
+div.sub.heading > div.result-1,
+div.sub.heading > div.result-2,
+div.sub.heading > div.result-event-sp-1,
+div.sub.heading > div.result-event-sp-2 {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.sub.body > div.rowadd,
+div.sub.body > div.rowdelete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 33px;
+  border-bottom: var(--border-main);
+  border-right: var(--border-main);
+}
+div.sub.body > div.rowadd input,
+div.sub.body > div.rowdelete input {
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  height: 75%;
+  width: 75%;
+  line-height: 1.75;
+}
+div.sub.body > div.rowadd > input.rowadd,
+div.sub.body > div.rowdelete > input.rowadd {
+  color: var(--text-red);
+  border: 2px solid var(--border-color-red);
+  text-align: center;
+}
+div.sub.body > div.rowadd > input.rowdelete,
+div.sub.body > div.rowdelete > input.rowdelete {
+  color: var(--text-blue);
+  border: 2px solid var(--border-color-blue);
+  text-align: center;
+}
+div.sub.body > div.rowUp,
+div.sub.body > div.rowDown {
+  width: 40px;
+  height: 33px;
+  text-align: center;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.sub.body > div.rowUp input,
+div.sub.body > div.rowDown input {
+  cursor: pointer;
+  font-size: 24px;
+  height: 75%;
+  width: 75%;
+  line-height: 1;
+}
+div.sub.body > div.number {
+  width: 40px;
+  text-align: right;
+  padding: 0px 10px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.sub.body > input.apower,
+div.sub.body > input.strap {
+  width: 120px;
+  padding: 0px 10px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.sub.body > div.type,
+div.sub.body > div.rarity {
+  width: 100px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.sub.body > div.type select,
+div.sub.body > div.rarity select {
+  width: 100%;
+  padding: 0px 10px;
+}
+div.sub.body > div.rarity select {
+  background-color: inherit;
+}
+div.sub.body > input.cost,
+div.sub.body > input.skilllv {
+  width: 80px;
+  padding: 0px 10px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.sub.body > div.grade {
+  width: 90px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.sub.body > div.grade select {
+  width: 100%;
+  padding: 0px 10px;
+  background-color: inherit;
+}
+div.sub.body > div.club,
+div.sub.body > div.date,
+div.sub.body > div.touch,
+div.sub.body > div.birth,
+div.sub.body > div.limit,
+div.sub.body > div.best,
+div.sub.body > div.special {
+  width: 90px;
+  height: 33px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.sub.body > div.result-1,
+div.sub.body > div.result-2,
+div.sub.body > div.result-event-sp-1,
+div.sub.body > div.result-event-sp-2 {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+  text-align: right;
+}
+div.sub.body > div.result-1 {
+  border-right: var(--border-main);
+}
+div.sub.body > div.result-event-sp-1 {
+  border-left: var(--border-main);
+  border-right: var(--border-main);
+}
+div.sub.body:nth-child(odd) div,
+div.sub.body:nth-child(odd) input {
+  background-color: var(--background-main);
+}
+div.sub.body:nth-child(odd) div.result-1,
+div.sub.body:nth-child(odd) div.result-2,
+div.sub.body:nth-child(odd) div.result-event-sp-1,
+div.sub.body:nth-child(odd) div.result-event-sp-2 {
+  background-color: var(--background-auto);
+}
+div.sub.body:nth-child(even) div,
+div.sub.body:nth-child(even) input {
+  background-color: var(--background-main-alt);
+}
+div.sub.body:nth-child(even) div.result-1,
+div.sub.body:nth-child(even) div.result-2,
+div.sub.body:nth-child(even) div.result-event-sp-1,
+div.sub.body:nth-child(even) div.result-event-sp-2 {
+  background-color: var(--background-auto-alt);
+}
+h3 {
+  margin-top: 20px;
+}
+div.switch {
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  line-height: 2;
+}
+div.switch.heading > div.rowadd,
+div.switch.heading > div.rowdelete {
+  width: 60px;
+  padding: 0px 10px;
+  height: 25px;
+  border-bottom: var(--border-main);
+}
+div.switch.heading > div.rowUp,
+div.switch.heading > div.rowDown {
+  width: 40px;
+  height: 25px;
+  border-bottom: var(--border-main);
+}
+div.switch.heading > div.number {
+  width: 40px;
+  text-align: right;
+  padding: 0px 10px;
+  height: 25px;
+  border-bottom: var(--border-main);
+}
+div.switch.heading > div.valid {
+  width: 90px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.switch.heading > div.skilllv {
+  width: 80px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.switch.heading > div.skill {
+  width: 100px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.switch.heading > div.skill.wide {
+  width: 200px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.switch.heading > div.s100 {
+  width: 340px;
+  padding: 0px 10px;
+  height: 25px;
+  border-bottom: var(--border-main);
+}
+div.switch.heading > div.skill-effect,
+div.switch.heading > div.skill-chance,
+div.switch.heading > div.skill-total {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.switch.body > div.rowadd,
+div.switch.body > div.rowdelete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 33px;
+  border-bottom: var(--border-main);
+  border-right: var(--border-main);
+}
+div.switch.body > div.rowadd input,
+div.switch.body > div.rowdelete input {
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  height: 75%;
+  width: 75%;
+  line-height: 1.75;
+}
+div.switch.body > div.rowadd > input.rowadd,
+div.switch.body > div.rowdelete > input.rowadd {
+  color: var(--text-red);
+  border: 2px solid var(--border-color-red);
+  text-align: center;
+}
+div.switch.body > div.rowadd > input.rowdelete,
+div.switch.body > div.rowdelete > input.rowdelete {
+  color: var(--text-blue);
+  border: 2px solid var(--border-color-blue);
+  text-align: center;
+}
+div.switch.body > div.rowUp,
+div.switch.body > div.rowDown {
+  width: 40px;
+  height: 33px;
+  text-align: center;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.switch.body > div.rowUp input,
+div.switch.body > div.rowDown input {
+  cursor: pointer;
+  font-size: 24px;
+  height: 75%;
+  width: 75%;
+  line-height: 1;
+}
+div.switch.body > div.number {
+  width: 40px;
+  text-align: right;
+  padding: 0px 10px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.switch.body > div.valid {
+  width: 90px;
+  height: 33px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.switch.body > input.skilllv {
+  width: 80px;
+  padding: 0px 10px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.switch.body > div.skill {
+  width: 100px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.switch.body > div.skill input {
+  width: 100%;
+  padding: 0px 10px;
+}
+div.switch.body > div.skill select {
+  width: 100%;
+  padding: 0px 10px;
+}
+div.switch.body > div.skill select.skill-2,
+div.switch.body > div.skill select.skill-4,
+div.switch.body > div.skill select.skill-5 {
+  background-color: inherit;
+}
+div.switch.body > div.skill.wide {
+  width: 200px;
+  border-right: var(--border-main);
+}
+div.switch.body > div.s100 {
+  width: 340px;
+  padding: 0px 10px;
+  height: 33px;
+  border-bottom: var(--border-main);
+}
+div.switch.body > div.skill-effect {
+  width: 120px;
+  padding: 0px 10px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+  text-align: right;
+}
+div.switch.body > div.skill-total {
+  width: 120px;
+  padding: 0px 10px;
+  border-left: var(--border-main);
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+  text-align: right;
+}
+div.switch.body > div.skill-chance {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+  text-align: right;
+}
+div.switch.body:nth-child(odd) div,
+div.switch.body:nth-child(odd) input {
+  background-color: var(--background-main);
+}
+div.switch.body:nth-child(odd) .skill-effect,
+div.switch.body:nth-child(odd) .skill-chance,
+div.switch.body:nth-child(odd) .skill-total {
+  background-color: var(--background-auto);
+}
+div.switch.body:nth-child(even) div,
+div.switch.body:nth-child(even) input {
+  background-color: var(--background-main-alt);
+}
+div.switch.body:nth-child(even) .skill-effect,
+div.switch.body:nth-child(even) .skill-chance,
+div.switch.body:nth-child(even) .skill-total {
+  background-color: var(--background-auto-alt);
+}
+div.precious {
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  line-height: 2;
+}
+div.precious.heading > div.number {
+  width: 40px;
+  text-align: right;
+  padding: 0px 10px;
+  height: 25px;
+  border-bottom: var(--border-main);
+}
+div.precious.heading > div.valid {
+  width: 90px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.precious.heading > div.name.dwide {
+  width: 320px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.precious.heading > div.type,
+div.precious.heading > div.rarity,
+div.precious.heading > div.effect,
+div.precious.heading > div.star,
+div.precious.heading > div.count,
+div.precious.heading > div.precious-effect {
+  width: 100px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.precious.body {
+  height: 33px;
+}
+div.precious.body > div.number {
+  width: 40px;
+  text-align: right;
+  padding: 0px 10px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.precious.body > div.valid {
+  width: 90px;
+  height: 33px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.precious.body > div.name.dwide {
+  width: 320px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.precious.body > div.name.dwide select {
+  width: 100%;
+  padding: 0px 10px;
+}
+div.precious.body > div.type,
+div.precious.body > div.rarity,
+div.precious.body > div.effect,
+div.precious.body > div.star {
+  width: 100px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.precious.body > div.type select,
+div.precious.body > div.rarity select,
+div.precious.body > div.effect select,
+div.precious.body > div.star select {
+  width: 100%;
+  padding: 0px 10px;
+  background-color: inherit;
+}
+div.precious.body > div.count {
+  width: 100px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.precious.body > div.count input {
+  width: 100%;
+  padding: 0px 10px;
+}
+div.precious.body > div.precious-effect {
+  width: 100px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+  text-align: right;
+}
+div.precious.body:nth-child(odd) div,
+div.precious.body:nth-child(odd) input {
+  background-color: var(--background-main);
+}
+div.precious.body:nth-child(odd) .precious-effect {
+  background-color: var(--background-auto);
+}
+div.precious.body:nth-child(even) div,
+div.precious.body:nth-child(even) input {
+  background-color: var(--background-main-alt);
+}
+div.precious.body:nth-child(even) .precious-effect {
+  background-color: var(--background-auto-alt);
+}
+div.petit {
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  line-height: 2;
+}
+div.petit.heading > div.number {
+  width: 40px;
+  text-align: right;
+  padding: 0px 10px;
+  height: 25px;
+  border-bottom: var(--border-main);
+}
+div.petit.heading > div.attack,
+div.petit.heading > div.defence {
+  width: 140px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.petit.heading > div.effect {
+  width: 300px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.petit.body > div.number {
+  width: 40px;
+  text-align: right;
+  padding: 0px 10px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.petit.body > input.attack,
+div.petit.body > input.defence {
+  width: 140px;
+  padding: 0px 10px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.petit.body > input.attack:nth-last-child(1),
+div.petit.body > input.defence:nth-last-child(1) {
+  border-right: none;
+}
+div.petit.body > div.effect {
+  width: 300px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.petit.body > div.effect select {
+  width: 100%;
+  padding: 0px 10px;
+}
+div.petit.body > div.effect:nth-last-child(1) {
+  border-right: none;
+}
+div.petit.body:nth-child(odd) div,
+div.petit.body:nth-child(odd) input {
+  background-color: var(--background-main);
+}
+div.petit.body:nth-child(odd) div.result-1 {
+  background-color: var(--background-auto);
+}
+div.petit.body:nth-child(even) div,
+div.petit.body:nth-child(even) input {
+  background-color: var(--background-main-alt);
+}
+div.petit.body:nth-child(even) div.result-1 {
+  background-color: var(--background-auto-alt);
+}
+div.deck-bonus {
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  line-height: 2;
+}
+div.deck-bonus.heading > div.deck-bonus {
+  width: 180px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.deck-bonus.body > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+div.deck-bonus.body > div > div.deck-bonus {
+  width: 90px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+  background-color: inherit;
+}
+div.deck-bonus.body > div > div.deck-bonus select {
+  width: 100%;
+  padding: 0px 10px;
+  background-color: inherit;
+}
+div.deck-bonus.body > div:nth-child(odd) {
+  background-color: var(--background-main);
+}
+div.deck-bonus.body > div:nth-child(even) {
+  background-color: var(--background-main-alt);
+}
+div.deck-bonus.body #deck-bonus-7 > div:nth-child(2) {
+  border-right: none;
+}
+div.player-data {
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  line-height: 2;
+}
+div.player-data.heading {
+  margin-top: 20px;
+}
+div.player-data.heading > div.type {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.player-data.heading > div.position {
+  width: 160px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.player-data.heading > div.attackcost {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.player-data.heading > div.menscologne {
+  width: 120px;
+  padding: 0px 10px;
+}
+div.player-data.heading > div.clubitem {
+  width: 120px;
+  padding: 0px 10px;
+}
+div.player-data.heading.margintopoff {
+  margin-top: 0px;
+}
+div.player-data.heading.margintopoff > div {
+  border-top: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.player-data.heading > div.spgirls {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.player-data.heading > div.multiply-1,
+div.player-data.heading > div.multiply-2 {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.player-data.heading > div.raidtype {
+  width: 240px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.player-data.heading > div.megabuff,
+div.player-data.heading > div.megadebuff {
+  width: 200px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.player-data.heading > div.clubcupbuff {
+  width: 220px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.player-data.heading > div.clubcupwinbonus {
+  width: 180px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.player-data.body > div.type {
+  width: 120px;
+  border-bottom: var(--border-main);
+  border-right: var(--border-main);
+}
+div.player-data.body > div.type select {
+  width: 100%;
+  padding: 0px 10px;
+}
+div.player-data.body > div.position {
+  width: 160px;
+  border-bottom: var(--border-main);
+  border-right: var(--border-main);
+}
+div.player-data.body > div.position select {
+  width: 100%;
+  padding: 0px 10px;
+  background-color: var(--background-main);
+}
+div.player-data.body > input.attackcost {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.player-data.body > input.menscologne {
+  width: 120px;
+  padding: 0px 10px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.player-data.body > input.menscologne:nth-last-child(1) {
+  border-right: none;
+}
+div.player-data.body > div.clubitem {
+  padding: auto 0px;
+  height: 33px;
+  width: 120px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+div.player-data.body > div.clubitem:nth-last-child(1) {
+  border-right: none;
+}
+div.player-data.body > div.clubitem span::before {
+  left: 48px;
+}
+div.player-data.body > div.clubitem span::after {
+  left: 55px;
+}
+div.player-data.body > input.spgirls {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+  border-right: var(--border-main);
+}
+div.player-data.body > input.multiply-1,
+div.player-data.body > input.multiply-2 {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.player-data.body > input.multiply-1 {
+  border-right: var(--border-main);
+}
+div.player-data.body > div.raidtype {
+  width: 240px;
+  border-bottom: var(--border-main);
+  border-right: var(--border-main);
+}
+div.player-data.body > div.raidtype select {
+  width: 100%;
+  padding: 0px 10px;
+}
+div.player-data.body > input.megabuff {
+  width: 200px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+  border-right: var(--border-main);
+}
+div.player-data.body > input.megadebuff {
+  width: 200px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+div.player-data.body > input.clubcupbuff {
+  width: 220px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+  border-right: var(--border-main);
+}
+div.player-data.body > div.clubcupwinbonus {
+  width: 180px;
+  height: 33px;
+  border-bottom: var(--border-main);
+}
+div.player-data.body > div.clubcupwinbonus span::before {
+  left: 68px;
+}
+div.player-data.body > div.clubcupwinbonus span::after {
+  left: 75px;
+}
+body[id="tower"] div.main.body > div.club,
+body[id="tower"] div.main.body > div.birth,
+body[id="tower"] div.sub.body > input.strap,
+body[id="tower"] div.sub.body > div.club,
+body[id="tower"] div.sub.body > div.touch,
+body[id="tower"] div.sub.body > div.birth,
+body[id="tower"] div.petit.body > input.defence,
+body[id="tower"] div.player-data.body > div.type > select.type,
+body[id="tower"] div.player-data.body > div.position,
+body[id="tower"] div.player-data.body > div.position select,
+body[id="tower"] div.player-data.body > input.attackcost,
+body[id="tower"] div.player-data.body > input.spgirls,
+body[id="tower"] div.player-data.body > div.raidtype,
+body[id="tower"] div.player-data.body input.megabuff,
+body[id="tower"] div.player-data.body input.megadebuff,
+body[id="tower"] div.player-data.body input.clubcupbuff,
+body[id="tower"] div.player-data.body div.clubcupwinbonus {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="divrace"] div.main.body > div.club,
+body[id="divrace"] div.main.body > div.date,
+body[id="divrace"] div.main.body > div.touch,
+body[id="divrace"] div.main.body > div.birth,
+body[id="divrace"] div.sub.body > input.strap,
+body[id="divrace"] div.sub.body > div.club,
+body[id="divrace"] div.sub.body > div.date,
+body[id="divrace"] div.sub.body > div.touch,
+body[id="divrace"] div.sub.body > div.birth,
+body[id="divrace"] div.petit.body > input.defence,
+body[id="divrace"] div.player-data.body > div.type > select.type,
+body[id="divrace"] div.player-data.body > div.position,
+body[id="divrace"] div.player-data.body > div.position select,
+body[id="divrace"] div.player-data.body > input.attackcost,
+body[id="divrace"] div.player-data.body > div.clubitem,
+body[id="divrace"] div.player-data.body > div.raidtype,
+body[id="divrace"] div.player-data.body input.megabuff,
+body[id="divrace"] div.player-data.body input.megadebuff,
+body[id="divrace"] div.player-data.body input.clubcupbuff,
+body[id="divrace"] div.player-data.body div.clubcupwinbonus {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="divrace"] > div {
+  margin-top: 186px;
+}
+body[id="divrace"] div#form-container {
+  width: 2310px;
+}
+body[id="divrace"] #tools {
+  height: 195px;
+}
+body[id="divrace"] #tools div.calc-result div.result {
+  width: 210px;
+}
+body[id="divrace"] #tools div.history > div {
+  line-height: 1.5;
+}
+body[id="divrace"] .flex-container {
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  line-height: 2;
+}
+body[id="divrace"] section#special-item {
+  margin-top: 40px;
+}
+body[id="divrace"] div.special-item {
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  line-height: 2;
+}
+body[id="divrace"] div.special-item.heading {
+  margin-top: 15px;
+}
+body[id="divrace"] div.special-item.heading.item {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 20px 0px 0px 0px;
+}
+body[id="divrace"] div.special-item.heading > div.stage {
+  width: 220px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+body[id="divrace"] div.special-item.heading > div.number {
+  width: 40px;
+  height: 25px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+body[id="divrace"] div.special-item.heading > div.valid {
+  width: 80px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+body[id="divrace"] div.special-item.heading > div.name {
+  width: 180px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+body[id="divrace"] div.special-item.heading > div.memo {
+  width: 440px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+body[id="divrace"] div.special-item.heading > div.effect-base {
+  width: 170px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+body[id="divrace"] div.special-item.heading > div.effect-challenge {
+  width: 170px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+body[id="divrace"] div.special-item.heading > div.effect-sort {
+  width: 80px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+body[id="divrace"] div.special-item.body.item {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+body[id="divrace"] div.special-item.body > div.stage {
+  width: 220px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+body[id="divrace"] div.special-item.body > div.stage select {
+  width: 100%;
+  padding: 0px 10px;
+  background-color: var(--background-main);
+}
+body[id="divrace"] div.special-item.body > div.number {
+  width: 40px;
+  height: 33px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+  border-right: var(--border-main);
+  text-align: right;
+}
+body[id="divrace"] div.special-item.body > div.valid {
+  width: 80px;
+  height: 33px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+  border-right: var(--border-main);
+}
+body[id="divrace"] div.special-item.body > div.name {
+  width: 180px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+  border-right: var(--border-main);
+}
+body[id="divrace"] div.special-item.body > div.memo {
+  width: 440px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+  border-right: var(--border-main);
+}
+body[id="divrace"] div.special-item.body > div.effect-base {
+  width: 170px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+  border-right: var(--border-main);
+  text-align: right;
+}
+body[id="divrace"] div.special-item.body > div.effect-challenge {
+  width: 170px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+  border-right: var(--border-main);
+  text-align: right;
+}
+body[id="divrace"] div.special-item.body > div.effect-sort {
+  width: 80px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+  text-align: right;
+}
+body[id="divrace"] div.special-item.body:nth-child(odd) .number,
+body[id="divrace"] div.special-item.body:nth-child(odd) .valid,
+body[id="divrace"] div.special-item.body:nth-child(odd) .name,
+body[id="divrace"] div.special-item.body:nth-child(odd) .memo {
+  background-color: var(--background-main);
+}
+body[id="divrace"] div.special-item.body:nth-child(odd) .effect-base,
+body[id="divrace"] div.special-item.body:nth-child(odd) .effect-challenge,
+body[id="divrace"] div.special-item.body:nth-child(odd) .effect-sort {
+  background-color: var(--background-auto);
+}
+body[id="divrace"] div.special-item.body:nth-child(even) .number,
+body[id="divrace"] div.special-item.body:nth-child(even) .valid,
+body[id="divrace"] div.special-item.body:nth-child(even) .name,
+body[id="divrace"] div.special-item.body:nth-child(even) .memo {
+  background-color: var(--background-main-alt);
+}
+body[id="divrace"] div.special-item.body:nth-child(even) .effect-base,
+body[id="divrace"] div.special-item.body:nth-child(even) .effect-challenge,
+body[id="divrace"] div.special-item.body:nth-child(even) .effect-sort {
+  background-color: var(--background-auto-alt);
+}
+body[id="board"] div.main.body > div.club,
+body[id="board"] div.main.body > div.date,
+body[id="board"] div.main.body > div.touch,
+body[id="board"] div.main.body > div.birth,
+body[id="board"] div.sub.body > input.strap,
+body[id="board"] div.sub.body > div.club,
+body[id="board"] div.sub.body > div.date,
+body[id="board"] div.sub.body > div.touch,
+body[id="board"] div.sub.body > div.birth,
+body[id="board"] div.petit.body > input.defence,
+body[id="board"] div.player-data.body > div.type > select.type,
+body[id="board"] div.player-data.body > div.position,
+body[id="board"] div.player-data.body > div.position select,
+body[id="board"] div.player-data.body > input.attackcost,
+body[id="board"] div.player-data.body > div.clubitem,
+body[id="board"] div.player-data.body > div.raidtype,
+body[id="board"] div.player-data.body input.megabuff,
+body[id="board"] div.player-data.body input.megadebuff,
+body[id="board"] div.player-data.body input.clubcupbuff,
+body[id="board"] div.player-data.body div.clubcupwinbonus {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="board"] > div {
+  margin-top: 186px;
+}
+body[id="board"] div#form-container {
+  width: 2340px;
+}
+body[id="board"] #tools {
+  height: 195px;
+}
+body[id="board"] #tools div.calc-result div.result {
+  width: 220px;
+}
+body[id="board"] #tools div.history > div {
+  line-height: 1.5;
+}
+body[id="board"] .flex-container {
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  line-height: 2;
+}
+body[id="board"] div.main.body > div.special,
+body[id="board"] div.sub.body > div.special {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="board"] div.petit-girls-detail {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+body[id="board"] div.petit-girls-detail div.attack_i,
+body[id="board"] div.petit-girls-detail input.attack_i {
+  width: 120px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+body[id="board"] div.petit-girls-detail input.attack_i {
+  border-right: var(--border-main);
+}
+body[id="board"] div.petit-girls-detail div.heading div.type {
+  width: 100px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+body[id="board"] div.petit-girls-detail div.body div.type {
+  width: 100px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+body[id="board"] div.petit-girls-detail div.body div.type select {
+  width: 100%;
+  padding: 0px 10px;
+}
+body[id="board"] div.petit-girls-detail div.heading div.skill {
+  width: 180px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+body[id="board"] div.petit-girls-detail div.body div.skilltype {
+  width: 100px;
+  border-right: var(--border-main);
+  border-bottom: var(--border-main);
+}
+body[id="board"] div.petit-girls-detail div.body div.skilltype select {
+  width: 100%;
+  padding: 0px 10px;
+}
+body[id="board"] div.petit-girls-detail div.body div.skilltype select.invalid {
+  text-align: center;
+}
+body[id="board"] div.petit-girls-detail div.body div.skillrate {
+  width: 80px;
+  border-bottom: var(--border-main);
+  position: relative;
+}
+body[id="board"] div.petit-girls-detail div.body div.skillrate::after {
+  position: absolute;
+  right: 0.5rem;
+  content: "%";
+}
+body[id="board"] div.petit-girls-detail div.body div.skillrate.invalid::after {
+  content: "";
+}
+body[id="board"] div.petit-girls-detail div.body div.skillrate input {
+  width: 100%;
+  padding: 0px 25px 0px 0px;
+  text-align: right;
+}
+body[id="board"] div.petit-girls-detail div.body div.skillrate.invalid input {
+  width: 100%;
+  padding: 0px;
+  text-align: center;
+}
+body[id="board"] div.heading.event-special.weather {
+  margin-top: 15px;
+}
+body[id="board"] div.heading.event-special.space {
+  margin-top: 15px;
+}
+body[id="board"] div.heading.event-special.total {
+  margin-top: 15px;
+}
+body[id="board"] div.body.event-special > div:nth-child(odd) div,
+body[id="board"] div.body.event-special > div:nth-child(odd) input {
+  background-color: var(--background-main);
+}
+body[id="board"] div.body.event-special > div:nth-child(odd) .auto {
+  background-color: var(--background-auto);
+}
+body[id="board"] div.body.event-special > div:nth-child(even) div,
+body[id="board"] div.body.event-special > div:nth-child(even) input {
+  background-color: var(--background-main-alt);
+}
+body[id="board"] div.body.event-special > div:nth-child(even) .auto {
+  background-color: var(--background-auto-alt);
+}
+body[id="championship"] div.main.body > div.special,
+body[id="championship"] div.sub.body > input.strap,
+body[id="championship"] div.sub.body > div.club,
+body[id="championship"] div.sub.body > div.special,
+body[id="championship"] div.petit.body > input.defence,
+body[id="championship"] div.player-data.body > input.attackcost,
+body[id="championship"] div.player-data.body > div.raidtype,
+body[id="championship"] div.player-data.body input.megabuff,
+body[id="championship"] div.player-data.body input.megadebuff,
+body[id="championship"] div.player-data.body input.clubcupbuff,
+body[id="championship"] div.player-data.body div.clubcupwinbonus {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="championship-defence"] div.main.body > div.special,
+body[id="championship-defence"] div.sub.body > input.strap,
+body[id="championship-defence"] div.sub.body > div.club,
+body[id="championship-defence"] div.sub.body > div.special,
+body[id="championship-defence"] div.petit.body > input.attack,
+body[id="championship-defence"] div.player-data.body > input.attackcost,
+body[id="championship-defence"] div.player-data.body > input.spgirls,
+body[id="championship-defence"] div.player-data.body > div.raidtype,
+body[id="championship-defence"] div.player-data.body input.megabuff,
+body[id="championship-defence"] div.player-data.body input.megadebuff,
+body[id="championship-defence"] div.player-data.body input.clubcupbuff,
+body[id="championship-defence"] div.player-data.body div.clubcupwinbonus {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="raid-first"] div.petit.body > input.defence,
+body[id="raid-second-attack"] div.petit.body > input.defence,
+body[id="raid-mega"] div.petit.body > input.defence {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="raid-second-attack"] div.switch.body#sub-switch-3 div,
+body[id="raid-second-attack"] div.switch.body#sub-switch-3 input,
+body[id="raid-second-attack"] div.switch.body#sub-switch-4 div,
+body[id="raid-second-attack"] div.switch.body#sub-switch-4 input,
+body[id="raid-second-attack"] div.switch.body#sub-switch-5 div,
+body[id="raid-second-attack"] div.switch.body#sub-switch-5 input,
+body[id="raid-second-defence"] div.switch.body#sub-switch-3 div,
+body[id="raid-second-defence"] div.switch.body#sub-switch-3 input,
+body[id="raid-second-defence"] div.switch.body#sub-switch-4 div,
+body[id="raid-second-defence"] div.switch.body#sub-switch-4 input,
+body[id="raid-second-defence"] div.switch.body#sub-switch-5 div,
+body[id="raid-second-defence"] div.switch.body#sub-switch-5 input {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="raid-second-attack"] > div,
+body[id="raid-second-defence"] > div {
+  margin-top: 185px;
+}
+body[id="raid-second-attack"] #tools,
+body[id="raid-second-defence"] #tools {
+  height: 195px;
+}
+body[id="raid-second-defence"] div.petit.body > input.attack,
+body[id="raid-second-defence"] div.player-data.body > input.spgirls {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="raid-first"] div.main.body > div.special,
+body[id="raid-first"] div.sub.body > input.strap,
+body[id="raid-first"] div.sub.body > div.touch,
+body[id="raid-first"] div.sub.body > div.special,
+body[id="raid-first"] div.deck-bonus.body select,
+body[id="raid-first"] div.player-data.body input.clubcupbuff,
+body[id="raid-first"] div.player-data.body div.clubcupwinbonus,
+body[id="raid-second-attack"] div.main.body > div.special,
+body[id="raid-second-attack"] div.sub.body > input.strap,
+body[id="raid-second-attack"] div.sub.body > div.touch,
+body[id="raid-second-attack"] div.sub.body > div.special,
+body[id="raid-second-attack"] div.deck-bonus.body select,
+body[id="raid-second-attack"] div.player-data.body input.clubcupbuff,
+body[id="raid-second-attack"] div.player-data.body div.clubcupwinbonus,
+body[id="raid-second-defence"] div.main.body > div.special,
+body[id="raid-second-defence"] div.sub.body > input.strap,
+body[id="raid-second-defence"] div.sub.body > div.touch,
+body[id="raid-second-defence"] div.sub.body > div.special,
+body[id="raid-second-defence"] div.deck-bonus.body select,
+body[id="raid-second-defence"] div.player-data.body input.clubcupbuff,
+body[id="raid-second-defence"] div.player-data.body div.clubcupwinbonus,
+body[id="raid-mega"] div.main.body > div.special,
+body[id="raid-mega"] div.sub.body > input.strap,
+body[id="raid-mega"] div.sub.body > div.touch,
+body[id="raid-mega"] div.sub.body > div.special,
+body[id="raid-mega"] div.deck-bonus.body select,
+body[id="raid-mega"] div.player-data.body input.clubcupbuff,
+body[id="raid-mega"] div.player-data.body div.clubcupwinbonus {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="raid-first"] #tools div.history:nth-child(3)::before,
+body[id="raid-second-attack"] #tools div.history:nth-child(3)::before,
+body[id="raid-second-defence"] #tools div.history:nth-child(3)::before,
+body[id="raid-mega"] #tools div.history:nth-child(3)::before {
+  content: "♥";
+  color: var(--sweet);
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  margin: 0 8px 2px 0;
+}
+body[id="raid-first"] #tools div.history:nth-child(3) input[type="button"].save,
+body[id="raid-second-attack"]
+  #tools
+  div.history:nth-child(3)
+  input[type="button"].save,
+body[id="raid-second-defence"]
+  #tools
+  div.history:nth-child(3)
+  input[type="button"].save,
+body[id="raid-mega"] #tools div.history:nth-child(3) input[type="button"].save {
+  color: var(--text-main);
+  border: 2px solid var(--sweet);
+}
+body[id="raid-first"] #tools div.history:nth-child(3) input[type="button"].load,
+body[id="raid-second-attack"]
+  #tools
+  div.history:nth-child(3)
+  input[type="button"].load,
+body[id="raid-second-defence"]
+  #tools
+  div.history:nth-child(3)
+  input[type="button"].load,
+body[id="raid-mega"] #tools div.history:nth-child(3) input[type="button"].load {
+  color: var(--text-main);
+  border: 2px solid var(--sweet);
+}
+body[id="raid-first"] #tools div.history:nth-child(4)::before,
+body[id="raid-second-attack"] #tools div.history:nth-child(4)::before,
+body[id="raid-second-defence"] #tools div.history:nth-child(4)::before,
+body[id="raid-mega"] #tools div.history:nth-child(4)::before {
+  content: "♦";
+  color: var(--cool);
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  margin: 0 8px 2px 0;
+}
+body[id="raid-first"] #tools div.history:nth-child(4) input[type="button"].save,
+body[id="raid-second-attack"]
+  #tools
+  div.history:nth-child(4)
+  input[type="button"].save,
+body[id="raid-second-defence"]
+  #tools
+  div.history:nth-child(4)
+  input[type="button"].save,
+body[id="raid-mega"] #tools div.history:nth-child(4) input[type="button"].save {
+  color: var(--text-main);
+  border: 2px solid var(--cool);
+}
+body[id="raid-first"] #tools div.history:nth-child(4) input[type="button"].load,
+body[id="raid-second-attack"]
+  #tools
+  div.history:nth-child(4)
+  input[type="button"].load,
+body[id="raid-second-defence"]
+  #tools
+  div.history:nth-child(4)
+  input[type="button"].load,
+body[id="raid-mega"] #tools div.history:nth-child(4) input[type="button"].load {
+  color: var(--text-main);
+  border: 2px solid var(--cool);
+}
+body[id="raid-first"] #tools div.history:nth-child(5)::before,
+body[id="raid-second-attack"] #tools div.history:nth-child(5)::before,
+body[id="raid-second-defence"] #tools div.history:nth-child(5)::before,
+body[id="raid-mega"] #tools div.history:nth-child(5)::before {
+  content: "♠";
+  color: var(--pop);
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  margin: 0 8px 2px 0;
+}
+body[id="raid-first"] #tools div.history:nth-child(5) input[type="button"].save,
+body[id="raid-second-attack"]
+  #tools
+  div.history:nth-child(5)
+  input[type="button"].save,
+body[id="raid-second-defence"]
+  #tools
+  div.history:nth-child(5)
+  input[type="button"].save,
+body[id="raid-mega"] #tools div.history:nth-child(5) input[type="button"].save {
+  color: var(--text-main);
+  border: 2px solid var(--pop);
+}
+body[id="raid-first"] #tools div.history:nth-child(5) input[type="button"].load,
+body[id="raid-second-attack"]
+  #tools
+  div.history:nth-child(5)
+  input[type="button"].load,
+body[id="raid-second-defence"]
+  #tools
+  div.history:nth-child(5)
+  input[type="button"].load,
+body[id="raid-mega"] #tools div.history:nth-child(5) input[type="button"].load {
+  color: var(--text-main);
+  border: 2px solid var(--pop);
+}
+body[id="raid-first"] div.player-data.body input.megabuff,
+body[id="raid-first"] div.player-data.body input.megadebuff,
+body[id="raid-second-attack"] div.player-data.body input.megabuff,
+body[id="raid-second-attack"] div.player-data.body input.megadebuff,
+body[id="raid-second-defence"] div.player-data.body input.megabuff,
+body[id="raid-second-defence"] div.player-data.body input.megadebuff {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="raid-mega"] section[id="sub-scenes"] {
+  display: none;
+}
+body[id="raid-mega"] div.sub.body:nth-child(odd) div,
+body[id="raid-mega"] div.sub.body:nth-child(odd) input {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="raid-mega"] div.sub.body:nth-child(odd) div.result-1 {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="raid-mega"] div.sub.body:nth-child(even) div,
+body[id="raid-mega"] div.sub.body:nth-child(even) input {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="raid-mega"] div.sub.body:nth-child(even) div.result-1 {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="raid-mega"] div.switch.body:nth-child(odd) div,
+body[id="raid-mega"] div.switch.body:nth-child(odd) input {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="raid-mega"] div.switch.body:nth-child(odd) div.result-1 {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="raid-mega"] div.switch.body:nth-child(even) div,
+body[id="raid-mega"] div.switch.body:nth-child(even) input {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="raid-mega"] div.switch.body:nth-child(even) div.result-1 {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="raidwar"] div.main.body > div.special,
+body[id="raidwar"] div.sub.body > input.strap,
+body[id="raidwar"] div.sub.body > div.special,
+body[id="raidwar"] div.petit.body > input.defence,
+body[id="raidwar"] div.deck-bonus.body select,
+body[id="raidwar"] div.player-data.body > div.raidtype,
+body[id="raidwar"] div.player-data.body input.megabuff,
+body[id="raidwar"] div.player-data.body input.megadebuff,
+body[id="raidwar"] div.player-data.body input.clubcupbuff,
+body[id="raidwar"] div.player-data.body div.clubcupwinbonus {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="raidwar"] div#form-container {
+  width: 1830px;
+}
+body[id="raidwar-skill"] div#form-container {
+  width: 1680px;
+}
+body[id="raidwar-skill"] > div {
+  margin-top: 120px;
+}
+body[id="raidwar-skill"] #tools {
+  height: 115px;
+}
+body[id="raidwar-skill"] #tools div#exchange {
+  position: relative;
+  padding-left: 20px;
+}
+body[id="raidwar-skill"] #tools div#exchange .heading {
+  margin-top: 10px;
+  margin-bottom: 3px;
+}
+body[id="raidwar-skill"] #tools div#exchange div.selectmark {
+  width: 80px;
+  border: var(--border-main);
+  display: inline-block;
+}
+body[id="raidwar-skill"] #tools div#exchange select {
+  width: 100%;
+  padding: 0px 10px;
+  background-color: var(--background-auto);
+}
+body[id="raidwar-skill"] #tools div#exchange input[type="button"] {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: var(--text-blue);
+  text-align: center;
+  line-height: 2;
+  cursor: pointer;
+  border: 2px solid var(--border-color-blue);
+  border-radius: 5px;
+}
+body[id="raidwar-skill"] div#form-area {
+  margin-right: 40px;
+}
+body[id="raidwar-skill"] div#form-area input[type="radio"] {
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+  appearance: auto;
+}
+body[id="raidwar-skill"] div#form-area div#general-1 input[type="text"] {
+  border: var(--border-main);
+  margin-left: 10px;
+  padding: 0 10px;
+  width: 498px;
+}
+body[id="raidwar-skill"] .flex {
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  line-height: 2;
+}
+body[id="raidwar-skill"] .grid {
+  max-width: 660px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  margin-top: 20px;
+  line-height: 2;
+}
+body[id="raidwar-skill"] .grid > div {
+  padding: 5px;
+}
+body[id="raidwar-skill"] .grid > div:nth-child(odd) {
+  background-color: var(--background-auto);
+}
+body[id="raidwar-skill"] .grid > div:nth-child(even) {
+  background-color: var(--background-auto-alt);
+}
+body[id="raidwar-skill"] input[type="number"] {
+  border: var(--border-main);
+  padding: 0px 5px 0px 8px;
+  background-color: var(--background-main);
+}
+body[id="raidwar-skill"] input[type="number"].attack {
+  width: 70px;
+}
+body[id="raidwar-skill"] input[type="number"].heart {
+  width: 65px;
+}
+body[id="raidwar-skill"] .heading {
+  margin-top: 0px;
+  margin-bottom: 5px;
+  line-height: 1.5;
+}
+body[id="raidwar-skill"] .heading > div {
+  width: 70px;
+  margin-right: 5px;
+}
+body[id="raidwar-skill"] .heading > div.attack {
+  width: 70px;
+  padding: 0px 5px;
+}
+body[id="raidwar-skill"] .heading > div.heart {
+  width: 65px;
+  padding: 0px 5px;
+}
+body[id="raidwar-skill"] div#how-to-use {
+  line-height: 1.7;
+  margin: 20px 0px 20px 0px;
+  padding-left: 10px;
+  max-width: 700px;
+}
+body[id="raidwar-skill"] div#how-to-use ul > li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #93d8d0;
+  display: inline-block;
+  margin: 0 8px 2px 0;
+}
+body[id="raidwar-skill"] div#how-to-use ul {
+  padding-left: 20px;
+}
+body[id="raidwar-skill"] div#how-to-use li {
+  text-indent: -1rem;
+  padding-left: 1rem;
+}
+body[id="raidwar-skill"] div#how-to-use h2 {
+  margin-bottom: 10px;
+}
+body[id="raidwar-skill"] div#how-to-use img {
+  margin-left: 20px;
+  max-height: 200px;
+}
+body[id="raidwar-skill"] #canvas-area > div {
+  border: 1px solid #000;
+  overflow-y: scroll;
+  height: 1700px;
+}
+body[id="raidwar-skill"] #canvas {
+  background-color: var(--background-main-alt);
+}
+body[id="raidwar-skill"] #theme-button-container {
+  top: -20px;
+  right: 40px;
+}
+body[id="raidwar-skill"] #theme-button-container label:before {
+  top: -5px;
+}
+body[id="raidwar-skill"] #theme-button-container label:after {
+  top: -5px;
+}
+body[id="clubcup"] div.main.body > div.special,
+body[id="clubcup"] div.sub.body > input.strap,
+body[id="clubcup"] div.sub.body > div.club,
+body[id="clubcup"] div.sub.body > div.touch,
+body[id="clubcup"] div.sub.body > div.special,
+body[id="clubcup"] div.petit.body > input.defence,
+body[id="clubcup"] div.player-data.body > input.spgirls,
+body[id="clubcup"] div.player-data.body > input.multiply-1,
+body[id="clubcup"] div.player-data.body > input.multiply-2,
+body[id="clubcup"] div.player-data.body > div.raidtype,
+body[id="clubcup"] div.player-data.body input.megabuff,
+body[id="clubcup"] div.player-data.body input.megadebuff {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="clubcup"] div.switch.body#sub-switch-3 div,
+body[id="clubcup"] div.switch.body#sub-switch-3 input,
+body[id="clubcup"] div.switch.body#sub-switch-4 div,
+body[id="clubcup"] div.switch.body#sub-switch-4 input,
+body[id="clubcup"] div.switch.body#sub-switch-5 div,
+body[id="clubcup"] div.switch.body#sub-switch-5 input {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="clubcup"] > div {
+  margin-top: 185px;
+}
+body[id="clubcup"] #tools {
+  height: 195px;
+}
+body[id="clubcup"] div#form-container {
+  width: 1810px;
+}
+body[id="clubcup"] div.heading > div.clubcup-skilleffect {
+  width: 80px;
+  padding: 0px 10px;
+  border-bottom: var(--border-main);
+}
+body[id="clubcup"] div.body > div.clubcup-skilleffect {
+  width: 80px;
+  padding: 0px 10px;
+  text-align: right;
+  border-bottom: var(--border-main);
+  border-left: var(--border-main);
+}
+body[id="clubcup"] div.body:nth-child(odd) div.clubcup-skilleffect {
+  background-color: var(--background-auto);
+}
+body[id="clubcup"] div.body:nth-child(even) div.clubcup-skilleffect {
+  background-color: var(--background-auto-alt);
+}
+body[id="normal-battle"] div.main.body > div.special,
+body[id="normal-battle"] div.sub.body > input.strap,
+body[id="normal-battle"] div.sub.body > div.club,
+body[id="normal-battle"] div.sub.body > div.touch,
+body[id="normal-battle"] div.sub.body > div.special,
+body[id="normal-battle"] div.petit.body > input.defence,
+body[id="normal-battle"] div.player-data.body > input.attackcost,
+body[id="normal-battle"] div.player-data.body > input.spgirls,
+body[id="normal-battle"] div.player-data.body > input.multiply-1,
+body[id="normal-battle"] div.player-data.body > input.multiply-2,
+body[id="normal-battle"] div.player-data.body > div.raidtype,
+body[id="normal-battle"] div.player-data.body input.megabuff,
+body[id="normal-battle"] div.player-data.body input.megadebuff,
+body[id="normal-battle"] div.player-data.body input.clubcupbuff {
+  background: linear-gradient(
+    to right top,
+    transparent 0%,
+    transparent 48%,
+    var(--background-invalid) 48%,
+    var(--background-invalid) 52%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+body[id="normal-battle"] div#form-container {
+  width: 1990px;
+}
+input[type="button"]:active {
+  transform: translateY(2px);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  border-bottom: none;
+}
+@media screen and (max-width: 767px) {
+  .w-360px {
+    min-width: 360px;
+  }
+  .w-400px {
+    min-width: 400px;
+  }
+  .w-440px {
+    min-width: 440px;
+  }
+  body > div {
+    margin-left: 0px;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  h2:before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--text-main);
+    display: inline-block;
+    margin: 0 6px 2px 0;
+  }
+  section {
+    margin-bottom: 48px;
+  }
+  section#tools {
+    width: 100vw;
+    height: 185px;
+    overflow-x: scroll;
+    padding-top: 5px;
+    padding-left: 5px;
+  }
+  body[id="raid-second-attack"] section#tools,
+  body[id="raid-second-defence"] section#tools {
+    height: 205px;
+  }
+  body[id="clubcup"] section#tools {
+    height: 205px;
+  }
+  body[id="raidwar-skill"] section#tools {
+    height: 125px;
+  }
+  body[id="divrace"] section#tools {
+    height: 205px;
+  }
+  body[id="board"] section#tools {
+    height: 205px;
+  }
+  div#form-container {
+    width: 100vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-top: 70px;
+  }
+  body[id="raidwar"] div#form-container {
+    width: 100vw;
+  }
+  body[id="raidwar-skill"] div#form-container {
+    width: 100vw;
+  }
+  body[id="divrace"] div#form-container {
+    width: 100vw;
+  }
+  body[id="board"] div#form-container {
+    width: 100vw;
+  }
+  body[id="normal-battle"] div#form-container {
+    width: 100vw;
+  }
+  div#theme-button-container {
+    top: 40px;
+  }
+  div#theme-button-container .tools {
+    display: block;
+  }
+  body[id="raidwar-skill"] div#theme-button-container {
+    top: 25px;
+    right: 20px;
+  }
+  .x-scroll-container {
+    overflow-x: scroll;
+    padding-bottom: 10px;
+  }
+  .inform-tooltips::after {
+    width: calc(1em + 2px);
+    height: calc(1em + 2px);
+    vertical-align: top;
+  }
+  .custom-checkbox input[type="checkbox"] + span::before {
+    top: calc(50% - 12px);
+    left: calc(50% - 12px);
+  }
+  .custom-checkbox input[type="checkbox"] + span::after {
+    top: calc(50% - 12px + 2px);
+    left: calc(50% - 12px + 7px);
+  }
+  .heading {
+    font-size: 1rem;
+  }
+  div.main.scenes.heading,
+  div.main.skill.heading,
+  div.sub.heading,
+  div.switch.heading {
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+  }
+  div.main.scenes.heading > div.rowadd,
+  div.main.scenes.heading > div.rowdelete,
+  div.main.skill.heading > div.rowadd,
+  div.main.skill.heading > div.rowdelete,
+  div.sub.heading > div.rowadd,
+  div.sub.heading > div.rowdelete,
+  div.switch.heading > div.rowadd,
+  div.switch.heading > div.rowdelete {
+    height: 33px;
+  }
+  div.main.scenes.heading > div.rowadd.display-none,
+  div.main.scenes.heading > div.rowdelete.display-none,
+  div.main.skill.heading > div.rowadd.display-none,
+  div.main.skill.heading > div.rowdelete.display-none,
+  div.sub.heading > div.rowadd.display-none,
+  div.sub.heading > div.rowdelete.display-none,
+  div.switch.heading > div.rowadd.display-none,
+  div.switch.heading > div.rowdelete.display-none {
+    display: none;
+  }
+  div.main.scenes.heading > div.rowUp,
+  div.main.scenes.heading > div.rowDown,
+  div.main.skill.heading > div.rowUp,
+  div.main.skill.heading > div.rowDown,
+  div.sub.heading > div.rowUp,
+  div.sub.heading > div.rowDown,
+  div.switch.heading > div.rowUp,
+  div.switch.heading > div.rowDown {
+    height: 33px;
+  }
+  div.main.scenes.heading > div.rowUp.display-none,
+  div.main.scenes.heading > div.rowDown.display-none,
+  div.main.skill.heading > div.rowUp.display-none,
+  div.main.skill.heading > div.rowDown.display-none,
+  div.sub.heading > div.rowUp.display-none,
+  div.sub.heading > div.rowDown.display-none,
+  div.switch.heading > div.rowUp.display-none,
+  div.switch.heading > div.rowDown.display-none {
+    display: none;
+  }
+  div.main.scenes.heading > div.number,
+  div.main.skill.heading > div.number,
+  div.sub.heading > div.number,
+  div.switch.heading > div.number {
+    height: 33px;
+  }
+  div.main.scenes.heading > div.valid,
+  div.main.scenes.heading > div.skilllv,
+  div.main.scenes.heading > div.skill,
+  div.main.scenes.heading > div.skill.wide,
+  div.main.scenes.heading > div.skill-effect,
+  div.main.scenes.heading > div.skill-total,
+  div.main.scenes.heading > div.skill-chance,
+  div.main.skill.heading > div.valid,
+  div.main.skill.heading > div.skilllv,
+  div.main.skill.heading > div.skill,
+  div.main.skill.heading > div.skill.wide,
+  div.main.skill.heading > div.skill-effect,
+  div.main.skill.heading > div.skill-total,
+  div.main.skill.heading > div.skill-chance,
+  div.sub.heading > div.valid,
+  div.sub.heading > div.skilllv,
+  div.sub.heading > div.skill,
+  div.sub.heading > div.skill.wide,
+  div.sub.heading > div.skill-effect,
+  div.sub.heading > div.skill-total,
+  div.sub.heading > div.skill-chance,
+  div.switch.heading > div.valid,
+  div.switch.heading > div.skilllv,
+  div.switch.heading > div.skill,
+  div.switch.heading > div.skill.wide,
+  div.switch.heading > div.skill-effect,
+  div.switch.heading > div.skill-total,
+  div.switch.heading > div.skill-chance {
+    padding: 5px 10px 0px 10px;
+  }
+  div.main.scenes.heading > div.apower,
+  div.main.scenes.heading > div.strap,
+  div.main.scenes.heading > div.type,
+  div.main.scenes.heading > div.rarity,
+  div.main.scenes.heading > div.cost,
+  div.main.scenes.heading > div.skilllv,
+  div.main.scenes.heading > div.grade,
+  div.main.scenes.heading > div.club,
+  div.main.scenes.heading > div.date,
+  div.main.scenes.heading > div.touch,
+  div.main.scenes.heading > div.birth,
+  div.main.scenes.heading > div.limit,
+  div.main.scenes.heading > div.best,
+  div.main.scenes.heading > div.special,
+  div.main.skill.heading > div.apower,
+  div.main.skill.heading > div.strap,
+  div.main.skill.heading > div.type,
+  div.main.skill.heading > div.rarity,
+  div.main.skill.heading > div.cost,
+  div.main.skill.heading > div.skilllv,
+  div.main.skill.heading > div.grade,
+  div.main.skill.heading > div.club,
+  div.main.skill.heading > div.date,
+  div.main.skill.heading > div.touch,
+  div.main.skill.heading > div.birth,
+  div.main.skill.heading > div.limit,
+  div.main.skill.heading > div.best,
+  div.main.skill.heading > div.special,
+  div.sub.heading > div.apower,
+  div.sub.heading > div.strap,
+  div.sub.heading > div.type,
+  div.sub.heading > div.rarity,
+  div.sub.heading > div.cost,
+  div.sub.heading > div.skilllv,
+  div.sub.heading > div.grade,
+  div.sub.heading > div.club,
+  div.sub.heading > div.date,
+  div.sub.heading > div.touch,
+  div.sub.heading > div.birth,
+  div.sub.heading > div.limit,
+  div.sub.heading > div.best,
+  div.sub.heading > div.special,
+  div.switch.heading > div.apower,
+  div.switch.heading > div.strap,
+  div.switch.heading > div.type,
+  div.switch.heading > div.rarity,
+  div.switch.heading > div.cost,
+  div.switch.heading > div.skilllv,
+  div.switch.heading > div.grade,
+  div.switch.heading > div.club,
+  div.switch.heading > div.date,
+  div.switch.heading > div.touch,
+  div.switch.heading > div.birth,
+  div.switch.heading > div.limit,
+  div.switch.heading > div.best,
+  div.switch.heading > div.special {
+    padding: 5px 10px 0px 10px;
+  }
+  div.main.scenes.heading > div.result-1,
+  div.main.scenes.heading > div.result-2,
+  div.main.scenes.heading > div.result-event-sp-1,
+  div.main.scenes.heading > div.result-event-sp-2,
+  div.main.scenes.heading > div.clubcup-skilleffect,
+  div.main.skill.heading > div.result-1,
+  div.main.skill.heading > div.result-2,
+  div.main.skill.heading > div.result-event-sp-1,
+  div.main.skill.heading > div.result-event-sp-2,
+  div.main.skill.heading > div.clubcup-skilleffect,
+  div.sub.heading > div.result-1,
+  div.sub.heading > div.result-2,
+  div.sub.heading > div.result-event-sp-1,
+  div.sub.heading > div.result-event-sp-2,
+  div.sub.heading > div.clubcup-skilleffect,
+  div.switch.heading > div.result-1,
+  div.switch.heading > div.result-2,
+  div.switch.heading > div.result-event-sp-1,
+  div.switch.heading > div.result-event-sp-2,
+  div.switch.heading > div.clubcup-skilleffect {
+    padding: 5px 10px 0px 10px;
+  }
+  div.main.scenes.heading > div.s70,
+  div.main.skill.heading > div.s70,
+  div.sub.heading > div.s70,
+  div.switch.heading > div.s70 {
+    height: 33px;
+  }
+  div.main.scenes.heading > div.s100,
+  div.main.skill.heading > div.s100,
+  div.sub.heading > div.s100,
+  div.switch.heading > div.s100 {
+    height: 33px;
+  }
+  div.main.scenes.heading > div,
+  div.main.skill.heading > div,
+  div.sub.heading > div,
+  div.switch.heading > div {
+    height: 33px;
+    padding-top: 5px;
+  }
+  div.main.scenes.body,
+  div.main.skill.body,
+  div.sub.body,
+  div.switch.body {
+    height: 40px;
+    margin-bottom: 16px;
+  }
+  div.main.scenes.body:last-child,
+  div.main.skill.body:last-child,
+  div.sub.body:last-child,
+  div.switch.body:last-child {
+    margin-bottom: 0px;
+  }
+  div.main.scenes.body > div.rowadd,
+  div.main.scenes.body > div.rowdelete,
+  div.main.skill.body > div.rowadd,
+  div.main.skill.body > div.rowdelete,
+  div.sub.body > div.rowadd,
+  div.sub.body > div.rowdelete,
+  div.switch.body > div.rowadd,
+  div.switch.body > div.rowdelete {
+    height: 100%;
+  }
+  div.main.scenes.body > div.rowadd.display-none,
+  div.main.scenes.body > div.rowdelete.display-none,
+  div.main.skill.body > div.rowadd.display-none,
+  div.main.skill.body > div.rowdelete.display-none,
+  div.sub.body > div.rowadd.display-none,
+  div.sub.body > div.rowdelete.display-none,
+  div.switch.body > div.rowadd.display-none,
+  div.switch.body > div.rowdelete.display-none {
+    display: none;
+  }
+  div.main.scenes.body > div.rowUp,
+  div.main.scenes.body > div.rowDown,
+  div.main.skill.body > div.rowUp,
+  div.main.skill.body > div.rowDown,
+  div.sub.body > div.rowUp,
+  div.sub.body > div.rowDown,
+  div.switch.body > div.rowUp,
+  div.switch.body > div.rowDown {
+    height: 100%;
+  }
+  div.main.scenes.body > div.rowUp input,
+  div.main.scenes.body > div.rowDown input,
+  div.main.skill.body > div.rowUp input,
+  div.main.skill.body > div.rowDown input,
+  div.sub.body > div.rowUp input,
+  div.sub.body > div.rowDown input,
+  div.switch.body > div.rowUp input,
+  div.switch.body > div.rowDown input {
+    font-size: 1.5em;
+    height: 100%;
+    width: 100%;
+  }
+  div.main.scenes.body > div.rowUp.display-none,
+  div.main.scenes.body > div.rowDown.display-none,
+  div.main.skill.body > div.rowUp.display-none,
+  div.main.skill.body > div.rowDown.display-none,
+  div.sub.body > div.rowUp.display-none,
+  div.sub.body > div.rowDown.display-none,
+  div.switch.body > div.rowUp.display-none,
+  div.switch.body > div.rowDown.display-none {
+    display: none;
+  }
+  div.main.scenes.body > div.number,
+  div.main.skill.body > div.number,
+  div.sub.body > div.number,
+  div.switch.body > div.number {
+    padding-top: 3px;
+  }
+  div.main.scenes.body > div.valid,
+  div.main.skill.body > div.valid,
+  div.sub.body > div.valid,
+  div.switch.body > div.valid {
+    height: 100%;
+  }
+  div.main.scenes.body > div.club,
+  div.main.scenes.body > div.date,
+  div.main.scenes.body > div.touch,
+  div.main.scenes.body > div.birth,
+  div.main.scenes.body > div.limit,
+  div.main.scenes.body > div.best,
+  div.main.scenes.body > div.special,
+  div.main.skill.body > div.club,
+  div.main.skill.body > div.date,
+  div.main.skill.body > div.touch,
+  div.main.skill.body > div.birth,
+  div.main.skill.body > div.limit,
+  div.main.skill.body > div.best,
+  div.main.skill.body > div.special,
+  div.sub.body > div.club,
+  div.sub.body > div.date,
+  div.sub.body > div.touch,
+  div.sub.body > div.birth,
+  div.sub.body > div.limit,
+  div.sub.body > div.best,
+  div.sub.body > div.special,
+  div.switch.body > div.club,
+  div.switch.body > div.date,
+  div.switch.body > div.touch,
+  div.switch.body > div.birth,
+  div.switch.body > div.limit,
+  div.switch.body > div.best,
+  div.switch.body > div.special {
+    height: 100%;
+  }
+  div.main.scenes.body > div.s70,
+  div.main.skill.body > div.s70,
+  div.sub.body > div.s70,
+  div.switch.body > div.s70 {
+    height: 100%;
+  }
+  div.main.scenes.body > div.s100,
+  div.main.skill.body > div.s100,
+  div.sub.body > div.s100,
+  div.switch.body > div.s100 {
+    height: 100%;
+  }
+  div.main.scenes.body div.result-1,
+  div.main.scenes.body div.result-2,
+  div.main.scenes.body div.result-event-sp-1,
+  div.main.scenes.body div.result-event-sp-2,
+  div.main.scenes.body div.clubcup-skilleffect,
+  div.main.skill.body div.result-1,
+  div.main.skill.body div.result-2,
+  div.main.skill.body div.result-event-sp-1,
+  div.main.skill.body div.result-event-sp-2,
+  div.main.skill.body div.clubcup-skilleffect,
+  div.sub.body div.result-1,
+  div.sub.body div.result-2,
+  div.sub.body div.result-event-sp-1,
+  div.sub.body div.result-event-sp-2,
+  div.sub.body div.clubcup-skilleffect,
+  div.switch.body div.result-1,
+  div.switch.body div.result-2,
+  div.switch.body div.result-event-sp-1,
+  div.switch.body div.result-event-sp-2,
+  div.switch.body div.clubcup-skilleffect {
+    padding-top: 3px;
+  }
+  div.main.scenes.body div.skill-effect,
+  div.main.scenes.body div.skill-chance,
+  div.main.scenes.body div.skill-total,
+  div.main.skill.body div.skill-effect,
+  div.main.skill.body div.skill-chance,
+  div.main.skill.body div.skill-total,
+  div.sub.body div.skill-effect,
+  div.sub.body div.skill-chance,
+  div.sub.body div.skill-total,
+  div.switch.body div.skill-effect,
+  div.switch.body div.skill-chance,
+  div.switch.body div.skill-total {
+    padding-top: 3px;
+  }
+  div.main.scenes.body > div,
+  div.main.scenes.body > input,
+  div.main.skill.body > div,
+  div.main.skill.body > input,
+  div.sub.body > div,
+  div.sub.body > input,
+  div.switch.body > div,
+  div.switch.body > input {
+    height: 100%;
+    border-top: var(--border-main);
+  }
+  div.main.scenes.body > div select,
+  div.main.scenes.body > input select,
+  div.main.skill.body > div select,
+  div.main.skill.body > input select,
+  div.sub.body > div select,
+  div.sub.body > input select,
+  div.switch.body > div select,
+  div.switch.body > input select {
+    height: 100%;
+  }
+  div.main.scenes.body > div input,
+  div.main.scenes.body > input input,
+  div.main.skill.body > div input,
+  div.main.skill.body > input input,
+  div.sub.body > div input,
+  div.sub.body > input input,
+  div.switch.body > div input,
+  div.switch.body > input input {
+    height: 100%;
+  }
+  div.main.scenes.body > div::after,
+  div.main.scenes.body > input::after,
+  div.main.skill.body > div::after,
+  div.main.skill.body > input::after,
+  div.sub.body > div::after,
+  div.sub.body > input::after,
+  div.switch.body > div::after,
+  div.switch.body > input::after {
+    top: calc(50% - 1rem);
+  }
+  div.main.skill.heading div.s70,
+  div.main.skill.body div.s70 {
+    width: 10px;
+  }
+  div.switch.heading > div.s100,
+  div.switch.body > div.s100 {
+    width: 10px;
+  }
+  body[id="clubcup"] div.heading > div.clubcup-skilleffect {
+    padding: 5px 10px 0px 10px;
+  }
+  body[id="clubcup"] div.body > div.clubcup-skilleffect {
+    padding-top: 3px;
+  }
+  div.precious.heading > div.number {
+    height: 33px;
+  }
+  div.precious.heading > div.name.dwide {
+    width: 250px;
+  }
+  div.precious.heading > div.precious-effect {
+    width: 120px;
+  }
+  div.precious.body > div.number {
+    height: 40px;
+    padding-top: calc(20px - 1rem);
+  }
+  div.precious.body > div.valid {
+    height: 40px;
+  }
+  div.precious.body > div.name.dwide {
+    width: 250px;
+    height: 40px;
+    font-size: calc(1rem - 1px);
+  }
+  div.precious.body > div.name.dwide select {
+    height: 100%;
+  }
+  div.precious.body > div.type,
+  div.precious.body > div.rarity,
+  div.precious.body > div.effect,
+  div.precious.body > div.star,
+  div.precious.body > div.count,
+  div.precious.body > div.precious-effect {
+    height: 40px;
+  }
+  div.precious.body > div.type input,
+  div.precious.body > div.rarity input,
+  div.precious.body > div.effect input,
+  div.precious.body > div.star input,
+  div.precious.body > div.count input,
+  div.precious.body > div.precious-effect input {
+    height: 100%;
+  }
+  div.precious.body > div.precious-effect {
+    width: 120px;
+    padding-top: calc(20px - 1rem);
+  }
+  div.precious.heading {
+    flex-wrap: wrap;
+    gap: 8px 0px;
+    margin-bottom: 32px;
+  }
+  div.precious.heading div {
+    border-right: var(--border-main);
+  }
+  div.precious.heading div:last-child {
+    border-right: none;
+  }
+  div.precious.body {
+    flex-wrap: wrap;
+    gap: 16px 0px;
+    height: unset;
+    margin-bottom: 32px;
+  }
+  div.precious.body:last-child {
+    margin-bottom: 0px;
+  }
+  div.precious.body > div {
+    border-top: var(--border-main);
+  }
+  div.precious.body > div select {
+    height: 100%;
+  }
+  div.precious.body > div::after {
+    top: calc(50% - 1rem);
+  }
+  div.petit.heading {
+    width: 100%;
+    margin: 10px 0px 0px 0px;
+  }
+  div.petit.heading > div.number {
+    width: 40px;
+    height: 33px;
+  }
+  div.petit.heading > div.attack,
+  div.petit.heading > div.defence {
+    width: 140px;
+  }
+  div.petit.heading > div.effect {
+    width: calc((100% - 40px) / 2);
+    max-width: 220px;
+  }
+  div.petit.body {
+    width: 100%;
+    margin-bottom: 32px;
+  }
+  div.petit.body:last-child {
+    margin-bottom: 0px;
+  }
+  div.petit.body > div.number {
+    width: 40px;
+    height: 40px;
+    padding-top: 3px;
+  }
+  div.petit.body > input.attack,
+  div.petit.body > input.defence {
+    width: 140px;
+    height: 40px;
+  }
+  div.petit.body > div.effect {
+    width: calc((100% - 40px) / 2);
+    max-width: 220px;
+    height: 40px;
+    font-size: calc(1rem - 2px);
+  }
+  div.petit.body > div.effect select {
+    height: 100%;
+  }
+  div.petit.body > div.effect::after {
+    top: calc(50% - 1rem);
+  }
+  div.petit.heading.effect {
+    flex-wrap: wrap;
+    gap: 8px 0px;
+    margin-bottom: 32px;
+  }
+  div.petit.heading.effect div {
+    border-right: var(--border-main);
+  }
+  div.petit.heading.effect div:last-child {
+    border-right: none;
+  }
+  div.petit.body.effect {
+    flex-wrap: wrap;
+    gap: 16px 0px;
+  }
+  div.petit.body.effect > div {
+    border-top: var(--border-main);
+  }
+  section#deck-bonus > div {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+  }
+  section#deck-bonus > div div.deck-bonus.heading {
+    flex-direction: column;
+    margin: 5px 0px 0px 5px;
+  }
+  section#deck-bonus > div div.deck-bonus.heading div.deck-bonus {
+    font-size: 1rem;
+    width: 210px;
+    height: 40px;
+    border-left: var(--border-main);
+    border-right: var(--border-main);
+    margin-bottom: 16px;
+    border-top: var(--border-main);
+  }
+  section#deck-bonus > div div.deck-bonus.heading div.deck-bonus:nth-child(6) {
+    font-size: calc(1rem - 2px);
+  }
+  section#deck-bonus > div div.deck-bonus.heading div.deck-bonus:last-child {
+    margin-bottom: 0px;
+  }
+  section#deck-bonus
+    > div
+    div.deck-bonus.heading
+    div.deck-bonus:nth-child(odd) {
+    background-color: var(--background-main);
+  }
+  section#deck-bonus
+    > div
+    div.deck-bonus.heading
+    div.deck-bonus:nth-child(even) {
+    background-color: var(--background-main-alt);
+  }
+  section#deck-bonus > div div.deck-bonus.body {
+    flex-direction: column;
+    margin: 5px 0px 0px 0px;
+  }
+  section#deck-bonus > div div.deck-bonus.body > div {
+    height: 40px;
+    margin-bottom: 16px;
+  }
+  section#deck-bonus > div div.deck-bonus.body > div:last-child {
+    margin-bottom: 0px;
+  }
+  section#deck-bonus > div div.deck-bonus.body > div > div.deck-bonus {
+    width: 70px;
+    min-width: 70px;
+    height: 40px;
+  }
+  section#deck-bonus
+    > div
+    div.deck-bonus.body
+    > div
+    > div.deck-bonus:first-child {
+    border-top: var(--border-main);
+  }
+  section#deck-bonus
+    > div
+    div.deck-bonus.body
+    > div
+    > div.deck-bonus:nth-child(2) {
+    border-top: var(--border-main);
+  }
+  section#deck-bonus
+    > div
+    div.deck-bonus.body
+    > div
+    > div.deck-bonus:last-child {
+    border-right: var(--border-main);
+  }
+  section#deck-bonus > div div.deck-bonus.body > div > div.deck-bonus select {
+    height: 100%;
+  }
+  div.player-data.heading > div.type,
+  div.player-data.body > div.type {
+    width: 30vw;
+    max-width: 150px;
+  }
+  div.player-data.heading > div.position,
+  div.player-data.body > div.position {
+    width: 32vw;
+    max-width: 150px;
+  }
+  div.player-data.heading > div.attackcost,
+  div.player-data.heading > input.attackcost,
+  div.player-data.body > div.attackcost,
+  div.player-data.body > input.attackcost {
+    width: 34vw;
+    max-width: 150px;
+  }
+  div.player-data.heading > div.menscologne,
+  div.player-data.heading > input.menscologne,
+  div.player-data.body > div.menscologne,
+  div.player-data.body > input.menscologne {
+    width: 32vw;
+    max-width: 150px;
+  }
+  div.player-data.heading > div.menscologne.Sweet,
+  div.player-data.heading > div.menscologne.Cool,
+  div.player-data.body > div.menscologne.Sweet,
+  div.player-data.body > div.menscologne.Cool {
+    border-right: var(--border-main);
+  }
+  div.player-data.heading > div.clubitem,
+  div.player-data.body > div.clubitem {
+    width: 32vw;
+    max-width: 150px;
+  }
+  div.player-data.heading > div.clubitem.Sweet,
+  div.player-data.heading > div.clubitem.Cool,
+  div.player-data.body > div.clubitem.Sweet,
+  div.player-data.body > div.clubitem.Cool {
+    border-right: var(--border-main);
+  }
+  div.player-data.heading > div.type {
+    font-size: calc(1rem - 1px);
+    height: 33px;
+  }
+  div.player-data.heading > div.attackcost {
+    font-size: calc(1rem - 3px);
+    height: 33px;
+  }
+  div.player-data.heading {
+    height: 34px;
+  }
+  div.player-data.heading > div.clubitem.Cool {
+    font-size: calc(1rem - 2px);
+    height: 100%;
+  }
+  div.player-data.body div,
+  div.player-data.body input {
+    height: 40px;
+  }
+  div.player-data.body div select,
+  div.player-data.body input select {
+    height: 100%;
+  }
+  div.player-data.body > div.clubitem {
+    height: 40px;
+  }
+  div.player-data.body > div.clubitem span::before {
+    left: calc(50% - 12px);
+  }
+  div.player-data.body > div.clubitem span::after {
+    left: calc(50% - 12px + 7px);
+  }
+  body[id="divrace"] div.heading.special-item.item {
+    white-space: normal;
+    font-size: calc(1rem - 4px);
+    height: 49px;
+  }
+  body[id="divrace"] div.heading.special-item.item > div.number {
+    height: 100%;
+  }
+  body[id="divrace"] div.heading.special-item.item > div.valid {
+    height: 100%;
+    padding: 25px 10px 0px 10px;
+  }
+  body[id="divrace"] div.heading.special-item.item > div.name {
+    height: 100%;
+    padding: 25px 10px 0px 10px;
+  }
+  body[id="divrace"] div.heading.special-item.item > div.memo {
+    width: 180px;
+    height: 100%;
+    padding: 25px 10px 0px 10px;
+  }
+  body[id="divrace"] div.heading.special-item.item > div.effect-base {
+    width: 110px;
+    height: 100%;
+  }
+  body[id="divrace"] div.heading.special-item.item > div.effect-base span {
+    display: inline-block;
+  }
+  body[id="divrace"] div.heading.special-item.item > div.effect-challenge {
+    width: 110px;
+    height: 100%;
+  }
+  body[id="divrace"] div.heading.special-item.item > div.effect-challenge span {
+    display: inline-block;
+  }
+  body[id="divrace"] div.heading.special-item.item > div.effect-sort {
+    width: 90px;
+    height: 100%;
+    padding: 25px 10px 0px 10px;
+  }
+  body[id="divrace"] div.body.special-item.item {
+    white-space: normal;
+    height: 49px;
+  }
+  body[id="divrace"] div.body.special-item.item > div.number {
+    height: 100%;
+    padding-top: calc(24.5px - 1rem);
+  }
+  body[id="divrace"] div.body.special-item.item > div.valid {
+    height: 100%;
+  }
+  body[id="divrace"] div.body.special-item.item > div.name {
+    height: 100%;
+    padding-top: calc(24.5px - 1rem);
+  }
+  body[id="divrace"] div.body.special-item.item > div.memo {
+    width: 180px;
+    height: 100%;
+    font-size: calc(1rem - 4px);
+  }
+  body[id="divrace"] div.body.special-item.item > div.effect-base {
+    width: 110px;
+    height: 100%;
+    padding-top: calc(24.5px - 1rem);
+  }
+  body[id="divrace"] div.body.special-item.item > div.effect-challenge {
+    width: 110px;
+    height: 100%;
+    padding-top: calc(24.5px - 1rem);
+  }
+  body[id="divrace"] div.body.special-item.item > div.effect-sort {
+    width: 90px;
+    height: 100%;
+    padding-top: calc(24.5px - 1rem);
+  }
+  div.main.scenes,
+  div.main.skill,
+  div.sub,
+  div.switch,
+  div.precious,
+  div.precious,
+  div.petit,
+  div.special-item.item {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  div.main.scenes div.number,
+  div.main.skill div.number,
+  div.sub div.number,
+  div.switch div.number,
+  div.precious div.number,
+  div.precious div.number,
+  div.petit div.number,
+  div.special-item.item div.number {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0px;
+    z-index: 2;
+  }
+  #directjson {
+    margin: 50px auto 0px auto;
+  }
+  #directjson > div > div {
+    margin-right: 10px;
+  }
+  #directjson > div > div h3 {
+    margin-bottom: 10px;
+  }
+  #directjson > div > div:last-child {
+    margin-right: auto;
+  }
+  #changelogDoor {
+    height: 40px;
+    padding-top: calc(20px - 0.75rem);
+  }
+  #importRawData {
+    margin: 50px 0px 20px 0px;
+  }
+  #importRawData > div {
+    margin-right: auto;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  #importRawData > div h3 span {
+    display: inline-block;
+  }
+  #importRawData > div div.selectmark {
+    height: 40px;
+  }
+  #importRawData > div div.selectmark select {
+    height: 100%;
+  }
+  #importRawData > div div.selectmark::after {
+    top: calc(50% - 0.75rem);
+  }
+  #importRawData > div input {
+    height: 40px;
+  }
+  #importRawData > div div.specialGirl div:first-child {
+    margin-bottom: 10px;
+  }
+  body[id="raidwar-skill"] div#form-container {
+    flex-direction: column;
+  }
+  body[id="raidwar-skill"] div#form-area div#general-1 input[type="text"] {
+    display: block;
+    width: 94vw;
+    margin-left: 0px;
+    font-size: calc(1rem - 4px);
+  }
+  body[id="raidwar-skill"] div#form-area div.grid:nth-child(2) {
+    width: 96vw;
+    max-width: 96vw;
+    gap: 1vw;
+    grid-template-columns: repeat(2, minmax(47vw, 300px));
+  }
+  body[id="raidwar-skill"] div#form-area div.grid:nth-child(3) {
+    width: 96vw;
+    max-width: 96vw;
+    gap: 1vw;
+    grid-template-columns: repeat(4, minmax(23vw, 150px));
+  }
+  body[id="raidwar-skill"] div.heading.flex .attack,
+  body[id="raidwar-skill"] div.heading.flex .heart {
+    font-size: calc(1rem - 2px);
+  }
+  body[id="raidwar-skill"] div.solo#leader-1 .heading > div.attack {
+    width: 48%;
+    margin-right: 2%;
+  }
+  body[id="raidwar-skill"] div.solo#leader-1 .heading > div.heart {
+    width: 48%;
+  }
+  body[id="raidwar-skill"] div.solo#leader-1 input[type="number"].attack {
+    width: 48%;
+    height: 40px;
+    margin-right: 2%;
+    border-radius: 5px;
+  }
+  body[id="raidwar-skill"] div.solo#leader-1 input[type="number"].heart {
+    width: 48%;
+    height: 40px;
+    border-radius: 5px;
+  }
+  body[id="raidwar-skill"] div.solo#helper-1 .heading > div.attack {
+    width: 48%;
+    margin-right: 2%;
+  }
+  body[id="raidwar-skill"] div.solo#helper-1 .heading > div.heart {
+    width: 48%;
+  }
+  body[id="raidwar-skill"] div.solo#helper-1 input[type="number"].attack {
+    width: 48%;
+    height: 40px;
+    margin-right: 2%;
+    border-radius: 5px;
+  }
+  body[id="raidwar-skill"] div.solo#helper-1 input[type="number"].heart {
+    width: 48%;
+    height: 40px;
+    border-radius: 5px;
+  }
+  body[id="raidwar-skill"] div.solo.member div.heading.flex {
+    flex-direction: column;
+  }
+  body[id="raidwar-skill"] div.solo.member div.main input {
+    display: block;
+  }
+  body[id="raidwar-skill"]
+    div.solo.member
+    div.main
+    input[type="number"].attack {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+  }
+  body[id="raidwar-skill"] div.solo.member div.main input[type="number"].heart {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+  }
+  body[id="raidwar-skill"] div#canvas-area {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-top: 40px;
+  }
+  body[id="raidwar-skill"] div#canvas-area > div {
+    max-width: 96vw;
+    overflow-x: scroll;
+    max-height: 70vh;
+  }
+  body[id="raidwar-skill"] div#how-to-use ul {
+    padding-left: 0px;
+  }
+}
+/*# sourceMappingURL=decksim.min.css.map */

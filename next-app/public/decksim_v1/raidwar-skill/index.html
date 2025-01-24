@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ガールフレンド(仮)のセンバツシミュレーターWeb版のおねがい★ハンターズ ハンター声援センバツ用のページです。必要ハート数やダメージ数値を入力していくことで声援発動のタイムラインが期待通りか確認が出来ます。"
+    />
+
+    <title>
+      おねがい★ハンターズ ハンター声援センバツ - センバツシミュレーター -
+      きのことゲーム部
+    </title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/destyle.css@4.0.0/destyle.css"
+    />
+    <link rel="stylesheet" href="/decksim_v1/css/decksim.min.css?20241211" />
+    <link rel="icon" href="/decksim_v1/images/favicon.ico" />
+  </head>
+  <body id="raidwar-skill">
+    <div>
+      <section id="tools">
+        <div class="internal-links">
+          <div id="simtitle" class="title"></div>
+          <div id="exchange"></div>
+        </div>
+        <div id="mode-selector"></div>
+        <div class="history">
+          保存データ1
+          <input
+            type="button"
+            class="save"
+            value="保存"
+            data-deckid="deck-raidwar-skill-1"
+          />
+          <input
+            type="button"
+            class="load"
+            value="読出"
+            data-deckid="deck-raidwar-skill-1"
+          />
+          <div>
+            日時　 :
+            <span id="date-history-1" class="date"></span>
+          </div>
+          <div class="memo">
+            メモ　 :
+            <input
+              type="button"
+              class="update"
+              value="更新"
+              data-deckid="deck-raidwar-skill-1"
+            />
+            <textarea
+              id="memo-history-1"
+              class="memo"
+              rows="2"
+              cols="20"
+            ></textarea>
+          </div>
+        </div>
+        <div class="history">
+          保存データ2
+          <input
+            type="button"
+            class="save"
+            value="保存"
+            data-deckid="deck-raidwar-skill-2"
+          />
+          <input
+            type="button"
+            class="load"
+            value="読出"
+            data-deckid="deck-raidwar-skill-2"
+          />
+          <div>
+            日時　 :
+            <span id="date-history-2" class="date"></span>
+          </div>
+          <div class="memo">
+            メモ　 :
+            <input
+              type="button"
+              class="update"
+              value="更新"
+              data-deckid="deck-raidwar-skill-2"
+            />
+            <textarea
+              id="memo-history-2"
+              class="memo"
+              rows="2"
+              cols="20"
+            ></textarea>
+          </div>
+        </div>
+        <div class="history">
+          保存データ3
+          <input
+            type="button"
+            class="save"
+            value="保存"
+            data-deckid="deck-raidwar-skill-3"
+          />
+          <input
+            type="button"
+            class="load"
+            value="読出"
+            data-deckid="deck-raidwar-skill-3"
+          />
+          <div>
+            日時　 :
+            <span id="date-history-3" class="date"></span>
+          </div>
+          <div class="memo">
+            メモ　 :
+            <input
+              type="button"
+              class="update"
+              value="更新"
+              data-deckid="deck-raidwar-skill-3"
+            />
+            <textarea
+              id="memo-history-3"
+              class="memo"
+              rows="2"
+              cols="20"
+            ></textarea>
+          </div>
+        </div>
+      </section>
+
+      <div id="form-container" class="flex">
+        <div id="theme-button-container">
+          <div class="toggle theme">
+            <input type="checkbox" id="theme-switch" name="theme" />
+          </div>
+          <label class="theme" for="theme-switch"></label>
+          <div class="toggle tools">
+            <input type="checkbox" id="tools-switch" name="tools" />
+          </div>
+          <label class="tools" for="tools-switch"></label>
+        </div>
+        <div id="form-area"></div>
+        <div id="canvas-area"></div>
+      </div>
+
+      <div id="directjson">
+        <h2>保存データのバックアップ</h2>
+        <div class="x-scroll-container">
+          <div>
+            <h3>保存データ1</h3>
+            <div>
+              <label for="load_raw_1">ブラウザ → ローカルファイル に保存</label>
+              <input
+                type="button"
+                class="load_raw"
+                id="load_raw_1"
+                value="ファイルに保存"
+                data-deckid="deck-raidwar-skill-1"
+              />
+            </div>
+            <div>
+              <label for="save_raw_1" tabindex="0">
+                ローカルファイル → ブラウザ に読出
+              </label>
+              <input
+                type="file"
+                class="save_raw"
+                id="save_raw_1"
+                value="読出"
+                data-deckid="deck-raidwar-skill-1"
+                accept="text/plain"
+              />
+              <button data-id="save_raw_1">ファイルを選択</button>
+            </div>
+          </div>
+          <div>
+            <h3>保存データ2</h3>
+            <div>
+              <label for="load_raw_2">ブラウザ → ローカルファイル に保存</label>
+              <input
+                type="button"
+                class="load_raw"
+                id="load_raw_2"
+                value="ファイルに保存"
+                data-deckid="deck-raidwar-skill-2"
+              />
+            </div>
+            <div>
+              <label for="save_raw_2" tabindex="0">
+                ローカルファイル → ブラウザ に読出
+              </label>
+              <input
+                type="file"
+                class="save_raw"
+                id="save_raw_2"
+                value="読出"
+                data-deckid="deck-raidwar-skill-2"
+                accept="text/plain"
+              />
+              <button data-id="save_raw_2">ファイルを選択</button>
+            </div>
+          </div>
+          <div>
+            <h3>保存データ3</h3>
+            <div>
+              <label for="load_raw_3">ブラウザ → ローカルファイル に保存</label>
+              <input
+                type="button"
+                class="load_raw"
+                id="load_raw_3"
+                value="ファイルに保存"
+                data-deckid="deck-raidwar-skill-3"
+              />
+            </div>
+            <div>
+              <label for="save_raw_3" tabindex="0">
+                ローカルファイル → ブラウザ に読出
+              </label>
+              <input
+                type="file"
+                class="save_raw"
+                id="save_raw_3"
+                value="読出"
+                data-deckid="deck-raidwar-skill-3"
+                accept="text/plain"
+              />
+              <button data-id="save_raw_3">ファイルを選択</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="how-to-use">
+        <h2>使用方法</h2>
+        <ul>
+          <li>
+            本ページのシミュレーターは、ハンター声援センバツのデータを入力することにより、期待したタイムラインの通りに声援が発動するのかどうかを確認できることを目的としています。
+          </li>
+          <li>
+            アタックパターンやハンター声援データを入力していくと、自動的に画面右側のタイムラインが更新されていきます。時系列は上から下への順になっています。
+          </li>
+          <li>
+            タイムライン右側の数値表示は、任意のアタック回数において飴何個分のダメージを与えられる予定かを表しています。
+            区間は1つ前のアタックからの差分値で、合計はすべてのアタックを合計したトータルのダメージ数値です。左側はダメージ声援の合計%値で、右側はさらに飴や炭酸などによる通常のアタック分も加算した数値です。
+          </li>
+          <img
+            src="/decksim_v1/images/41_raidwar-skill_how-to-use-01.png"
+            style="border: 1px solid #000"
+          />
+          <li>
+            タイムライン中に下のようなバツ印が表示された場合、これはその箇所でハートの繰り越しあふれが発生していることを表しています。なるべくこの表示が出ないような構成になると理想的です。
+          </li>
+          <img
+            src="/decksim_v1/images/41_raidwar-skill_how-to-use-02.png"
+            style="border: 1px solid #000"
+          />
+        </ul>
+      </div>
+
+      <div id="changelog">
+        <h2>更新履歴</h2>
+      </div>
+
+      <div id="importRawData">
+        <h2>デバッグ用機能：rawデータをインポートする</h2>
+        <div>
+          <label for="rawData" tabindex="0">
+            ローカルファイル → ブラウザ に読出
+          </label>
+          <input
+            type="file"
+            id="rawData"
+            value="読出"
+            accept="application/json"
+          />
+          <button data-id="rawData">ファイルを選択</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- javascript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="/decksim_v1/js/decksim-theme.js?20241211"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+
+    <script src="/decksim_v1/js/decksim-changelog.js?20241211"></script>
+    <script src="/decksim_v1/js/raidwar-skill-main.js?20241211"></script>
+  </body>
+</html>

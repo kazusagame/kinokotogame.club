@@ -16,7 +16,7 @@ export default function Page() {
     {
       id: 1,
       title: ["たすけて！", "マイヒーロー", "前半"],
-      path: "https://kinokotogame.club/decksim/raid-first/",
+      path: "/decksim_v1/raid-first/index.html",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -25,7 +25,7 @@ export default function Page() {
     {
       id: 2,
       title: ["たすけて！", "マイヒーロー", "後半攻援"],
-      path: "https://kinokotogame.club/decksim/raid-second-attack/",
+      path: "/decksim_v1/raid-second-attack/index.html",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -34,7 +34,7 @@ export default function Page() {
     {
       id: 3,
       title: ["たすけて！", "マイヒーロー", "後半守援"],
-      path: "https://kinokotogame.club/decksim/raid-second-defence/",
+      path: "/decksim_v1/raid-second-defence/index.html",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -43,7 +43,7 @@ export default function Page() {
     {
       id: 4,
       title: ["たすけて！", "マイヒーロー", "メガ悪男"],
-      path: "https://kinokotogame.club/decksim/raid-mega/",
+      path: "/decksim_v1/raid-mega/index.html",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -52,7 +52,7 @@ export default function Page() {
     {
       id: 5,
       title: ["おねがい★", "ハンターズ"],
-      path: "https://kinokotogame.club/decksim/raidwar/",
+      path: "/decksim_v1/raidwar/index.html",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -70,7 +70,7 @@ export default function Page() {
     {
       id: 7,
       title: ["部活対抗！", "勧誘★", "グランプリ"],
-      path: "https://kinokotogame.club/decksim/clubcup/",
+      path: "/decksim_v1/clubcup/index.html",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -79,7 +79,7 @@ export default function Page() {
     {
       id: 8,
       title: ["聖櫻学園★", "カリスマ決定戦", "攻援"],
-      path: "https://kinokotogame.club/decksim/championship/",
+      path: "/decksim_v1/championship/index.html",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -88,7 +88,7 @@ export default function Page() {
     {
       id: 9,
       title: ["聖櫻学園★", "カリスマ決定戦", "守援"],
-      path: "https://kinokotogame.club/decksim/championship-defence/",
+      path: "/decksim_v1/championship-defence/index.html",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -97,7 +97,7 @@ export default function Page() {
     {
       id: 10,
       title: ["聖櫻学園", "メモリアル", "ストーリー"],
-      path: "https://kinokotogame.club/decksim/tower/",
+      path: "/decksim_v1/tower/index.html",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -106,7 +106,7 @@ export default function Page() {
     {
       id: 11,
       title: ["全国高校生", "課外活動", "コンテスト"],
-      path: "https://kinokotogame.club/decksim/divrace/",
+      path: "/decksim_v1/divrace/index.html",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -115,7 +115,7 @@ export default function Page() {
     {
       id: 12,
       title: ["散策♪", "聖櫻ワールド"],
-      path: "https://kinokotogame.club/decksim/board/",
+      path: "/decksim_v1/board/index.html",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -124,7 +124,7 @@ export default function Page() {
     {
       id: 13,
       title: ["通常バトル"],
-      path: "https://kinokotogame.club/decksim/normal-battle/",
+      path: "/decksim_v1/normal-battle/index.html",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -257,6 +257,30 @@ export default function Page() {
                 → いくつかのパターンでの実際の効果値。★4の時の最大効果値。
               </span>
             </div>
+          </div>
+
+          <h2 className="text-xl mt-4 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
+            旧版のシミュレーターへのリンク
+          </h2>
+          <div className="leading-7">
+            <p className="md:pl-4">
+              <Link
+                href="/decksim_v1/raidwar-skill/index.html"
+                className="link"
+              >
+                おねがい★ハンターズ ハンター声援センバツ
+              </Link>
+            </p>
+            <p className="md:px-4 mt-4">
+              2024年の年末から少しずつサイトのリニューアルを行っております。<br />
+              使い慣れた方を使い続けたい人もおられるかと思いますので、
+              こちらに旧版へのリンクを設置しています。
+            </p>
+            <p className="md:px-4">
+              旧版はデータ更新やバグ修正を終了しておりますのでご了承ください。<br />
+              また、新旧でデータの互換性はありません。
+              旧版で保存したデータは新しいシミュレーターでは存在していない扱いになります。
+            </p>
           </div>
         </div>
       </div>
