@@ -24,14 +24,30 @@ const initData: RaidwarSkillData = {
   member: {},
 } as const;
 
-export interface RaidwarSkillResultSummary {
+export interface RaidwarSkillResult {
   dataType: "raidwar-skill";
+  initCondition: boolean;
   summaries: { [K in number]: string };
 }
-const initResultSummary: RaidwarSkillResultSummary = {
+const initResultSummary: RaidwarSkillResult = {
   dataType: "raidwar-skill",
+  initCondition: true,
   summaries: {},
 } as const;
+
+export interface RaidwarSkillSavedDataSummary {
+  lastUpdate: string;
+  memo: string;
+}
+export const initRaidwarSkillSavedDataSummary: RaidwarSkillSavedDataSummary = {
+  lastUpdate: "",
+  memo: "",
+} as const;
+export interface RaidwarSkillLocalStorageData
+  extends RaidwarSkillSavedDataSummary {
+  version: number;
+  data: RaidwarSkillData;
+}
 
 interface SceneProfile {
   remainNeedHeartCount: number;
@@ -61,8 +77,9 @@ export function useRaidwarSkillData({
   );
 
   const calcResultSummaries = useCallback((data: RaidwarSkillData) => {
-    const newSummary: RaidwarSkillResultSummary = {
+    const newSummary: RaidwarSkillResult = {
       dataType: "raidwar-skill",
+      initCondition: false,
       summaries: {},
     };
     const { damageArray } = calcRaidwarSkillResult({ data });
@@ -113,10 +130,13 @@ export function useRaidwarSkillData({
     [data, calcResultSummaries]
   );
 
-  const handleLoadData = useCallback((newData: RaidwarSkillData) => {
-    setData(newData);
-    calcResultSummaries(newData);
-  }, [calcResultSummaries]);
+  const handleLoadData = useCallback(
+    (newData: RaidwarSkillData) => {
+      setData(newData);
+      calcResultSummaries(newData);
+    },
+    [calcResultSummaries]
+  );
 
   const importRawDataRaidwarSkill = useCallback(
     (importData: unknown) => {

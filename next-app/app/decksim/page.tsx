@@ -114,6 +114,15 @@ export default function Page() {
     },
     {
       id: 12,
+      title: ["課外活動", "コンテスト本選", "ステージシミュ"],
+      path: "./divrace-stage/",
+      img: "/image/menu/18_decksim_common.png",
+      width: 640,
+      height: 460,
+      imgAlt: "全国高校生課外活動コンテスト本選 ステージシミュへのリンク",
+    },
+    {
+      id: 13,
       title: ["散策♪", "聖櫻ワールド"],
       path: "/decksim_v1/board/index.html",
       img: "/image/menu/18_decksim_common.png",
@@ -122,7 +131,7 @@ export default function Page() {
       imgAlt: "散策♪聖櫻ワールドへのリンク",
     },
     {
-      id: 13,
+      id: 14,
       title: ["通常バトル"],
       path: "/decksim_v1/normal-battle/index.html",
       img: "/image/menu/18_decksim_common.png",

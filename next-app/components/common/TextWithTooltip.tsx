@@ -25,9 +25,9 @@ export default function TextWithTooltip({
         enterTouchDelay={0}
         leaveTouchDelay={10000}
       >
-        <span className="p-1">
+        <span className="flex flex-row items-center w-fit">
           <span className="mr-1">{displayText}</span>
-          <HelpOutlineIcon fontSize={iconSizeCss} className="align-sub" />
+          <HelpOutlineIcon fontSize={iconSizeCss} />
         </span>
       </Tooltip>
     </>

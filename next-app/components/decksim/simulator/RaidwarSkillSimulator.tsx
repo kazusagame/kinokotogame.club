@@ -8,11 +8,12 @@ import SimulatorHeader from "@/components/decksim/simulator/SimulatorHeader";
 import {
   useRaidwarSkillData,
   RaidwarSkillData,
+  RaidwarSkillResult,
+  RaidwarSkillSavedDataSummary,
+  RaidwarSkillLocalStorageData,
+  initRaidwarSkillSavedDataSummary,
 } from "@/components/decksim/simulator/useRaidwarSkillData";
-import {
-  useLocalStorageData,
-  SavedDataSummary,
-} from "@/components/decksim/simulator/useLocalStorageData";
+import { useLocalStorageData } from "@/components/decksim/simulator/useLocalStorageData";
 import { drawCanvasRaidwarSkill } from "@/components/decksim/simulator/drawCanvasRaidwarSkill";
 
 export default function RaidwarSkillSimulator() {
@@ -31,8 +32,12 @@ export default function RaidwarSkillSimulator() {
     handleChangeMemo,
     handleExportData,
     handleImportData,
-  } = useLocalStorageData({
+  } = useLocalStorageData<
+    RaidwarSkillSavedDataSummary,
+    RaidwarSkillLocalStorageData
+  >({
     eventId: "raidwar-skill",
+    initSavedDataSummary: structuredClone(initRaidwarSkillSavedDataSummary),
   });
   const [isFixHeader, setIsFixHeader] = useState<boolean>(true);
 
@@ -42,7 +47,12 @@ export default function RaidwarSkillSimulator() {
 
   return (
     <>
-      <SimulatorHeader
+      <SimulatorHeader<
+        RaidwarSkillData,
+        RaidwarSkillResult,
+        RaidwarSkillSavedDataSummary,
+        RaidwarSkillLocalStorageData
+      >
         eventId="raidwar-skill"
         title="おねがい★ハンターズ ハンター声援"
         isFixHeader={isFixHeader}
@@ -133,7 +143,7 @@ function PatternSelect({
 
   return (
     <div>
-      <h1 className="text-lg font-bold">
+      <h1 className="text-lg font-bold ml-1">
         {/* cSpell:disable */}
         <TextWithTooltip
           displayText="アタックパターン選択"
@@ -235,7 +245,7 @@ function GirlsTable({
 }) {
   return (
     <>
-      <h1 className="text-lg font-bold">
+      <h1 className="text-lg font-bold ml-1">
         <TextWithTooltip
           displayText="ハンター声援センバツ"
           tipText="ハンター声援センバツのデータを入力します。%ダメージ声援の場合は、ダメージ%の欄にその数値を入力します。攻援力UP声援の場合はダメージ%の欄は空白のままか、0を入力します。ハート数の欄は1回目の発動に必要なハート数を入力します。"
@@ -419,7 +429,7 @@ function DataExportAndImport({
   handleImportData,
   handleImportRawData,
 }: {
-  savedDataSummaries: SavedDataSummary[];
+  savedDataSummaries: RaidwarSkillSavedDataSummary[];
   handleExportData: (e: React.MouseEvent<HTMLButtonElement>) => void;
   handleImportData: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleImportRawData: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -522,14 +532,139 @@ function ResultCanvas({ data }: { data: RaidwarSkillData }) {
 
   return (
     <div className="xl:basis-1/2 p-2">
-      <h1 className="text-lg font-bold mb-2">
+      <h1 className="text-lg font-bold ml-1 mb-2">
         <TextWithTooltip
           displayText="タイムライン"
           tipText="メンバーの入れ替わり状況やアタック毎の予想ダメージ値を表示します。"
         />
       </h1>
-      <div className="border border-base-300 rounded-md bg-base-200 overflow-x-scroll sm:overflow-x-auto w-[345px] sm:w-auto">
+      <div className="border border-base-300 rounded-md bg-base-200 overflow-x-scroll sm:overflow-x-auto w-[calc(100dvw-45px)] sm:w-auto max-w-[602px]">
         <canvas ref={canvasRef} width={600} height={3000} />
+      </div>
+    </div>
+  );
+}
+
+export function RaidwarSkillResultSummaryDiv({
+  resultSummary,
+}: {
+  resultSummary: RaidwarSkillResult;
+}) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [startPage, setStartPage] = useState<number>(0);
+  const chunks: string[][] = [];
+  const maxPageNum: number = Math.ceil(
+    Object.keys(resultSummary.summaries).length / 3
+  );
+  for (let page = startPage; page < maxPageNum; page++) {
+    chunks[page - startPage] = [];
+    for (let i = 0; i < 3; i++) {
+      if (resultSummary.summaries[page * 3 + i])
+        chunks[page - startPage].push(resultSummary.summaries[page * 3 + i]);
+    }
+  }
+
+  const handleClickResultDiv = () => {
+    let addPageNum = 1;
+    const width = window.innerWidth;
+    if (width >= 1536) {
+      addPageNum = 5;
+    } else if (width >= 1280) {
+      addPageNum = 4;
+    } else if (width >= 1024) {
+      addPageNum = 3;
+    } else if (width >= 768) {
+      addPageNum = 2;
+    }
+
+    let nextPage = startPage + addPageNum;
+    if (nextPage >= maxPageNum) {
+      nextPage = 0;
+    } else if (nextPage >= 10) {
+      // 長すぎても意味がないので10ページまでにする
+      nextPage = 0;
+    }
+
+    setStartPage(nextPage);
+  };
+
+  return (
+    <div
+      className="ml-4 md:ml-8 mr-4 flex flex-col justify-start"
+      role="button"
+      onClick={handleClickResultDiv}
+    >
+      <div className="flex flex-row gap-8">
+        {chunks[0] && (
+          <div>
+            {chunks[0].map((v, i) => (
+              <p key={i} className="text-xs">
+                アタック
+                <span className="inline-block w-4 text-right">
+                  {startPage * 3 + i + 1}
+                </span>
+                回目 ダメージ声援:{" "}
+                <span className="inline-block w-8 text-right">{v}</span> %
+              </p>
+            ))}
+          </div>
+        )}
+        {chunks[1] && (
+          <div className="max-md:hidden">
+            {chunks[1].map((v, i) => (
+              <p key={i} className="text-xs">
+                アタック
+                <span className="inline-block w-4 text-right">
+                  {startPage * 3 + i + 4}
+                </span>
+                回目 ダメージ声援:{" "}
+                <span className="inline-block w-8 text-right">{v}</span> %
+              </p>
+            ))}
+          </div>
+        )}
+        {chunks[2] && (
+          <div className="max-lg:hidden">
+            {chunks[2].map((v, i) => (
+              <p key={i} className="text-xs">
+                アタック
+                <span className="inline-block w-4 text-right">
+                  {startPage * 3 + i + 7}
+                </span>
+                回目 ダメージ声援:{" "}
+                <span className="inline-block w-8 text-right">{v}</span> %
+              </p>
+            ))}
+          </div>
+        )}
+        {chunks[3] && (
+          <div className="max-xl:hidden">
+            {chunks[3].map((v, i) => (
+              <p key={i} className="text-xs">
+                アタック
+                <span className="inline-block w-4 text-right">
+                  {startPage * 3 + i + 10}
+                </span>
+                回目 ダメージ声援:{" "}
+                <span className="inline-block w-8 text-right">{v}</span> %
+              </p>
+            ))}
+          </div>
+        )}
+        {chunks[4] && (
+          <div className="max-2xl:hidden">
+            {chunks[4].map((v, i) => (
+              <p key={i} className="text-xs">
+                アタック
+                <span className="inline-block w-4 text-right">
+                  {startPage * 3 + i + 13}
+                </span>
+                回目 ダメージ声援:{" "}
+                <span className="inline-block w-8 text-right">{v}</span> %
+              </p>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

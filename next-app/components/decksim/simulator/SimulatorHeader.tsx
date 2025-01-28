@@ -1,4 +1,4 @@
-import { useId, useRef, useState } from "react";
+import { useId, useRef } from "react";
 import Link from "next/link";
 import ThemeControllerMenu from "@/components/common/ThemeControllerMenu";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -6,34 +6,54 @@ import FileOpenIcon from "@mui/icons-material/FileOpen";
 import SaveIcon from "@mui/icons-material/Save";
 
 import {
-  RaidwarSkillData,
-  RaidwarSkillResultSummary,
-} from "@/components/decksim/simulator/useRaidwarSkillData";
-import { MAX_SAVE_DATA_NUM } from "@/components/decksim/simulator/globalConfig";
-import {
-  SavedDataSummary,
-  LocalStorageData,
+  OriginSavedDataSummary,
+  OriginLocalStorageData,
 } from "@/components/decksim/simulator/useLocalStorageData";
-import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
 
-interface HeaderProps {
+import { MAX_SAVE_DATA_NUM } from "@/components/decksim/simulator/globalConfig";
+import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
+import { RaidwarSkillResultSummaryDiv } from "@/components/decksim/simulator/RaidwarSkillSimulator";
+import { RaidwarSkillResult } from "@/components/decksim/simulator/useRaidwarSkillData";
+import {
+  DivraceStageResultSummaryDiv,
+  DivraceStageSavedDataDiv,
+} from "@/components/decksim/simulator/DivraceStageSimulator";
+import {
+  DivraceStageData,
+  DivraceStageResult,
+  DivraceStageSavedDataSummary,
+  DivraceStageLocalStorageData,
+} from "@/components/decksim/simulator/useDivraceStageData";
+
+interface HeaderProps<T, U, V> {
   eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
   title: string;
   isFixHeader: boolean;
-  data: RaidwarSkillData;
-  resultSummary: RaidwarSkillResultSummary;
-  savedDataSummaries: SavedDataSummary[];
+  data: T;
+  resultSummary: U;
+  savedDataSummaries: V[];
   onChangeFixHeader: () => void;
-  onLoadData: (newData: RaidwarSkillData) => void;
+  onLoadData: (newData: T) => void;
   handleSaveDataSummaries: (
     index: number,
-    key: keyof SavedDataSummary,
-    value: string
+    key: keyof V,
+    value: string | number
   ) => void;
   handleChangeMemo: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-export default function SimulatorHeader({
+export interface ResultSummary {
+  dataType: string;
+  initCondition: boolean;
+  summaries: unknown;
+}
+
+export default function SimulatorHeader<
+  T,
+  U extends ResultSummary,
+  V extends OriginSavedDataSummary,
+  W extends OriginLocalStorageData
+>({
   eventId,
   title,
   isFixHeader,
@@ -44,7 +64,7 @@ export default function SimulatorHeader({
   onLoadData,
   handleSaveDataSummaries,
   handleChangeMemo,
-}: HeaderProps) {
+}: HeaderProps<T, U, V>) {
   const position = isFixHeader ? "sticky top-0" : "static";
 
   const handleClickThemeMenu = () => {
@@ -56,22 +76,24 @@ export default function SimulatorHeader({
     <header
       className={`bg-base-200 rounded-b-box flex h-[52px] z-[2] ${position}`}
     >
-      <LoadButton
+      <LoadButton<T, V, W>
         eventId={eventId}
         onLoadData={onLoadData}
         savedDataSummaries={savedDataSummaries}
         handleChangeMemo={handleChangeMemo}
       />
-      <SaveButton
+      <SaveButton<T, U, V>
         eventId={eventId}
         data={data}
+        resultSummary={resultSummary}
         savedDataSummaries={savedDataSummaries}
         handleSaveDataSummaries={handleSaveDataSummaries}
         handleChangeMemo={handleChangeMemo}
       />
-      <ResultSummaryDiv
+      <ResultSummaryDiv<T, U>
         eventId={eventId}
         title={title}
+        data={data}
         resultSummary={resultSummary}
       />
       <div className="ml-auto" />
@@ -106,15 +128,19 @@ export default function SimulatorHeader({
   );
 }
 
-function LoadButton({
+function LoadButton<
+  T,
+  U extends OriginSavedDataSummary,
+  V extends OriginLocalStorageData
+>({
   eventId,
   onLoadData,
   savedDataSummaries,
   handleChangeMemo,
 }: {
   eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
-  onLoadData: (newData: RaidwarSkillData) => void;
-  savedDataSummaries: SavedDataSummary[];
+  onLoadData: (newData: T) => void;
+  savedDataSummaries: U[];
   handleChangeMemo: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }) {
   const modalId = useId();
@@ -133,12 +159,12 @@ function LoadButton({
       const key = `deck-${eventId}-${num}`;
       const loadData = localStorage.getItem(key);
       if (loadData) {
-        const parsedData = JSON.parse(loadData) as LocalStorageData;
+        const parsedData = JSON.parse(loadData) as V;
 
         // 旧バージョンのデータは無視する
         if (parsedData.version !== 2) return;
 
-        onLoadData(parsedData.data);
+        onLoadData(parsedData.data as T);
 
         // ロードしたらモーダルは閉じる
         if (buttonRef.current) {
@@ -187,6 +213,13 @@ function LoadButton({
                 </div>
                 <div className="flex flex-col gap-1 pt-2 pl-2 md:pl-4">
                   <div>保存日時：{savedDataSummaries[i].lastUpdate}</div>
+                  {eventId === "divrace-stage" && (
+                    <DivraceStageSavedDataDiv
+                      savedDataSummary={
+                        savedDataSummaries[i] as DivraceStageSavedDataSummary
+                      }
+                    />
+                  )}
                   <div className="flex flex-row gap-2">
                     <p className="whitespace-nowrap">メモ：</p>
                     <textarea
@@ -210,20 +243,22 @@ function LoadButton({
   );
 }
 
-function SaveButton({
+function SaveButton<T, U, V extends OriginSavedDataSummary>({
   eventId,
   data,
+  resultSummary,
   savedDataSummaries,
   handleSaveDataSummaries,
   handleChangeMemo,
 }: {
   eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
-  data: RaidwarSkillData;
-  savedDataSummaries: SavedDataSummary[];
+  data: T;
+  resultSummary: U;
+  savedDataSummaries: V[];
   handleSaveDataSummaries: (
     index: number,
-    key: keyof SavedDataSummary,
-    value: string
+    key: keyof V,
+    value: string | number
   ) => void;
   handleChangeMemo: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }) {
@@ -253,18 +288,49 @@ function SaveButton({
         String(currentDate.getMinutes()).padStart(2, "0") +
         ":" +
         String(currentDate.getSeconds()).padStart(2, "0");
-      const convertData = JSON.stringify(
-        {
+
+      if (eventId === "raidwar-skill") {
+        const tempData = {
           lastUpdate: dateStr,
           memo: savedDataSummaries[Number(num) - 1].memo,
-          data: data,
           version: 2,
-        },
-        undefined,
-        1
-      );
-      localStorage.setItem(key, convertData);
-      handleSaveDataSummaries(Number(num) - 1, "lastUpdate", dateStr);
+          data: data,
+        };
+        const convertData = JSON.stringify(tempData, undefined, 1);
+        localStorage.setItem(key, convertData);
+        handleSaveDataSummaries(Number(num) - 1, "lastUpdate", dateStr);
+      } else if (eventId === "divrace-stage") {
+        const result = resultSummary as DivraceStageResult;
+        const totalPoint =
+          result.summaries.base.totalPoint +
+          result.summaries.challenge.totalPoint;
+        const totalCandy =
+          result.summaries.base.totalCandy +
+          result.summaries.challenge.totalCandy;
+        const totalNormal =
+          result.summaries.base.totalNormal +
+          result.summaries.challenge.totalNormal;
+        const totalSpecial =
+          result.summaries.base.totalSpecial +
+          result.summaries.challenge.totalSpecial;
+        const tempData: DivraceStageLocalStorageData = {
+          lastUpdate: dateStr,
+          memo: savedDataSummaries[Number(num) - 1].memo,
+          version: 2,
+          data: data as DivraceStageData,
+          totalPoint: totalPoint,
+          totalCandy: totalCandy,
+          totalNormal: totalNormal,
+          totalSpecial: totalSpecial,
+        };
+        const convertData = JSON.stringify(tempData, undefined, 1);
+        localStorage.setItem(key, convertData);
+        handleSaveDataSummaries(Number(num) - 1, "lastUpdate", dateStr);
+        handleSaveDataSummaries(Number(num) - 1, "totalPoint", totalPoint);
+        handleSaveDataSummaries(Number(num) - 1, "totalCandy", totalCandy);
+        handleSaveDataSummaries(Number(num) - 1, "totalNormal", totalNormal);
+        handleSaveDataSummaries(Number(num) - 1, "totalSpecial", totalSpecial);
+      }
     }
   };
 
@@ -306,6 +372,13 @@ function SaveButton({
                 </div>
                 <div className="flex flex-col gap-1 pt-2 pl-2 md:pl-4">
                   <div>保存日時：{savedDataSummaries[i].lastUpdate}</div>
+                  {eventId === "divrace-stage" && (
+                    <DivraceStageSavedDataDiv
+                      savedDataSummary={
+                        savedDataSummaries[i] as DivraceStageSavedDataSummary
+                      }
+                    />
+                  )}
                   <div className="flex flex-row gap-2">
                     <p className="whitespace-nowrap">メモ：</p>
                     <textarea
@@ -329,162 +402,35 @@ function SaveButton({
   );
 }
 
-function ResultSummaryDiv({
+function ResultSummaryDiv<T, U extends ResultSummary>({
   eventId,
   title,
+  data,
   resultSummary,
 }: {
   eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
   title: string;
-  resultSummary: RaidwarSkillResultSummary;
+  data: T;
+  resultSummary: U;
 }) {
-  const [startPage, setStartPage] = useState<number>(0);
-
-  const isInitDisplay =
-    Object.keys(resultSummary.summaries).length === 0 ? true : false;
-
-  const chunks: string[][] = [];
-  const maxPageNum: number = Math.ceil(
-    Object.keys(resultSummary.summaries).length / 3
-  );
-  for (let page = startPage; page < maxPageNum; page++) {
-    chunks[page - startPage] = [];
-    for (let i = 0; i < 3; i++) {
-      if (resultSummary.summaries[page * 3 + i])
-        chunks[page - startPage].push(resultSummary.summaries[page * 3 + i]);
-    }
-  }
-
-  const handleClickResultDiv = () => {
-    let addPageNum = 1;
-    const width = window.innerWidth;
-    if (width >= 1536) {
-      addPageNum = 5;
-    } else if (width >= 1280) {
-      addPageNum = 4;
-    } else if (width >= 1024) {
-      addPageNum = 3;
-    } else if (width >= 768) {
-      addPageNum = 2;
-    }
-
-    let nextPage = startPage + addPageNum;
-    if (nextPage >= maxPageNum) {
-      nextPage = 0;
-    } else if (nextPage >= 10) {
-      // 長すぎても意味がないので10ページまでにする
-      nextPage = 0;
-    }
-
-    setStartPage(nextPage);
-  };
-
   return (
     <>
-      {isInitDisplay ? (
+      {resultSummary.initCondition ? (
         <div className="ml-4 md:ml-8 mr-4 flex flex-col justify-start">
           <p className="text-xs">{title}</p>
         </div>
       ) : eventId === "raidwar-skill" ? (
-        <RaidwarSkillResultSummaryChild
-          chunks={chunks}
-          startPage={startPage}
-          handleClickResultDiv={handleClickResultDiv}
+        <RaidwarSkillResultSummaryDiv
+          resultSummary={resultSummary as RaidwarSkillResult}
+        />
+      ) : eventId === "divrace-stage" ? (
+        <DivraceStageResultSummaryDiv
+          data={data as DivraceStageData}
+          resultSummary={resultSummary as DivraceStageResult}
         />
       ) : (
         <></>
       )}
     </>
-  );
-}
-
-function RaidwarSkillResultSummaryChild({
-  chunks,
-  startPage,
-  handleClickResultDiv,
-}: {
-  chunks: string[][];
-  startPage: number;
-  handleClickResultDiv: () => void;
-}) {
-  return (
-    <div
-      className="ml-4 md:ml-8 mr-4 flex flex-col justify-start"
-      role="button"
-      onClick={handleClickResultDiv}
-    >
-      <div className="flex flex-row gap-8">
-        {chunks[0] && (
-          <div>
-            {chunks[0].map((v, i) => (
-              <p key={i} className="text-xs">
-                アタック
-                <span className="inline-block w-4 text-right">
-                  {startPage * 3 + i + 1}
-                </span>
-                回目 ダメージ声援:{" "}
-                <span className="inline-block w-8 text-right">{v}</span> %
-              </p>
-            ))}
-          </div>
-        )}
-        {chunks[1] && (
-          <div className="max-md:hidden">
-            {chunks[1].map((v, i) => (
-              <p key={i} className="text-xs">
-                アタック
-                <span className="inline-block w-4 text-right">
-                  {startPage * 3 + i + 4}
-                </span>
-                回目 ダメージ声援:{" "}
-                <span className="inline-block w-8 text-right">{v}</span> %
-              </p>
-            ))}
-          </div>
-        )}
-        {chunks[2] && (
-          <div className="max-lg:hidden">
-            {chunks[2].map((v, i) => (
-              <p key={i} className="text-xs">
-                アタック
-                <span className="inline-block w-4 text-right">
-                  {startPage * 3 + i + 7}
-                </span>
-                回目 ダメージ声援:{" "}
-                <span className="inline-block w-8 text-right">{v}</span> %
-              </p>
-            ))}
-          </div>
-        )}
-        {chunks[3] && (
-          <div className="max-xl:hidden">
-            {chunks[3].map((v, i) => (
-              <p key={i} className="text-xs">
-                アタック
-                <span className="inline-block w-4 text-right">
-                  {startPage * 3 + i + 10}
-                </span>
-                回目 ダメージ声援:{" "}
-                <span className="inline-block w-8 text-right">{v}</span> %
-              </p>
-            ))}
-          </div>
-        )}
-        {chunks[4] && (
-          <div className="max-2xl:hidden">
-            {chunks[4].map((v, i) => (
-              <p key={i} className="text-xs">
-                アタック
-                <span className="inline-block w-4 text-right">
-                  {startPage * 3 + i + 13}
-                </span>
-                回目 ダメージ声援:{" "}
-                <span className="inline-block w-8 text-right">{v}</span> %
-              </p>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
   );
 }
