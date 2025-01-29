@@ -12,9 +12,24 @@ type AttackPattern =
 export interface RaidwarSkillData {
   dataType: "raidwar-skill";
   settings: { patternSelect: AttackPattern; customPattern: string };
-  leader: { [K: number]: { heartNum?: number; damage?: number } };
-  helper: { [K: number]: { heartNum?: number; damage?: number } };
-  member: { [K: number]: { heartNum?: number; damage?: number } };
+  leader: {
+    [K: number]: {
+      heartNum?: number | string;
+      damage?: number | string;
+    };
+  };
+  helper: {
+    [K: number]: {
+      heartNum?: number | string;
+      damage?: number | string;
+    };
+  };
+  member: {
+    [K: number]: {
+      heartNum?: number | string;
+      damage?: number | string;
+    };
+  };
 }
 const initData: RaidwarSkillData = {
   dataType: "raidwar-skill",
@@ -104,7 +119,7 @@ export function useRaidwarSkillData({
     [data, calcResultSummaries]
   );
 
-  const handleParameters = useCallback(
+  const handleChangeParameters = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const nextData = structuredClone(data);
       const positionName = e.target.dataset["positionName"] as
@@ -118,9 +133,34 @@ export function useRaidwarSkillData({
         if (nextData[positionName][positionNum] === undefined) {
           nextData[positionName][positionNum] = {};
         }
+        nextData[positionName][positionNum][key] = e.target.value;
+        setData(nextData);
+        calcResultSummaries(nextData);
+      }
+    },
+    [data, calcResultSummaries]
+  );
+
+  const handleBlurParameters = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      const nextData = structuredClone(data);
+      const positionName = e.target.dataset["positionName"] as
+        | "leader"
+        | "helper"
+        | "member";
+      const positionNum = Number(e.target.dataset["positionNum"]);
+      const key = e.target.name as "heartNum" | "damage";
+
+      if (positionName && positionNum) {
+        if (nextData[positionName][positionNum] === undefined) {
+          nextData[positionName][positionNum] = {};
+        }
+
+        // onBlurで整数のnumber型に校正
         let value = Number(e.target.value);
         if (Number.isNaN(value)) value = 0;
         if (value < 0) value = 0;
+        value = Math.floor(value);
 
         nextData[positionName][positionNum][key] = value;
         setData(nextData);
@@ -217,7 +257,8 @@ export function useRaidwarSkillData({
     data,
     resultSummary,
     handleSettings,
-    handleParameters,
+    handleChangeParameters,
+    handleBlurParameters,
     handleLoadData,
     handleImportRawData,
   };

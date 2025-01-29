@@ -64,12 +64,12 @@ export function useLocalStorageData<
   }, [eventId]);
 
   const handleSaveDataSummaries = useCallback(
-    (index: number, key: keyof T, value: T[keyof T]) => {
+    (index: number, key: keyof T, value: string | number) => {
       setSavedDataSummaries((prev) =>
         prev.map((currentObj, i) => {
           if (index === i) {
             const nextObj = structuredClone(currentObj);
-            nextObj[key] = value;
+            nextObj[key] = value as T[keyof T];
             return nextObj;
           } else {
             return currentObj;
@@ -83,11 +83,7 @@ export function useLocalStorageData<
   const handleChangeMemo = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       const num = e.target.dataset.num;
-      handleSaveDataSummaries(
-        Number(num) - 1,
-        "memo",
-        e.target.value as T[keyof T]
-      );
+      handleSaveDataSummaries(Number(num) - 1, "memo", e.target.value);
       if (window.localStorage) {
         const key = `deck-${eventId}-${num}`;
         const loadData = localStorage.getItem(key);
@@ -98,7 +94,7 @@ export function useLocalStorageData<
           if (parsedData.version !== 2) return;
 
           parsedData.memo = e.target.value;
-          const convertData = JSON.stringify(parsedData, undefined, 1);
+          const convertData = JSON.stringify(parsedData);
           localStorage.setItem(key, convertData);
         }
       }

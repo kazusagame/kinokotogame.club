@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next-export-optimize-images/image";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
@@ -22,7 +22,8 @@ export default function RaidwarSkillSimulator() {
     data,
     resultSummary,
     handleSettings,
-    handleParameters,
+    handleChangeParameters,
+    handleBlurParameters,
     handleLoadData,
     handleImportRawData,
   } = useRaidwarSkillData({ simulatorTabButtonRef: simulatorTabButtonRef });
@@ -39,11 +40,43 @@ export default function RaidwarSkillSimulator() {
     eventId: "raidwar-skill",
     initSavedDataSummary: structuredClone(initRaidwarSkillSavedDataSummary),
   });
-  const [isFixHeader, setIsFixHeader] = useState<boolean>(true);
 
+  const [isFixHeader, setIsFixHeader] = useState<boolean>(true);
   const handleFixHeader = useCallback(() => {
     setIsFixHeader((v) => !v);
   }, []);
+
+  const handleClickIndividualSave = (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    const num = e.currentTarget.dataset.num;
+    if (window.localStorage) {
+      const key = `deck-divrace-stage-${num}`;
+      const currentDate = new Date();
+      const dateStr =
+        String(currentDate.getFullYear()) +
+        "-" +
+        String(currentDate.getMonth() + 1).padStart(2, "0") +
+        "-" +
+        String(currentDate.getDate()).padStart(2, "0") +
+        " " +
+        String(currentDate.getHours()).padStart(2, "0") +
+        ":" +
+        String(currentDate.getMinutes()).padStart(2, "0") +
+        ":" +
+        String(currentDate.getSeconds()).padStart(2, "0");
+
+      const tempData = {
+        lastUpdate: dateStr,
+        memo: savedDataSummaries[Number(num) - 1].memo,
+        version: 2,
+        data: data,
+      };
+      const convertData = JSON.stringify(tempData);
+      localStorage.setItem(key, convertData);
+      handleSaveDataSummaries(Number(num) - 1, "lastUpdate", dateStr);
+    }
+  };
 
   return (
     <>
@@ -59,10 +92,10 @@ export default function RaidwarSkillSimulator() {
         data={data}
         resultSummary={resultSummary}
         savedDataSummaries={savedDataSummaries}
-        onChangeFixHeader={handleFixHeader}
-        onLoadData={handleLoadData}
-        handleSaveDataSummaries={handleSaveDataSummaries}
+        handleFixHeader={handleFixHeader}
+        handleLoadData={handleLoadData}
         handleChangeMemo={handleChangeMemo}
+        handleClickIndividualSave={handleClickIndividualSave}
       />
       <div className="my-2" />
       <div role="tablist" className="tabs tabs-lifted">
@@ -83,7 +116,11 @@ export default function RaidwarSkillSimulator() {
             <section className="xl:basis-1/2">
               <PatternSelect data={data} onChangeSettings={handleSettings} />
               <div className="my-6" />
-              <GirlsTable data={data} onChangeParameters={handleParameters} />
+              <GirlsTable
+                data={data}
+                onChangeParameters={handleChangeParameters}
+                onBlurParameters={handleBlurParameters}
+              />
             </section>
             <ResultCanvas data={data} />
           </div>
@@ -239,9 +276,11 @@ function PatternSelect({
 function GirlsTable({
   data,
   onChangeParameters,
+  onBlurParameters,
 }: {
   data: RaidwarSkillData;
   onChangeParameters: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlurParameters: (e: React.FocusEvent<HTMLInputElement>) => void;
 }) {
   return (
     <>
@@ -256,6 +295,7 @@ function GirlsTable({
           title="リーダー"
           data={data.leader?.[1]}
           onChangeParameters={onChangeParameters}
+          onBlurParameters={onBlurParameters}
           positionName="leader"
           positionNum={1}
           isColSpan2
@@ -264,6 +304,7 @@ function GirlsTable({
           title="助っ人"
           data={data.helper?.[1]}
           onChangeParameters={onChangeParameters}
+          onBlurParameters={onBlurParameters}
           positionName="helper"
           positionNum={1}
           isColSpan2
@@ -276,6 +317,7 @@ function GirlsTable({
               title={String(i + 1)}
               data={data.member?.[i + 1]}
               onChangeParameters={onChangeParameters}
+              onBlurParameters={onBlurParameters}
               positionName="member"
               positionNum={i + 1}
             />
@@ -289,13 +331,15 @@ function TableCell({
   title,
   data,
   onChangeParameters,
+  onBlurParameters,
   positionName,
   positionNum,
   isColSpan2,
 }: {
   title: string;
-  data: { damage?: number; heartNum?: number };
+  data: { damage?: number | string; heartNum?: number | string };
   onChangeParameters: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlurParameters: (e: React.FocusEvent<HTMLInputElement>) => void;
   positionName: string;
   positionNum: number;
   isColSpan2?: boolean;
@@ -318,6 +362,7 @@ function TableCell({
             className="input input-sm input-bordered max-w-16 md:w-16 text-right"
             value={data?.damage === undefined ? "" : data.damage}
             onChange={onChangeParameters}
+            onBlur={onBlurParameters}
             data-position-name={positionName}
             data-position-num={positionNum}
             name="damage"
@@ -333,6 +378,7 @@ function TableCell({
             className="input input-sm input-bordered max-w-16 md:w-16 text-right"
             value={data?.heartNum === undefined ? "" : data.heartNum}
             onChange={onChangeParameters}
+            onBlur={onBlurParameters}
             data-position-name={positionName}
             data-position-num={positionNum}
             name="heartNum"
@@ -590,7 +636,7 @@ export function RaidwarSkillResultSummaryDiv({
 
   return (
     <div
-      className="ml-4 md:ml-8 mr-4 flex flex-col justify-start"
+      className="ml-4 md:ml-8 mr-2 flex flex-col justify-start"
       role="button"
       onClick={handleClickResultDiv}
     >

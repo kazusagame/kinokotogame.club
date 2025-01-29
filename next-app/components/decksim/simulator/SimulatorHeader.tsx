@@ -22,7 +22,6 @@ import {
   DivraceStageData,
   DivraceStageResult,
   DivraceStageSavedDataSummary,
-  DivraceStageLocalStorageData,
 } from "@/components/decksim/simulator/useDivraceStageData";
 
 interface HeaderProps<T, U, V> {
@@ -32,14 +31,10 @@ interface HeaderProps<T, U, V> {
   data: T;
   resultSummary: U;
   savedDataSummaries: V[];
-  onChangeFixHeader: () => void;
-  onLoadData: (newData: T) => void;
-  handleSaveDataSummaries: (
-    index: number,
-    key: keyof V,
-    value: string | number
-  ) => void;
+  handleFixHeader: () => void;
+  handleLoadData: (newData: T) => void;
   handleChangeMemo: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  handleClickIndividualSave: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export interface ResultSummary {
@@ -60,16 +55,16 @@ export default function SimulatorHeader<
   data,
   resultSummary,
   savedDataSummaries,
-  onChangeFixHeader,
-  onLoadData,
-  handleSaveDataSummaries,
+  handleFixHeader,
+  handleLoadData,
   handleChangeMemo,
+  handleClickIndividualSave,
 }: HeaderProps<T, U, V>) {
   const position = isFixHeader ? "sticky top-0" : "static";
 
   const handleClickThemeMenu = () => {
     const nextData = structuredClone(data);
-    setTimeout(() => onLoadData(nextData), 100);
+    setTimeout(() => handleLoadData(nextData), 100);
   };
 
   return (
@@ -78,17 +73,15 @@ export default function SimulatorHeader<
     >
       <LoadButton<T, V, W>
         eventId={eventId}
-        onLoadData={onLoadData}
+        handleLoadData={handleLoadData}
         savedDataSummaries={savedDataSummaries}
         handleChangeMemo={handleChangeMemo}
       />
-      <SaveButton<T, U, V>
+      <SaveButton<V>
         eventId={eventId}
-        data={data}
-        resultSummary={resultSummary}
         savedDataSummaries={savedDataSummaries}
-        handleSaveDataSummaries={handleSaveDataSummaries}
         handleChangeMemo={handleChangeMemo}
+        handleClickIndividualSave={handleClickIndividualSave}
       />
       <ResultSummaryDiv<T, U>
         eventId={eventId}
@@ -97,7 +90,7 @@ export default function SimulatorHeader<
         resultSummary={resultSummary}
       />
       <div className="ml-auto" />
-      <div className="dropdown dropdown-end mr-4 my-auto">
+      <div className="dropdown dropdown-end mr-2 my-auto">
         <div
           tabIndex={0}
           role="button"
@@ -111,9 +104,9 @@ export default function SimulatorHeader<
         >
           <li>
             {isFixHeader ? (
-              <p onClick={onChangeFixHeader}>ヘッダー表示切替 [固定]</p>
+              <p onClick={handleFixHeader}>ヘッダー表示切替 [固定]</p>
             ) : (
-              <p onClick={onChangeFixHeader}>ヘッダー表示切替 [通常]</p>
+              <p onClick={handleFixHeader}>ヘッダー表示切替 [通常]</p>
             )}
           </li>
           <li onClick={handleClickThemeMenu}>
@@ -134,12 +127,12 @@ function LoadButton<
   V extends OriginLocalStorageData
 >({
   eventId,
-  onLoadData,
+  handleLoadData,
   savedDataSummaries,
   handleChangeMemo,
 }: {
   eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
-  onLoadData: (newData: T) => void;
+  handleLoadData: (newData: T) => void;
   savedDataSummaries: U[];
   handleChangeMemo: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }) {
@@ -164,7 +157,7 @@ function LoadButton<
         // 旧バージョンのデータは無視する
         if (parsedData.version !== 2) return;
 
-        onLoadData(parsedData.data as T);
+        handleLoadData(parsedData.data as T);
 
         // ロードしたらモーダルは閉じる
         if (buttonRef.current) {
@@ -179,7 +172,7 @@ function LoadButton<
       <div
         role="button"
         onClick={handleClickLoadButton}
-        className="flex flex-col justify-center items-center ml-4 md:ml-6"
+        className="flex flex-col justify-center items-center ml-2 md:ml-6"
       >
         <FileOpenIcon />
         <p className="text-xs whitespace-nowrap">開く</p>
@@ -207,19 +200,17 @@ function LoadButton<
                     className="btn btn-sm btn-secondary"
                     onClick={handleClickIndividualLoad}
                     data-num={i + 1}
+                    disabled={savedDataSummaries[i].lastUpdate ? false : true}
                   >
                     これを開く
                   </button>
                 </div>
                 <div className="flex flex-col gap-1 pt-2 pl-2 md:pl-4">
                   <div>保存日時：{savedDataSummaries[i].lastUpdate}</div>
-                  {eventId === "divrace-stage" && (
-                    <DivraceStageSavedDataDiv
-                      savedDataSummary={
-                        savedDataSummaries[i] as DivraceStageSavedDataSummary
-                      }
-                    />
-                  )}
+                  <SavedDataPerEventDiv
+                    eventId={eventId}
+                    savedDataSummary={savedDataSummaries[i]}
+                  />
                   <div className="flex flex-row gap-2">
                     <p className="whitespace-nowrap">メモ：</p>
                     <textarea
@@ -243,24 +234,16 @@ function LoadButton<
   );
 }
 
-function SaveButton<T, U, V extends OriginSavedDataSummary>({
+function SaveButton<T extends OriginSavedDataSummary>({
   eventId,
-  data,
-  resultSummary,
   savedDataSummaries,
-  handleSaveDataSummaries,
   handleChangeMemo,
+  handleClickIndividualSave,
 }: {
   eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
-  data: T;
-  resultSummary: U;
-  savedDataSummaries: V[];
-  handleSaveDataSummaries: (
-    index: number,
-    key: keyof V,
-    value: string | number
-  ) => void;
+  savedDataSummaries: T[];
   handleChangeMemo: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  handleClickIndividualSave: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }) {
   const modalId = useId();
   const handleClickSaveButton = () => {
@@ -269,77 +252,13 @@ function SaveButton<T, U, V extends OriginSavedDataSummary>({
     ) as HTMLDialogElement | null;
     dialogElement?.showModal();
   };
-  const handleClickIndividualSave = (
-    e: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    const num = e.currentTarget.dataset.num;
-    if (window.localStorage) {
-      const key = `deck-${eventId}-${num}`;
-      const currentDate = new Date();
-      const dateStr =
-        String(currentDate.getFullYear()) +
-        "-" +
-        String(currentDate.getMonth() + 1).padStart(2, "0") +
-        "-" +
-        String(currentDate.getDate()).padStart(2, "0") +
-        " " +
-        String(currentDate.getHours()).padStart(2, "0") +
-        ":" +
-        String(currentDate.getMinutes()).padStart(2, "0") +
-        ":" +
-        String(currentDate.getSeconds()).padStart(2, "0");
-
-      if (eventId === "raidwar-skill") {
-        const tempData = {
-          lastUpdate: dateStr,
-          memo: savedDataSummaries[Number(num) - 1].memo,
-          version: 2,
-          data: data,
-        };
-        const convertData = JSON.stringify(tempData, undefined, 1);
-        localStorage.setItem(key, convertData);
-        handleSaveDataSummaries(Number(num) - 1, "lastUpdate", dateStr);
-      } else if (eventId === "divrace-stage") {
-        const result = resultSummary as DivraceStageResult;
-        const totalPoint =
-          result.summaries.base.totalPoint +
-          result.summaries.challenge.totalPoint;
-        const totalCandy =
-          result.summaries.base.totalCandy +
-          result.summaries.challenge.totalCandy;
-        const totalNormal =
-          result.summaries.base.totalNormal +
-          result.summaries.challenge.totalNormal;
-        const totalSpecial =
-          result.summaries.base.totalSpecial +
-          result.summaries.challenge.totalSpecial;
-        const tempData: DivraceStageLocalStorageData = {
-          lastUpdate: dateStr,
-          memo: savedDataSummaries[Number(num) - 1].memo,
-          version: 2,
-          data: data as DivraceStageData,
-          totalPoint: totalPoint,
-          totalCandy: totalCandy,
-          totalNormal: totalNormal,
-          totalSpecial: totalSpecial,
-        };
-        const convertData = JSON.stringify(tempData, undefined, 1);
-        localStorage.setItem(key, convertData);
-        handleSaveDataSummaries(Number(num) - 1, "lastUpdate", dateStr);
-        handleSaveDataSummaries(Number(num) - 1, "totalPoint", totalPoint);
-        handleSaveDataSummaries(Number(num) - 1, "totalCandy", totalCandy);
-        handleSaveDataSummaries(Number(num) - 1, "totalNormal", totalNormal);
-        handleSaveDataSummaries(Number(num) - 1, "totalSpecial", totalSpecial);
-      }
-    }
-  };
 
   return (
     <>
       <div
         role="button"
         onClick={handleClickSaveButton}
-        className="flex flex-col justify-center items-center ml-4 md:ml-6"
+        className="flex flex-col justify-center items-center ml-3 md:ml-6"
       >
         <SaveIcon />
         <p className="text-xs whitespace-nowrap">保存</p>
@@ -372,13 +291,10 @@ function SaveButton<T, U, V extends OriginSavedDataSummary>({
                 </div>
                 <div className="flex flex-col gap-1 pt-2 pl-2 md:pl-4">
                   <div>保存日時：{savedDataSummaries[i].lastUpdate}</div>
-                  {eventId === "divrace-stage" && (
-                    <DivraceStageSavedDataDiv
-                      savedDataSummary={
-                        savedDataSummaries[i] as DivraceStageSavedDataSummary
-                      }
-                    />
-                  )}
+                  <SavedDataPerEventDiv
+                    eventId={eventId}
+                    savedDataSummary={savedDataSummaries[i]}
+                  />
                   <div className="flex flex-row gap-2">
                     <p className="whitespace-nowrap">メモ：</p>
                     <textarea
@@ -416,7 +332,7 @@ function ResultSummaryDiv<T, U extends ResultSummary>({
   return (
     <>
       {resultSummary.initCondition ? (
-        <div className="ml-4 md:ml-8 mr-4 flex flex-col justify-start">
+        <div className="ml-2 md:ml-8 mr-2 flex flex-col justify-start">
           <p className="text-xs">{title}</p>
         </div>
       ) : eventId === "raidwar-skill" ? (
@@ -430,6 +346,24 @@ function ResultSummaryDiv<T, U extends ResultSummary>({
         />
       ) : (
         <></>
+      )}
+    </>
+  );
+}
+
+function SavedDataPerEventDiv({
+  eventId,
+  savedDataSummary,
+}: {
+  eventId: string;
+  savedDataSummary: OriginSavedDataSummary;
+}) {
+  return (
+    <>
+      {eventId === "divrace-stage" && (
+        <DivraceStageSavedDataDiv
+          savedDataSummary={savedDataSummary as DivraceStageSavedDataSummary}
+        />
       )}
     </>
   );

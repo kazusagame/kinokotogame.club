@@ -27,7 +27,8 @@ export default function DivraceStageSimulator() {
   const {
     data,
     resultSummary,
-    handleParameters,
+    handleChangeParameters,
+    handleBlurParameters,
     handleAimCountRewardDict,
     handleLoadData,
   } = useDivraceStageData({ simulatorTabButtonRef: simulatorTabButtonRef });
@@ -44,11 +45,64 @@ export default function DivraceStageSimulator() {
     eventId: "divrace-stage",
     initSavedDataSummary: structuredClone(initDivraceStageSavedDataSummary),
   });
-  const [isFixHeader, setIsFixHeader] = useState<boolean>(true);
 
+  const [isFixHeader, setIsFixHeader] = useState<boolean>(true);
   const handleFixHeader = useCallback(() => {
     setIsFixHeader((v) => !v);
   }, []);
+
+  const handleClickIndividualSave = (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    const num = e.currentTarget.dataset.num;
+    if (window.localStorage) {
+      const key = `deck-divrace-stage-${num}`;
+      const currentDate = new Date();
+      const dateStr =
+        String(currentDate.getFullYear()) +
+        "-" +
+        String(currentDate.getMonth() + 1).padStart(2, "0") +
+        "-" +
+        String(currentDate.getDate()).padStart(2, "0") +
+        " " +
+        String(currentDate.getHours()).padStart(2, "0") +
+        ":" +
+        String(currentDate.getMinutes()).padStart(2, "0") +
+        ":" +
+        String(currentDate.getSeconds()).padStart(2, "0");
+
+      const result = resultSummary as DivraceStageResult;
+      const totalPoint =
+        result.summaries.base.totalPoint +
+        result.summaries.challenge.totalPoint;
+      const totalCandy =
+        result.summaries.base.totalCandy +
+        result.summaries.challenge.totalCandy;
+      const totalNormal =
+        result.summaries.base.totalNormal +
+        result.summaries.challenge.totalNormal;
+      const totalSpecial =
+        result.summaries.base.totalSpecial +
+        result.summaries.challenge.totalSpecial;
+      const tempData: DivraceStageLocalStorageData = {
+        lastUpdate: dateStr,
+        memo: savedDataSummaries[Number(num) - 1].memo,
+        version: 2,
+        data: data as DivraceStageData,
+        totalPoint: totalPoint,
+        totalCandy: totalCandy,
+        totalNormal: totalNormal,
+        totalSpecial: totalSpecial,
+      };
+      const convertData = JSON.stringify(tempData);
+      localStorage.setItem(key, convertData);
+      handleSaveDataSummaries(Number(num) - 1, "lastUpdate", dateStr);
+      handleSaveDataSummaries(Number(num) - 1, "totalPoint", totalPoint);
+      handleSaveDataSummaries(Number(num) - 1, "totalCandy", totalCandy);
+      handleSaveDataSummaries(Number(num) - 1, "totalNormal", totalNormal);
+      handleSaveDataSummaries(Number(num) - 1, "totalSpecial", totalSpecial);
+    }
+  };
 
   return (
     <>
@@ -64,10 +118,10 @@ export default function DivraceStageSimulator() {
         data={data}
         resultSummary={resultSummary}
         savedDataSummaries={savedDataSummaries}
-        onChangeFixHeader={handleFixHeader}
-        onLoadData={handleLoadData}
-        handleSaveDataSummaries={handleSaveDataSummaries}
+        handleFixHeader={handleFixHeader}
+        handleLoadData={handleLoadData}
         handleChangeMemo={handleChangeMemo}
+        handleClickIndividualSave={handleClickIndividualSave}
       />
       <div className="my-2" />
       <div role="tablist" className="tabs tabs-lifted">
@@ -86,20 +140,22 @@ export default function DivraceStageSimulator() {
             <section>
               <CandyDamage
                 data={data}
-                onChangeParameters={handleParameters}
+                onChangeParameters={handleChangeParameters}
+                onBlurParameters={handleBlurParameters}
                 stageType="base"
               />
               <div className="my-6" />
               <PatternSelect
                 data={data}
-                onChangeParameters={handleParameters}
+                onChangeParameters={handleChangeParameters}
                 stageType="base"
               />
               <div className="my-6" />
               <StageTable
                 data={data}
                 resultSummary={resultSummary}
-                onChangeParameters={handleParameters}
+                onChangeParameters={handleChangeParameters}
+                onBlurParameters={handleBlurParameters}
                 onChangeAimCountReward={handleAimCountRewardDict}
                 stageType="base"
               />
@@ -123,20 +179,22 @@ export default function DivraceStageSimulator() {
             <section>
               <CandyDamage
                 data={data}
-                onChangeParameters={handleParameters}
+                onChangeParameters={handleChangeParameters}
+                onBlurParameters={handleBlurParameters}
                 stageType="challenge"
               />
               <div className="my-6" />
               <PatternSelect
                 data={data}
-                onChangeParameters={handleParameters}
+                onChangeParameters={handleChangeParameters}
                 stageType="challenge"
               />
               <div className="my-6" />
               <StageTable
                 data={data}
                 resultSummary={resultSummary}
-                onChangeParameters={handleParameters}
+                onChangeParameters={handleChangeParameters}
+                onBlurParameters={handleBlurParameters}
                 onChangeAimCountReward={handleAimCountRewardDict}
                 stageType="challenge"
               />
@@ -181,10 +239,12 @@ export default function DivraceStageSimulator() {
 function CandyDamage({
   data,
   onChangeParameters,
+  onBlurParameters,
   stageType,
 }: {
   data: DivraceStageData;
   onChangeParameters: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlurParameters: (e: React.FocusEvent<HTMLInputElement>) => void;
   stageType: "base" | "challenge";
 }) {
   return (
@@ -206,6 +266,7 @@ function CandyDamage({
           useGrouping: true,
         })}
         onChange={onChangeParameters}
+        onBlur={onBlurParameters}
       />
     </div>
   );
@@ -261,7 +322,7 @@ function PatternSelect({
         <span className="label-text ml-2">
           <TextWithTooltip
             displayText="熱中炭酸を必要最小限に使用する"
-            tipText="サポート回数ごぼうびを狙う場合にのみ可能な限り少量の熱中炭酸を使用します。回数ごぼうひを狙わない場合は熱中炭酸を使用しません。HPの端数処理ではハート4個分を超える場合に元気炭酸を使用します。"
+            tipText="サポート回数ごぼうびを狙う場合にのみ可能な限り少量の熱中炭酸を使用します。回数ごぼうびを狙わない場合は熱中炭酸を使用しません。HPの端数処理ではハート4個分を超える場合に元気炭酸を使用します。"
             iconSize="small"
           />
         </span>
@@ -293,12 +354,14 @@ function StageTable({
   data,
   resultSummary,
   onChangeParameters,
+  onBlurParameters,
   onChangeAimCountReward,
   stageType,
 }: {
   data: DivraceStageData;
   resultSummary: DivraceStageResult;
   onChangeParameters: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlurParameters: (e: React.FocusEvent<HTMLInputElement>) => void;
   onChangeAimCountReward: (e: React.ChangeEvent<HTMLInputElement>) => void;
   stageType: "base" | "challenge";
 }) {
@@ -339,6 +402,11 @@ function StageTable({
                 </>
               )}
               <th className="text-center">回数制限値</th>
+              {stageType === "challenge" && (
+                <>
+                  <th className="text-center">必要信頼度</th>
+                </>
+              )}
             </tr>
           </thead>
           <tbody className="whitespace-nowrap">
@@ -377,6 +445,7 @@ function StageTable({
                           }
                         )}
                         onChange={onChangeParameters}
+                        onBlur={onBlurParameters}
                         disabled={data[stageType].clearStageLevel !== 31}
                       />
                     )}
@@ -493,6 +562,16 @@ function StageTable({
                     </>
                   )}
                   <td className="text-center">{stageData[i].count}</td>
+                  {stageType === "challenge" && (
+                    <>
+                      <td className="text-center">
+                        {challengeStageData[i].trust.toLocaleString("ja-JP", {
+                          style: "decimal",
+                          useGrouping: true,
+                        })}
+                      </td>
+                    </>
+                  )}
                 </tr>
               ))}
           </tbody>
@@ -520,6 +599,11 @@ function StageTable({
                 </>
               )}
               <th className="text-center">回数制限値</th>
+              {stageType === "challenge" && (
+                <>
+                  <th className="text-center">必要信頼度</th>
+                </>
+              )}
             </tr>
           </thead>
         </table>
@@ -532,76 +616,123 @@ function HowToUse() {
   return (
     <section className="flex flex-col gap-4 my-2 px-2 md:px-4 leading-7 sm:max-w-screen-sm">
       <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
-        本ページのシミュレーターは、ゲーム側でそのセンバツを使用する前に、期待したタイムラインの通りにハンター声援センバツの声援が発動するかどうかや、アタック毎のダメージ声援の合計値を確認できることを目標に作成しています。
+        本ページは全国高校生課外活動コンテストの本選に特化したツールになっています。
+        飴1個分の火力や炭酸の使用傾向などの設定を行うとサポートのパターン案や必要になる炭酸本数などを算出します。
+        <br />
+        過去の開催時の情報を元に作成しているため、ゲーム側でパラメータ変更などが発生すると機能しなくなる場合がございます。あらかじめご了承ください。
       </p>
       <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
         <Image
-          src="/image/decksim/raidwarSkill/01_attackPattern.png"
-          alt="アタックパターン選択の画像"
-          width={362}
-          height={330}
+          src="/image/decksim/divraceStage/01_candyDamage.png"
+          alt="ハート1個分のダメージ量の画像"
+          width={276}
+          height={100}
           className="w-1/3 mb-2"
         />
+        <p>まずは飴1個使用時などのハート1個分相当のダメージ量を入力します。</p>
         <p>
-          まずはアタックパターンを選択します。ここでは夜行性に対してどのようなパターンで捕獲を試みるのかを選びます。
+          センバツシミュレーターを使用して算出した期待値でもゲーム内で実測した平均値でも構いません。
+          ベースステージとチャレンジステージとで風向きアイテムの効果量に若干の違いがあることには少し注意が必要です。
         </p>
       </div>
       <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
         <Image
-          src="/image/decksim/raidwarSkill/02_deck.png"
-          alt="ハンター声援センバツの画像"
-          width={756}
-          height={257}
+          src="/image/decksim/divraceStage/02_supportPattern.png"
+          alt="サポートパターン選択の画像"
+          width={316}
+          height={165}
+          className="w-1/3 mb-2"
+        />
+        <p>次に熱中炭酸の使用傾向を選択します。</p>
+        <table className="table table-xs md:table-md w-auto my-4 text-base bg-base-200">
+          <tbody>
+            <tr>
+              <td className="min-w-20">熱中炭酸を大量に使用する</td>
+              <td>
+                サポート回数ごぼうびを狙わない場合でも積極的に熱中炭酸を使用します。
+                HPの端数処理でもハート10個分を超える場合には熱中炭酸を使用します。
+              </td>
+            </tr>
+            <tr>
+              <td className="min-w-20">熱中炭酸を必要最小限に使用する</td>
+              <td>
+                サポート回数ごぼうびを狙う場合にのみ可能な限り少量の熱中炭酸を使用します。
+                回数ごぼうびを狙わない場合は熱中炭酸を使用しません。
+                HPの端数処理ではハート4個分を超える場合に元気炭酸を使用します。
+              </td>
+            </tr>
+            <tr>
+              <td className="min-w-20">熱中炭酸を使用しない</td>
+              <td>
+                熱中炭酸を一切使用しません。
+                HPの端数処理ではハート4個分を超える場合に元気炭酸を使用します。
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
+        <Image
+          src="/image/decksim/divraceStage/03_stageTable.png"
+          alt="ステージ表の画像"
+          width={1305}
+          height={343}
           className="w-full mb-2"
         />
         <p>
-          次にハンター声援センバツグループのデータを入力していきます。
-          ダメージ系声援の場合は攻援力の何%分のダメージなのかと、発動に必要なハート数を入力します。
-          能力UP系声援の場合はダメージ%欄は空欄のままか、もしくは{" 0 "}
-          にしてハート数を入力します。
+          どのLvまでクリアするかや各Lvのサポート回数ごほうびを狙うかどうかを選択します。
+          また、もし最終Lvを周回する場合はその回数も入力します。
         </p>
         <p>
-          助っ人欄 (班員からレンタルする予定のガール) は省略可です。
-          また、確実にそこまでは発動しないメンバーも省略できます。
+          ここまでの入力結果に基づいて、各Lvで飴や元気炭酸、熱中炭酸の使用予定数と合計ダメージ量を計算して表示します。
         </p>
       </div>
       <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
         <Image
-          src="/image/decksim/raidwarSkill/03_timeline.png"
-          alt="タイムラインの画像"
-          width={750}
-          height={357}
+          src="/image/decksim/divraceStage/04_countNG.png"
+          alt="回数ごぼうびNG時の画像"
+          width={1303}
+          height={221}
           className="w-full mb-2"
         />
         <p>
-          ここまでに入力したデータに基づいて画像のようなタイムラインが形成されます。
+          「サポート回数ごぼうびを狙う」にチェックを入れた場合に、合計ダメージ欄が上記のような警告表示になる場合があります。
         </p>
         <p>
-          時系列は上から下の順になっています。
-          横の破線は選択したアタックパターンに基づいて描写します。
-          この線はどのタイミングで声援発動の判定が行われるのかを表しています。
+          これは現在の火力では既定回数まで炭酸を使用してもクリアに必要なダメージ量に届かないこと、このままではサポート回数ごぼうびの入手確率が低いことを表しています。
         </p>
         <p>
-          各ガールの声援の発動に必要なハートの充足状況は四角形で表されています。
-          四角形の下辺に到達した時点で発動条件を満たしたことになります。
-        </p>
-        <p>
-          右側にはアタック毎に飴何個分のダメージを与えられるのかを表示していています。
-          区間は1つ前のアタックからの差分値で、合計はその時点でのトータルのダメージ数値です。左側はダメージ声援の合計%値で、右側はさらに飴や炭酸などによる通常のアタック分も加算した数値です。
+          この警告表示を解消するには、「サポート回数ごぼうびを狙う」のチェックを外してごほうびの入手を断念するか、もしくは風向きアイテムやSP応援ガールなどを積み増しするなどして火力を底上げする必要があります。
         </p>
       </div>
       <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
         <Image
-          src="/image/decksim/raidwarSkill/04_ngPattern.png"
-          alt="NGパターンの画像"
-          width={270}
-          height={157}
-          className="w-1/3 mb-2"
+          src="/image/decksim/divraceStage/05_resultSummary.png"
+          alt="リザルトサマリーの画像"
+          width={1293}
+          height={64}
+          className="w-full mb-2"
         />
         <p>
-          パターンによってはタイムライン中にこのようなバツ印が表示されることがあります。
-          これはその箇所でハートの繰り越しあふれが発生している状態を表しています。
-          1回のアタックで発動できる声援はラインごとに最大1つまでというゲーム側の仕様を再現したものであり、なるべくこの表示が出ないようなセンバツ構成になるとハートの無駄が少ないです。
+          画面上部の左側には保存したデータを開くボタン、現在のデータを保存するボタンがあり、右側にはその他のメニューのボタンがあります。
+          また、その間には各Lvの使用アイテム数や獲得ptなどを集計したサマリーが表示されます。
+        </p>
+        <p>
+          スマートフォンなどの横幅が小さい環境では、ベースステージ、チャレンジステージ、2つのステージの合計の3つの情報の内の1つが表示されます。
+          タップすることで表示される情報が順に切り替わります。
+        </p>
+      </div>
+      <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
+        <h1 className="text-lg font-bold">注意事項</h1>
+        <p>
+          実際のゲーム中では声援などの発動率などの要因によってダメージ量に上振れと下振れが発生します。
+          これにより本ページで計算したパターンの通りには行かない状況が多々発生します。
+        </p>
+        <p>
+          サポート回数ごほうびを狙う場合は、HPのミリ残しでごほうびの取得ミスが発生しないようによく注意してプレイしていただきますようにお願いいたします。
+          熱中炭酸 → 元気炭酸 → 飴
+          の順に使用しつつも下振れしている場合には上位のアイテムに変更するなど柔軟に対応するようにしましょう。
+          特に可能なサポート回数があと1回の状況においては、残りのHPを確実に削り切れるかどうかの確認にセンバツシミュレーター側の最小値も合わせてご確認ください。
         </p>
       </div>
     </section>
@@ -800,7 +931,7 @@ export function DivraceStageResultSummaryDiv({
 
   return (
     <div
-      className="ml-4 md:ml-8 mr-4 flex flex-col justify-start"
+      className="ml-4 md:ml-8 mr-2 flex flex-col justify-start"
       role="button"
       onClick={handleClickResultDiv}
     >

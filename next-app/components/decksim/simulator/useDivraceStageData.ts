@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { calcDivraceStageResult } from "@/components/decksim/simulator/calcDivraceStageResult";
 
 type SupportPattern =
@@ -11,9 +11,9 @@ export type DivraceStageData = {
 } & {
   [K in "base" | "challenge"]: {
     patternSelect: SupportPattern;
-    candyDamage: number;
+    candyDamage: number | string;
     clearStageLevel: number;
-    endlessStageCount: number;
+    endlessStageCount: number | string;
     aimCountRewardDict: { [K in number]: boolean };
   };
 };
@@ -173,6 +173,13 @@ export function useDivraceStageData({}: {
     structuredClone(initResultSummary)
   );
 
+  // ステージ表の初期表示用
+  useEffect(() => {
+    const summary = structuredClone(initResultSummary);
+    calcDivraceStageResult({ data: structuredClone(initData), summary });
+    setResultSummary(summary);
+  }, []);
+
   const calcResultSummaries = useCallback((data: DivraceStageData) => {
     const summary = structuredClone(initResultSummary);
     summary.initCondition = false;
@@ -180,7 +187,7 @@ export function useDivraceStageData({}: {
     setResultSummary(summary);
   }, []);
 
-  const handleParameters = useCallback(
+  const handleChangeParameters = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const nextData = structuredClone(data);
       const stageName = e.target.dataset["stageName"] as "base" | "challenge";
@@ -188,12 +195,34 @@ export function useDivraceStageData({}: {
         | "base"
         | "challenge"];
 
-      if (keyName === "patternSelect") {
+      if (keyName === "candyDamage" || keyName === "endlessStageCount") {
+        nextData[stageName][keyName] = e.target.value as string;
+      } else if (keyName === "patternSelect") {
         nextData[stageName][keyName] = e.target.value as SupportPattern;
-      } else if (keyName !== "aimCountRewardDict") {
+      } else if (keyName === "clearStageLevel") {
+        nextData[stageName][keyName] = Number(e.target.value);
+      }
+
+      setData(nextData);
+      calcResultSummaries(nextData);
+    },
+    [data, calcResultSummaries]
+  );
+
+  const handleBlurParameters = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      const nextData = structuredClone(data);
+      const stageName = e.target.dataset["stageName"] as "base" | "challenge";
+      const keyName = e.target.dataset["keyName"] as keyof DivraceStageData[
+        | "base"
+        | "challenge"];
+
+      if (keyName === "candyDamage" || keyName === "endlessStageCount") {
         const rawValue = e.target.value;
         const omitCommaValue = rawValue.replaceAll(",", "");
-        nextData[stageName][keyName] = Number(omitCommaValue);
+        let rawNumber = Math.floor(Number(omitCommaValue));
+        if (Number.isNaN(rawNumber) || rawNumber < 1) rawNumber = 1;
+        nextData[stageName][keyName] = rawNumber;
       }
 
       setData(nextData);
@@ -231,7 +260,8 @@ export function useDivraceStageData({}: {
   return {
     data,
     resultSummary,
-    handleParameters,
+    handleChangeParameters,
+    handleBlurParameters,
     handleAimCountRewardDict,
     handleLoadData,
   };

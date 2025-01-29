@@ -99,6 +99,8 @@ function drawLeader({
   const leader = data.leader[1];
   if (!leader) {
     return;
+  } else if (typeof leader.heartNum !== "number") {
+    return;
   } else if (!leader.heartNum || leader.heartNum < 1) {
     return;
   }
@@ -226,6 +228,8 @@ function drawHelper({
 
   const helper = data.helper[1];
   if (!helper) {
+    return;
+  } else if (typeof helper.heartNum !== "number") {
     return;
   } else if (!helper.heartNum || helper.heartNum < 1) {
     return;
@@ -371,6 +375,9 @@ function drawMember({
       const member = data["member"][i + 1];
       // ハート数が空白かマイナスのメンバに到達したら強制終了
       if (!member) {
+        blankFlg = 1;
+        break;
+      } else if (typeof member.heartNum !== "number") {
         blankFlg = 1;
         break;
       } else if (!member.heartNum || member.heartNum < 1) {
@@ -663,6 +670,8 @@ function calcLeader({
   const leader = data.leader[1];
   if (!leader) {
     return;
+  } else if (typeof leader.heartNum !== "number") {
+    return;
   } else if (!leader.heartNum || leader.heartNum < 1) {
     return;
   }
@@ -735,6 +744,8 @@ function calcHelper({
 }) {
   const helper = data.helper[1];
   if (!helper) {
+    return;
+  } else if (typeof helper.heartNum !== "number") {
     return;
   } else if (!helper.heartNum || helper.heartNum < 1) {
     return;
@@ -822,6 +833,9 @@ function calcMember({
       const member = data["member"][i + 1];
       // ハート数が空白かマイナスのメンバに到達したら強制終了
       if (!member) {
+        blankFlg = 1;
+        break;
+      } else if (typeof member.heartNum !== "number") {
         blankFlg = 1;
         break;
       } else if (!member.heartNum || member.heartNum < 1) {
