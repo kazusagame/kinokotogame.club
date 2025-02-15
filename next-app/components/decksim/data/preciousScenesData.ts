@@ -398,24 +398,21 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "Sweetタイプ", effectRange: "主＋副", effectType: "攻守UP",
     effectCondition: "特定のガールで編成するほど", conditionThreshold: 8,
     value1: 5.0, value2: 5.0, value3: 5.0, value4: 6.0, value5: 7.0,
-    factor: 0.6,
-    annotation: "現状、減衰係数などに推定値を使用しています。情報募集中です。"
+    factor: 0.5,
   },
   86: {
     name: "[ご注文は？]神楽坂砂夜", rarity: 3, valueFormat: "割合(%)",
     effectTarget: "Coolタイプ", effectRange: "主＋副", effectType: "攻守UP",
     effectCondition: "特定のガールで編成するほど", conditionThreshold: 8,
     value1: 5.0, value2: 5.0, value3: 5.0, value4: 6.0, value5: 7.0,
-    factor: 0.6,
-    annotation: "現状、減衰係数などに推定値を使用しています。情報募集中です。"
+    factor: 0.5,
   },
   88: {
     name: "[きみと一緒]櫻井明音", rarity: 3, valueFormat: "割合(%)",
     effectTarget: "Popタイプ", effectRange: "主＋副", effectType: "攻守UP",
     effectCondition: "特定のガールで編成するほど", conditionThreshold: 8,
     value1: 5.0, value2: 5.0, value3: 5.0, value4: 6.0, value5: 7.0,
-    factor: 0.6,
-    annotation: "現状、減衰係数などに推定値を使用しています。情報募集中です。"
+    factor: 0.5,
   },
 
   91: {
@@ -478,6 +475,14 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     value1: 5.0, value2: 5.0, value3: 5.0, value4: 6.0, value5: 7.0,
     factor: 0.75,
     annotation: "現状、減衰係数などに推定値を使用しています。情報募集中です。"
+  },
+
+  100: {
+    name: "[力の源]桃子&柚子", rarity: 3, valueFormat: "割合(%)",
+    effectTarget: "全タイプ", effectRange: "主＋副", effectType: "攻守UP",
+    effectCondition: "レアリティが高いほど", conditionThreshold: "UR",
+    value1: 5.0, value2: 5.0, value3: 5.0, value4: 6.0, value5: 6.5,
+    factor: 1.07
   },
 
   /* 初期星2 */

@@ -1035,17 +1035,17 @@ const PRECIOS_SCENES = {
   85: {
     name: "[幸せの果実]小日向いちご", rarity: "3", condition: "fewergirls", threshold: 8,
     range: "both", type: "Sweet", effect: "both", format: "percent",
-    star1max: 5.0, star2max: 5.0, star3max: 5.0, star4max: 6.0, star5max: 7.0, factor: 0.6
+    star1max: 5.0, star2max: 5.0, star3max: 5.0, star4max: 6.0, star5max: 7.0, factor: 0.5
   },
   86: {
     name: "[ご注文は？]神楽坂砂夜", rarity: "3", condition: "fewergirls", threshold: 8,
     range: "both", type: "Cool", effect: "both", format: "percent",
-    star1max: 5.0, star2max: 5.0, star3max: 5.0, star4max: 6.0, star5max: 7.0, factor: 0.6
+    star1max: 5.0, star2max: 5.0, star3max: 5.0, star4max: 6.0, star5max: 7.0, factor: 0.5
   },
   88: {
     name: "[きみと一緒]櫻井明音", rarity: "3", condition: "fewergirls", threshold: 8,
     range: "both", type: "Pop", effect: "both", format: "percent",
-    star1max: 5.0, star2max: 5.0, star3max: 5.0, star4max: 6.0, star5max: 7.0, factor: 0.6
+    star1max: 5.0, star2max: 5.0, star3max: 5.0, star4max: 6.0, star5max: 7.0, factor: 0.5
   },
 
   91: {
@@ -1086,11 +1086,16 @@ const PRECIOS_SCENES = {
     range: "both", type: "Sweet", effect: "both", format: "percent",
     star1max: 5.0, star2max: 5.0, star3max: 5.0, star4max: 6.0, star5max: 7.0, factor: 0.75
   },
-
   97: {
     name: "[きみが一番]相楽エミ", rarity: "3", condition: "higherskilllv", threshold: 16,
     range: "both", type: "Pop", effect: "both", format: "percent",
     star1max: 5.0, star2max: 5.0, star3max: 5.0, star4max: 6.0, star5max: 7.0, factor: 0.75
+  },
+
+  100: {
+    name: "[力の源]桃子&柚子", rarity: "3", condition: "higherrarity", threshold: 7,
+    range: "both", type: "All", effect: "both", format: "percent",
+    star1max: 5.0, star2max: 5.0, star3max: 5.0, star4max: 6.0, star5max: 6.5, factor: 1.07
   },
 
   /* 初期星2 */

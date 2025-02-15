@@ -233,27 +233,6 @@ export default function Page() {
             <div className="mt-2 md:pl-4">
               <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
                 <span>
-                  [幸せの果実]小日向いちご
-                  (特定のSWEETガールで編成するほど攻守UP)
-                </span>
-              </p>
-              <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
-                <span>
-                  [ご注文は？]神楽坂砂夜 (特定のCOOLガールで編成するほど攻守UP)
-                </span>
-              </p>
-              <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
-                <span>
-                  [きみと一緒]櫻井明音 (特定のPOPガールで編成するほど攻守UP)
-                </span>
-              </p>
-              <span>
-                → いくつかのパターンでの実際の効果値。★4の時の最大効果値。
-              </span>
-            </div>
-            <div className="mt-2 md:pl-4">
-              <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
-                <span>
                   [よそ見注意]朝比奈桃子 (SWEETガールの声援Lvが高いほど攻守UP)
                 </span>
               </p>
@@ -281,12 +260,14 @@ export default function Page() {
               </Link>
             </p>
             <p className="md:px-4 mt-4">
-              2024年の年末から少しずつサイトのリニューアルを行っております。<br />
+              2024年の年末から少しずつサイトのリニューアルを行っております。
+              <br />
               使い慣れた方を使い続けたい人もおられるかと思いますので、
               こちらに旧版へのリンクを設置しています。
             </p>
             <p className="md:px-4">
-              旧版はデータ更新やバグ修正を終了しておりますのでご了承ください。<br />
+              旧版はデータ更新やバグ修正を終了しておりますのでご了承ください。
+              <br />
               また、新旧でデータの互換性はありません。
               旧版で保存したデータは新しいシミュレーターでは存在していない扱いになります。
             </p>

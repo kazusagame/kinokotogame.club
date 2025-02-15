@@ -4,3 +4,5 @@
 # センバツシミュレーター用データ
 /next-app/components/decksim/data/*.ts
 
+# 旧センバツシミュレーター用データ
+/next-app/public/decksim_v1/js/decksim-const.js
