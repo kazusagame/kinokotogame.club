@@ -17,6 +17,10 @@ import {
   columnDefDivraceReward004,
 } from "@/lib/tableColumnDef/divrace/reward004";
 import {
+  RowDataDivraceReward005,
+  columnDefDivraceReward005,
+} from "@/lib/tableColumnDef/divrace/reward005";
+import {
   RowDataDivracePoint,
   columnDefDivracePoint,
 } from "@/lib/tableColumnDef/divrace/point";
@@ -74,6 +78,13 @@ export default function DivraceTable(props: Props) {
         <GenericCollapseTable<RowDataDivraceReward004>
           {...props}
           columnDef={columnDefDivraceReward004}
+        />
+      );
+    case "divraceReward005":
+      return (
+        <GenericCollapseTable<RowDataDivraceReward005>
+          {...props}
+          columnDef={columnDefDivraceReward005}
         />
       );
     case "divracePoint":

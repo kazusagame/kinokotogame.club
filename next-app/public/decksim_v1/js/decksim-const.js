@@ -1381,28 +1381,28 @@ const CLUBCUP_SKILL_EFFECT = {
 
 const DIVRACE_ITEM_LIST = [
   {
-    name: "おままごとセット", memo: "予選で選択したガールの攻援力が30%UP",
+    name: "カメラ", memo: "予選で選択したガールの攻援力が30%UP",
     condition: { "pre-select": true }, effect: "girl", value: 30
   }, {
-    name: "ヘアゴム", memo: "URガールの攻援力が30%UP",
+    name: "雑誌", memo: "URガールの攻援力が30%UP",
     condition: { higherrarity: 7 }, effect: "girl", value: 30
   }, {
-    name: "絵本", memo: "SWEETガールの攻援力が30%UP",
+    name: "ドレス", memo: "SWEETガールの攻援力が30%UP",
     condition: { type: "Sweet" }, effect: "girl", value: 30
   }, {
-    name: "エプロン", memo: "COOLガールの攻援力が30%UP",
+    name: "テディベア", memo: "COOLガールの攻援力が30%UP",
     condition: { type: "Cool" }, effect: "girl", value: 30
   }, {
-    name: "おもちゃ", memo: "POPガールの攻援力が30%UP",
+    name: "シューズ", memo: "POPガールの攻援力が30%UP",
     condition: { type: "Pop" }, effect: "girl", value: 30
   }, {
     name: "お菓子", memo: "コストが26以上のガールの攻援力が40%UP",
     condition: { highercost: 26 }, effect: "girl", value: 40
   }, {
-    name: "ぬいぐるみ", memo: "声援Lvが16以上のガールの攻援力が40%UP",
+    name: "ジュース", memo: "声援Lvが16以上のガールの攻援力が40%UP",
     condition: { higherskilllv: 16 }, effect: "girl", value: 40
   }, {
-    name: "ハンガー", memo: "ぷちセンバツの攻援力が60%UP",
+    name: "ノート", memo: "ぷちセンバツの攻援力が60%UP",
     condition: { /* */ }, effect: "petit-girl", value: 60
   }, {
     name: "ブランケット", memo: "ぷちセンバツの応援力効果が55%UP",
@@ -1411,19 +1411,19 @@ const DIVRACE_ITEM_LIST = [
     name: "携帯", memo: "声援の効果が50%UP",
     condition: { /* */ }, effect: "skill-effect", value: 50
   }, {
-    name: "哺乳瓶", memo: "Ex進展ボーナスの効果が25倍に",
+    name: "アルバム", memo: "Ex進展ボーナスの効果が25倍に",
     condition: { /* */ }, effect: "limitbreak", value: 2500
   }, {
-    name: "ドライヤー", memo: "センバツボーナスの効果が15%UP",
+    name: "ペン", memo: "センバツボーナスの効果が15%UP",
     condition: { /* */ }, effect: "deckbonus", value: 15
   }, {
     name: "ミネラルウォーター", memo: "声援Lv.13以上のコスト24以上ガールの攻援力が40%UP",
     condition: { highercost: 24, higherskilllv: 13 }, effect: "girl", value: 40
   }, {
-    name: "ばんそうこう", memo: "コスト22以上のURガールの攻援力が40%UP",
+    name: "シュシュ", memo: "コスト22以上のURガールの攻援力が40%UP",
     condition: { highercost: 22, higherrarity: 7 }, effect: "girl", value: 40
   }, {
-    name: "ミニチェア", memo: "声援Lv.17のURガールの攻援力が40%UP",
+    name: "コミック", memo: "声援Lv.17のURガールの攻援力が40%UP",
     condition: { higherskilllv: 17, higherrarity: 7 }, effect: "girl", value: 40
   },
 ];
