@@ -1074,6 +1074,11 @@ const PRECIOS_SCENES = {
     range: "both", type: "Cool", effect: "attack", format: "percent",
     star1max: 5.0, star2max: 5.0, star3max: 5.0, star4max: 6.0, star5max: 7.0, factor: 1.45
   },
+  101: {
+    name: "[素直が一番]時谷小瑠璃", rarity: "3", condition: "higherrarity", threshold: 7,
+    range: "both", type: "Pop", effect: "attack", format: "percent",
+    star1max: 5.0, star2max: 5.0, star3max: 5.0, star4max: 6.0, star5max: 7.0, factor: 1.45
+  },
 
   96: {
     name: "[12周年]メモリアル", rarity: "3", condition: "higherrarity", threshold: 7,

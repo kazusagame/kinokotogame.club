@@ -451,6 +451,13 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     value1: 5.0, value2: 5.0, value3: 5.0, value4: 6.0, value5: 7.0,
     factor: 1.45,
   },
+  101: {
+    name: "[素直が一番]時谷小瑠璃", rarity: 3, valueFormat: "割合(%)",
+    effectTarget: "Popタイプ", effectRange: "主＋副", effectType: "攻援UP",
+    effectCondition: "レアリティが高いほど", conditionThreshold: "UR",
+    value1: 5.0, value2: 5.0, value3: 5.0, value4: 6.0, value5: 7.0,
+    factor: 1.45,
+  },
 
   96: {
     name: "[12周年]メモリアル", rarity: 3, valueFormat: "割合(%)",
