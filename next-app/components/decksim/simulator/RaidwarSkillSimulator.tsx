@@ -51,7 +51,7 @@ export default function RaidwarSkillSimulator() {
   ) => {
     const num = e.currentTarget.dataset.num;
     if (window.localStorage) {
-      const key = `deck-divrace-stage-${num}`;
+      const key = `deck-raidwar-skill-${num}`;
       const currentDate = new Date();
       const dateStr =
         String(currentDate.getFullYear()) +
