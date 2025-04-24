@@ -157,6 +157,7 @@ export const SKILL_RATE_DATA: SkillRateData = {
           "特大": { value: 22 },
           "スーパー特大": { value: 28 },
           "スーパー特大+": { value: 30 },
+          "スーパー特大++": { value: 35 },
         },
       },
     },

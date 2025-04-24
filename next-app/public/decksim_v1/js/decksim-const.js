@@ -657,17 +657,17 @@ const SKILL_MATRIX = [
         /* 副人数 0 */
         [24, 0, 27, 34, 0, 44, 0, 0, 55, 0, 0], // 攻
         [24, 0, 27, 34, 0, 44, 0, 0, 55, 0, 0], // 守
-        [22, 0, 29, 36, 0, 42, 44, 0, 0, 0, 0], // 攻守
+        [22, 0, 29, 36, 0, 42, 44, 49, 0, 0, 0], // 攻守
       ], [
         /* 副人数 1 (異常な組み合わせ -> 副人数 0 をコピー) */
         [24, 0, 27, 34, 0, 44, 0, 0, 55, 0, 0], // 攻
         [24, 0, 27, 34, 0, 44, 0, 0, 55, 0, 0], // 守
-        [22, 0, 29, 36, 0, 42, 44, 0, 0, 0, 0], // 攻守
+        [22, 0, 29, 36, 0, 42, 44, 49, 0, 0, 0], // 攻守
       ], [
         /* 副人数 2 (異常な組み合わせ -> 副人数 0 をコピー) */
         [24, 0, 27, 34, 0, 44, 0, 0, 55, 0, 0], // 攻
         [24, 0, 27, 34, 0, 44, 0, 0, 55, 0, 0], // 守
-        [22, 0, 29, 36, 0, 42, 44, 0, 0, 0, 0], // 攻守
+        [22, 0, 29, 36, 0, 42, 44, 49, 0, 0, 0], // 攻守
       ],
     ], [
       /* 副 */
@@ -753,17 +753,26 @@ const PRECIOS_SCENES = {
   1: {
     name: "[思い出の…]クロエ・ルメール", rarity: "3", condition: "highercost", threshold: 23,
     range: "both", type: "Sweet", effect: "attack", format: "percent",
-    star1max: 4.0, star2max: 4.0, star3max: 4.0, star4max: 4.5, star5max: 5.0, factor: 1.5
+    star1max: 4.0, star2max: 4.0, star3max: 4.0, star4max: 4.5, star5max: 5.0, factor: 1.5,
+    star6: {
+      threshold: 31, max: 7.0, factor: 1.5, description: "7.0 (コスト31)"
+    }
   },
   3: {
     name: "[靴箱の邂逅]上条るい", rarity: "3", condition: "highercost", threshold: 23,
     range: "both", type: "Cool", effect: "attack", format: "percent",
-    star1max: 4.0, star2max: 4.0, star3max: 4.0, star4max: 4.5, star5max: 5.0, factor: 1.5
+    star1max: 4.0, star2max: 4.0, star3max: 4.0, star4max: 4.5, star5max: 5.0, factor: 1.5,
+    star6: {
+      threshold: 31, max: 7.0, factor: 1.5, description: "7.0 (コスト31)"
+    }
   },
   5: {
     name: "[ｺﾚが自信作]時谷小瑠璃", rarity: "3", condition: "highercost", threshold: 23,
     range: "both", type: "Pop", effect: "attack", format: "percent",
-    star1max: 4.0, star2max: 4.0, star3max: 4.0, star4max: 4.5, star5max: 5.0, factor: 1.5
+    star1max: 4.0, star2max: 4.0, star3max: 4.0, star4max: 4.5, star5max: 5.0, factor: 1.5,
+    star6: {
+      threshold: 31, max: 7.0, factor: 1.5, description: "7.0 (コスト31)"
+    }
   },
   2: {
     name: "[ﾗｲﾌﾞの誘い]風町陽歌", rarity: "3", condition: "absolute", threshold: 1,
@@ -828,17 +837,26 @@ const PRECIOS_SCENES = {
   44: {
     name: "[何をﾌﾟﾚｲ?]姫島木乃子", rarity: "3", condition: "higherskilllv", threshold: 15,
     range: "both", type: "Pop", effect: "attack", format: "percent",
-    star1max: 4.5, star2max: 4.5, star3max: 4.5, star4max: 5.5, star5max: 6.0, factor: 1.05
+    star1max: 4.5, star2max: 4.5, star3max: 4.5, star4max: 5.5, star5max: 6.0, factor: 1.05,
+    star6: {
+      threshold: 18, max: 7.0, factor: 1.05, description: "7.0 (Lv.18)"
+    }
   },
   45: {
     name: "[せーのっ!]浅見景", rarity: "3", condition: "higherskilllv", threshold: 15,
     range: "both", type: "Sweet", effect: "attack", format: "percent",
-    star1max: 4.5, star2max: 4.5, star3max: 4.5, star4max: 5.5, star5max: 6.0, factor: 1.05
+    star1max: 4.5, star2max: 4.5, star3max: 4.5, star4max: 5.5, star5max: 6.0, factor: 1.05,
+    star6: {
+      threshold: 18, max: 7.0, factor: 1.05, description: "7.0 (Lv.18)"
+    }
   },
   49: {
     name: "[お手伝い]月隈林子", rarity: "3", condition: "higherskilllv", threshold: 15,
     range: "both", type: "Cool", effect: "attack", format: "percent",
-    star1max: 4.5, star2max: 4.5, star3max: 4.5, star4max: 5.5, star5max: 6.0, factor: 1.05
+    star1max: 4.5, star2max: 4.5, star3max: 4.5, star4max: 5.5, star5max: 6.0, factor: 1.05,
+    star6: {
+      threshold: 18, max: 7.0, factor: 1.05, description: "7.0 (Lv.18)"
+    }
   },
   46: {
     name: "[ｶｯﾌﾟﾙ…？]白水六花", rarity: "3", condition: "fewergirls", threshold: 10,
