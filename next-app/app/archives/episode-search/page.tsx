@@ -19,7 +19,7 @@ export default function Page() {
           <p className="leading-7">
             ・ガールを選択して検索ボタンをタップすると、そのガールが登場するエピソードをデータベースから検索して表示します。
             <br />
-            ・最終更新日: 2024年12月03日
+            ・最終更新日: 2025年04月26日
           </p>
         </section>
         <EpisodeSearch />
