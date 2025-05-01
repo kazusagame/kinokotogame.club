@@ -755,7 +755,7 @@ const PRECIOS_SCENES = {
     range: "both", type: "Sweet", effect: "attack", format: "percent",
     star1max: 4.0, star2max: 4.0, star3max: 4.0, star4max: 4.5, star5max: 5.0, factor: 1.5,
     star6: {
-      threshold: 31, max: 7.0, factor: 1.5, description: "7.0 (コスト31)"
+      threshold: 31, max: 7.0, factor: 1.12, description: "7.0 (コスト31)"
     }
   },
   3: {
@@ -763,7 +763,7 @@ const PRECIOS_SCENES = {
     range: "both", type: "Cool", effect: "attack", format: "percent",
     star1max: 4.0, star2max: 4.0, star3max: 4.0, star4max: 4.5, star5max: 5.0, factor: 1.5,
     star6: {
-      threshold: 31, max: 7.0, factor: 1.5, description: "7.0 (コスト31)"
+      threshold: 31, max: 7.0, factor: 1.12, description: "7.0 (コスト31)"
     }
   },
   5: {
@@ -771,7 +771,7 @@ const PRECIOS_SCENES = {
     range: "both", type: "Pop", effect: "attack", format: "percent",
     star1max: 4.0, star2max: 4.0, star3max: 4.0, star4max: 4.5, star5max: 5.0, factor: 1.5,
     star6: {
-      threshold: 31, max: 7.0, factor: 1.5, description: "7.0 (コスト31)"
+      threshold: 31, max: 7.0, factor: 1.12, description: "7.0 (コスト31)"
     }
   },
   2: {
@@ -839,7 +839,7 @@ const PRECIOS_SCENES = {
     range: "both", type: "Pop", effect: "attack", format: "percent",
     star1max: 4.5, star2max: 4.5, star3max: 4.5, star4max: 5.5, star5max: 6.0, factor: 1.05,
     star6: {
-      threshold: 18, max: 7.0, factor: 1.05, description: "7.0 (Lv.18)"
+      threshold: 18, max: 7.0, factor: 0.84, description: "7.0 (Lv.18)"
     }
   },
   45: {
@@ -847,7 +847,7 @@ const PRECIOS_SCENES = {
     range: "both", type: "Sweet", effect: "attack", format: "percent",
     star1max: 4.5, star2max: 4.5, star3max: 4.5, star4max: 5.5, star5max: 6.0, factor: 1.05,
     star6: {
-      threshold: 18, max: 7.0, factor: 1.05, description: "7.0 (Lv.18)"
+      threshold: 18, max: 7.0, factor: 0.84, description: "7.0 (Lv.18)"
     }
   },
   49: {
@@ -855,7 +855,7 @@ const PRECIOS_SCENES = {
     range: "both", type: "Cool", effect: "attack", format: "percent",
     star1max: 4.5, star2max: 4.5, star3max: 4.5, star4max: 5.5, star5max: 6.0, factor: 1.05,
     star6: {
-      threshold: 18, max: 7.0, factor: 1.05, description: "7.0 (Lv.18)"
+      threshold: 18, max: 7.0, factor: 0.84, description: "7.0 (Lv.18)"
     }
   },
   46: {

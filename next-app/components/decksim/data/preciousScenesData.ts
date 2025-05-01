@@ -36,21 +36,24 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "Sweetタイプ", effectRange: "主＋副", effectType: "攻援UP",
     effectCondition: "コストが高いほど", conditionThreshold: 23, conditionThreshold6: 31,
     value1: 4.0, value2: 4.0, value3: 4.0, value4: 4.5, value5: 5.0, value6: 7.0,
-    factor: 1.5, factor6: 1.5,
+    factor: 1.5, factor6: 1.12,
+    annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   3: {
     name: "[靴箱の邂逅]上条るい", rarity: 3, valueFormat: "割合(%)",
     effectTarget: "Coolタイプ", effectRange: "主＋副", effectType: "攻援UP",
     effectCondition: "コストが高いほど", conditionThreshold: 23, conditionThreshold6: 31,
     value1: 4.0, value2: 4.0, value3: 4.0, value4: 4.5, value5: 5.0, value6: 7.0,
-    factor: 1.5, factor6: 1.5,
+    factor: 1.5, factor6: 1.12,
+    annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   5: {
     name: "[ｺﾚが自信作]時谷小瑠璃", rarity: 3, valueFormat: "割合(%)",
     effectTarget: "Popタイプ", effectRange: "主＋副", effectType: "攻援UP",
     effectCondition: "コストが高いほど", conditionThreshold: 23, conditionThreshold6: 31,
     value1: 4.0, value2: 4.0, value3: 4.0, value4: 4.5, value5: 5.0, value6: 7.0,
-    factor: 1.5, factor6: 1.5,
+    factor: 1.5, factor6: 1.12,
+    annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
 
   2: {
@@ -78,6 +81,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectCondition: "声援Lvが高いほど", conditionThreshold: 15, conditionThreshold6: 17,
     value1: 4.0, value2: 4.0, value3: 4.0, value4: 4.5, value5: 5.0, value6: 5.5,
     factor: 0.75, factor6: 0.75,
+    annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   30: {
     name: "[ﾗｸﾛｽ少女]葉月柚子", rarity: 3, valueFormat: "割合(%)",
@@ -85,6 +89,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectCondition: "声援Lvが高いほど", conditionThreshold: 15, conditionThreshold6: 17,
     value1: 4.0, value2: 4.0, value3: 4.0, value4: 4.5, value5: 5.0, value6: 5.5,
     factor: 0.75, factor6: 0.75,
+    annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   31: {
     name: "[昼の約束]優木苗", rarity: 3, valueFormat: "割合(%)",
@@ -92,6 +97,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectCondition: "声援Lvが高いほど", conditionThreshold: 15, conditionThreshold6: 17,
     value1: 4.0, value2: 4.0, value3: 4.0, value4: 4.5, value5: 5.0, value6: 5.5,
     factor: 0.75, factor6: 0.75,
+    annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
 
   36: {
@@ -129,21 +135,21 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "Popタイプ", effectRange: "主＋副", effectType: "攻援UP",
     effectCondition: "声援Lvが高いほど", conditionThreshold: 15, conditionThreshold6: 18,
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 7.0,
-    factor: 1.05, factor6: 1.05,
+    factor: 1.05, factor6: 0.84,
   },
   45: {
     name: "[せーのっ!]浅見景", rarity: 3, valueFormat: "割合(%)",
     effectTarget: "Sweetタイプ", effectRange: "主＋副", effectType: "攻援UP",
     effectCondition: "声援Lvが高いほど", conditionThreshold: 15, conditionThreshold6: 18,
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 7.0,
-    factor: 1.05, factor6: 1.05,
+    factor: 1.05, factor6: 0.84,
   },
   49: {
     name: "[お手伝い]月隈林子", rarity: 3, valueFormat: "割合(%)",
     effectTarget: "Coolタイプ", effectRange: "主＋副", effectType: "攻援UP",
     effectCondition: "声援Lvが高いほど", conditionThreshold: 15, conditionThreshold6: 18,
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 7.0,
-    factor: 1.05, factor6: 1.05,
+    factor: 1.05, factor6: 0.84,
   },
 
   46: {
@@ -194,7 +200,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     additionalCondition6: "たすけて！マイヒーロー限定",
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 6.5,
     factor: 1.18, factor6: 1.18,
-    annotation: "星6で効果が攻守UP化 & たすけて！マイヒーロー限定になる。"
+    annotation: "星6で効果が攻守UP化 & たすけて！マイヒーロー限定になる。星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   58: {
     name: "[特別な場所]櫻井明音", rarity: 3, valueFormat: "割合(%)",
@@ -203,7 +209,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     additionalCondition6: "たすけて！マイヒーロー限定",
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 6.5,
     factor: 1.18, factor6: 1.18,
-    annotation: "星6で効果が攻守UP化 & たすけて！マイヒーロー限定になる。"
+    annotation: "星6で効果が攻守UP化 & たすけて！マイヒーロー限定になる。星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   59: {
     name: "[新体操とは]椎名心実", rarity: 3, valueFormat: "割合(%)",
@@ -212,7 +218,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     additionalCondition6: "たすけて！マイヒーロー限定",
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 6.5,
     factor: 1.18, factor6: 1.18,
-    annotation: "星6で効果が攻守UP化 & たすけて！マイヒーロー限定になる。"
+    annotation: "星6で効果が攻守UP化 & たすけて！マイヒーロー限定になる。星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
 
   60: {
@@ -221,6 +227,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectCondition: "様々なガールで編成するほど", conditionThreshold: 20, conditionThreshold6: 20,
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 6.5,
     factor: 0.4, factor6: 0.4,
+    annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   62: {
     name: "[清掃対決]鴫野睦", rarity: 3, valueFormat: "割合(%)",
@@ -228,6 +235,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectCondition: "様々なガールで編成するほど", conditionThreshold: 20, conditionThreshold6: 20,
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 6.5,
     factor: 0.4, factor6: 0.4,
+    annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   66: {
     name: "[回転日和]花房優輝", rarity: 3, valueFormat: "割合(%)",
@@ -235,6 +243,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectCondition: "様々なガールで編成するほど", conditionThreshold: 20, conditionThreshold6: 20,
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 6.5,
     factor: 0.4, factor6: 0.4,
+    annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
 
   61: {
