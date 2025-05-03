@@ -35,6 +35,15 @@ export function useLocalStorageData<
       .map(() => structuredClone(initSavedDataSummary))
   );
 
+  function hasDataType(obj: unknown): obj is { dataType: string } {
+    return (
+      typeof obj === "object" &&
+      obj !== null &&
+      "dataType" in obj &&
+      typeof (obj as { dataType: unknown }).dataType === "string"
+    );
+  }
+
   useEffect(() => {
     if (window.localStorage) {
       for (let i = 0; i < MAX_SAVE_DATA_NUM; i++) {
@@ -43,8 +52,18 @@ export function useLocalStorageData<
         if (loadData) {
           const parsedData = JSON.parse(loadData) as U;
 
-          // 旧バージョンのデータは無視する
-          if (typeof parsedData !== "object" || parsedData?.version !== 2)
+          // 旧バージョンのデータや、互換性のないデータは無視する
+          if (
+            !(
+              typeof parsedData === "object" &&
+              parsedData?.version === 2 &&
+              hasDataType(parsedData.data) &&
+              SAVE_DATA_COMPATIBILITY_TABLE[eventId] !== undefined &&
+              SAVE_DATA_COMPATIBILITY_TABLE[eventId].includes(
+                parsedData.data.dataType
+              )
+            )
+          )
             continue;
 
           const keyList = SAVE_DATA_SUMMARY_KEY_LIST[eventId] as
