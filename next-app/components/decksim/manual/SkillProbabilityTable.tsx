@@ -16,7 +16,7 @@ export default function SkillProbabilityTable({ eventType }: Props) {
             <th rowSpan={2} className="text-center">
               最大発動数
             </th>
-            <th colSpan={skillData.skillProbabilityMain.length}>発動率</th>
+            <th colSpan={10}>発動率</th>
           </tr>
           <tr className="odd:bg-base-200 even:bg-base-300">
             <th className="text-center">1番目 (リーダー)</th>
@@ -24,15 +24,11 @@ export default function SkillProbabilityTable({ eventType }: Props) {
             <th className="text-center">3番目</th>
             <th className="text-center">4番目</th>
             <th className="text-center">5番目</th>
-            {skillData.skillProbabilityMain.length === 10 && (
-              <>
-                <th className="text-center">6番目</th>
-                <th className="text-center">7番目</th>
-                <th className="text-center">8番目</th>
-                <th className="text-center">9番目</th>
-                <th className="text-center">10番目</th>
-              </>
-            )}
+            <th className="text-center">6番目</th>
+            <th className="text-center">7番目</th>
+            <th className="text-center">8番目</th>
+            <th className="text-center">9番目</th>
+            <th className="text-center">10番目</th>
           </tr>
         </thead>
         <tbody>

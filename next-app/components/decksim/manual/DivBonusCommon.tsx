@@ -170,7 +170,7 @@ export default function DivBonusCommon() {
         </thead>
         <tbody>
           <tr className="odd:bg-base-200 even:bg-base-300">
-            <td rowSpan={3} className="align-top">
+            <td rowSpan={4} className="align-top">
               センバツボーナス
             </td>
             <td>通常</td>
@@ -206,10 +206,34 @@ export default function DivBonusCommon() {
             <td></td>
             <td></td>
             <td></td>
-            <td>フレンドぷちガールちゃん専用。攻守両面。</td>
+            <td>レアリティSSRのフレンドぷちガールちゃん専用。攻守両面。</td>
+          </tr>
+          <tr className="odd:bg-base-200 even:bg-base-300">
+            <td>Precious★Friend+</td>
+            <TdDataCell
+              value={BONUS_DATA_COMMON.deck.preciousPlus.both.lv1}
+              isTemp
+            />
+            <TdDataCell
+              value={BONUS_DATA_COMMON.deck.preciousPlus.both.lv2}
+              isTemp
+            />
+            <TdDataCell
+              value={BONUS_DATA_COMMON.deck.preciousPlus.both.lv3}
+              isTemp
+            />
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>レアリティURのフレンドぷちガールちゃん専用。攻守両面。</td>
           </tr>
         </tbody>
       </table>
+      <p className="mt-6">
+        <span className="bg-temp px-2 py-1 mr-2">黄色</span>は暫定値
+      </p>
     </div>
   );
 }

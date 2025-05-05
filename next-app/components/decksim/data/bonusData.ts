@@ -95,6 +95,9 @@ export const BONUS_DATA_COMMON = {
     },
     precious: {
       both: { lv0: 0, lv1: 5, lv2: 10, lv3: 15 }
+    },
+    preciousPlus: {
+      both: { lv0: 0, lv1: 7, lv2: 14, lv3: 21 }
     }
   },
   date: {

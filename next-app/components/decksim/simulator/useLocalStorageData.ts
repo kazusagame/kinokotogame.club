@@ -13,6 +13,10 @@ export interface OriginSavedDataSummary {
   totalCandy?: number;
   totalNormal?: number;
   totalSpecial?: number;
+  powerMin?: number;
+  powerExp?: number;
+  powerMax?: number;
+  skillEffect?: number;
 }
 export interface OriginLocalStorageData extends OriginSavedDataSummary {
   version: number;

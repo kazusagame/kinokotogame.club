@@ -67,4 +67,15 @@ export const columnDefPetitGirlsEffects = [
       textAlign: "right",
     },
   }),
+  columnHelper.accessor("levelMaxValueUr", {
+    header: "Lvmax時の効果値(UR)",
+    cell: (info) => {
+      return info.getValue() + " %";
+    },
+    sortingFn: "auto",
+    meta: {
+      label: "Lvmax時の効果値(UR)",
+      textAlign: "right",
+    },
+  }),
 ];

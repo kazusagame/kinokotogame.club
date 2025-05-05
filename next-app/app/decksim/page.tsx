@@ -272,6 +272,26 @@ export default function Page() {
               旧版で保存したデータは新しいシミュレーターでは存在していない扱いになります。
             </p>
           </div>
+
+          <h2 className="text-xl mt-4 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
+            動作テスト中のシミュレーターへのリンク
+          </h2>
+          <div className="leading-7">
+            <p className="md:pl-4">
+              <Link href="/decksim_v2/raidwar/" className="link">
+                おねがい★ハンターズ
+              </Link>
+            </p>
+            <p className="md:px-4 mt-4">
+              現在、動作テスト中の新バージョンのシミュレーターへのリンクです。
+              <br />
+              動作確認が完了したタイミングで現行バージョンからこちらに切り替わります。
+            </p>
+            <p className="md:px-4">
+              新旧でデータの互換性はありません。
+              テスト中の新バージョンで保存したデータを現行バージョンで読み出そうとするとエラーになります。
+            </p>
+          </div>
         </div>
       </div>
       <ArticleFooter />

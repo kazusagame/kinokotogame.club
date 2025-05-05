@@ -127,6 +127,9 @@ export default function Page() {
           id="petitGirlsEffects"
           title="ぷちガールちゃん 応援力効果"
         >
+          <p className="my-2 pl-2 text-sm">
+            ※ Lvmax時の効果値(UR)は暫定値です。
+          </p>
           <DivPetitGirlsEffects />
         </SectionBonus>
         <SectionBonus id="preciousScenes" title="プレシャスシーン">

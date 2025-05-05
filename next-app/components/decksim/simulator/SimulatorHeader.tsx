@@ -113,7 +113,7 @@ export default function SimulatorHeader<
             <ThemeControllerMenu />
           </li>
           <li>
-            <Link href="../">1つ前のページに戻る</Link>
+            <Link href="/decksim/">1つ前のページに戻る</Link>
           </li>
         </ul>
       </div>
