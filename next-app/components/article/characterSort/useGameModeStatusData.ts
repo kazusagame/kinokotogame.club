@@ -84,24 +84,24 @@ export default function useGameModeStatusData(
 
   const handleChangeGameMode = (e: React.ChangeEvent<HTMLInputElement>) => {
     const nextGameMode = structuredClone(gameMode);
-    const name = e.target.name as keyof GameMode;
-    const checked = e.target.checked;
+    const name = e.currentTarget.name as keyof GameMode;
+    const checked = e.currentTarget.checked;
     let value;
     switch (name) {
       case "girlType":
-        value = e.target.value as GirlType;
+        value = e.currentTarget.value as GirlType;
         nextGameMode[name][value] = checked;
         break;
       case "girlGrade":
-        value = e.target.value as GirlGrade;
+        value = e.currentTarget.value as GirlGrade;
         nextGameMode[name][value] = checked;
         break;
       case "girlSchool":
-        value = e.target.value as GirlSchool;
+        value = e.currentTarget.value as GirlSchool;
         nextGameMode[name][value] = checked;
         break;
       case "config":
-        value = e.target.value as Config;
+        value = e.currentTarget.value as Config;
         nextGameMode[name][value] = checked;
         break;
     }

@@ -373,18 +373,18 @@ export function useDeckSimulatorData({
   const handleChangeParameters = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const nextData = structuredClone(data);
-      // const positionName = e.target.dataset["positionName"] as
+      // const positionName = e.currentTarget.dataset["positionName"] as
       //   | "leader"
       //   | "helper"
       //   | "member";
-      // const positionNum = Number(e.target.dataset["positionNum"]);
-      // const key = e.target.name as "heartNum" | "damage";
+      // const positionNum = Number(e.currentTarget.dataset["positionNum"]);
+      // const key = e.currentTarget.name as "heartNum" | "damage";
 
       // if (positionName && positionNum) {
       //   if (nextData[positionName][positionNum] === undefined) {
       //     nextData[positionName][positionNum] = {};
       //   }
-      //   nextData[positionName][positionNum][key] = e.target.value;
+      //   nextData[positionName][positionNum][key] = e.currentTarget.value;
       setData(nextData);
       calcResultSummaries(nextData);
       // }
@@ -395,12 +395,12 @@ export function useDeckSimulatorData({
   const handleBlurParameters = useCallback(
     (e: React.FocusEvent<HTMLInputElement>) => {
       const nextData = structuredClone(data);
-      // const positionName = e.target.dataset["positionName"] as
+      // const positionName = e.currentTarget.dataset["positionName"] as
       //   | "leader"
       //   | "helper"
       //   | "member";
-      // const positionNum = Number(e.target.dataset["positionNum"]);
-      // const key = e.target.name as "heartNum" | "damage";
+      // const positionNum = Number(e.currentTarget.dataset["positionNum"]);
+      // const key = e.currentTarget.name as "heartNum" | "damage";
 
       // if (positionName && positionNum) {
       //   if (nextData[positionName][positionNum] === undefined) {
@@ -408,7 +408,7 @@ export function useDeckSimulatorData({
       //   }
 
       // onBlurで整数のnumber型に校正
-      let value = Number(e.target.value);
+      let value = Number(e.currentTarget.value);
       if (Number.isNaN(value)) value = 0;
       if (value < 0) value = 0;
       value = Math.floor(value);
@@ -476,7 +476,7 @@ export function useDeckSimulatorData({
   const handleImportRawData = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (window.File && window.FileReader) {
-        const file = e.target.files?.[0];
+        const file = e.currentTarget.files?.[0];
         const reader = new FileReader();
         if (file) {
           reader.readAsText(file);
@@ -499,7 +499,7 @@ export function useDeckSimulatorData({
         }
       }
       // 同じファイルを再度読み込んだ場合に備えてvalueを空にする
-      e.target.value = "";
+      e.currentTarget.value = "";
     },
     [importRawDataDeckSimulator]
   );

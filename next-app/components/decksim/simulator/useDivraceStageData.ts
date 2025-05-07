@@ -190,17 +190,19 @@ export function useDivraceStageData({}: {
   const handleChangeParameters = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const nextData = structuredClone(data);
-      const stageName = e.target.dataset["stageName"] as "base" | "challenge";
-      const keyName = e.target.dataset["keyName"] as keyof DivraceStageData[
+      const stageName = e.currentTarget.dataset["stageName"] as
         | "base"
-        | "challenge"];
+        | "challenge";
+      const keyName = e.currentTarget.dataset[
+        "keyName"
+      ] as keyof DivraceStageData["base" | "challenge"];
 
       if (keyName === "candyDamage" || keyName === "endlessStageCount") {
-        nextData[stageName][keyName] = e.target.value as string;
+        nextData[stageName][keyName] = e.currentTarget.value as string;
       } else if (keyName === "patternSelect") {
-        nextData[stageName][keyName] = e.target.value as SupportPattern;
+        nextData[stageName][keyName] = e.currentTarget.value as SupportPattern;
       } else if (keyName === "clearStageLevel") {
-        nextData[stageName][keyName] = Number(e.target.value);
+        nextData[stageName][keyName] = Number(e.currentTarget.value);
       }
 
       setData(nextData);
@@ -212,13 +214,15 @@ export function useDivraceStageData({}: {
   const handleBlurParameters = useCallback(
     (e: React.FocusEvent<HTMLInputElement>) => {
       const nextData = structuredClone(data);
-      const stageName = e.target.dataset["stageName"] as "base" | "challenge";
-      const keyName = e.target.dataset["keyName"] as keyof DivraceStageData[
+      const stageName = e.currentTarget.dataset["stageName"] as
         | "base"
-        | "challenge"];
+        | "challenge";
+      const keyName = e.currentTarget.dataset[
+        "keyName"
+      ] as keyof DivraceStageData["base" | "challenge"];
 
       if (keyName === "candyDamage" || keyName === "endlessStageCount") {
-        const rawValue = e.target.value;
+        const rawValue = e.currentTarget.value;
         const omitCommaValue = rawValue.replaceAll(",", "");
         let rawNumber = Math.floor(Number(omitCommaValue));
         if (Number.isNaN(rawNumber) || rawNumber < 1) rawNumber = 1;
@@ -234,14 +238,16 @@ export function useDivraceStageData({}: {
   const handleAimCountRewardDict = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const nextData = structuredClone(data);
-      const stageName = e.target.dataset["stageName"] as "base" | "challenge";
-      const keyName = e.target.dataset["keyName"] as keyof DivraceStageData[
+      const stageName = e.currentTarget.dataset["stageName"] as
         | "base"
-        | "challenge"];
-      const stageNum = Number(e.target.dataset["stageNum"]);
+        | "challenge";
+      const keyName = e.currentTarget.dataset[
+        "keyName"
+      ] as keyof DivraceStageData["base" | "challenge"];
+      const stageNum = Number(e.currentTarget.dataset["stageNum"]);
 
       if (keyName === "aimCountRewardDict" && stageNum) {
-        nextData[stageName][keyName][stageNum] = e.target.checked;
+        nextData[stageName][keyName][stageNum] = e.currentTarget.checked;
         setData(nextData);
         calcResultSummaries(nextData);
       }

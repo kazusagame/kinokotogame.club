@@ -255,7 +255,7 @@ export default function PetitMatching() {
   };
 
   const handleModeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.currentTarget;
 
     let nextImageMode = imageMode;
     if (name === "imageMode") {

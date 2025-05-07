@@ -17,20 +17,20 @@ export default function useFilter() {
   });
 
   const handleChangeFilter = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    if (e.target.name === "girlType") {
+    if (e.currentTarget.name === "girlType") {
       setFilter({
         ...filter,
-        girlType: e.target.value as GirlType,
+        girlType: e.currentTarget.value as GirlType,
       });
-    } else if (e.target.name === "girlGrade") {
+    } else if (e.currentTarget.name === "girlGrade") {
       setFilter({
         ...filter,
-        girlGrade: e.target.value as GirlGrade,
+        girlGrade: e.currentTarget.value as GirlGrade,
       });
-    } else if (e.target.name === "girlSchool") {
+    } else if (e.currentTarget.name === "girlSchool") {
       setFilter({
         ...filter,
-        girlSchool: e.target.value as GirlSchool,
+        girlSchool: e.currentTarget.value as GirlSchool,
       });
     }
   };

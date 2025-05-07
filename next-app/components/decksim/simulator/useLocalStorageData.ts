@@ -105,8 +105,8 @@ export function useLocalStorageData<
 
   const handleChangeMemo = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      const num = e.target.dataset.num;
-      handleSaveDataSummaries(Number(num) - 1, "memo", e.target.value);
+      const num = e.currentTarget.dataset.num;
+      handleSaveDataSummaries(Number(num) - 1, "memo", e.currentTarget.value);
       if (window.localStorage) {
         const key = `deck-${eventId}-${num}`;
         const loadData = localStorage.getItem(key);
@@ -116,7 +116,7 @@ export function useLocalStorageData<
           // 旧バージョンのデータは無視する
           if (parsedData.version !== 2) return;
 
-          parsedData.memo = e.target.value;
+          parsedData.memo = e.currentTarget.value;
           const convertData = JSON.stringify(parsedData);
           localStorage.setItem(key, convertData);
         }
@@ -155,7 +155,7 @@ export function useLocalStorageData<
       if (window.localStorage && window.File && window.FileReader) {
         const num = e.currentTarget.dataset.num;
         const key = `deck-${eventId}-${num}`;
-        const file = e.target.files?.[0];
+        const file = e.currentTarget.files?.[0];
         const reader = new FileReader();
         if (file) {
           reader.readAsText(file);
@@ -197,7 +197,7 @@ export function useLocalStorageData<
         }
       }
       // 同じファイルを再度読み込んだ場合に備えてvalueを空にする
-      e.target.value = "";
+      e.currentTarget.value = "";
     },
     [eventId, handleSaveDataSummaries]
   );

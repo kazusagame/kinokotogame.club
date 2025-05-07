@@ -22,7 +22,7 @@ export default function DivSkillRate() {
           className="select select-bordered"
           value={skillLevel}
           onChange={(e) => {
-            setSkillLevel(Number(e.target.value));
+            setSkillLevel(Number(e.currentTarget.value));
           }}
         >
           <option value={18}>18</option>

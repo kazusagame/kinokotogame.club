@@ -37,7 +37,7 @@ export default function TableSearchBoxAndColumnFilter<T>({
               id={textId}
               className="grow w-full md:w-80"
               placeholder="検索"
-              onChange={(e) => table.setGlobalFilter(String(e.target.value))}
+              onChange={(e) => table.setGlobalFilter(String(e.currentTarget.value))}
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
