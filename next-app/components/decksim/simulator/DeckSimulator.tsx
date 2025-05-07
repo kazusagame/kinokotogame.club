@@ -26,7 +26,6 @@ export default function DeckSimulator({
   const {
     data,
     resultSummary,
-    handleSettings,
     handleChangeParameters,
     handleBlurParameters,
     handleLoadData,

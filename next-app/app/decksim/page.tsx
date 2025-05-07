@@ -274,7 +274,7 @@ export default function Page() {
           </div>
 
           <h2 className="text-xl mt-4 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
-            動作テスト中のシミュレーターへのリンク
+            動作テスト中のシミュレーター
           </h2>
           <div className="leading-7">
             <p className="md:pl-4">

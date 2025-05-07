@@ -8,11 +8,11 @@ export interface DeckSimulatorData {
     [K: number]: {
       basePower?: number | string;
       strap?: number | string;
-      type?: "SWEET" | "COOL" | "POP" | "---";
-      rarity?: "luv" | "ur" | "ssr" | "sr";
+      type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
+      rarity?: "Luv" | "UR" | "SSR" | "SR";
       cost?: number | string;
       skillLv?: number | string;
-      grade?: "1年" | "2年" | "3年" | "---";
+      grade?: "1年" | "2年" | "3年" | "その他";
       isClubMatch?: boolean;
       isDate?: boolean;
       isTouch?: boolean;
@@ -49,11 +49,11 @@ export interface DeckSimulatorData {
     [K: number]: {
       basePower?: number | string;
       strap?: number | string;
-      type?: "SWEET" | "COOL" | "POP" | "---";
-      rarity?: "luv" | "ur" | "ssr" | "sr";
+      type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
+      rarity?: "Luv" | "UR" | "SSR" | "SR";
       cost?: number | string;
       skillLv?: number | string;
-      grade?: "1年" | "2年" | "3年" | "---";
+      grade?: "1年" | "2年" | "3年" | "その他";
       isClubMatch?: boolean;
       isDate?: boolean;
       isTouch?: boolean;
@@ -94,11 +94,11 @@ export interface DeckSimulatorData {
     };
   };
   petitGirls: {
-    totalPower?: {
-      attack?: number;
-      defense?: number;
+    totalPower: {
+      attack: number;
+      defense: number;
     };
-    effects?: {
+    effects: {
       [K: number]: {
         [K: number]: {
           id?: number;
@@ -106,44 +106,144 @@ export interface DeckSimulatorData {
         isRarityUr?: boolean;
       };
     };
-    details?: {
+    details: {
       [K: number]: {
         [K: number]: {
           attack?: number;
-          target?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
-          value?: number;
+          defense?: number;
+          skillTarget?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
+          SkillValue?: number;
         };
       };
     };
   };
   deckBonus: {
-    normal?: {
+    normal: {
       [K: number]: {
-        level?: number;
-        type?: "攻" | "守" | "攻守";
+        level: number;
+        type: "攻" | "守" | "攻守";
       };
     };
-    shine?: {
-      level?: number;
-      type?: "攻守";
+    shine: {
+      level: number;
+      type: "攻守";
     };
-    precious?: {
-      level?: number;
-      type?: "攻守";
+    precious: {
+      level: number;
+      type: "攻守";
     };
-    preciousPlus?: {
-      level?: number;
-      type?: "攻守";
+    preciousPlus: {
+      level: number;
+      type: "攻守";
     };
   };
   playerData: {
-    [K: number]: {
-      isValid?: boolean;
+    playerType: "SWEETタイプ" | "COOLタイプ" | "POPタイプ";
+    clubPosition:
+      | "leader"
+      | "subLeader"
+      | "attackCaptain"
+      | "defenseCaptain"
+      | "member";
+    mensCologne: {
+      sweet: {
+        level: number;
+      };
+      cool: {
+        level: number;
+      };
+      pop: {
+        level: number;
+      };
+    };
+    clubItem: {
+      sweet: {
+        isValid: boolean;
+      };
+      cool: {
+        isValid: boolean;
+      };
+      pop?: {
+        isValid: boolean;
+      };
     };
   };
   eventSpecial: {
-    [K: number]: {
-      isValid?: boolean;
+    raidFirst?: {
+      enemyType?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "通常タイプ";
+      attackType?: "元気炭酸アメ" | "元気炭酸" | "勇気炭酸";
+      comboNum?: 0 | 1 | 5 | 10 | 50 | 100;
+      specialGirlsEffect?: number;
+      isConvertPoint?: boolean;
+      isAssistMembers?: boolean;
+    };
+    raidSecond?: {
+      enemyType?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "通常タイプ";
+      attackType?: "元気炭酸アメ" | "元気炭酸" | "勇気炭酸";
+      comboNum?: 0 | 1 | 5 | 10 | 50 | 100;
+      specialGirlsEffect?: number;
+      isConvertPoint?: boolean;
+      isAssistMembers?: boolean;
+    };
+    raidMega?: {
+      enemyType?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ";
+      attackType?: "元気炭酸アメ" | "元気炭酸" | "勇気炭酸";
+      specialGirlsEffect?: number;
+      isConvertPoint?: boolean;
+      attackUpBuff?: number;
+      defenseDownDeBuff?: number;
+    };
+    raidwar?: {
+      enemyType?: "夜行性激レア" | "超レアLv50" | "超レアLv59" | "超レアLv64";
+      attackType?: "元気炭酸アメ" | "元気炭酸" | "本気炭酸";
+      attackNum?: number;
+      comboNum?: 0 | 6 | 12 | 18 | 24 | 30 | 36 | 42 | 48 | 50;
+      specialGirlsEffect?: number;
+      isConvertPoint?: boolean;
+      attackUpBuff?: number;
+      totalSkillDamage?: number;
+    };
+    clubcup?: {
+      pointUpBonus?: number;
+      attackUpBonus?: number;
+      isWinBonus?: boolean;
+      isConvertPoint?: boolean;
+      attackType?: "全力勧誘" | "全力勧誘×3";
+      specialGirlsEffectPercent?: number;
+      specialGirlsEffectFix?: number;
+      rivalSkillEffectDown?: number;
+      isRivalLeader?: boolean;
+    };
+    championship?: {
+      appealType?: "アピール対決" | "アピールタイム" | "レアアピールタイム";
+      heartNum?: number;
+      isTensionMax?: boolean;
+      TurnNum?: number;
+      specialGirlsEffect?: number;
+      isConvertPoint?: boolean;
+    };
+    championshipDefense?: Record<string, never>;
+    tower?: Record<string, never>;
+    divrace?: {
+      specialGirlsEffect?: number;
+      stage?: "ベースステージ" | "チャレンジステージ";
+      item?: {
+        [K: number]: {
+          isValid?: boolean;
+        };
+      };
+    };
+    board?: {
+      specialGirlsEffect?: number;
+      weatherNum?: number;
+      spaceEffects?: {
+        [K: number]: {
+          value: string | number;
+        };
+      };
+    };
+    normalBattle?: {
+      isWinBonus?: boolean;
     };
   };
 }
@@ -154,9 +254,55 @@ const initData: DeckSimulatorData = {
   subScenes: {},
   subSwitch: {},
   preciousScenes: {},
-  petitGirls: {},
-  deckBonus: {},
-  playerData: {},
+  petitGirls: {
+    totalPower: {
+      attack: 0,
+      defense: 0,
+    },
+    effects: {},
+    details: {},
+  },
+  deckBonus: {
+    normal: {},
+    shine: {
+      level: 0,
+      type: "攻守",
+    },
+    precious: {
+      level: 0,
+      type: "攻守",
+    },
+    preciousPlus: {
+      level: 0,
+      type: "攻守",
+    },
+  },
+  playerData: {
+    playerType: "SWEETタイプ",
+    clubPosition: "leader",
+    mensCologne: {
+      sweet: {
+        level: 0,
+      },
+      cool: {
+        level: 0,
+      },
+      pop: {
+        level: 0,
+      },
+    },
+    clubItem: {
+      sweet: {
+        isValid: true,
+      },
+      cool: {
+        isValid: true,
+      },
+      pop: {
+        isValid: true,
+      },
+    },
+  },
   eventSpecial: {},
 } as const;
 
@@ -222,21 +368,6 @@ export function useDeckSimulatorData({
       setResultSummary(summary);
     },
     [eventId]
-  );
-
-  const handleSettings = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const nextData = structuredClone(data);
-      // const key = e.target.name as "patternSelect" | "customPattern";
-      // if (key === "patternSelect") {
-      //   nextData.settings[key] = e.target.value as AttackPattern;
-      // } else if (key === "customPattern") {
-      //   nextData.settings[key] = e.target.value as string;
-      // }
-      setData(nextData);
-      calcResultSummaries(nextData);
-    },
-    [data, calcResultSummaries]
   );
 
   const handleChangeParameters = useCallback(
@@ -376,7 +507,6 @@ export function useDeckSimulatorData({
   return {
     data,
     resultSummary,
-    handleSettings,
     handleChangeParameters,
     handleBlurParameters,
     handleLoadData,

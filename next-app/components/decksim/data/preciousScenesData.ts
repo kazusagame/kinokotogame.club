@@ -779,4 +779,4 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     value1: 700, value2: 730, value3: 760, value4: 800, value5: 900,
     factor: 1.25,
   },
-}
+} as const;
