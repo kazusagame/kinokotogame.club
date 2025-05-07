@@ -2,6 +2,8 @@ import { useState, useCallback } from "react";
 import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
 import { calcDeckSimulatorResult } from "@/components/decksim/simulator/calcDeckSimulatorResult";
 
+import { setDeepValue } from "@/lib/setDeepValue";
+
 export interface DeckSimulatorData {
   dataType: keyof typeof EVENT_ID_TO_NAME_DICT;
   mainScenes: {
@@ -371,52 +373,40 @@ export function useDeckSimulatorData({
   );
 
   const handleChangeParameters = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
       const nextData = structuredClone(data);
-      // const positionName = e.currentTarget.dataset["positionName"] as
-      //   | "leader"
-      //   | "helper"
-      //   | "member";
-      // const positionNum = Number(e.currentTarget.dataset["positionNum"]);
-      // const key = e.currentTarget.name as "heartNum" | "damage";
 
-      // if (positionName && positionNum) {
-      //   if (nextData[positionName][positionNum] === undefined) {
-      //     nextData[positionName][positionNum] = {};
-      //   }
-      //   nextData[positionName][positionNum][key] = e.currentTarget.value;
+      const target = e.currentTarget;
+      if (!target.dataset["path"]) return;
+
+      const path = target.dataset["path"];
+      const value: string | boolean =
+        target instanceof HTMLInputElement && target.type === "checkbox"
+          ? target.checked
+          : target.value;
+
+      setDeepValue(nextData, path, value);
+
       setData(nextData);
       calcResultSummaries(nextData);
-      // }
     },
     [data, calcResultSummaries]
   );
 
   const handleBlurParameters = useCallback(
-    (e: React.FocusEvent<HTMLInputElement>) => {
+    (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
       const nextData = structuredClone(data);
-      // const positionName = e.currentTarget.dataset["positionName"] as
-      //   | "leader"
-      //   | "helper"
-      //   | "member";
-      // const positionNum = Number(e.currentTarget.dataset["positionNum"]);
-      // const key = e.currentTarget.name as "heartNum" | "damage";
+      const path = e.currentTarget.dataset["path"];
 
-      // if (positionName && positionNum) {
-      //   if (nextData[positionName][positionNum] === undefined) {
-      //     nextData[positionName][positionNum] = {};
-      //   }
-
-      // onBlurで整数のnumber型に校正
-      let value = Number(e.currentTarget.value);
+      // onBlurでnumber型に校正
+      let value = Number(e.currentTarget.value.replaceAll(",", ""));
       if (Number.isNaN(value)) value = 0;
-      if (value < 0) value = 0;
-      value = Math.floor(value);
 
-      // nextData[positionName][positionNum][key] = value;
+      if (!path) return;
+      setDeepValue(nextData, path, value);
+
       setData(nextData);
       calcResultSummaries(nextData);
-      // }
     },
     [data, calcResultSummaries]
   );

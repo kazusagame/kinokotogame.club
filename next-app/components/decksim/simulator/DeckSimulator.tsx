@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import Image from "next-export-optimize-images/image";
 
 import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
 
@@ -16,6 +15,18 @@ import {
   initDeckSimulatorSavedDataSummary,
 } from "@/components/decksim/simulator/useDeckSimulatorData";
 import { useLocalStorageData } from "@/components/decksim/simulator/useLocalStorageData";
+
+import { MainScenes } from "@/components/decksim/simulator/sections/MainScenes";
+import { MainSkill } from "@/components/decksim/simulator/sections/MainSkill";
+import { SubScenes } from "@/components/decksim/simulator/sections/SubScenes";
+import { SubSwitch } from "@/components/decksim/simulator/sections/SubSwitch";
+import { PreciousScenes } from "@/components/decksim/simulator/sections/PreciousScenes";
+import { DeckBonus } from "@/components/decksim/simulator/sections/DeckBonus";
+import { PetitGirls } from "@/components/decksim/simulator/sections/PetitGirls";
+import { PlayerData } from "@/components/decksim/simulator/sections/PlayerData";
+
+import { EventSpecial } from "@/components/decksim/simulator/sections/EventSpecial";
+import { DeckSimulatorHowToUse } from "@/components/decksim/manual/DeckSimulatorHowToUse";
 
 export default function DeckSimulator({
   eventId,
@@ -132,7 +143,20 @@ export default function DeckSimulator({
               role="tabpanel"
               className="tab-content bg-base-100 border-base-300 rounded-box px-1 md:px-2 py-4 max-w-screen"
             >
-              <div className="flex flex-col gap-4">{/* */}</div>
+              <div className="flex flex-col gap-4">
+                <MainScenes
+                  data={data}
+                  eventId={eventId}
+                  onChange={handleChangeParameters}
+                  onBlur={handleBlurParameters}
+                />
+                <MainSkill
+                  data={data}
+                  eventId={eventId}
+                  onChange={handleChangeParameters}
+                  onBlur={handleBlurParameters}
+                />
+              </div>
             </div>
             <input
               type="radio"
@@ -145,7 +169,20 @@ export default function DeckSimulator({
               role="tabpanel"
               className="tab-content bg-base-100 border-base-300 rounded-box px-1 md:px-2 py-4 max-w-screen"
             >
-              <div className="flex flex-col gap-4">{/* */}</div>
+              <div className="flex flex-col gap-4">
+                <SubScenes
+                  data={data}
+                  eventId={eventId}
+                  onChange={handleChangeParameters}
+                  onBlur={handleBlurParameters}
+                />
+                <SubSwitch
+                  data={data}
+                  eventId={eventId}
+                  onChange={handleChangeParameters}
+                  onBlur={handleBlurParameters}
+                />
+              </div>
             </div>
             <input
               type="radio"
@@ -158,7 +195,32 @@ export default function DeckSimulator({
               role="tabpanel"
               className="tab-content bg-base-100 border-base-300 rounded-box px-1 md:px-2 py-4 max-w-screen"
             >
-              <div className="flex flex-col gap-4">{/* */}</div>
+              <div className="flex flex-col gap-4">
+                <PreciousScenes
+                  data={data}
+                  eventId={eventId}
+                  onChange={handleChangeParameters}
+                  onBlur={handleBlurParameters}
+                />
+                <DeckBonus
+                  data={data}
+                  eventId={eventId}
+                  onChange={handleChangeParameters}
+                  onBlur={handleBlurParameters}
+                />
+                <PetitGirls
+                  data={data}
+                  eventId={eventId}
+                  onChange={handleChangeParameters}
+                  onBlur={handleBlurParameters}
+                />
+                <PlayerData
+                  data={data}
+                  eventId={eventId}
+                  onChange={handleChangeParameters}
+                  onBlur={handleBlurParameters}
+                />
+              </div>
             </div>
             <input
               type="radio"
@@ -171,7 +233,14 @@ export default function DeckSimulator({
               role="tabpanel"
               className="tab-content bg-base-100 border-base-300 rounded-box px-1 md:px-2 py-4 max-w-screen"
             >
-              <div className="flex flex-col gap-4">{/* */}</div>
+              <div className="flex flex-col gap-4">
+                <EventSpecial
+                  data={data}
+                  eventId={eventId}
+                  onChange={handleChangeParameters}
+                  onBlur={handleBlurParameters}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -186,7 +255,7 @@ export default function DeckSimulator({
           role="tabpanel"
           className="tab-content bg-base-100 border-base-300 rounded-box px-1 py-2"
         >
-          <HowToUse />
+          <DeckSimulatorHowToUse />
         </div>
         <input
           type="radio"
@@ -208,316 +277,6 @@ export default function DeckSimulator({
         </div>
       </div>
     </>
-  );
-}
-
-// function PatternSelect({
-//   data,
-//   onChangeSettings,
-// }: {
-//   data: DeckSimulatorData;
-//   onChangeSettings: (e: React.ChangeEvent<HTMLInputElement>) => void;
-// }) {
-//   // const customPattern = data.settings.customPattern;
-//   // let isInvalidPattern = false;
-//   // if (
-//   //   data.settings.patternSelect === "custom" &&
-//   //   customPattern.length !== 0 &&
-//   //   !/^[cnsCNS]+$/.test(customPattern)
-//   // ) {
-//   //   isInvalidPattern = true;
-//   // }
-
-//   return (
-//     <div>
-//       <h1 className="text-lg font-bold ml-1">
-//         {/* cSpell:disable */}
-//         <TextWithTooltip
-//           displayText="アタックパターン選択"
-//           tipText="夜行性に対してどのようなパターンでアタックを行うのかを選択します。カスタムパターンを選択する場合は具体的なパターンも入力します。例えば、本気炭酸を2回使用後に飴を2回使用する場合は「SSCC」と入力します。"
-//         />
-//         {/* cSpell:enable */}
-//       </h1>
-//       <label className="label cursor-pointer justify-start">
-//         <input
-//           type="radio"
-//           name="patternSelect"
-//           className="radio"
-//           value="specialOnly"
-//           onChange={onChangeSettings}
-//           // checked={data.settings.patternSelect === "specialOnly"}
-//         />
-//         <span className="label-text ml-2">本気炭酸 のみ</span>
-//       </label>
-//       <label className="label cursor-pointer justify-start">
-//         <input
-//           type="radio"
-//           name="patternSelect"
-//           className="radio"
-//           value="specialAfterNormal"
-//           onChange={onChangeSettings}
-//           // checked={data.settings.patternSelect === "specialAfterNormal"}
-//         />
-//         <span className="label-text ml-2">初手だけ 通常炭酸 → 本気炭酸</span>
-//       </label>
-//       <label className="label cursor-pointer justify-start">
-//         <input
-//           type="radio"
-//           name="patternSelect"
-//           className="radio"
-//           value="normalOnly"
-//           onChange={onChangeSettings}
-//           // checked={data.settings.patternSelect === "normalOnly"}
-//         />
-//         <span className="label-text ml-2">通常炭酸 のみ</span>
-//       </label>
-//       <label className="label cursor-pointer justify-start">
-//         <input
-//           type="radio"
-//           name="patternSelect"
-//           className="radio"
-//           value="specialAfterCandy"
-//           onChange={onChangeSettings}
-//           // checked={data.settings.patternSelect === "specialAfterCandy"}
-//         />
-//         <span className="label-text ml-2">初手だけ 飴 → 本気炭酸</span>
-//       </label>
-//       <label className="label cursor-pointer justify-start">
-//         <input
-//           type="radio"
-//           name="patternSelect"
-//           className="radio"
-//           value="normalAfterCandy"
-//           onChange={onChangeSettings}
-//           // checked={data.settings.patternSelect === "normalAfterCandy"}
-//         />
-//         <span className="label-text ml-2">初手だけ 飴 → 通常炭酸</span>
-//       </label>
-//       <div>
-//         <label className="label cursor-pointer justify-start">
-//           <input
-//             type="radio"
-//             name="patternSelect"
-//             className="radio"
-//             value="custom"
-//             onChange={onChangeSettings}
-//             // checked={data.settings.patternSelect === "custom"}
-//           />
-//           <span className="label-text ml-2">カスタムパターン</span>
-//           {
-//             //isInvalidPattern && (
-//             //  <span className="ml-4 text-error text-sm">
-//             //    &#x26a0; 無効なパターンです
-//             //  </span>
-//             //)
-//           }
-//         </label>
-//         <input
-//           type="text"
-//           name="customPattern"
-//           className="input input-bordered max-w-sm ml-4 text-sm"
-//           onChange={onChangeSettings}
-//           // value={data.settings.customPattern}
-//           placeholder="左からC(飴), N(通常炭酸), S(本気炭酸)を並べる"
-//         />
-//       </div>
-//     </div>
-//   );
-// }
-
-// function GirlsTable({
-//   data,
-//   onChangeParameters,
-//   onBlurParameters,
-// }: {
-//   data: DeckSimulatorData;
-//   onChangeParameters: (e: React.ChangeEvent<HTMLInputElement>) => void;
-//   onBlurParameters: (e: React.FocusEvent<HTMLInputElement>) => void;
-// }) {
-//   return (
-//     <>
-//       <h1 className="text-lg font-bold ml-1">
-//         <TextWithTooltip
-//           displayText="ハンター声援センバツ"
-//           tipText="ハンター声援センバツのデータを入力します。%ダメージ声援の場合は、ダメージ%の欄にその数値を入力します。攻援力UP声援の場合はダメージ%の欄は空白のままか、0を入力します。ハート数の欄は1回目の発動に必要なハート数を入力します。"
-//         />
-//       </h1>
-//       <div className="grid grid-cols-4 gap-2 mt-2">
-//         {/* <TableCell
-//           title="リーダー"
-//           data={data.leader?.[1]}
-//           onChangeParameters={onChangeParameters}
-//           onBlurParameters={onBlurParameters}
-//           positionName="leader"
-//           positionNum={1}
-//           isColSpan2
-//         />
-//         <TableCell
-//           title="助っ人"
-//           data={data.helper?.[1]}
-//           onChangeParameters={onChangeParameters}
-//           onBlurParameters={onBlurParameters}
-//           positionName="helper"
-//           positionNum={1}
-//           isColSpan2
-//         /> */}
-//         {/* {Array(49)
-//           .fill(0)
-//           .map((_, i) => (
-//             <TableCell
-//               key={i}
-//               title={String(i + 1)}
-//               data={data.member?.[i + 1]}
-//               onChangeParameters={onChangeParameters}
-//               onBlurParameters={onBlurParameters}
-//               positionName="member"
-//               positionNum={i + 1}
-//             />
-//           ))} */}
-//       </div>
-//     </>
-//   );
-// }
-
-// function TableCell({
-//   title,
-//   data,
-//   onChangeParameters,
-//   onBlurParameters,
-//   positionName,
-//   positionNum,
-//   isColSpan2,
-// }: {
-//   title: string;
-//   data: { damage?: number | string; heartNum?: number | string };
-//   onChangeParameters: (e: React.ChangeEvent<HTMLInputElement>) => void;
-//   onBlurParameters: (e: React.FocusEvent<HTMLInputElement>) => void;
-//   positionName: string;
-//   positionNum: number;
-//   isColSpan2?: boolean;
-// }) {
-//   const colSpanCss = isColSpan2 ? "col-span-2" : "col-span-1";
-
-//   return (
-//     <div
-//       className={`p-1 rounded-md odd:bg-base-200 even:bg-base-300 ${colSpanCss}`}
-//     >
-//       <p className="pl-1 text-sm">[{title}]</p>
-//       <div className="flex flex-col sm:flex-row gap-0 md:gap-1">
-//         <label className="form-control">
-//           <div className="label">
-//             <span className="label-text text-xs">ダメージ%</span>
-//           </div>
-//           <input
-//             type="text"
-//             inputMode="numeric"
-//             className="input input-sm input-bordered max-w-16 md:w-16 text-right"
-//             value={data?.damage === undefined ? "" : data.damage}
-//             onChange={onChangeParameters}
-//             onBlur={onBlurParameters}
-//             data-position-name={positionName}
-//             data-position-num={positionNum}
-//             name="damage"
-//           />
-//         </label>
-//         <label className="form-control">
-//           <div className="label">
-//             <span className="label-text text-xs">ハート数</span>
-//           </div>
-//           <input
-//             type="text"
-//             inputMode="numeric"
-//             className="input input-sm input-bordered max-w-16 md:w-16 text-right"
-//             value={data?.heartNum === undefined ? "" : data.heartNum}
-//             onChange={onChangeParameters}
-//             onBlur={onBlurParameters}
-//             data-position-name={positionName}
-//             data-position-num={positionNum}
-//             name="heartNum"
-//           />
-//         </label>
-//       </div>
-//     </div>
-//   );
-// }
-
-function HowToUse() {
-  return (
-    <section className="flex flex-col gap-4 my-2 px-2 md:px-4 leading-7 sm:max-w-screen-sm">
-      <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
-        本ページのシミュレーターは、ゲーム側でそのセンバツを使用する前に、期待したタイムラインの通りにハンター声援センバツの声援が発動するかどうかや、アタック毎のダメージ声援の合計値を確認できることを目標に作成しています。
-      </p>
-      <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
-        <Image
-          src="/image/decksim/raidwarSkill/01_attackPattern.png"
-          alt="アタックパターン選択の画像"
-          width={362}
-          height={330}
-          className="w-1/3 mb-2"
-        />
-        <p>
-          まずはアタックパターンを選択します。ここでは夜行性に対してどのようなパターンで捕獲を試みるのかを選びます。
-        </p>
-      </div>
-      <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
-        <Image
-          src="/image/decksim/raidwarSkill/02_deck.png"
-          alt="ハンター声援センバツの画像"
-          width={756}
-          height={257}
-          className="w-full mb-2"
-        />
-        <p>
-          次にハンター声援センバツグループのデータを入力していきます。
-          ダメージ系声援の場合は攻援力の何%分のダメージなのかと、発動に必要なハート数を入力します。
-          能力UP系声援の場合はダメージ%欄は空欄のままか、もしくは{" 0 "}
-          にしてハート数を入力します。
-        </p>
-        <p>
-          助っ人欄 (班員からレンタルする予定のガール) は省略可です。
-          また、確実にそこまでは発動しないメンバーも省略できます。
-        </p>
-      </div>
-      <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
-        <Image
-          src="/image/decksim/raidwarSkill/03_timeline.png"
-          alt="タイムラインの画像"
-          width={750}
-          height={357}
-          className="w-full mb-2"
-        />
-        <p>
-          ここまでに入力したデータに基づいて画像のようなタイムラインが形成されます。
-        </p>
-        <p>
-          時系列は上から下の順になっています。
-          横の破線は選択したアタックパターンに基づいて描写します。
-          この線はどのタイミングで声援発動の判定が行われるのかを表しています。
-        </p>
-        <p>
-          各ガールの声援の発動に必要なハートの充足状況は四角形で表されています。
-          四角形の下辺に到達した時点で発動条件を満たしたことになります。
-        </p>
-        <p>
-          右側にはアタック毎に飴何個分のダメージを与えられるのかを表示していています。
-          区間は1つ前のアタックからの差分値で、合計はその時点でのトータルのダメージ数値です。左側はダメージ声援の合計%値で、右側はさらに飴や炭酸などによる通常のアタック分も加算した数値です。
-        </p>
-      </div>
-      <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
-        <Image
-          src="/image/decksim/raidwarSkill/04_ngPattern.png"
-          alt="NGパターンの画像"
-          width={270}
-          height={157}
-          className="w-1/3 mb-2"
-        />
-        <p>
-          パターンによってはタイムライン中にこのようなバツ印が表示されることがあります。
-          これはその箇所でハートの繰り越しあふれが発生している状態を表しています。
-          1回のアタックで発動できる声援はラインごとに最大1つまでというゲーム側の仕様を再現したものであり、なるべくこの表示が出ないようなセンバツ構成になるとハートの無駄が少ないです。
-        </p>
-      </div>
-    </section>
   );
 }
 
@@ -613,34 +372,6 @@ function DataExportAndImport({
     </>
   );
 }
-
-// function ResultCanvas({ data }: { data: DeckSimulatorData }) {
-//   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-
-//   // data変化時にキャンバス描写を更新する
-//   useEffect(() => {
-//     const canvas = canvasRef.current;
-//     if (!canvas) return;
-//     const ctx = canvas.getContext("2d");
-//     if (!ctx) return;
-
-//     ctx.clearRect(0, 0, canvas.width, canvas.height);
-//   }, [data]);
-
-//   return (
-//     <div className="xl:basis-1/2 p-2">
-//       <h1 className="text-lg font-bold ml-1 mb-2">
-//         <TextWithTooltip
-//           displayText="タイムライン"
-//           tipText="メンバーの入れ替わり状況やアタック毎の予想ダメージ値を表示します。"
-//         />
-//       </h1>
-//       <div className="border border-base-300 rounded-md bg-base-200 overflow-x-scroll sm:overflow-x-auto w-[calc(100dvw-45px)] sm:w-auto max-w-[602px]">
-//         <canvas ref={canvasRef} width={600} height={3000} />
-//       </div>
-//     </div>
-//   );
-// }
 
 export function DeckSimulatorResultSummaryDiv({
   resultSummary,

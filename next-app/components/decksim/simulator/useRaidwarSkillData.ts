@@ -157,7 +157,7 @@ export function useRaidwarSkillData({
         }
 
         // onBlurで整数のnumber型に校正
-        let value = Number(e.currentTarget.value);
+        let value = Number(e.currentTarget.value.replaceAll(",", ""));
         if (Number.isNaN(value)) value = 0;
         if (value < 0) value = 0;
         value = Math.floor(value);
