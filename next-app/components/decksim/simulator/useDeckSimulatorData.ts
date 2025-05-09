@@ -7,92 +7,191 @@ import { setDeepValue } from "@/lib/setDeepValue";
 export interface DeckSimulatorData {
   dataType: keyof typeof EVENT_ID_TO_NAME_DICT;
   mainScenes: {
-    [K: number]: {
-      basePower?: number | string;
-      strap?: number | string;
-      type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
-      rarity?: "Luv" | "UR" | "SSR" | "SR";
-      cost?: number | string;
-      skillLv?: number | string;
-      grade?: "1年" | "2年" | "3年" | "その他";
-      isClubMatch?: boolean;
-      isDate?: boolean;
-      isTouch?: boolean;
-      isBirthday?: boolean;
-      isLimitBreak?: boolean;
-      isBestFriend?: boolean;
-      isSpecial?: boolean;
+    attack: {
+      [K: number]: {
+        basePower?: number | string;
+        strap?: number | string;
+        type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
+        rarity?: "Luv" | "UR" | "SSR" | "SR";
+        cost?: number | string;
+        skillLv?: number | string;
+        grade?: "1年" | "2年" | "3年" | "その他";
+        isClubMatch?: boolean;
+        isDate?: boolean;
+        isTouch?: boolean;
+        isBirthday?: boolean;
+        isLimitBreak?: boolean;
+        isBestFriend?: boolean;
+        isSpecial?: boolean;
+      };
+    };
+    defense?: {
+      [K: number]: {
+        basePower?: number | string;
+        strap?: number | string;
+        type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
+        rarity?: "Luv" | "UR" | "SSR" | "SR";
+        cost?: number | string;
+        skillLv?: number | string;
+        grade?: "1年" | "2年" | "3年" | "その他";
+        isClubMatch?: boolean;
+        isDate?: boolean;
+        isTouch?: boolean;
+        isBirthday?: boolean;
+        isLimitBreak?: boolean;
+        isBestFriend?: boolean;
+        isSpecial?: boolean;
+      };
     };
   };
   mainSkill: {
-    [K: number]: {
-      isValid?: boolean;
-      skillLv?: number | string;
-      target?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
-      range?: "主＋副" | "主のみ" | "副のみ";
-      subRange?: number | string;
-      type?: "攻" | "守" | "攻守";
-      strength?:
-        | "中"
-        | "中+"
-        | "中++"
-        | "大"
-        | "特大"
-        | "特大+"
-        | "特大++"
-        | "スーパー特大"
-        | "スーパー特大+"
-        | "スーパー特大++"
-        | "超スーパー特大";
-      oldUrChangeNum?: number | string;
+    attack: {
+      [K: number]: {
+        isValid?: boolean;
+        skillLv?: number | string;
+        target?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
+        range?: "主＋副" | "主のみ" | "副のみ";
+        subRange?: number | string;
+        type?: "攻" | "守" | "攻守";
+        strength?:
+          | "中"
+          | "中+"
+          | "中++"
+          | "大"
+          | "特大"
+          | "特大+"
+          | "特大++"
+          | "スーパー特大"
+          | "スーパー特大+"
+          | "スーパー特大++"
+          | "超スーパー特大";
+        oldUrChangeNum?: number | string;
+      };
+    };
+    defense?: {
+      [K: number]: {
+        isValid?: boolean;
+        skillLv?: number | string;
+        target?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
+        range?: "主＋副" | "主のみ" | "副のみ";
+        subRange?: number | string;
+        type?: "攻" | "守" | "攻守";
+        strength?:
+          | "中"
+          | "中+"
+          | "中++"
+          | "大"
+          | "特大"
+          | "特大+"
+          | "特大++"
+          | "スーパー特大"
+          | "スーパー特大+"
+          | "スーパー特大++"
+          | "超スーパー特大";
+        oldUrChangeNum?: number | string;
+      };
     };
   };
   subScenes: {
-    [K: number]: {
-      basePower?: number | string;
-      strap?: number | string;
-      type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
-      rarity?: "Luv" | "UR" | "SSR" | "SR";
-      cost?: number | string;
-      skillLv?: number | string;
-      grade?: "1年" | "2年" | "3年" | "その他";
-      isClubMatch?: boolean;
-      isDate?: boolean;
-      isTouch?: boolean;
-      isBirthday?: boolean;
-      isLimitBreak?: boolean;
-      isBestFriend?: boolean;
-      isSpecial?: boolean;
+    attack: {
+      [K: number]: {
+        basePower?: number | string;
+        strap?: number | string;
+        type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
+        rarity?: "Luv" | "UR" | "SSR" | "SR";
+        cost?: number | string;
+        skillLv?: number | string;
+        grade?: "1年" | "2年" | "3年" | "その他";
+        isClubMatch?: boolean;
+        isDate?: boolean;
+        isTouch?: boolean;
+        isBirthday?: boolean;
+        isLimitBreak?: boolean;
+        isBestFriend?: boolean;
+        isSpecial?: boolean;
+      };
+    };
+    defense?: {
+      [K: number]: {
+        basePower?: number | string;
+        strap?: number | string;
+        type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
+        rarity?: "Luv" | "UR" | "SSR" | "SR";
+        cost?: number | string;
+        skillLv?: number | string;
+        grade?: "1年" | "2年" | "3年" | "その他";
+        isClubMatch?: boolean;
+        isDate?: boolean;
+        isTouch?: boolean;
+        isBirthday?: boolean;
+        isLimitBreak?: boolean;
+        isBestFriend?: boolean;
+        isSpecial?: boolean;
+      };
     };
   };
   subSwitch: {
-    [K: number]: {
-      isValid?: boolean;
-      skillLv?: number | string;
-      target?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
-      range?: "主＋副" | "主のみ" | "副のみ";
-      subRange?: number | string;
-      type?: "攻" | "守" | "攻守";
-      strength?:
-        | "中"
-        | "中+"
-        | "中++"
-        | "大"
-        | "特大"
-        | "特大+"
-        | "特大++"
-        | "スーパー特大"
-        | "スーパー特大+"
-        | "スーパー特大++"
-        | "超スーパー特大";
-      oldUrChangeNum?: number | string;
+    attack: {
+      [K: number]: {
+        isValid?: boolean;
+        skillLv?: number | string;
+        target?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
+        range?: "主＋副" | "主のみ" | "副のみ";
+        subRange?: number | string;
+        type?: "攻" | "守" | "攻守";
+        strength?:
+          | "中"
+          | "中+"
+          | "中++"
+          | "大"
+          | "特大"
+          | "特大+"
+          | "特大++"
+          | "スーパー特大"
+          | "スーパー特大+"
+          | "スーパー特大++"
+          | "超スーパー特大";
+        oldUrChangeNum?: number | string;
+      };
+    };
+    defense?: {
+      [K: number]: {
+        isValid?: boolean;
+        skillLv?: number | string;
+        target?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
+        range?: "主＋副" | "主のみ" | "副のみ";
+        subRange?: number | string;
+        type?: "攻" | "守" | "攻守";
+        strength?:
+          | "中"
+          | "中+"
+          | "中++"
+          | "大"
+          | "特大"
+          | "特大+"
+          | "特大++"
+          | "スーパー特大"
+          | "スーパー特大+"
+          | "スーパー特大++"
+          | "超スーパー特大";
+        oldUrChangeNum?: number | string;
+      };
     };
   };
   preciousScenes: {
-    [K: number]: {
-      isValid?: boolean;
-      id?: number;
-      rarity?: number;
+    attack: {
+      [K: number]: {
+        isValid?: boolean;
+        id?: number;
+        rarity?: number;
+      };
+    };
+    defense?: {
+      [K: number]: {
+        isValid?: boolean;
+        id?: number;
+        rarity?: number;
+      };
     };
   };
   petitGirls: {
@@ -113,6 +212,7 @@ export interface DeckSimulatorData {
         [K: number]: {
           attack?: number;
           defense?: number;
+          type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ";
           skillTarget?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
           SkillValue?: number;
         };
@@ -122,20 +222,20 @@ export interface DeckSimulatorData {
   deckBonus: {
     normal: {
       [K: number]: {
-        level: number;
-        type: "攻" | "守" | "攻守";
+        level?: number | string;
+        type?: "攻" | "守" | "攻守";
       };
     };
     shine: {
-      level: number;
+      level: number | string;
       type: "攻守";
     };
     precious: {
-      level: number;
+      level: number | string;
       type: "攻守";
     };
     preciousPlus: {
-      level: number;
+      level: number | string;
       type: "攻守";
     };
   };
@@ -147,6 +247,7 @@ export interface DeckSimulatorData {
       | "attackCaptain"
       | "defenseCaptain"
       | "member";
+    maxAttackCost: number;
     mensCologne: {
       sweet: {
         level: number;
@@ -165,7 +266,7 @@ export interface DeckSimulatorData {
       cool: {
         isValid: boolean;
       };
-      pop?: {
+      pop: {
         isValid: boolean;
       };
     };
@@ -251,11 +352,21 @@ export interface DeckSimulatorData {
 }
 const initData: DeckSimulatorData = {
   dataType: "raidwar",
-  mainScenes: {},
-  mainSkill: {},
-  subScenes: {},
-  subSwitch: {},
-  preciousScenes: {},
+  mainScenes: {
+    attack: {},
+  },
+  mainSkill: {
+    attack: {},
+  },
+  subScenes: {
+    attack: {},
+  },
+  subSwitch: {
+    attack: {},
+  },
+  preciousScenes: {
+    attack: {},
+  },
   petitGirls: {
     totalPower: {
       attack: 0,
@@ -281,7 +392,8 @@ const initData: DeckSimulatorData = {
   },
   playerData: {
     playerType: "SWEETタイプ",
-    clubPosition: "leader",
+    clubPosition: "member",
+    maxAttackCost: 1000,
     mensCologne: {
       sweet: {
         level: 0,

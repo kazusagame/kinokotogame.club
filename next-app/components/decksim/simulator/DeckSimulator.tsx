@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useCallback } from "react";
 
 import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
 
@@ -131,59 +131,187 @@ export default function DeckSimulator({
           className="tab-content bg-base-100 border-base-300 rounded-box px-1 md:px-2 pt-2 pb-4 max-w-screen"
         >
           <div role="tablist" className="tabs tabs-lifted">
-            <input
-              type="radio"
-              name="sub_menu"
-              role="tab"
-              className="tab whitespace-nowrap max-md:!ps-2 max-md:!pe-2 max-md:checked:!ps-[6px] max-md:checked:!pe-[6px]"
-              aria-label="主センバツ"
-              defaultChecked
-            />
-            <div
-              role="tabpanel"
-              className="tab-content bg-base-100 border-base-300 rounded-box px-1 md:px-2 py-4 max-w-screen"
-            >
-              <div className="flex flex-col gap-4">
-                <MainScenes
-                  data={data}
-                  eventId={eventId}
-                  onChange={handleChangeParameters}
-                  onBlur={handleBlurParameters}
+            {eventId !== "raid-second" ? (
+              <>
+                <input
+                  type="radio"
+                  name="sub_menu"
+                  role="tab"
+                  className="tab whitespace-nowrap max-md:!ps-2 max-md:!pe-2 max-md:checked:!ps-[6px] max-md:checked:!pe-[6px]"
+                  aria-label="主センバツ"
+                  defaultChecked
                 />
-                <MainSkill
-                  data={data}
-                  eventId={eventId}
-                  onChange={handleChangeParameters}
-                  onBlur={handleBlurParameters}
+                <div
+                  role="tabpanel"
+                  className="tab-content bg-base-100 border-base-300 rounded-box px-1 md:px-2 py-4 max-w-screen"
+                >
+                  <div className="flex flex-col gap-6">
+                    <MainScenes
+                      data={data}
+                      eventId={eventId}
+                      type="攻援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
+                    />
+                    <hr className="mx-4 h-px bg-base-300 border-0" />
+                    <MainSkill
+                      data={data}
+                      eventId={eventId}
+                      type="攻援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
+                    />
+                  </div>
+                </div>
+                <input
+                  type="radio"
+                  name="sub_menu"
+                  role="tab"
+                  className="tab whitespace-nowrap max-md:!ps-2 max-md:!pe-2 max-md:checked:!ps-[6px] max-md:checked:!pe-[6px]"
+                  aria-label="副センバツ"
                 />
-              </div>
-            </div>
-            <input
-              type="radio"
-              name="sub_menu"
-              role="tab"
-              className="tab whitespace-nowrap max-md:!ps-2 max-md:!pe-2 max-md:checked:!ps-[6px] max-md:checked:!pe-[6px]"
-              aria-label="副センバツ"
-            />
-            <div
-              role="tabpanel"
-              className="tab-content bg-base-100 border-base-300 rounded-box px-1 md:px-2 py-4 max-w-screen"
-            >
-              <div className="flex flex-col gap-4">
-                <SubScenes
-                  data={data}
-                  eventId={eventId}
-                  onChange={handleChangeParameters}
-                  onBlur={handleBlurParameters}
+                <div
+                  role="tabpanel"
+                  className="tab-content bg-base-100 border-base-300 rounded-box px-1 md:px-2 py-4 max-w-screen"
+                >
+                  <div className="flex flex-col gap-6">
+                    <SubScenes
+                      data={data}
+                      eventId={eventId}
+                      type="攻援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
+                    />
+                    <hr className="mx-4 h-px bg-base-300 border-0" />
+                    <SubSwitch
+                      data={data}
+                      eventId={eventId}
+                      type="攻援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
+                    />
+                    <hr className="mx-4 h-px bg-base-300 border-0" />
+                    <PreciousScenes
+                      data={data}
+                      eventId={eventId}
+                      type="攻援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
+                    />
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <input
+                  type="radio"
+                  name="sub_menu"
+                  role="tab"
+                  className="tab whitespace-nowrap max-md:!ps-2 max-md:!pe-2 max-md:checked:!ps-[6px] max-md:checked:!pe-[6px]"
+                  aria-label="攻援センバツ"
+                  defaultChecked
                 />
-                <SubSwitch
-                  data={data}
-                  eventId={eventId}
-                  onChange={handleChangeParameters}
-                  onBlur={handleBlurParameters}
+                <div
+                  role="tabpanel"
+                  className="tab-content bg-base-100 border-base-300 rounded-box px-1 md:px-2 py-4 max-w-screen"
+                >
+                  <div className="flex flex-col gap-6">
+                    <MainScenes
+                      data={data}
+                      eventId={eventId}
+                      type="攻援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
+                    />
+                    <hr className="mx-4 h-px bg-base-300 border-0" />
+                    <MainSkill
+                      data={data}
+                      eventId={eventId}
+                      type="攻援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
+                    />
+                    <hr className="mx-4 h-px bg-base-300 border-0" />
+                    <SubScenes
+                      data={data}
+                      eventId={eventId}
+                      type="攻援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
+                    />
+                    <hr className="mx-4 h-px bg-base-300 border-0" />
+                    <SubSwitch
+                      data={data}
+                      eventId={eventId}
+                      type="攻援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
+                    />
+                    <hr className="mx-4 h-px bg-base-300 border-0" />
+                    <PreciousScenes
+                      data={data}
+                      eventId={eventId}
+                      type="攻援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
+                    />
+                  </div>
+                </div>
+                <input
+                  type="radio"
+                  name="sub_menu"
+                  role="tab"
+                  className="tab whitespace-nowrap max-md:!ps-2 max-md:!pe-2 max-md:checked:!ps-[6px] max-md:checked:!pe-[6px]"
+                  aria-label="守援センバツ"
                 />
-              </div>
-            </div>
+                <div
+                  role="tabpanel"
+                  className="tab-content bg-base-100 border-base-300 rounded-box px-1 md:px-2 py-4 max-w-screen"
+                >
+                  <div className="flex flex-col gap-6">
+                    <MainScenes
+                      data={data}
+                      eventId={eventId}
+                      type="守援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
+                    />
+                    <hr className="mx-4 h-px bg-base-300 border-0" />
+                    <MainSkill
+                      data={data}
+                      eventId={eventId}
+                      type="守援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
+                    />
+                    <hr className="mx-4 h-px bg-base-300 border-0" />
+                    <SubScenes
+                      data={data}
+                      eventId={eventId}
+                      type="守援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
+                    />
+                    <hr className="mx-4 h-px bg-base-300 border-0" />
+                    <SubSwitch
+                      data={data}
+                      eventId={eventId}
+                      type="守援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
+                    />
+                    <hr className="mx-4 h-px bg-base-300 border-0" />
+                    <PreciousScenes
+                      data={data}
+                      eventId={eventId}
+                      type="守援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
+                    />
+                  </div>
+                </div>
+              </>
+            )}
             <input
               type="radio"
               name="sub_menu"
@@ -195,25 +323,26 @@ export default function DeckSimulator({
               role="tabpanel"
               className="tab-content bg-base-100 border-base-300 rounded-box px-1 md:px-2 py-4 max-w-screen"
             >
-              <div className="flex flex-col gap-4">
-                <PreciousScenes
-                  data={data}
-                  eventId={eventId}
-                  onChange={handleChangeParameters}
-                  onBlur={handleBlurParameters}
-                />
+              <div className="flex flex-col gap-6">
                 <DeckBonus
                   data={data}
                   eventId={eventId}
                   onChange={handleChangeParameters}
                   onBlur={handleBlurParameters}
                 />
+                {eventId !== "raid-first" &&
+                  eventId !== "raid-second" &&
+                  eventId !== "raid-mega" &&
+                  eventId !== "raidwar" && (
+                    <hr className="mx-4 h-px bg-base-300 border-0" />
+                  )}
                 <PetitGirls
                   data={data}
                   eventId={eventId}
                   onChange={handleChangeParameters}
                   onBlur={handleBlurParameters}
                 />
+                <hr className="mx-4 h-px bg-base-300 border-0" />
                 <PlayerData
                   data={data}
                   eventId={eventId}
@@ -233,7 +362,7 @@ export default function DeckSimulator({
               role="tabpanel"
               className="tab-content bg-base-100 border-base-300 rounded-box px-1 md:px-2 py-4 max-w-screen"
             >
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-6">
                 <EventSpecial
                   data={data}
                   eventId={eventId}

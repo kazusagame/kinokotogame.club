@@ -3,8 +3,6 @@ import { useId } from "react";
 import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulatorData";
 import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
 
-import TextWithTooltip from "@/components/common/TextWithTooltip";
-
 export function DeckBonus({
   data,
   eventId,
@@ -18,5 +16,112 @@ export function DeckBonus({
   ) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }) {
-  return <></>;
+  const selectId = useId();
+  const isValidEvent =
+    eventId !== "raid-first" &&
+    eventId !== "raid-second" &&
+    eventId !== "raid-mega" &&
+    eventId !== "raidwar"
+      ? true
+      : false;
+
+  return (
+    <>
+      {isValidEvent && (
+        <>
+          <section className="pl-1">
+            <h2 className="text-lg font-bold">センバツボーナス</h2>
+            <div className="flex flex-col gap-4 mt-4 pl-2 md:pl-4">
+              {Array(5)
+                .fill(0)
+                .map((_, i) => (
+                  <div className="flex items-center gap-2 md:gap-4" key={i}>
+                    <p className="text-base">通常{i + 1}</p>
+                    <select
+                      id={`${selectId}-${i + 1}-1`}
+                      className="select select-sm select-bordered"
+                      value={data.deckBonus.normal?.[i + 1]?.level ?? "0"}
+                      onChange={onChange}
+                      onBlur={onBlur}
+                      data-path={`deckBonus.normal.${i + 1}.level`}
+                    >
+                      <option value="0">Lv0 (無効)</option>
+                      <option value="1">Lv1</option>
+                      <option value="2">Lv2</option>
+                      <option value="3">Lv3</option>
+                      <option value="4">Lv4</option>
+                      <option value="5">Lv5</option>
+                      <option value="6">Lv6</option>
+                      <option value="7">Lv7</option>
+                      <option value="8">Lv8</option>
+                    </select>
+                    <select
+                      id={`${selectId}-${i + 1}-2`}
+                      className="select select-sm select-bordered"
+                      value={data.deckBonus.normal?.[i + 1]?.type ?? "攻守"}
+                      onChange={onChange}
+                      data-path={`deckBonus.normal.${i + 1}.type`}
+                    >
+                      <option value="攻守">攻守</option>
+                      <option value="攻">攻</option>
+                      <option value="守">守</option>
+                    </select>
+                  </div>
+                ))}
+              <div className="flex flex-wrap items-center gap-2 md:gap-4">
+                <p className="text-base">シャイニング★スプラッシュ</p>
+                <select
+                  id={`${selectId}-6-1`}
+                  className="select select-sm select-bordered"
+                  value={data.deckBonus.shine.level ?? "0"}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  data-path={`deckBonus.shine.level`}
+                >
+                  <option value="0">Lv0 (無効)</option>
+                  <option value="1">Lv1</option>
+                  <option value="2">Lv2</option>
+                  <option value="3">Lv3</option>
+                  <option value="4">Lv4</option>
+                  <option value="5">Lv5</option>
+                </select>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 md:gap-4">
+                <p className="text-base">Precious★Friend</p>
+                <select
+                  id={`${selectId}-7-1`}
+                  className="select select-sm select-bordered"
+                  value={data.deckBonus.precious.level ?? "0"}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  data-path={`deckBonus.precious.level`}
+                >
+                  <option value="0">Lv0 (無効)</option>
+                  <option value="1">Lv1</option>
+                  <option value="2">Lv2</option>
+                  <option value="3">Lv3</option>
+                </select>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 md:gap-4">
+                <p className="text-base">Precious★Friend+</p>
+                <select
+                  id={`${selectId}-8-1`}
+                  className="select select-sm select-bordered"
+                  value={data.deckBonus.preciousPlus.level ?? "0"}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  data-path={`deckBonus.preciousPlus.level`}
+                >
+                  <option value="0">Lv0 (無効)</option>
+                  <option value="1">Lv1</option>
+                  <option value="2">Lv2</option>
+                  <option value="3">Lv3</option>
+                </select>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+    </>
+  );
 }

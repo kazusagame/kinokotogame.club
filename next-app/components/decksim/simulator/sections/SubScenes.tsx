@@ -8,11 +8,13 @@ import TextWithTooltip from "@/components/common/TextWithTooltip";
 export function SubScenes({
   data,
   eventId,
+  type,
   onChange,
   onBlur,
 }: {
   data: DeckSimulatorData;
   eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  type: "攻援" | "守援";
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
