@@ -1,6 +1,6 @@
 import { useId } from "react";
 
-import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulatorData";
+import { DeckSimulatorCommonData } from "@/components/decksim/simulator/useDeckSimulatorData";
 import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
@@ -11,7 +11,7 @@ export function PlayerData({
   onChange,
   onBlur,
 }: {
-  data: DeckSimulatorData;
+  data: DeckSimulatorCommonData;
   eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -50,7 +50,12 @@ export function PlayerData({
   return (
     <>
       <section className="pl-1">
-        <h2 className="text-lg font-bold">プレイヤーデータ・部活データ</h2>
+        <h2 className="text-lg font-bold">
+          プレイヤーデータ・部活データ [共通設定]
+        </h2>
+        <p className="text-sm mt-4 mb-6 pl-4">
+          こちらは共通設定です。ここでの変更は他のページにも反映されます。
+        </p>
         {isTypeMatchValidEvent && (
           <div className="flex flex-col gap-6 mt-4 pl-2 md:pl-4">
             <div className="flex items-center gap-2 md:gap-4">

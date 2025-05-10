@@ -1,5 +1,6 @@
 import {
   DeckSimulatorData,
+  DeckSimulatorCommonData,
   DeckSimulatorResult,
 } from "@/components/decksim/simulator/useDeckSimulatorData";
 
@@ -337,9 +338,11 @@ import {
 
 export const calcDeckSimulatorResult = ({
   data,
+  commonData,
   summary,
 }: {
   data: DeckSimulatorData;
+  commonData: DeckSimulatorCommonData;
   summary: DeckSimulatorResult;
 }) => {
   // calcBaseStage({ data, summary });

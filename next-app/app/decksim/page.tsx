@@ -247,7 +247,7 @@ export default function Page() {
             </div>
           </div>
 
-          <h2 className="text-xl mt-4 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
+          <h2 className="text-xl mt-6 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
             旧版のシミュレーターへのリンク
           </h2>
           <div className="leading-7">
@@ -265,7 +265,7 @@ export default function Page() {
               使い慣れた方を使い続けたい人もおられるかと思いますので、
               こちらに旧版へのリンクを設置しています。
             </p>
-            <p className="md:px-4">
+            <p className="md:px-4 mt-4">
               旧版はデータ更新やバグ修正を終了しておりますのでご了承ください。
               <br />
               また、新旧でデータの互換性はありません。
@@ -273,7 +273,7 @@ export default function Page() {
             </p>
           </div>
 
-          <h2 className="text-xl mt-4 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
+          <h2 className="text-xl mt-6 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
             動作テスト中のシミュレーター
           </h2>
           <div className="leading-7">
@@ -287,10 +287,22 @@ export default function Page() {
               <br />
               動作確認が完了したタイミングで現行バージョンからこちらに切り替わります。
             </p>
-            <p className="md:px-4">
+            <p className="md:px-4 mt-4">
               新旧でデータの互換性はありません。
               テスト中の新バージョンで保存したデータを現行バージョンで読み出そうとするとエラーになります。
             </p>
+            <p className="md:px-4 mt-4 mb-2">
+              基本的な作りは同じですが、使い勝手が若干変わっている部分があります。
+            </p>
+            <ul className="md:px-4 space-y-2">
+              <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
+                プレイヤーのタイプや部活役職、メンズコロンLvなどのプレイヤーデータが共通設定となり、1つのページでの変更がすべてのページに反映されるようになります。
+                <br />
+                今までは役職が変わったりメンズコロンのLvが上がるたびに各々のページで変更が必要だったのですが、この手間が省けるようになります。
+                <br />
+                ただし、この変更により複数のアカウントのデータを1つのブラウザで保管するのは難しくなりますので、アカウントごとにブラウザを変えたりブラウザのプロフィール機能を使用するなどでデータの分割をお願いします。
+              </li>
+            </ul>
           </div>
         </div>
       </div>

@@ -36,6 +36,7 @@ export default function DeckSimulator({
   const simulatorTabButtonRef = useRef(null);
   const {
     data,
+    commonData,
     resultSummary,
     handleChangeParameters,
     handleBlurParameters,
@@ -344,7 +345,7 @@ export default function DeckSimulator({
                 />
                 <hr className="mx-4 h-px bg-base-300 border-0" />
                 <PlayerData
-                  data={data}
+                  data={commonData}
                   eventId={eventId}
                   onChange={handleChangeParameters}
                   onBlur={handleBlurParameters}
