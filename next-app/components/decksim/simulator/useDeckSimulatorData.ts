@@ -182,27 +182,27 @@ export interface DeckSimulatorData {
     attack: {
       [K: number]: {
         isValid?: boolean;
-        id?: number;
-        rarity?: number;
+        id?: number | string;
+        rarity?: number | string;
       };
     };
     defense?: {
       [K: number]: {
         isValid?: boolean;
-        id?: number;
-        rarity?: number;
+        id?: number | string;
+        rarity?: number | string;
       };
     };
   };
   petitGirls: {
     totalPower: {
-      attack: number;
-      defense: number;
+      attack: number | string;
+      defense: number | string;
     };
     effects: {
       [K: number]: {
         [K: number]: {
-          id?: number;
+          id?: number | string;
         };
         isRarityUr?: boolean;
       };
@@ -210,11 +210,11 @@ export interface DeckSimulatorData {
     details: {
       [K: number]: {
         [K: number]: {
-          attack?: number;
-          defense?: number;
+          attack?: number | string;
+          defense?: number | string;
           type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ";
           skillTarget?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
-          SkillValue?: number;
+          SkillValue?: number | string;
         };
       };
     };
@@ -244,7 +244,7 @@ export interface DeckSimulatorData {
       enemyType?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "通常タイプ";
       attackType?: "元気炭酸アメ" | "元気炭酸" | "勇気炭酸";
       comboNum?: 0 | 1 | 5 | 10 | 50 | 100;
-      specialGirlsEffect?: number;
+      specialGirlsEffect?: number | string;
       isConvertPoint?: boolean;
       isAssistMembers?: boolean;
     };
@@ -252,51 +252,51 @@ export interface DeckSimulatorData {
       enemyType?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "通常タイプ";
       attackType?: "元気炭酸アメ" | "元気炭酸" | "勇気炭酸";
       comboNum?: 0 | 1 | 5 | 10 | 50 | 100;
-      specialGirlsEffect?: number;
+      specialGirlsEffect?: number | string;
       isConvertPoint?: boolean;
       isAssistMembers?: boolean;
     };
     raidMega?: {
       enemyType?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ";
       attackType?: "元気炭酸アメ" | "元気炭酸" | "勇気炭酸";
-      specialGirlsEffect?: number;
+      specialGirlsEffect?: number | string;
       isConvertPoint?: boolean;
-      attackUpBuff?: number;
-      defenseDownDeBuff?: number;
+      attackUpBuff?: number | string;
+      defenseDownDeBuff?: number | string;
     };
     raidwar?: {
       enemyType?: "夜行性激レア" | "超レアLv50" | "超レアLv59" | "超レアLv64";
       attackType?: "元気炭酸アメ" | "元気炭酸" | "本気炭酸";
-      attackNum?: number;
+      attackNum?: number | string;
       comboNum?: 0 | 6 | 12 | 18 | 24 | 30 | 36 | 42 | 48 | 50;
-      specialGirlsEffect?: number;
+      specialGirlsEffect?: number | string;
       isConvertPoint?: boolean;
-      attackUpBuff?: number;
-      totalSkillDamage?: number;
+      attackUpBuff?: number | string;
+      totalSkillDamage?: number | string;
     };
     clubcup?: {
-      pointUpBonus?: number;
-      attackUpBonus?: number;
+      pointUpBonus?: number | string;
+      attackUpBonus?: number | string;
       isWinBonus?: boolean;
       isConvertPoint?: boolean;
       attackType?: "全力勧誘" | "全力勧誘×3";
-      specialGirlsEffectPercent?: number;
-      specialGirlsEffectFix?: number;
-      rivalSkillEffectDown?: number;
+      specialGirlsEffectPercent?: number | string;
+      specialGirlsEffectFix?: number | string;
+      rivalSkillEffectDown?: number | string;
       isRivalLeader?: boolean;
     };
     championship?: {
       appealType?: "アピール対決" | "アピールタイム" | "レアアピールタイム";
-      heartNum?: number;
+      heartNum?: number | string;
       isTensionMax?: boolean;
-      TurnNum?: number;
-      specialGirlsEffect?: number;
+      TurnNum?: number | string;
+      specialGirlsEffect?: number | string;
       isConvertPoint?: boolean;
     };
     championshipDefense?: Record<string, never>;
     tower?: Record<string, never>;
     divrace?: {
-      specialGirlsEffect?: number;
+      specialGirlsEffect?: number | string;
       stage?: "ベースステージ" | "チャレンジステージ";
       item?: {
         [K: number]: {
@@ -305,11 +305,11 @@ export interface DeckSimulatorData {
       };
     };
     board?: {
-      specialGirlsEffect?: number;
-      weatherNum?: number;
+      specialGirlsEffect?: number | string;
+      weatherNum?: number | string;
       spaceEffects?: {
         [K: number]: {
-          value: string | number;
+          value: number | string;
         };
       };
     };
@@ -370,16 +370,16 @@ export interface DeckSimulatorCommonData {
       | "attackCaptain"
       | "defenseCaptain"
       | "member";
-    maxAttackCost: number;
+    maxAttackCost: number | string;
     mensCologne: {
       sweet: {
-        level: number;
+        level: number | string;
       };
       cool: {
-        level: number;
+        level: number | string;
       };
       pop: {
-        level: number;
+        level: number | string;
       };
     };
     clubItem: {

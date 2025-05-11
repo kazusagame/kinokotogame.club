@@ -1,7 +1,7 @@
 export interface PetitGirlsEffects {
   name: string,
   effectCondition: "タイプ" | "本命ガール" | "デート中" | "タッチ" | "誕生日" | "部活設備",
-  conditionDetail?: "全タイプ" | "SWEETタイプ" | "COOLタイプ" | "POPタイプ",
+  conditionDetail: "全タイプ" | "SWEETタイプ" | "COOLタイプ" | "POPタイプ",
   effectType: "攻援UP" | "守援UP" | "攻守UP",
   markerType: "ピンク" | "イエロー" | "ブルー",
   levelMaxValue: number,
@@ -10,13 +10,15 @@ export interface PetitGirlsEffects {
 interface InvalidPetitsGirlsEffects {
   name: string,
   effectCondition: "無効",
-  conditionDetail?: "無効",
+  conditionDetail: "無効",
+  effectType: "無効",
+  markerType: "無効",
 }
 
 export const PETIT_GIRLS_EFFECTS_DATA: {
   [K: number]: PetitGirlsEffects | InvalidPetitsGirlsEffects
 } = {
-  255: { name: "---", effectCondition: "無効" },
+  255: { name: "---", effectCondition: "無効", conditionDetail: "無効", effectType: "無効", markerType: "無効" },
 
   0: { name: "全ﾀｲﾌﾟの攻援UP", effectCondition: "タイプ", conditionDetail: "全タイプ", effectType: "攻援UP", markerType: "ピンク", levelMaxValue: 9.5, levelMaxValueUr: 10.5 },
   4: { name: "POPﾀｲﾌﾟの攻援UP", effectCondition: "タイプ", conditionDetail: "POPタイプ", effectType: "攻援UP", markerType: "ピンク", levelMaxValue: 9.5, levelMaxValueUr: 10.5 },
@@ -78,10 +80,10 @@ export const PETIT_GIRLS_EFFECTS_DATA: {
   74: { name: "SWEETﾀｲﾌﾟの攻守小UP", effectCondition: "タイプ", conditionDetail: "SWEETタイプ", effectType: "攻守UP", markerType: "イエロー", levelMaxValue: 3, levelMaxValueUr: 3.3 },
   78: { name: "COOLﾀｲﾌﾟの攻守小UP", effectCondition: "タイプ", conditionDetail: "COOLタイプ", effectType: "攻守UP", markerType: "イエロー", levelMaxValue: 3, levelMaxValueUr: 3.3 },
 
-  130: { name: "本命ｶﾞｰﾙの攻守UP", effectCondition: "本命ガール", effectType: "攻守UP", markerType: "ブルー", levelMaxValue: 11, levelMaxValueUr: 12 },
-  146: { name: "ﾃﾞｰﾄ中のｶﾞｰﾙの攻守UP", effectCondition: "デート中", effectType: "攻守UP", markerType: "ブルー", levelMaxValue: 11, levelMaxValueUr: 12 },
-  162: { name: "ﾀｯﾁﾎﾞｰﾅｽの効果UP", effectCondition: "タッチ", effectType: "攻守UP", markerType: "ブルー", levelMaxValue: 11, levelMaxValueUr: 12 },
-  178: { name: "誕生日のｶﾞｰﾙの攻守UP", effectCondition: "誕生日", effectType: "攻守UP", markerType: "ブルー", levelMaxValue: 19, levelMaxValueUr: 21 },
+  130: { name: "本命ｶﾞｰﾙの攻守UP", effectCondition: "本命ガール", conditionDetail: "全タイプ", effectType: "攻守UP", markerType: "ブルー", levelMaxValue: 11, levelMaxValueUr: 12 },
+  146: { name: "ﾃﾞｰﾄ中のｶﾞｰﾙの攻守UP", effectCondition: "デート中", conditionDetail: "全タイプ", effectType: "攻守UP", markerType: "ブルー", levelMaxValue: 11, levelMaxValueUr: 12 },
+  162: { name: "ﾀｯﾁﾎﾞｰﾅｽの効果UP", effectCondition: "タッチ", conditionDetail: "全タイプ", effectType: "攻守UP", markerType: "ブルー", levelMaxValue: 11, levelMaxValueUr: 12 },
+  178: { name: "誕生日のｶﾞｰﾙの攻守UP", effectCondition: "誕生日", conditionDetail: "全タイプ", effectType: "攻守UP", markerType: "ブルー", levelMaxValue: 19, levelMaxValueUr: 21 },
 
   198: { name: "ﾃﾚﾋﾞの効果UP", effectCondition: "部活設備", conditionDetail: "POPタイプ", effectType: "攻守UP", markerType: "ブルー", levelMaxValue: 120, levelMaxValueUr: 128 },
   202: { name: "ﾛｯｶｰの効果UP", effectCondition: "部活設備", conditionDetail: "SWEETタイプ", effectType: "攻守UP", markerType: "ブルー", levelMaxValue: 120, levelMaxValueUr: 128 },
