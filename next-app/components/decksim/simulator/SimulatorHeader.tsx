@@ -214,6 +214,7 @@ function LoadButton<
                   <div className="flex flex-row gap-2">
                     <p className="whitespace-nowrap">メモ：</p>
                     <textarea
+                      name={`memo-${i + 1}`}
                       className="textarea textarea-bordered textarea-xs text-sm w-60"
                       rows={2}
                       cols={15}
@@ -298,6 +299,7 @@ function SaveButton<T extends OriginSavedDataSummary>({
                   <div className="flex flex-row gap-2">
                     <p className="whitespace-nowrap">メモ：</p>
                     <textarea
+                      name={`memo-${i + 1}`}
                       className="textarea textarea-bordered textarea-xs text-sm w-60"
                       rows={2}
                       cols={15}

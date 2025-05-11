@@ -1,5 +1,3 @@
-import { useId } from "react";
-
 import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulatorData";
 import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
 
@@ -16,7 +14,6 @@ export function DeckBonus({
   ) => void;
   _onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }) {
-  const selectId = useId();
   const isValidEvent =
     eventId !== "raid-first" &&
     eventId !== "raid-second" &&
@@ -38,7 +35,7 @@ export function DeckBonus({
                   <div className="flex items-center gap-2 md:gap-4" key={i}>
                     <p className="text-base">通常{i + 1}</p>
                     <select
-                      id={`${selectId}-${i + 1}-1`}
+                      name={`normal.${i + 1}.level`}
                       className="select select-sm select-bordered"
                       value={data.deckBonus.normal?.[i + 1]?.level ?? "0"}
                       onChange={onChange}
@@ -55,7 +52,7 @@ export function DeckBonus({
                       <option value="8">Lv8</option>
                     </select>
                     <select
-                      id={`${selectId}-${i + 1}-2`}
+                      name={`normal.${i + 1}.type`}
                       className="select select-sm select-bordered"
                       value={data.deckBonus.normal?.[i + 1]?.type ?? "攻守"}
                       onChange={onChange}
@@ -70,7 +67,7 @@ export function DeckBonus({
               <div className="flex flex-wrap items-center gap-2 md:gap-4">
                 <p className="text-base">シャイニング★スプラッシュ</p>
                 <select
-                  id={`${selectId}-6-1`}
+                  name="shine.level"
                   className="select select-sm select-bordered"
                   value={data.deckBonus.shine.level ?? "0"}
                   onChange={onChange}
@@ -87,7 +84,7 @@ export function DeckBonus({
               <div className="flex flex-wrap items-center gap-2 md:gap-4">
                 <p className="text-base">Precious★Friend</p>
                 <select
-                  id={`${selectId}-7-1`}
+                  name="precious.level"
                   className="select select-sm select-bordered"
                   value={data.deckBonus.precious.level ?? "0"}
                   onChange={onChange}
@@ -102,7 +99,7 @@ export function DeckBonus({
               <div className="flex flex-wrap items-center gap-2 md:gap-4">
                 <p className="text-base">Precious★Friend+</p>
                 <select
-                  id={`${selectId}-8-1`}
+                  name="preciousPlus.level"
                   className="select select-sm select-bordered"
                   value={data.deckBonus.preciousPlus.level ?? "0"}
                   onChange={onChange}

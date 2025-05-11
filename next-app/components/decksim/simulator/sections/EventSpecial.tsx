@@ -1,5 +1,3 @@
-import { useId } from "react";
-
 import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulatorData";
 import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
 
@@ -43,7 +41,6 @@ function RaidwarSpecialSection({
   ) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }) {
-  const selectId = useId();
   const isSsrEnemy =
     data?.eventSpecial?.raidwar?.enemyType === undefined
       ? true
@@ -60,6 +57,7 @@ function RaidwarSpecialSection({
           <input
             type="text"
             inputMode="numeric"
+            name="specialGirlsEffect"
             className="input input-sm input-bordered max-w-28 md:w-28 text-right"
             value={formatNumber(
               data?.eventSpecial?.raidwar?.specialGirlsEffect
@@ -72,7 +70,7 @@ function RaidwarSpecialSection({
         <div className="flex items-center gap-2 md:gap-4">
           <p className="text-base">捕獲相手</p>
           <select
-            id={`${selectId}-1`}
+            name="enemyType"
             className="select select-sm select-bordered"
             value={data?.eventSpecial?.raidwar?.enemyType ?? "夜行性激レア"}
             onChange={onChange}
@@ -87,7 +85,7 @@ function RaidwarSpecialSection({
         <div className="flex flex-wrap items-center gap-2 md:gap-4">
           <p className="text-base">アタック種別</p>
           <select
-            id={`${selectId}-2`}
+            name="attackType"
             className="select select-sm select-bordered"
             value={data?.eventSpecial?.raidwar?.attackType ?? "元気炭酸アメ"}
             onChange={onChange}
@@ -102,6 +100,7 @@ function RaidwarSpecialSection({
           <input
             type="number"
             inputMode="numeric"
+            name="attackNum"
             min={1}
             className="input input-sm input-bordered max-w-20 md:w-20 text-right"
             value={data?.eventSpecial?.raidwar?.attackNum ?? 1}
@@ -113,7 +112,7 @@ function RaidwarSpecialSection({
         <div className="flex items-center gap-2 md:gap-4">
           <p className="text-base">コンボ数</p>
           <select
-            id={`${selectId}-3`}
+            name="comboNum"
             className="select select-sm select-bordered"
             value={data?.eventSpecial?.raidwar?.comboNum ?? 50}
             onChange={onChange}
@@ -146,6 +145,7 @@ function RaidwarSpecialSection({
             <input
               type="number"
               inputMode="numeric"
+              name="attackUpBuff"
               min={0}
               max={150}
               className="input input-sm input-bordered max-w-20 md:w-20 text-right mr-7"
@@ -172,6 +172,7 @@ function RaidwarSpecialSection({
             <input
               type="number"
               inputMode="numeric"
+              name="totalSkillDamage"
               min={0}
               className="input input-sm input-bordered max-w-24 md:w-24 text-right mr-7"
               value={data?.eventSpecial?.raidwar?.totalSkillDamage ?? 0}
@@ -191,8 +192,8 @@ function RaidwarSpecialSection({
               />
             </p>
             <input
-              id={`${selectId}-4`}
               type="checkbox"
+              name="isConvertPoint"
               className="checkbox checkbox-md"
               checked={data?.eventSpecial?.raidwar?.isConvertPoint === true}
               onChange={onChange}

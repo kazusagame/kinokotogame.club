@@ -258,6 +258,7 @@ function CandyDamage({
       <input
         type="text"
         inputMode="numeric"
+        name="candyDamage"
         className="input input-md input-bordered max-w-32 md:w-32 text-right mt-2 ml-4"
         data-stage-name={stageType}
         data-key-name="candyDamage"
@@ -433,6 +434,7 @@ function StageTable({
                     ) : (
                       <input
                         type="text"
+                        name={`clearStageCount${i + 1}`}
                         inputMode="numeric"
                         className="input input-xs input-bordered max-w-16 md:w-16 text-right"
                         data-stage-name={stageType}
@@ -453,6 +455,7 @@ function StageTable({
                   <td className="text-center">
                     <input
                       type="checkbox"
+                      name={`aimCountRewardDict${i + 1}`}
                       className="checkbox bg-base-100"
                       data-stage-name={stageType}
                       data-key-name="aimCountRewardDict"

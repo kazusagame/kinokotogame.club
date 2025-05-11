@@ -1,5 +1,3 @@
-import { useId } from "react";
-
 import { DeckSimulatorCommonData } from "@/components/decksim/simulator/useDeckSimulatorData";
 import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
 
@@ -18,7 +16,6 @@ export function PlayerData({
   ) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }) {
-  const selectId = useId();
   const getBgClass = (type?: string | undefined) =>
     type === "SWEETタイプ"
       ? "bg-sweet"
@@ -61,7 +58,7 @@ export function PlayerData({
             <div className="flex items-center gap-2 md:gap-4">
               <p className="text-base">自身のタイプ</p>
               <select
-                id={`${selectId}-1`}
+                name="playerType"
                 className={`select select-sm select-bordered ${getBgClass(
                   data.playerData.playerType
                 )}`}
@@ -87,7 +84,7 @@ export function PlayerData({
             <div className="flex items-center gap-2 md:gap-4">
               <p className="text-base">部活役職</p>
               <select
-                id={`${selectId}-2`}
+                name="clubPosition"
                 className="select select-sm select-bordered"
                 value={data.playerData.clubPosition ?? "member"}
                 onChange={onChange}
@@ -114,6 +111,7 @@ export function PlayerData({
               <input
                 type="number"
                 inputMode="numeric"
+                name="maxAttackCost"
                 min={1}
                 className="input input-sm input-bordered max-w-20 md:w-20 text-right"
                 value={data.playerData.maxAttackCost ?? 1000}
@@ -137,6 +135,7 @@ export function PlayerData({
                 <input
                   type="number"
                   inputMode="numeric"
+                  name="mensCologneSweetLevel"
                   min={0}
                   max={100}
                   className="input input-sm input-bordered max-w-20 md:w-20 text-right"
@@ -150,6 +149,7 @@ export function PlayerData({
                 <input
                   type="number"
                   inputMode="numeric"
+                  name="mensCologneCoolLevel"
                   min={0}
                   max={100}
                   className="input input-sm input-bordered max-w-20 md:w-20 text-right"
@@ -163,6 +163,7 @@ export function PlayerData({
                 <input
                   type="number"
                   inputMode="numeric"
+                  name="mensColognePopLevel"
                   min={0}
                   max={100}
                   className="input input-sm input-bordered max-w-20 md:w-20 text-right"
@@ -192,8 +193,8 @@ export function PlayerData({
               <div className="grid grid-cols-3 gap-2 px-1 py-2 odd:bg-base-300 even:bg-base-200 rounded-b-xl">
                 <div className="flex justify-center">
                   <input
-                    id={`${selectId}-3`}
                     type="checkbox"
+                    name="clubItemSweet"
                     className="checkbox"
                     checked={data.playerData.clubItem.sweet.isValid === true}
                     onChange={onChange}
@@ -202,8 +203,8 @@ export function PlayerData({
                 </div>
                 <div className="flex justify-center">
                   <input
-                    id={`${selectId}-4`}
                     type="checkbox"
+                    name="clubItemCool"
                     className="checkbox"
                     checked={data.playerData.clubItem.cool.isValid === true}
                     onChange={onChange}
@@ -212,8 +213,8 @@ export function PlayerData({
                 </div>
                 <div className="flex justify-center">
                   <input
-                    id={`${selectId}-5`}
                     type="checkbox"
+                    name="clubItemPop"
                     className="checkbox"
                     checked={data.playerData.clubItem.pop.isValid === true}
                     onChange={onChange}

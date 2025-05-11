@@ -51,6 +51,7 @@ function TotalPowerInputs({
       <input
         type="text"
         inputMode="numeric"
+        name="totalPowerAttack"
         className={`input input-sm input-bordered max-w-24 md:w-24 text-right ${
           isAttackValidEvent ? "" : "opacity-10"
         }`}
@@ -72,6 +73,7 @@ function TotalPowerInputs({
       <input
         type="text"
         inputMode="numeric"
+        name="totalPowerDefense"
         className={`input input-sm input-bordered max-w-24 md:w-24 text-right ${
           isDefenseValidEvent ? "" : "opacity-10"
         }`}
@@ -179,6 +181,7 @@ function EffectSelectionBlock({
                     <p className="text-base mr-2">レアリティUR</p>
                     <input
                       type="checkbox"
+                      name={`isRarityUr${i + 1}`}
                       className="checkbox"
                       checked={
                         data.petitGirls.effects?.[i + 1]?.isRarityUr === true
@@ -397,6 +400,7 @@ function EffectSelectModal({
 
             {/* Select box */}
             <select
+              name="effectSelect"
               className="select select-sm select-bordered w-full mt-4"
               value={selectedId ?? ""}
               onChange={(e) => setSelectedId(e.target.value)}
@@ -558,6 +562,7 @@ function RowBoardPetitDetail({
         <input
           type="text"
           inputMode="numeric"
+          name={`attack_${groupNum}_${girlNum}`}
           className="input input-sm input-bordered max-w-24 md:w-24 text-right"
           value={formatNumber(
             data.petitGirls.details?.[groupNum]?.[girlNum]?.attack
@@ -570,6 +575,7 @@ function RowBoardPetitDetail({
       {/* タイプ */}
       <div className="flex justify-center">
         <select
+          name={`type_${groupNum}_${girlNum}`}
           className={`select select-sm select-bordered ${getBgClass(
             data.petitGirls.details?.[groupNum]?.[girlNum]?.type
           )}`}
@@ -595,6 +601,7 @@ function RowBoardPetitDetail({
       <div className="flex justify-center">
         {girlNum <= 4 ? (
           <select
+            name={`skillTarget_${groupNum}_${girlNum}`}
             className={`select select-sm select-bordered ${getBgClass(
               data.petitGirls.details?.[groupNum]?.[girlNum]?.skillTarget
             )}`}
@@ -629,6 +636,7 @@ function RowBoardPetitDetail({
             <input
               type="number"
               inputMode="numeric"
+              name={`skillValue_${groupNum}_${girlNum}`}
               min={0}
               className="input input-sm input-bordered max-w-20 md:w-20 text-right mr-6"
               value={
@@ -636,7 +644,7 @@ function RowBoardPetitDetail({
               }
               onChange={onChange}
               onBlur={onBlur}
-              data-path={`petitGirls.details.${groupNum}.${girlNum}.SkillValue`}
+              data-path={`petitGirls.details.${groupNum}.${girlNum}.skillValue`}
             />
             <span className="absolute right-1 top-1/2 -translate-y-1/2">%</span>
           </div>
