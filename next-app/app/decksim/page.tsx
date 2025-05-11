@@ -200,7 +200,7 @@ export default function Page() {
       </div>
 
       <div className="container mx-auto mb-6 px-2 md:px-6 lg:max-w-screen-lg">
-        <h1 className="text-2xl mt-4">お知らせ</h1>
+        <h2 className="text-2xl mt-4">お知らせ</h2>
         <div className="my-4 md:pl-4 max-w-screen-sm">
           <h2 className="text-xl mt-4 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
             情報募集中

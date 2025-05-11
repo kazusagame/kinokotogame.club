@@ -182,8 +182,8 @@ export interface DeckSimulatorData {
     attack: {
       [K: number]: {
         isValid?: boolean;
-        id?: number | string;
-        rarity?: number | string;
+        id?: string;
+        rarity?: string;
       };
     };
     defense?: {
@@ -202,7 +202,7 @@ export interface DeckSimulatorData {
     effects: {
       [K: number]: {
         [K: number]: {
-          id?: number | string;
+          id?: string;
         };
         isRarityUr?: boolean;
       };
@@ -222,20 +222,20 @@ export interface DeckSimulatorData {
   deckBonus: {
     normal: {
       [K: number]: {
-        level?: number | string;
+        level?: string;
         type?: "攻" | "守" | "攻守";
       };
     };
     shine: {
-      level: number | string;
+      level: string;
       type: "攻守";
     };
     precious: {
-      level: number | string;
+      level: string;
       type: "攻守";
     };
     preciousPlus: {
-      level: number | string;
+      level: string;
       type: "攻守";
     };
   };
@@ -243,7 +243,7 @@ export interface DeckSimulatorData {
     raidFirst?: {
       enemyType?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "通常タイプ";
       attackType?: "元気炭酸アメ" | "元気炭酸" | "勇気炭酸";
-      comboNum?: 0 | 1 | 5 | 10 | 50 | 100;
+      comboNum?: "0" | "1" | "5" | "10" | "50" | "100";
       specialGirlsEffect?: number | string;
       isConvertPoint?: boolean;
       isAssistMembers?: boolean;
@@ -251,7 +251,7 @@ export interface DeckSimulatorData {
     raidSecond?: {
       enemyType?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "通常タイプ";
       attackType?: "元気炭酸アメ" | "元気炭酸" | "勇気炭酸";
-      comboNum?: 0 | 1 | 5 | 10 | 50 | 100;
+      comboNum?: "0" | "1" | "5" | "10" | "50" | "100";
       specialGirlsEffect?: number | string;
       isConvertPoint?: boolean;
       isAssistMembers?: boolean;
@@ -268,7 +268,17 @@ export interface DeckSimulatorData {
       enemyType?: "夜行性激レア" | "超レアLv50" | "超レアLv59" | "超レアLv64";
       attackType?: "元気炭酸アメ" | "元気炭酸" | "本気炭酸";
       attackNum?: number | string;
-      comboNum?: 0 | 6 | 12 | 18 | 24 | 30 | 36 | 42 | 48 | 50;
+      comboNum?:
+        | "0"
+        | "6"
+        | "12"
+        | "18"
+        | "24"
+        | "30"
+        | "36"
+        | "42"
+        | "48"
+        | "50";
       specialGirlsEffect?: number | string;
       isConvertPoint?: boolean;
       attackUpBuff?: number | string;
@@ -346,15 +356,15 @@ const initData: DeckSimulatorData = {
   deckBonus: {
     normal: {},
     shine: {
-      level: 0,
+      level: "0",
       type: "攻守",
     },
     precious: {
-      level: 0,
+      level: "0",
       type: "攻守",
     },
     preciousPlus: {
-      level: 0,
+      level: "0",
       type: "攻守",
     },
   },

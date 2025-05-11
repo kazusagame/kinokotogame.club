@@ -7,14 +7,14 @@ export function DeckBonus({
   data,
   eventId,
   onChange,
-  onBlur,
+  _onBlur,
 }: {
   data: DeckSimulatorData;
   eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
-  onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  _onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }) {
   const selectId = useId();
   const isValidEvent =
@@ -42,7 +42,6 @@ export function DeckBonus({
                       className="select select-sm select-bordered"
                       value={data.deckBonus.normal?.[i + 1]?.level ?? "0"}
                       onChange={onChange}
-                      onBlur={onBlur}
                       data-path={`deckBonus.normal.${i + 1}.level`}
                     >
                       <option value="0">Lv0 (無効)</option>
@@ -75,7 +74,6 @@ export function DeckBonus({
                   className="select select-sm select-bordered"
                   value={data.deckBonus.shine.level ?? "0"}
                   onChange={onChange}
-                  onBlur={onBlur}
                   data-path={`deckBonus.shine.level`}
                 >
                   <option value="0">Lv0 (無効)</option>
@@ -93,7 +91,6 @@ export function DeckBonus({
                   className="select select-sm select-bordered"
                   value={data.deckBonus.precious.level ?? "0"}
                   onChange={onChange}
-                  onBlur={onBlur}
                   data-path={`deckBonus.precious.level`}
                 >
                   <option value="0">Lv0 (無効)</option>
@@ -109,7 +106,6 @@ export function DeckBonus({
                   className="select select-sm select-bordered"
                   value={data.deckBonus.preciousPlus.level ?? "0"}
                   onChange={onChange}
-                  onBlur={onBlur}
                   data-path={`deckBonus.preciousPlus.level`}
                 >
                   <option value="0">Lv0 (無効)</option>

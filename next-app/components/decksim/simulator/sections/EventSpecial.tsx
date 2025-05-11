@@ -4,6 +4,7 @@ import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulat
 import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
+import { formatNumber } from "@/lib/formattedNumber";
 
 export function EventSpecial({
   data,
@@ -60,12 +61,9 @@ function RaidwarSpecialSection({
             type="text"
             inputMode="numeric"
             className="input input-sm input-bordered max-w-28 md:w-28 text-right"
-            value={(
-              data?.eventSpecial?.raidwar?.specialGirlsEffect ?? 0
-            ).toLocaleString("ja-JP", {
-              style: "decimal",
-              useGrouping: true,
-            })}
+            value={formatNumber(
+              data?.eventSpecial?.raidwar?.specialGirlsEffect
+            )}
             onChange={onChange}
             onBlur={onBlur}
             data-path="eventSpecial.raidwar.specialGirlsEffect"

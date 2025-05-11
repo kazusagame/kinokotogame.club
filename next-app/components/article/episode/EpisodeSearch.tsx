@@ -52,7 +52,7 @@ function ResultSummary({
 }) {
   return (
     <section className="mt-4 p-4 rounded-xl bg-base-200">
-      <h1 className="text-xl mb-4">検索結果</h1>
+      <h2 className="text-xl mb-4">検索結果</h2>
       <table className="table table-xs md:table-md w-auto mt-2">
         <thead>
           <tr>
@@ -101,7 +101,7 @@ function ResultEpisode({
           id={collection}
           className="mt-4 p-4 rounded-xl bg-base-200"
         >
-          <h1 className="text-xl mb-4">{EPISODE_NAME[collection]}</h1>
+          <h2 className="text-xl mb-4">{EPISODE_NAME[collection]}</h2>
           {isLoading ? (
             <span className="loading loading-spinner loading-lg"></span>
           ) : error[collection] ? (

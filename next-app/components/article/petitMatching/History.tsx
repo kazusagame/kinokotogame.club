@@ -11,7 +11,7 @@ interface HistoryProps {
 export default function History(props: HistoryProps) {
   return (
     <div className="flex flex-col justify-center items-center max-w-sm w-full mt-4 px-2 border-2 border-base-content border-solid rounded-lg shadow-md mb-4 md:mt-20">
-      <h1 className="mt-1">ゲーム履歴</h1>
+      <h2 className="mt-1">ゲーム履歴</h2>
       <div className="w-full mx-2 mt-2 mb-4 px-2">
         <div className="w-full bg-blue-500 text-white rounded-lg flex flex-row justify-around">
           <div>ボードサイズ 3 x 3</div>

@@ -249,12 +249,12 @@ function CandyDamage({
 }) {
   return (
     <div>
-      <h1 className="text-lg font-bold ml-1">
+      <h2 className="text-lg font-bold ml-1">
         <TextWithTooltip
           displayText="ハート1個分のダメージ量"
           tipText="飴1個使用時などのハート1個分相当のダメージ量を入力します。シミュレーターを使用して算出した期待値でもゲーム内で実測した平均値でも構いません。ベースステージとチャレンジステージとで風向きアイテムの効果量に若干の違いがあることには少し注意が必要です。"
         />
-      </h1>
+      </h2>
       <input
         type="text"
         inputMode="numeric"
@@ -283,12 +283,12 @@ function PatternSelect({
 }) {
   return (
     <div>
-      <h1 className="text-lg font-bold ml-1">
+      <h2 className="text-lg font-bold ml-1">
         <TextWithTooltip
           displayText="サポートパターン選択"
           tipText="熱中炭酸の使用傾向を選択します。"
         />
-      </h1>
+      </h2>
       <label className="label cursor-pointer justify-start">
         <input
           type="radio"
@@ -370,12 +370,12 @@ function StageTable({
 
   return (
     <div>
-      <h1 className="text-lg font-bold ml-1">
+      <h2 className="text-lg font-bold ml-1">
         <TextWithTooltip
           displayText="ステージ表"
           tipText="どのLvまでクリアするかや、各Lvでサポート回数制限ごぼうびを狙うかどうかを選択します。選択に基づいたサポートの推奨パターンの計算結果なども表示されます。"
         />
-      </h1>
+      </h2>
       <div className="mt-2 overflow-x-scroll w-[calc(100dvw-30px)] sm:w-[610px] md:w-[730px] lg:w-auto">
         <table className="table table-xs w-auto mb-2">
           <thead className="whitespace-normal">
@@ -723,7 +723,7 @@ function HowToUse() {
         </p>
       </div>
       <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
-        <h1 className="text-lg font-bold">注意事項</h1>
+        <h2 className="text-lg font-bold">注意事項</h2>
         <p>
           実際のゲーム中では声援などの発動率などの要因によってダメージ量に上振れと下振れが発生します。
           これにより本ページで計算したパターンの通りには行かない状況が多々発生します。
@@ -751,16 +751,16 @@ function DataExportAndImport({
   return (
     <>
       <section className="mt-2 mb-6 px-2 md:px-4 leading-7 sm:max-w-screen-sm">
-        <h1 className="text-lg font-bold">
+        <h2 className="text-lg font-bold">
           <TextWithTooltip
             displayText="保存データのバックアップ"
             tipText="ブラウザ内に保存したデータのバックアップファイルを取得したり、逆にバックアップファイルからブラウザ内のデータを復旧することが出来ます。"
           />
-        </h1>
+        </h2>
         <div className="pl-4 py-2">
-          <h1 className="mb-4">
+          <h2 className="mb-4">
             バックアップファイルの取得 (ブラウザ → ローカルファイル)
-          </h1>
+          </h2>
           <div className="flex flex-row gap-4 flex-wrap px-4">
             {Array(5)
               .fill(0)
@@ -776,9 +776,9 @@ function DataExportAndImport({
                 </button>
               ))}
           </div>
-          <h1 className="mt-6 mb-4">
+          <h2 className="mt-6 mb-4">
             バックアップファイルからの復旧 (ローカルファイル → ブラウザ)
-          </h1>
+          </h2>
           <div className="flex flex-row gap-4 flex-wrap px-4">
             {Array(5)
               .fill(0)

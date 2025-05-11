@@ -180,14 +180,14 @@ function PatternSelect({
 
   return (
     <div>
-      <h1 className="text-lg font-bold ml-1">
+      <h2 className="text-lg font-bold ml-1">
         {/* cSpell:disable */}
         <TextWithTooltip
           displayText="アタックパターン選択"
           tipText="夜行性に対してどのようなパターンでアタックを行うのかを選択します。カスタムパターンを選択する場合は具体的なパターンも入力します。例えば、本気炭酸を2回使用後に飴を2回使用する場合は「SSCC」と入力します。"
         />
         {/* cSpell:enable */}
-      </h1>
+      </h2>
       <label className="label cursor-pointer justify-start">
         <input
           type="radio"
@@ -284,12 +284,12 @@ function GirlsTable({
 }) {
   return (
     <>
-      <h1 className="text-lg font-bold ml-1">
+      <h2 className="text-lg font-bold ml-1">
         <TextWithTooltip
           displayText="ハンター声援センバツ"
           tipText="ハンター声援センバツのデータを入力します。%ダメージ声援の場合は、ダメージ%の欄にその数値を入力します。攻援力UP声援の場合はダメージ%の欄は空白のままか、0を入力します。ハート数の欄は1回目の発動に必要なハート数を入力します。"
         />
-      </h1>
+      </h2>
       <div className="grid grid-cols-4 gap-2 mt-2">
         <TableCell
           title="リーダー"
@@ -483,16 +483,16 @@ function DataExportAndImport({
   return (
     <>
       <section className="mt-2 mb-6 px-2 md:px-4 leading-7 sm:max-w-screen-sm">
-        <h1 className="text-lg font-bold">
+        <h2 className="text-lg font-bold">
           <TextWithTooltip
             displayText="保存データのバックアップ"
             tipText="ブラウザ内に保存したデータのバックアップファイルを取得したり、逆にバックアップファイルからブラウザ内のデータを復旧することが出来ます。"
           />
-        </h1>
+        </h2>
         <div className="pl-4 py-2">
-          <h1 className="mb-4">
+          <h2 className="mb-4">
             バックアップファイルの取得 (ブラウザ → ローカルファイル)
-          </h1>
+          </h2>
           <div className="flex flex-row gap-4 flex-wrap px-4">
             {Array(5)
               .fill(0)
@@ -508,9 +508,9 @@ function DataExportAndImport({
                 </button>
               ))}
           </div>
-          <h1 className="mt-6 mb-4">
+          <h2 className="mt-6 mb-4">
             バックアップファイルからの復旧 (ローカルファイル → ブラウザ)
-          </h1>
+          </h2>
           <div className="flex flex-row gap-4 flex-wrap px-4">
             {Array(5)
               .fill(0)
@@ -533,16 +533,16 @@ function DataExportAndImport({
       </section>
       <hr className="mx-4 mt-6 mb-4 h-px bg-base-300 border-0" />
       <section className="mt-4 mb-4 px-2 md:px-4 leading-7 sm:max-w-screen-sm">
-        <h1 className="text-lg font-bold">
+        <h2 className="text-lg font-bold">
           <TextWithTooltip
             displayText="センバツ生データのインポート"
             tipText="ゲームのセンバツ生データからのデータ抽出を試みます。UTF-8エンコード方式で保存したjson拡張子のファイルを指定します。"
           />
-        </h1>
+        </h2>
         <div className="pl-4 py-2">
-          <h1 className="mb-4">
+          <h2 className="mb-4">
             JSONファイルからのインポート (ローカルファイル → ブラウザ)
-          </h1>
+          </h2>
           <div className="px-4">
             <label>
               <div role="button" className="btn btn-sm btn-primary">
@@ -578,12 +578,12 @@ function ResultCanvas({ data }: { data: RaidwarSkillData }) {
 
   return (
     <div className="xl:basis-1/2 p-2">
-      <h1 className="text-lg font-bold ml-1 mb-2">
+      <h2 className="text-lg font-bold ml-1 mb-2">
         <TextWithTooltip
           displayText="タイムライン"
           tipText="メンバーの入れ替わり状況やアタック毎の予想ダメージ値を表示します。"
         />
-      </h1>
+      </h2>
       <div className="border border-base-300 rounded-md bg-base-200 overflow-x-scroll sm:overflow-x-auto w-[calc(100dvw-45px)] sm:w-auto max-w-[602px]">
         <canvas ref={canvasRef} width={600} height={3000} />
       </div>

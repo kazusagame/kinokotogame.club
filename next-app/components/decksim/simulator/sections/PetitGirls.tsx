@@ -1,12 +1,30 @@
-import { useState, useId } from "react";
+import { useState } from "react";
 
 import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulatorData";
 import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
-
-import TextWithTooltip from "@/components/common/TextWithTooltip";
 import { PETIT_GIRLS_EFFECTS_DATA } from "@/components/decksim/data/petitGirlsEffectData";
 
-export function PetitGirls({
+import TextWithTooltip from "@/components/common/TextWithTooltip";
+import { formatNumber } from "@/lib/formattedNumber";
+
+const MAIN_PETIT_GIRLS_COUNT = 3;
+const EFFECTS_PER_GIRL = 4;
+const GROUP_GIRLS_COUNT = 10;
+
+type EffectSelectModalProps = {
+  onSubmit: (effectId: string, filterState: FilterState) => void;
+  onClose: (selectedId: string | null, filterState: FilterState) => void;
+  initialSelected: string | null;
+  initialFilterState?: FilterState;
+};
+
+type FilterState = {
+  markerType: string | null;
+  conditionDetail: string | null;
+  effectType: string | null;
+};
+
+function TotalPowerInputs({
   data,
   eventId,
   onChange,
@@ -24,8 +42,61 @@ export function PetitGirls({
     eventId === "raid-second" || eventId === "championship-defense"
       ? true
       : false;
-  const isDetailsValidEvent = eventId === "board" ? true : false;
-  const selectId = useId();
+
+  return (
+    <div className="flex items-center gap-2 md:gap-4">
+      <p className={`text-base ${isAttackValidEvent ? "" : "opacity-10"}`}>
+        総攻援
+      </p>
+      <input
+        type="text"
+        inputMode="numeric"
+        className={`input input-sm input-bordered max-w-24 md:w-24 text-right ${
+          isAttackValidEvent ? "" : "opacity-10"
+        }`}
+        value={formatNumber(data.petitGirls.totalPower.attack)}
+        onChange={onChange}
+        onBlur={onBlur}
+        data-path="petitGirls.totalPower.attack"
+      />
+      <p
+        className={`text-base ${
+          isAttackValidEvent && isDefenseValidEvent ? "" : "opacity-10"
+        }`}
+      >
+        /
+      </p>
+      <p className={`text-base ${isDefenseValidEvent ? "" : "opacity-10"}`}>
+        総守援
+      </p>
+      <input
+        type="text"
+        inputMode="numeric"
+        className={`input input-sm input-bordered max-w-24 md:w-24 text-right ${
+          isDefenseValidEvent ? "" : "opacity-10"
+        }`}
+        value={formatNumber(data.petitGirls.totalPower.defense)}
+        onChange={onChange}
+        onBlur={onBlur}
+        data-path="petitGirls.totalPower.defense"
+      />
+    </div>
+  );
+}
+
+function EffectSelectionBlock({
+  data,
+  _eventId,
+  onChange,
+  _onBlur,
+}: {
+  data: DeckSimulatorData;
+  _eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
+  _onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
+}) {
   const [effectModalOpen, setEffectModalOpen] = useState(false);
   const [resolveEffectModal, setResolveEffectModal] = useState<
     ((id?: string) => void) | null
@@ -36,6 +107,40 @@ export function PetitGirls({
     conditionDetail: null,
     effectType: null,
   });
+
+  const handleClickEffectAddButton = async ({
+    girlNum,
+    effectNum,
+  }: {
+    girlNum: number;
+    effectNum: number;
+  }) => {
+    if (effectModalOpen) return;
+    const result = await openEffectSelectModal();
+    if (result !== undefined) {
+      onChange({
+        currentTarget: {
+          dataset: { path: `petitGirls.effects.${girlNum}.${effectNum}.id` },
+          value: result,
+        },
+      } as unknown as React.ChangeEvent<HTMLInputElement>);
+    }
+  };
+
+  const handleClickEffectDeleteButton = ({
+    girlNum,
+    effectNum,
+  }: {
+    girlNum: number;
+    effectNum: number;
+  }) => {
+    onChange({
+      currentTarget: {
+        dataset: { path: `petitGirls.effects.${girlNum}.${effectNum}.id` },
+        value: "255",
+      },
+    } as unknown as React.ChangeEvent<HTMLInputElement>);
+  };
 
   const openEffectSelectModal = (): Promise<string | undefined> => {
     setEffectModalOpen(true);
@@ -54,237 +159,87 @@ export function PetitGirls({
     setEffectModalOpen(false);
   };
 
-  const handleClickEffectAddButton = async ({
-    girlNum,
-    effectNum,
-  }: {
-    girlNum: number;
-    effectNum: number;
-  }) => {
-    const result = await openEffectSelectModal();
-    if (result !== undefined) {
-      const input = document.createElement("input");
-      input.setAttribute(
-        "data-path",
-        `petitGirls.effects.${girlNum}.${effectNum}.id`
-      );
-      input.value = result;
-      const event = new Event("change", { bubbles: true });
-      Object.defineProperty(event, "currentTarget", {
-        writable: false,
-        value: input,
-      });
-      onChange(event as unknown as React.ChangeEvent<HTMLInputElement>);
-    }
-  };
-
-  const handleClickEffectDeleteButton = ({
-    girlNum,
-    effectNum,
-  }: {
-    girlNum: number;
-    effectNum: number;
-  }) => {
-    const input = document.createElement("input");
-    input.setAttribute(
-      "data-path",
-      `petitGirls.effects.${girlNum}.${effectNum}.id`
-    );
-    input.value = "255";
-    const event = new Event("change", { bubbles: true });
-    Object.defineProperty(event, "currentTarget", {
-      writable: false,
-      value: input,
-    });
-    onChange(event as unknown as React.ChangeEvent<HTMLInputElement>);
-  };
-
   return (
-    <>
-      <section className="pl-1">
-        <h2 className="text-lg font-bold">ぷちセンバツ</h2>
-        <div className="flex flex-col gap-6 mt-4 pl-2 md:pl-4">
-          <div className="flex items-center gap-2 md:gap-4">
-            <p
-              className={`text-base ${isAttackValidEvent ? "" : "opacity-10"}`}
-            >
-              総攻援
-            </p>
-            <input
-              type="text"
-              inputMode="numeric"
-              className={`input input-sm input-bordered max-w-24 md:w-24 text-right ${
-                isAttackValidEvent ? "" : "opacity-10"
-              }`}
-              value={(data.petitGirls.totalPower.attack ?? 0).toLocaleString(
-                "ja-JP",
-                {
-                  style: "decimal",
-                  useGrouping: true,
-                }
-              )}
-              onChange={onChange}
-              onBlur={onBlur}
-              data-path="petitGirls.totalPower.attack"
-            />
-            <p
-              className={`text-base ${
-                isAttackValidEvent && isDefenseValidEvent ? "" : "opacity-10"
-              }`}
-            >
-              /
-            </p>
-            <p
-              className={`text-base ${isDefenseValidEvent ? "" : "opacity-10"}`}
-            >
-              総守援
-            </p>
-            <input
-              type="text"
-              inputMode="numeric"
-              className={`input input-sm input-bordered max-w-24 md:w-24 text-right ${
-                isDefenseValidEvent ? "" : "opacity-10"
-              }`}
-              value={(data.petitGirls.totalPower.defense ?? 0).toLocaleString(
-                "ja-JP",
-                {
-                  style: "decimal",
-                  useGrouping: true,
-                }
-              )}
-              onChange={onChange}
-              onBlur={onBlur}
-              data-path="petitGirls.totalPower.defense"
-            />
-          </div>
-          <div className="">
-            <p className="text-base">
-              <TextWithTooltip
-                displayText="応援力効果"
-                tipText="ぷち主センバツ3人の応援力効果を選択します。経験値UPなど発揮値計算に影響を与えない効果の場合は選択不要です。成長Lvを上限まで上げてある状態を想定して計算を行うため、まだ成長の途中で効果Lvが上限に到達していない場合は誤差が発生します。あらかじめご承知おきください。"
-              />
-            </p>
-            <div className="flex flex-col gap-3 mt-2 pl-2 md:pl-4">
-              {Array(3)
-                .fill(0)
-                .map((_, i) => (
-                  <div key={i} className="flex flex-col gap-2">
-                    <div className="flex items-center gap-24">
-                      <p className="text-base">{i + 1}:</p>
-                      <div>
-                        <label className="label cursor-pointer">
-                          <p className="text-base mr-2">レアリティUR</p>
-                          <input
-                            id={`${selectId}-${i}`}
-                            type="checkbox"
-                            className="checkbox"
-                            checked={
-                              data.petitGirls.effects?.[i + 1]?.isRarityUr ===
-                              true
-                            }
-                            onChange={onChange}
-                            data-path={`petitGirls.effects.${i + 1}.isRarityUr`}
-                          />
-                        </label>
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap gap-2 md:gap-4 pl-2 md:pl-4">
-                      {Array(4)
-                        .fill(0)
-                        .map((_, j) => (
-                          <div
-                            key={j}
-                            className="flex gap-3 items-center flex-none w-[266px] border border-base-300 rounded-box"
-                          >
-                            {data.petitGirls.effects?.[i]?.[j]?.id &&
-                            data.petitGirls.effects?.[i]?.[j]?.id !== "255" ? (
-                              <>
-                                <button
-                                  key={j}
-                                  onClick={() =>
-                                    handleClickEffectDeleteButton({
-                                      girlNum: i,
-                                      effectNum: j,
-                                    })
-                                  }
-                                  className="btn btn-sm btn-secondary"
-                                >
-                                  削除
-                                </button>
-                                <p>
-                                  {
-                                    PETIT_GIRLS_EFFECTS_DATA?.[
-                                      Number(data.petitGirls.effects[i][j].id)
-                                    ]?.name
-                                  }
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                <button
-                                  key={j}
-                                  onClick={() =>
-                                    handleClickEffectAddButton({
-                                      girlNum: i,
-                                      effectNum: j,
-                                    })
-                                  }
-                                  className="btn btn-sm btn-primary"
-                                >
-                                  追加
-                                </button>
-                              </>
-                            )}
-                          </div>
-                        ))}
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
-          {isDetailsValidEvent && (
-            <div className="">
-              <p className="text-base">
-                <TextWithTooltip
-                  displayText="ぷちガールちゃん詳細 (マス効果用) "
-                  tipText="ぶちセンバツ内のぷちガールちゃんの詳細データを入力します。ここでの入力は散策♪聖櫻ワールドのマス効果を計算する時にのみ使用されます。"
-                />
-              </p>
-              <div className="flex flex-col gap-3 mt-2 pl-2 md:pl-4">
-                {Array(3)
+    <div>
+      <p className="text-base">
+        <TextWithTooltip
+          displayText="応援力効果"
+          tipText="ぷち主センバツ3人の応援力効果を選択します。経験値UPなど発揮値計算に影響を与えない効果の場合は選択不要です。成長Lvを上限まで上げてある状態を想定して計算を行うため、まだ成長の途中で効果Lvが上限に到達していない場合は誤差が発生します。"
+        />
+      </p>
+      <div className="flex flex-col gap-3 mt-2 pl-2 md:pl-4">
+        {Array(MAIN_PETIT_GIRLS_COUNT)
+          .fill(0)
+          .map((_, i) => (
+            <div key={i} className="flex flex-col gap-2">
+              <div className="flex items-center gap-24">
+                <p className="text-base">{i + 1}:</p>
+                <div>
+                  <label className="label cursor-pointer">
+                    <p className="text-base mr-2">レアリティUR</p>
+                    <input
+                      type="checkbox"
+                      className="checkbox"
+                      checked={
+                        data.petitGirls.effects?.[i + 1]?.isRarityUr === true
+                      }
+                      onChange={onChange}
+                      data-path={`petitGirls.effects.${i + 1}.isRarityUr`}
+                    />
+                  </label>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-4 pl-2 md:pl-4">
+                {Array(EFFECTS_PER_GIRL)
                   .fill(0)
-                  .map((_, i) => (
-                    <div key={i} className="flex flex-col gap-2">
-                      <div className="flex items-center gap-4">
-                        <p className="text-base">{i + 1}:</p>
-                      </div>
-                      <div className="w-fit text-base pl-2 md:pl-4">
-                        <div className="grid grid-cols-2 sm:grid-cols-4 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl">
-                          <div>攻援力</div>
-                          <div>タイプ</div>
-                          <div>スキル効果</div>
-                          <div></div>
-                        </div>
-                        {Array(10)
-                          .fill(0)
-                          .map((_, j) => (
-                            <RowBoardPetitDetail
-                              key={j + 1}
-                              data={data}
-                              onChange={onChange}
-                              onBlur={onBlur}
-                              groupNum={i + 1}
-                              girlNum={j + 1}
-                            />
-                          ))}
-                      </div>
+                  .map((_, j) => (
+                    <div
+                      key={j}
+                      className="flex gap-3 items-center flex-none w-[266px] border border-base-300 rounded-box"
+                    >
+                      {data.petitGirls.effects?.[i]?.[j]?.id &&
+                      data.petitGirls.effects?.[i]?.[j]?.id !== "255" ? (
+                        <>
+                          <button
+                            onClick={() =>
+                              handleClickEffectDeleteButton({
+                                girlNum: i,
+                                effectNum: j,
+                              })
+                            }
+                            className="btn btn-sm btn-secondary"
+                          >
+                            削除
+                          </button>
+                          <p>
+                            {
+                              PETIT_GIRLS_EFFECTS_DATA?.[
+                                Number(data.petitGirls.effects[i][j].id)
+                              ]?.name
+                            }
+                          </p>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() =>
+                              handleClickEffectAddButton({
+                                girlNum: i,
+                                effectNum: j,
+                              })
+                            }
+                            className="btn btn-sm btn-primary"
+                          >
+                            追加
+                          </button>
+                        </>
+                      )}
                     </div>
                   ))}
               </div>
             </div>
-          )}
-        </div>
-      </section>
+          ))}
+      </div>
       {effectModalOpen && (
         <EffectSelectModal
           onSubmit={handleEffectSelect}
@@ -301,22 +256,9 @@ export function PetitGirls({
           initialFilterState={filterState}
         />
       )}
-    </>
+    </div>
   );
 }
-
-type EffectSelectModalProps = {
-  onSubmit: (effectId: string, filterState: FilterState) => void;
-  onClose: (selectedId: string | null, filterState: FilterState) => void;
-  initialSelected: string | null;
-  initialFilterState?: FilterState;
-};
-
-type FilterState = {
-  markerType: string | null;
-  conditionDetail: string | null;
-  effectType: string | null;
-};
 
 function EffectSelectModal({
   onSubmit,
@@ -338,7 +280,6 @@ function EffectSelectModal({
   const [selectedEffectType, setSelectedEffectType] = useState<string | null>(
     initialFilterState.effectType
   );
-  const selectId = useId();
 
   const handleFilterChange =
     (setter: React.Dispatch<React.SetStateAction<string | null>>) =>
@@ -456,7 +397,6 @@ function EffectSelectModal({
 
             {/* Select box */}
             <select
-              id={selectId}
               className="select select-sm select-bordered w-full mt-4"
               value={selectedId ?? ""}
               onChange={(e) => setSelectedId(e.target.value)}
@@ -489,6 +429,7 @@ function EffectSelectModal({
                 className="btn btn-sm btn-primary"
                 onClick={() =>
                   selectedId !== null &&
+                  filteredOptions.length !== 0 &&
                   onSubmit(selectedId, {
                     markerType: selectedMarkerType,
                     conditionDetail: selectedConditionDetail,
@@ -519,6 +460,67 @@ function EffectSelectModal({
   );
 }
 
+function PetitGirlDetailsBlock({
+  data,
+  eventId,
+  onChange,
+  onBlur,
+}: {
+  data: DeckSimulatorData;
+  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
+  onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
+}) {
+  const isDetailsValidEvent = eventId === "board" ? true : false;
+  return (
+    <>
+      {isDetailsValidEvent && (
+        <div>
+          <p className="text-base">
+            <TextWithTooltip
+              displayText="ぷちガールちゃん詳細 (マス効果用) "
+              tipText="ぶちセンバツ内のぷちガールちゃんの詳細データを入力します。ここでの入力は散策♪聖櫻ワールドのマス効果を計算する時にのみ使用されます。"
+            />
+          </p>
+          <div className="flex flex-col gap-3 mt-2 pl-2 md:pl-4">
+            {Array(MAIN_PETIT_GIRLS_COUNT)
+              .fill(0)
+              .map((_, i) => (
+                <div key={i} className="flex flex-col gap-2">
+                  <div className="flex items-center gap-4">
+                    <p className="text-base">{i + 1}:</p>
+                  </div>
+                  <div className="w-fit text-base pl-2 md:pl-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl">
+                      <div>攻援力</div>
+                      <div>タイプ</div>
+                      <div>スキル効果</div>
+                      <div></div>
+                    </div>
+                    {Array(GROUP_GIRLS_COUNT)
+                      .fill(0)
+                      .map((_, j) => (
+                        <RowBoardPetitDetail
+                          key={j + 1}
+                          data={data}
+                          onChange={onChange}
+                          onBlur={onBlur}
+                          groupNum={i + 1}
+                          girlNum={j + 1}
+                        />
+                      ))}
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
 function RowBoardPetitDetail({
   data,
   onChange,
@@ -534,7 +536,6 @@ function RowBoardPetitDetail({
   groupNum: number;
   girlNum: number;
 }) {
-  const selectId = useId();
   const getBgClass = (type?: string | undefined) =>
     type === "SWEETタイプ"
       ? "bg-sweet"
@@ -558,12 +559,9 @@ function RowBoardPetitDetail({
           type="text"
           inputMode="numeric"
           className="input input-sm input-bordered max-w-24 md:w-24 text-right"
-          value={(
-            data.petitGirls.details?.[groupNum]?.[girlNum]?.attack ?? 0
-          ).toLocaleString("ja-JP", {
-            style: "decimal",
-            useGrouping: true,
-          })}
+          value={formatNumber(
+            data.petitGirls.details?.[groupNum]?.[girlNum]?.attack
+          )}
           onChange={onChange}
           onBlur={onBlur}
           data-path={`petitGirls.details.${groupNum}.${girlNum}.attack`}
@@ -572,7 +570,6 @@ function RowBoardPetitDetail({
       {/* タイプ */}
       <div className="flex justify-center">
         <select
-          id={`${selectId}-1`}
           className={`select select-sm select-bordered ${getBgClass(
             data.petitGirls.details?.[groupNum]?.[girlNum]?.type
           )}`}
@@ -598,7 +595,6 @@ function RowBoardPetitDetail({
       <div className="flex justify-center">
         {girlNum <= 4 ? (
           <select
-            id={`${selectId}-2`}
             className={`select select-sm select-bordered ${getBgClass(
               data.petitGirls.details?.[groupNum]?.[girlNum]?.skillTarget
             )}`}
@@ -649,5 +645,47 @@ function RowBoardPetitDetail({
         )}
       </div>
     </div>
+  );
+}
+
+export function PetitGirls({
+  data,
+  eventId,
+  onChange,
+  onBlur,
+}: {
+  data: DeckSimulatorData;
+  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
+  onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
+}) {
+  return (
+    <>
+      <section className="pl-1">
+        <h2 className="text-lg font-bold">ぷちセンバツ</h2>
+        <div className="flex flex-col gap-6 mt-4 pl-2 md:pl-4">
+          <TotalPowerInputs
+            data={data}
+            eventId={eventId}
+            onChange={onChange}
+            onBlur={onBlur}
+          />
+          <EffectSelectionBlock
+            data={data}
+            _eventId={eventId}
+            onChange={onChange}
+            _onBlur={onBlur}
+          />
+          <PetitGirlDetailsBlock
+            data={data}
+            eventId={eventId}
+            onChange={onChange}
+            onBlur={onBlur}
+          />
+        </div>
+      </section>
+    </>
   );
 }

@@ -15,9 +15,9 @@ export default function Page() {
       <div className="container mx-auto mb-6 px-2 md:px-6 lg:max-w-screen-lg">
         <ArticleHeader />
         <section className="mt-4 mb-8 md:pl-4">
-          <h1 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
+          <h2 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
             本サイトのセンバツシミュレーターの特徴
-          </h1>
+          </h2>
           <div className="my-4 md:pl-4 leading-7">
             <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
               このセンバツシミュレーターは、センバツのデータを入力していくことで実際にゲーム側でそのセンバツを使用する前に予想発揮値が確認できることを目標に作成しています。
@@ -38,9 +38,9 @@ export default function Page() {
           </div>
         </section>
         <section className="mt-4 mb-8 md:pl-4">
-          <h1 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
+          <h2 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
             ツール部
-          </h1>
+          </h2>
           <Image
             src="/image/decksim/71_tools.png"
             alt="ツール部の画像"
@@ -86,12 +86,12 @@ export default function Page() {
           </div>
         </section>
         <section className="mt-4 mb-8 md:pl-4">
-          <h1 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
+          <h2 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
             データ部
-          </h1>
-          <h1 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
+          </h2>
+          <h2 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
             主センバツ / 副センバツ
-          </h1>
+          </h2>
           <Image
             src="/image/decksim/72_girls.png"
             alt="主センバツ/副センバツの画像"
@@ -160,9 +160,9 @@ export default function Page() {
           </div>
         </section>
         <section className="mt-4 mb-8 md:pl-4">
-          <h1 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
+          <h2 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
             声援
-          </h1>
+          </h2>
           <Image
             src="/image/decksim/73_skill.png"
             alt="声援の画像"
@@ -237,9 +237,9 @@ export default function Page() {
           </div>
         </section>
         <section className="mt-4 mb-8 md:pl-4">
-          <h1 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
+          <h2 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
             プレシャスシーン
-          </h1>
+          </h2>
           <Image
             src="/image/decksim/74_precious.png"
             alt="プレシャスシーンの画像"
@@ -296,9 +296,9 @@ export default function Page() {
           </div>
         </section>
         <section className="mt-4 mb-8 md:pl-4">
-          <h1 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
+          <h2 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
             ぷちセンバツ
-          </h1>
+          </h2>
           <Image
             src="/image/decksim/75_petit.png"
             alt="ぷちセンバツの画像"
@@ -328,9 +328,9 @@ export default function Page() {
           </div>
         </section>
         <section className="mt-4 mb-8 md:pl-4">
-          <h1 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
+          <h2 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
             センバツボーナス
-          </h1>
+          </h2>
           <Image
             src="/image/decksim/76_deck.png"
             alt="センバツボーナスの画像"
@@ -346,9 +346,9 @@ export default function Page() {
           </div>
         </section>
         <section className="mt-4 mb-8 md:pl-4">
-          <h1 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
+          <h2 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
             プレイヤーデータ・その他
-          </h1>
+          </h2>
           <Image
             src="/image/decksim/77_player.png"
             alt="プレイヤーデータ・その他の画像"
@@ -363,9 +363,9 @@ export default function Page() {
           </div>
         </section>
         <section className="mt-4 mb-8 md:pl-4">
-          <h1 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
+          <h2 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
             保存データのバックアップ方法
-          </h1>
+          </h2>
           <Image
             src="/image/decksim/78_directToJson.png"
             alt="保存データのバックアップ方法の画像"

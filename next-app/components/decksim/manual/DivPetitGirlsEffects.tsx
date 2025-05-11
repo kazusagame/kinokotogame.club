@@ -8,7 +8,10 @@ import { columnDefPetitGirlsEffects } from "@/lib/tableColumnDef/decksim/petitGi
 
 export default function DivPetitGirlsEffects() {
   const petitGirlsEffectsList = useMemo(
-    () => Object.values(PETIT_GIRLS_EFFECTS_DATA).slice(0, -1),
+    () =>
+      Object.values(PETIT_GIRLS_EFFECTS_DATA).filter(
+        (value) => value.effectCondition !== "無効"
+      ),
     []
   ) as unknown as { [K: string]: string | number | number[] }[];
   return (

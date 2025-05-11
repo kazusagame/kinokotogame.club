@@ -54,9 +54,9 @@ export default function Page() {
         </section>
 
         <section className="mt-4 mb-8 md:pl-4">
-          <h1 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
+          <h2 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
             ページ内リンク
-          </h1>
+          </h2>
           {/* prettier-ignore */}
           <div className="flex flex-wrap gap-4 pt-4 md:pl-4">
             <LinkButton url="#raidFirst" text="たすけて！マイヒーロー 前半 超レア" />
@@ -404,9 +404,9 @@ function FormulaSection({
 }) {
   return (
     <section className="mt-4 mb-8 md:pl-4" id={eventType}>
-      <h1 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
+      <h2 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
         {title}
-      </h1>
+      </h2>
       <div className="my-4 md:pl-4 leading-7">
         <h2 className="text-lg">発揮値計算式</h2>
         {children}
