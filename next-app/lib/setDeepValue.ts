@@ -9,12 +9,12 @@ type Primitive = string | number | boolean;
  * @export
  * @param {AnyObject} obj
  * @param {string} path chapter.section.titleなど
- * @param {Primitive} value
+ * @param {Primitive | { [key: string]: Primitive }} value
  */
 export function setDeepValue(
   obj: AnyObject,
   path: string,
-  value: Primitive
+  value: Primitive | { [key: string]: Primitive }
 ): void {
   const keys = path.split(".");
   if (keys.length === 0) return;

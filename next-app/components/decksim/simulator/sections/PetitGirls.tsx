@@ -7,9 +7,9 @@ import { PETIT_GIRLS_EFFECTS_DATA } from "@/components/decksim/data/petitGirlsEf
 import TextWithTooltip from "@/components/common/TextWithTooltip";
 import { formatNumber } from "@/lib/formattedNumber";
 
-const MAIN_PETIT_GIRLS_COUNT = 3;
+const MAIN_GIRLS_COUNT = 3;
 const EFFECTS_PER_GIRL = 4;
-const GROUP_GIRLS_COUNT = 10;
+const GIRLS_COUNT_IN_GROUP = 10;
 
 type EffectSelectModalProps = {
   onSubmit: (effectId: string, filterState: FilterState) => void;
@@ -88,16 +88,17 @@ function TotalPowerInputs({
 
 function EffectSelectionBlock({
   data,
-  _eventId,
   onChange,
-  _onBlur,
+  setValueAtPath,
 }: {
   data: DeckSimulatorData;
-  _eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
-  _onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  setValueAtPath: (obj: {
+    path: string;
+    value: { [K: string]: string };
+  }) => void;
 }) {
   const [effectModalOpen, setEffectModalOpen] = useState(false);
   const [resolveEffectModal, setResolveEffectModal] = useState<
@@ -120,12 +121,10 @@ function EffectSelectionBlock({
     if (effectModalOpen) return;
     const result = await openEffectSelectModal();
     if (result !== undefined) {
-      onChange({
-        currentTarget: {
-          dataset: { path: `petitGirls.effects.${girlNum}.${effectNum}.id` },
-          value: result,
-        },
-      } as unknown as React.ChangeEvent<HTMLInputElement>);
+      setValueAtPath({
+        path: `petitGirls.effects.${girlNum}.${effectNum}`,
+        value: { id: result },
+      });
     }
   };
 
@@ -136,12 +135,10 @@ function EffectSelectionBlock({
     girlNum: number;
     effectNum: number;
   }) => {
-    onChange({
-      currentTarget: {
-        dataset: { path: `petitGirls.effects.${girlNum}.${effectNum}.id` },
-        value: "255",
-      },
-    } as unknown as React.ChangeEvent<HTMLInputElement>);
+    setValueAtPath({
+      path: `petitGirls.effects.${girlNum}.${effectNum}`,
+      value: {},
+    });
   };
 
   const openEffectSelectModal = (): Promise<string | undefined> => {
@@ -170,7 +167,7 @@ function EffectSelectionBlock({
         />
       </p>
       <div className="flex flex-col gap-3 mt-2 pl-2 md:pl-4">
-        {Array(MAIN_PETIT_GIRLS_COUNT)
+        {Array(MAIN_GIRLS_COUNT)
           .fill(0)
           .map((_, i) => (
             <div key={i} className="flex flex-col gap-2">
@@ -200,8 +197,7 @@ function EffectSelectionBlock({
                       key={j}
                       className="flex gap-3 items-center flex-none w-[266px] border border-base-300 rounded-box"
                     >
-                      {data.petitGirls.effects?.[i]?.[j]?.id &&
-                      data.petitGirls.effects?.[i]?.[j]?.id !== "255" ? (
+                      {data.petitGirls.effects?.[i]?.[j]?.id ? (
                         <>
                           <button
                             onClick={() =>
@@ -292,7 +288,6 @@ function EffectSelectModal({
     };
 
   const filteredOptions = Object.entries(PETIT_GIRLS_EFFECTS_DATA)
-    .filter(([_, value]) => value.effectCondition !== "無効")
     .filter(
       ([_, value]) =>
         !selectedMarkerType || value.markerType === selectedMarkerType
@@ -489,7 +484,7 @@ function PetitGirlDetailsBlock({
             />
           </p>
           <div className="flex flex-col gap-3 mt-2 pl-2 md:pl-4">
-            {Array(MAIN_PETIT_GIRLS_COUNT)
+            {Array(MAIN_GIRLS_COUNT)
               .fill(0)
               .map((_, i) => (
                 <div key={i} className="flex flex-col gap-2">
@@ -503,7 +498,7 @@ function PetitGirlDetailsBlock({
                       <div>スキル効果</div>
                       <div></div>
                     </div>
-                    {Array(GROUP_GIRLS_COUNT)
+                    {Array(GIRLS_COUNT_IN_GROUP)
                       .fill(0)
                       .map((_, j) => (
                         <RowBoardPetitDetail
@@ -661,6 +656,7 @@ export function PetitGirls({
   eventId,
   onChange,
   onBlur,
+  setValueAtPath,
 }: {
   data: DeckSimulatorData;
   eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
@@ -668,6 +664,10 @@ export function PetitGirls({
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  setValueAtPath: (obj: {
+    path: string;
+    value: { [K: string]: string };
+  }) => void;
 }) {
   return (
     <>
@@ -682,9 +682,8 @@ export function PetitGirls({
           />
           <EffectSelectionBlock
             data={data}
-            _eventId={eventId}
             onChange={onChange}
-            _onBlur={onBlur}
+            setValueAtPath={setValueAtPath}
           />
           <PetitGirlDetailsBlock
             data={data}

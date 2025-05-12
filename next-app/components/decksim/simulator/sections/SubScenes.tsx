@@ -1,5 +1,3 @@
-import { useId } from "react";
-
 import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulatorData";
 import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
 

@@ -42,6 +42,7 @@ export default function DeckSimulator({
     handleBlurParameters,
     handleLoadData,
     handleImportRawData,
+    setValueAtPath,
   } = useDeckSimulatorData({
     simulatorTabButtonRef: simulatorTabButtonRef,
     eventId: eventId,
@@ -329,7 +330,6 @@ export default function DeckSimulator({
                   data={data}
                   eventId={eventId}
                   onChange={handleChangeParameters}
-                  _onBlur={handleBlurParameters}
                 />
                 {eventId !== "raid-first" &&
                   eventId !== "raid-second" &&
@@ -342,6 +342,7 @@ export default function DeckSimulator({
                   eventId={eventId}
                   onChange={handleChangeParameters}
                   onBlur={handleBlurParameters}
+                  setValueAtPath={setValueAtPath}
                 />
                 <hr className="mx-4 h-px bg-base-300 border-0" />
                 <PlayerData

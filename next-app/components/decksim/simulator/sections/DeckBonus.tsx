@@ -5,14 +5,12 @@ export function DeckBonus({
   data,
   eventId,
   onChange,
-  _onBlur,
 }: {
   data: DeckSimulatorData;
   eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
-  _onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }) {
   const isValidEvent =
     eventId !== "raid-first" &&

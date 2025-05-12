@@ -1,7 +1,8 @@
-import { useId } from "react";
+import { useState } from "react";
 
 import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulatorData";
 import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
+import { PRECIOUS_SCENES_DATA } from "@/components/decksim/data/preciousScenesData";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
 

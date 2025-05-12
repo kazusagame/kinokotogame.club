@@ -660,6 +660,36 @@ export function useDeckSimulatorData({
     [importRawDataDeckSimulator]
   );
 
+  // 直接、パスや値を受け取ってステートやサマリーの更新をトリガーする
+  const setValueAtPath = useCallback(
+    ({
+      path,
+      value,
+    }: {
+      path: string;
+      value: { [K: string]: string | number | boolean };
+    }) => {
+      const nextData = structuredClone(data);
+      const nextCommonData = structuredClone(commonData);
+
+      const keys = path.split(".");
+      if (keys.length !== 0) {
+        if (keys[0] !== "playerData") {
+          // playerData以外
+          setDeepValue(nextData, path, value);
+          setData(nextData);
+        } else {
+          // playerDataの変更の場合は、ローカルストレージ値の更新も行う。
+          setDeepValue(nextCommonData, path, value);
+          setCommonData(nextCommonData);
+          savePlayerData({ playerData: nextCommonData["playerData"] });
+        }
+        calcResultSummaries({ data: nextData, commonData: nextCommonData });
+      }
+    },
+    [data, commonData, calcResultSummaries]
+  );
+
   return {
     data,
     commonData,
@@ -668,6 +698,7 @@ export function useDeckSimulatorData({
     handleBlurParameters,
     handleLoadData,
     handleImportRawData,
+    setValueAtPath,
   };
 }
 

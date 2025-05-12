@@ -7,21 +7,10 @@ export interface PetitGirlsEffects {
   levelMaxValue: number,
   levelMaxValueUr: number,
 }
-interface InvalidPetitsGirlsEffects {
-  name: string,
-  effectCondition: "無効",
-  conditionDetail: "無効",
-  effectType: "無効",
-  markerType: "無効",
-  levelMaxValue: number,
-  levelMaxValueUr: number,
-}
 
 export const PETIT_GIRLS_EFFECTS_DATA: {
-  [K: number]: PetitGirlsEffects | InvalidPetitsGirlsEffects
+  [K: number]: PetitGirlsEffects
 } = {
-  255: { name: "---", effectCondition: "無効", conditionDetail: "無効", effectType: "無効", markerType: "無効", levelMaxValue:0, levelMaxValueUr: 0 },
-
   0: { name: "全ﾀｲﾌﾟの攻援UP", effectCondition: "タイプ", conditionDetail: "全タイプ", effectType: "攻援UP", markerType: "ピンク", levelMaxValue: 9.5, levelMaxValueUr: 10.5 },
   4: { name: "POPﾀｲﾌﾟの攻援UP", effectCondition: "タイプ", conditionDetail: "POPタイプ", effectType: "攻援UP", markerType: "ピンク", levelMaxValue: 9.5, levelMaxValueUr: 10.5 },
   8: { name: "SWEETﾀｲﾌﾟの攻援UP", effectCondition: "タイプ", conditionDetail: "SWEETタイプ", effectType: "攻援UP", markerType: "ピンク", levelMaxValue: 9.5, levelMaxValueUr: 10.5 },
