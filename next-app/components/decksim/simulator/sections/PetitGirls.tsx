@@ -195,10 +195,17 @@ function EffectSelectionBlock({
                   .map((_, j) => (
                     <div
                       key={j}
-                      className="flex gap-3 items-center flex-none w-[266px] border border-base-300 rounded-box"
+                      className="flex justify-end gap-2 items-center flex-none w-[266px] border border-base-300 rounded-box"
                     >
                       {data.petitGirls.effects?.[i]?.[j]?.id ? (
                         <>
+                          <p className="flex-auto pl-3">
+                            {
+                              PETIT_GIRLS_EFFECTS_DATA?.[
+                                Number(data.petitGirls.effects[i][j].id)
+                              ]?.name
+                            }
+                          </p>
                           <button
                             onClick={() =>
                               handleClickEffectDeleteButton({
@@ -210,13 +217,6 @@ function EffectSelectionBlock({
                           >
                             削除
                           </button>
-                          <p>
-                            {
-                              PETIT_GIRLS_EFFECTS_DATA?.[
-                                Number(data.petitGirls.effects[i][j].id)
-                              ]?.name
-                            }
-                          </p>
                         </>
                       ) : (
                         <>
@@ -304,7 +304,7 @@ function EffectSelectModal({
     .sort(([a], [b]) => Number(a) - Number(b));
 
   return (
-    <dialog id="effect-modal" className="modal" open>
+    <dialog id="effect-modal" className="modal modal-open" open>
       <div className="modal-box">
         <form method="dialog">
           <button
@@ -319,13 +319,13 @@ function EffectSelectModal({
           >
             ✕
           </button>
-          <div className="flex flex-col gap-5 mt-6">
+          <div className="flex flex-col gap-6 mt-6">
             {/* Marker Type */}
             <div>
               <div className="font-bold">マーカータイプ</div>
-              <div className="flex gap-5 flex-wrap mt-3">
+              <div className="flex gap-5 flex-wrap pl-2 md:pl-4 mt-3">
                 {["未選択", "ピンク", "イエロー", "ブルー"].map((type) => (
-                  <label key={type} className="flex items-center gap-2">
+                  <label key={type} className="label cursor-pointer flex items-center gap-2">
                     <input
                       type="radio"
                       name="markerType"
@@ -345,7 +345,7 @@ function EffectSelectModal({
             {/* Condition Detail */}
             <div>
               <div className="font-bold">発動条件</div>
-              <div className="flex gap-5 flex-wrap mt-3">
+              <div className="flex gap-5 flex-wrap pl-2 md:pl-4 mt-3">
                 {[
                   "未選択",
                   "全タイプ",
@@ -353,7 +353,7 @@ function EffectSelectModal({
                   "COOLタイプ",
                   "POPタイプ",
                 ].map((detail) => (
-                  <label key={detail} className="flex items-center gap-2">
+                  <label key={detail} className="label cursor-pointer flex items-center gap-2">
                     <input
                       type="radio"
                       name="conditionDetail"
@@ -374,9 +374,9 @@ function EffectSelectModal({
             {/* Effect Type */}
             <div>
               <div className="font-bold">効果タイプ</div>
-              <div className="flex gap-5 flex-wrap mt-3">
+              <div className="flex gap-5 flex-wrap pl-2 md:pl-4 mt-3">
                 {["未選択", "攻援UP", "守援UP", "攻守UP"].map((type) => (
-                  <label key={type} className="flex items-center gap-2">
+                  <label key={type} className="label cursor-pointer flex items-center gap-2">
                     <input
                       type="radio"
                       name="effectType"
@@ -396,7 +396,7 @@ function EffectSelectModal({
             {/* Select box */}
             <select
               name="effectSelect"
-              className="select select-sm select-bordered w-full mt-4"
+              className="select select-md select-bordered w-full mt-4"
               value={selectedId ?? ""}
               onChange={(e) => setSelectedId(e.target.value)}
             >
@@ -422,10 +422,10 @@ function EffectSelectModal({
               ))}
             </select>
 
-            <div className="flex justify-end">
+            <div className="flex justify-center">
               <button
                 type="button"
-                className="btn btn-sm btn-primary"
+                className="btn btn-md w-32 btn-primary"
                 onClick={() =>
                   selectedId !== null &&
                   filteredOptions.length !== 0 &&

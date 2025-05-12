@@ -26,7 +26,7 @@ export function DeckBonus({
         <>
           <section className="pl-1">
             <h2 className="text-lg font-bold">センバツボーナス</h2>
-            <div className="flex flex-col gap-4 mt-4 pl-2 md:pl-4">
+            <div className="flex flex-col gap-6 mt-4 pl-2 md:pl-4">
               {Array(5)
                 .fill(0)
                 .map((_, i) => (

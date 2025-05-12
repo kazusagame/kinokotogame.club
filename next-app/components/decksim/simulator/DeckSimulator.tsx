@@ -195,10 +195,8 @@ export default function DeckSimulator({
                     <hr className="mx-4 h-px bg-base-300 border-0" />
                     <PreciousScenes
                       data={data}
-                      eventId={eventId}
                       type="攻援"
-                      onChange={handleChangeParameters}
-                      onBlur={handleBlurParameters}
+                      setValueAtPath={setValueAtPath}
                     />
                   </div>
                 </div>
@@ -252,10 +250,8 @@ export default function DeckSimulator({
                     <hr className="mx-4 h-px bg-base-300 border-0" />
                     <PreciousScenes
                       data={data}
-                      eventId={eventId}
                       type="攻援"
-                      onChange={handleChangeParameters}
-                      onBlur={handleBlurParameters}
+                      setValueAtPath={setValueAtPath}
                     />
                   </div>
                 </div>
@@ -305,10 +301,8 @@ export default function DeckSimulator({
                     <hr className="mx-4 h-px bg-base-300 border-0" />
                     <PreciousScenes
                       data={data}
-                      eventId={eventId}
                       type="守援"
-                      onChange={handleChangeParameters}
-                      onBlur={handleBlurParameters}
+                      setValueAtPath={setValueAtPath}
                     />
                   </div>
                 </div>
@@ -510,121 +504,122 @@ export function DeckSimulatorResultSummaryDiv({
   resultSummary: DeckSimulatorResult;
 }) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [startPage, setStartPage] = useState<number>(0);
-  const chunks: string[][] = [];
-  const maxPageNum: number = Math.ceil(
-    Object.keys(resultSummary.summaries).length / 3
-  );
-  for (let page = startPage; page < maxPageNum; page++) {
-    chunks[page - startPage] = [];
-    for (let i = 0; i < 3; i++) {
-      if (resultSummary.summaries[page * 3 + i])
-        chunks[page - startPage].push(resultSummary.summaries[page * 3 + i]);
-    }
-  }
+  // const [startPage, setStartPage] = useState<number>(0);
+  // const chunks: string[][] = [];
+  // const maxPageNum: number = Math.ceil(
+  //   Object.keys(resultSummary.summaries).length / 3
+  // );
+  // for (let page = startPage; page < maxPageNum; page++) {
+  //   chunks[page - startPage] = [];
+  //   for (let i = 0; i < 3; i++) {
+  //     if (resultSummary.summaries[page * 3 + i])
+  //       chunks[page - startPage].push(resultSummary.summaries[page * 3 + i]);
+  //   }
+  // }
 
-  const handleClickResultDiv = () => {
-    let addPageNum = 1;
-    const width = window.innerWidth;
-    if (width >= 1536) {
-      addPageNum = 5;
-    } else if (width >= 1280) {
-      addPageNum = 4;
-    } else if (width >= 1024) {
-      addPageNum = 3;
-    } else if (width >= 768) {
-      addPageNum = 2;
-    }
+  // const handleClickResultDiv = () => {
+  //   let addPageNum = 1;
+  //   const width = window.innerWidth;
+  //   if (width >= 1536) {
+  //     addPageNum = 5;
+  //   } else if (width >= 1280) {
+  //     addPageNum = 4;
+  //   } else if (width >= 1024) {
+  //     addPageNum = 3;
+  //   } else if (width >= 768) {
+  //     addPageNum = 2;
+  //   }
 
-    let nextPage = startPage + addPageNum;
-    if (nextPage >= maxPageNum) {
-      nextPage = 0;
-    } else if (nextPage >= 10) {
-      // 長すぎても意味がないので10ページまでにする
-      nextPage = 0;
-    }
+  //   let nextPage = startPage + addPageNum;
+  //   if (nextPage >= maxPageNum) {
+  //     nextPage = 0;
+  //   } else if (nextPage >= 10) {
+  //     // 長すぎても意味がないので10ページまでにする
+  //     nextPage = 0;
+  //   }
 
-    setStartPage(nextPage);
-  };
+  //   setStartPage(nextPage);
+  // };
 
   return (
-    <div
-      className="ml-4 md:ml-8 mr-2 flex flex-col justify-start"
-      role="button"
-      onClick={handleClickResultDiv}
-    >
-      <div className="flex flex-row gap-8">
-        {chunks[0] && (
-          <div>
-            {chunks[0].map((v, i) => (
-              <p key={i} className="text-xs">
-                アタック
-                <span className="inline-block w-4 text-right">
-                  {startPage * 3 + i + 1}
-                </span>
-                回目 ダメージ声援:{" "}
-                <span className="inline-block w-8 text-right">{v}</span> %
-              </p>
-            ))}
-          </div>
-        )}
-        {chunks[1] && (
-          <div className="max-md:hidden">
-            {chunks[1].map((v, i) => (
-              <p key={i} className="text-xs">
-                アタック
-                <span className="inline-block w-4 text-right">
-                  {startPage * 3 + i + 4}
-                </span>
-                回目 ダメージ声援:{" "}
-                <span className="inline-block w-8 text-right">{v}</span> %
-              </p>
-            ))}
-          </div>
-        )}
-        {chunks[2] && (
-          <div className="max-lg:hidden">
-            {chunks[2].map((v, i) => (
-              <p key={i} className="text-xs">
-                アタック
-                <span className="inline-block w-4 text-right">
-                  {startPage * 3 + i + 7}
-                </span>
-                回目 ダメージ声援:{" "}
-                <span className="inline-block w-8 text-right">{v}</span> %
-              </p>
-            ))}
-          </div>
-        )}
-        {chunks[3] && (
-          <div className="max-xl:hidden">
-            {chunks[3].map((v, i) => (
-              <p key={i} className="text-xs">
-                アタック
-                <span className="inline-block w-4 text-right">
-                  {startPage * 3 + i + 10}
-                </span>
-                回目 ダメージ声援:{" "}
-                <span className="inline-block w-8 text-right">{v}</span> %
-              </p>
-            ))}
-          </div>
-        )}
-        {chunks[4] && (
-          <div className="max-2xl:hidden">
-            {chunks[4].map((v, i) => (
-              <p key={i} className="text-xs">
-                アタック
-                <span className="inline-block w-4 text-right">
-                  {startPage * 3 + i + 13}
-                </span>
-                回目 ダメージ声援:{" "}
-                <span className="inline-block w-8 text-right">{v}</span> %
-              </p>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
+    // <div
+    //   className="ml-4 md:ml-8 mr-2 flex flex-col justify-start"
+    //   role="button"
+    //   onClick={handleClickResultDiv}
+    // >
+    //   <div className="flex flex-row gap-8">
+    //     {chunks[0] && (
+    //       <div>
+    //         {chunks[0].map((v, i) => (
+    //           <p key={i} className="text-xs">
+    //             アタック
+    //             <span className="inline-block w-4 text-right">
+    //               {startPage * 3 + i + 1}
+    //             </span>
+    //             回目 ダメージ声援:{" "}
+    //             <span className="inline-block w-8 text-right">{v}</span> %
+    //           </p>
+    //         ))}
+    //       </div>
+    //     )}
+    //     {chunks[1] && (
+    //       <div className="max-md:hidden">
+    //         {chunks[1].map((v, i) => (
+    //           <p key={i} className="text-xs">
+    //             アタック
+    //             <span className="inline-block w-4 text-right">
+    //               {startPage * 3 + i + 4}
+    //             </span>
+    //             回目 ダメージ声援:{" "}
+    //             <span className="inline-block w-8 text-right">{v}</span> %
+    //           </p>
+    //         ))}
+    //       </div>
+    //     )}
+    //     {chunks[2] && (
+    //       <div className="max-lg:hidden">
+    //         {chunks[2].map((v, i) => (
+    //           <p key={i} className="text-xs">
+    //             アタック
+    //             <span className="inline-block w-4 text-right">
+    //               {startPage * 3 + i + 7}
+    //             </span>
+    //             回目 ダメージ声援:{" "}
+    //             <span className="inline-block w-8 text-right">{v}</span> %
+    //           </p>
+    //         ))}
+    //       </div>
+    //     )}
+    //     {chunks[3] && (
+    //       <div className="max-xl:hidden">
+    //         {chunks[3].map((v, i) => (
+    //           <p key={i} className="text-xs">
+    //             アタック
+    //             <span className="inline-block w-4 text-right">
+    //               {startPage * 3 + i + 10}
+    //             </span>
+    //             回目 ダメージ声援:{" "}
+    //             <span className="inline-block w-8 text-right">{v}</span> %
+    //           </p>
+    //         ))}
+    //       </div>
+    //     )}
+    //     {chunks[4] && (
+    //       <div className="max-2xl:hidden">
+    //         {chunks[4].map((v, i) => (
+    //           <p key={i} className="text-xs">
+    //             アタック
+    //             <span className="inline-block w-4 text-right">
+    //               {startPage * 3 + i + 13}
+    //             </span>
+    //             回目 ダメージ声援:{" "}
+    //             <span className="inline-block w-8 text-right">{v}</span> %
+    //           </p>
+    //         ))}
+    //       </div>
+    //     )}
+    //   </div>
+    // </div>
+    <></>
   );
 }

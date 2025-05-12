@@ -181,16 +181,14 @@ export interface DeckSimulatorData {
   preciousScenes: {
     attack: {
       [K: number]: {
-        isValid?: boolean;
-        id?: string;
-        rarity?: string;
+        id: string;
+        rarity: string;
       };
     };
     defense?: {
       [K: number]: {
-        isValid?: boolean;
-        id?: number | string;
-        rarity?: number | string;
+        id: string;
+        rarity: string;
       };
     };
   };
@@ -439,12 +437,64 @@ const initCommonData: DeckSimulatorCommonData = {
 export interface DeckSimulatorResult {
   dataType: keyof typeof EVENT_ID_TO_NAME_DICT;
   initCondition: boolean;
-  summaries: { [K in number]: string };
+  summaries: {
+    attackPerformance: {
+      minPower?: number;
+      expPower?: number;
+      maxPower?: number;
+    };
+    defensePerformance: {
+      minPower?: number;
+      expPower?: number;
+      maxPower?: number;
+    };
+    totalPerformance: {
+      minPower?: number;
+      expPower?: number;
+      maxPower?: number;
+    }
+    mainScenes: {
+      [K: number]: {
+        estimatedPower?: number;
+      };
+    };
+    mainSkill: {
+      [K: number]: {
+        estimatedPower?: number;
+        skillEffect?: number;
+      };
+    };
+    subScenes: {
+      [K: number]: {
+        estimatedPower?: number;
+      };
+    };
+    subSwitch: {
+      [K: number]: {
+        estimatedPower?: number;
+        skillEffect?: number;
+      };
+    };
+    preciousScenes: {
+      [K: number]: {
+        estimatedPower?: number;
+      };
+    };
+  };
 }
 const initResultSummary: DeckSimulatorResult = {
   dataType: "raidwar",
   initCondition: true,
-  summaries: {},
+  summaries: {
+    attackPerformance: {},
+    defensePerformance: {},
+    totalPerformance: {},
+    mainScenes: {},
+    mainSkill: {},
+    subScenes: {},
+    subSwitch: {},
+    preciousScenes: {},
+  },
 } as const;
 
 export interface DeckSimulatorSavedDataSummary {
