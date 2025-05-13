@@ -5,7 +5,7 @@ import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
 import { PETIT_GIRLS_EFFECTS_DATA } from "@/components/decksim/data/petitGirlsEffectData";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
-import { formatNumber } from "@/lib/formattedNumber";
+import { formatNumber } from "@/lib/formatNumber";
 
 const MAIN_GIRLS_COUNT = 3;
 const EFFECTS_PER_GIRL = 4;

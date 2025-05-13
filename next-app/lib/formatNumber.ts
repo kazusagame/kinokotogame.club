@@ -1,6 +1,6 @@
 /**
  * 数値をロケール付きでフォーマットする
- * 
+ *
  * @param value 数値または数値文字列（null, undefined, NaN, 空文字なども処理）
  * @param fallback null, undefined, NaN のときの数値 (省略時は"0")
  * @param locale ロケール（省略時は "ja-JP"）

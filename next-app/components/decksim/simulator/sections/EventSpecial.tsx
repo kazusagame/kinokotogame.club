@@ -2,7 +2,7 @@ import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulat
 import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
-import { formatNumber } from "@/lib/formattedNumber";
+import { formatNumber } from "@/lib/formatNumber";
 
 export function EventSpecial({
   data,

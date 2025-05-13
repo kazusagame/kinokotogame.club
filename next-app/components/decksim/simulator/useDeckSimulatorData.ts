@@ -445,11 +445,13 @@ export interface DeckSimulatorResult {
         minPower?: number;
         expPower?: number;
         maxPower?: number;
+        skillEffect?: number;
       };
       defense: {
         minPower?: number;
         expPower?: number;
         maxPower?: number;
+        skillEffect?: number;
       };
     };
     mainScenes: {

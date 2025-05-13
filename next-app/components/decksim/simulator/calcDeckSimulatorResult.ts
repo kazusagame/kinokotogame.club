@@ -337,9 +337,9 @@ import {
 // };
 
 export const calcDeckSimulatorResult = ({
-  data,
-  commonData,
-  summary,
+  // data,
+  // commonData,
+  // summary,
 }: {
   data: DeckSimulatorData;
   commonData: DeckSimulatorCommonData;

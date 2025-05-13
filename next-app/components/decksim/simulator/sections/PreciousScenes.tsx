@@ -7,7 +7,7 @@ import {
 import { PRECIOUS_SCENES_DATA } from "@/components/decksim/data/preciousScenesData";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
-import { formatNumber } from "@/lib/formattedNumber";
+import { formatNumber } from "@/lib/formatNumber";
 import { removeKeyAndReindex } from "@/lib/removeKeyAndReindex";
 
 export function PreciousScenes({
@@ -115,7 +115,7 @@ function RegisteredPreciousScenesBlock({
       </div>
       {registeredCount === 0 ? (
         <div className="text-center text-sm font-bold py-4">
-          まだ設定されていません。
+          まだ何も設定されていません
         </div>
       ) : (
         <>

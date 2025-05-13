@@ -5,6 +5,8 @@ import React, { useState, useRef, useCallback } from "react";
 import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
+import { formatNumber } from "@/lib/formatNumber";
+
 import SimulatorHeader from "@/components/decksim/simulator/SimulatorHeader";
 import {
   useDeckSimulatorData,
@@ -65,7 +67,10 @@ export default function DeckSimulator({
   const handleFixHeader = useCallback(() => {
     setIsFixHeader((v) => !v);
   }, []);
+  const [currentDataNum, setCurrentDataNum] = useState<number>(0);
 
+  /* 保存ボタンクリック時にローカルストレージ上の該当番号のデータを更新するとともに、
+     内部で持つセーブデータサマリーを更新する。 */
   const handleClickIndividualSave = (
     e: React.MouseEvent<HTMLButtonElement>
   ) => {
@@ -86,15 +91,38 @@ export default function DeckSimulator({
         ":" +
         String(currentDate.getSeconds()).padStart(2, "0");
 
+      const result = resultSummary as DeckSimulatorResult;
+      const powerMin =
+        (result.summaries.totalPerformance.attack.minPower ?? 0) +
+        (result.summaries.totalPerformance.defense.minPower ?? 0);
+      const powerExp =
+        (result.summaries.totalPerformance.attack.expPower ?? 0) +
+        (result.summaries.totalPerformance.defense.expPower ?? 0);
+      const powerMax =
+        (result.summaries.totalPerformance.attack.maxPower ?? 0) +
+        (result.summaries.totalPerformance.defense.maxPower ?? 0);
+      const skillEffect =
+        (result.summaries.totalPerformance.attack.skillEffect ?? 0) +
+        (result.summaries.totalPerformance.defense.skillEffect ?? 0);
+
       const tempData = {
         lastUpdate: dateStr,
         memo: savedDataSummaries[Number(num) - 1].memo,
         version: 2,
         data: data,
+        powerMin: powerMin,
+        powerExp: powerExp,
+        powerMax: powerMax,
+        skillEffect: skillEffect,
       };
       const convertData = JSON.stringify(tempData);
       localStorage.setItem(key, convertData);
       handleSaveDataSummaries(Number(num) - 1, "lastUpdate", dateStr);
+      handleSaveDataSummaries(Number(num) - 1, "powerMin", powerMin);
+      handleSaveDataSummaries(Number(num) - 1, "powerExp", powerExp);
+      handleSaveDataSummaries(Number(num) - 1, "powerMax", powerMax);
+      handleSaveDataSummaries(Number(num) - 1, "skillEffect", skillEffect);
+      setCurrentDataNum(Number(num));
     }
   };
 
@@ -112,6 +140,7 @@ export default function DeckSimulator({
         data={data}
         resultSummary={resultSummary}
         savedDataSummaries={savedDataSummaries}
+        currentDataNum={currentDataNum}
         handleFixHeader={handleFixHeader}
         handleLoadData={handleLoadData}
         handleChangeMemo={handleChangeMemo}
@@ -507,10 +536,15 @@ function DataExportAndImport({
   );
 }
 
-export function DeckSimulatorResultSummaryDiv({
-  resultSummary,
-}: {
+export function DeckSimulatorResultSummaryDiv({}: // eventId,
+// resultSummary,
+// savedDataSummaries,
+// currentDataNum,
+{
+  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
   resultSummary: DeckSimulatorResult;
+  savedDataSummaries: DeckSimulatorSavedDataSummary[];
+  currentDataNum: number | undefined;
 }) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   // const [startPage, setStartPage] = useState<number>(0);
@@ -630,5 +664,42 @@ export function DeckSimulatorResultSummaryDiv({
     //   </div>
     // </div>
     <></>
+  );
+}
+
+export function DeckSimulatorSavedDataDiv({
+  eventId,
+  savedDataSummary,
+}: {
+  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  savedDataSummary: DeckSimulatorSavedDataSummary;
+}) {
+  const totalMin = formatNumber(savedDataSummary?.powerMin);
+  const totalExp = formatNumber(savedDataSummary?.powerExp);
+  const totalMax = formatNumber(savedDataSummary?.powerMax);
+
+  return (
+    <>
+      <div className="flex flex-col gap-1">
+        <div className="flex gap-2">
+          <div className="flex flex-col gap-1">
+            <p>最小値：</p>
+            <p>期待値：</p>
+            <p>最大値：</p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <p className="text-right">{totalMin}</p>
+            <p className="text-right">{totalExp}</p>
+            <p className="text-right">{totalMax}</p>
+          </div>
+        </div>
+        {eventId === "clubcup" && (
+          <p>
+            声援効果：
+            <span className="ml-2">{`${savedDataSummary?.skillEffect} %`}</span>
+          </p>
+        )}
+      </div>
+    </>
   );
 }

@@ -23,6 +23,14 @@ import {
   DivraceStageResult,
   DivraceStageSavedDataSummary,
 } from "@/components/decksim/simulator/useDivraceStageData";
+import {
+  DeckSimulatorResultSummaryDiv,
+  DeckSimulatorSavedDataDiv,
+} from "@/components/decksim/simulator/DeckSimulator";
+import {
+  DeckSimulatorResult,
+  DeckSimulatorSavedDataSummary,
+} from "@/components/decksim/simulator/useDeckSimulatorData";
 
 interface HeaderProps<T, U, V> {
   eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
@@ -31,6 +39,7 @@ interface HeaderProps<T, U, V> {
   data: T;
   resultSummary: U;
   savedDataSummaries: V[];
+  currentDataNum?: number;
   handleFixHeader: () => void;
   handleLoadData: (newData: T) => void;
   handleChangeMemo: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -55,6 +64,7 @@ export default function SimulatorHeader<
   data,
   resultSummary,
   savedDataSummaries,
+  currentDataNum,
   handleFixHeader,
   handleLoadData,
   handleChangeMemo,
@@ -83,11 +93,13 @@ export default function SimulatorHeader<
         handleChangeMemo={handleChangeMemo}
         handleClickIndividualSave={handleClickIndividualSave}
       />
-      <ResultSummaryDiv<T, U>
+      <ResultSummaryDiv<T, U, V>
         eventId={eventId}
         title={title}
         data={data}
         resultSummary={resultSummary}
+        savedDataSummaries={savedDataSummaries}
+        currentDataNum={currentDataNum}
       />
       <div className="ml-auto" />
       <div className="dropdown dropdown-end mr-2 my-auto">
@@ -320,16 +332,20 @@ function SaveButton<T extends OriginSavedDataSummary>({
   );
 }
 
-function ResultSummaryDiv<T, U extends ResultSummary>({
+function ResultSummaryDiv<T, U extends ResultSummary, V>({
   eventId,
   title,
   data,
   resultSummary,
+  savedDataSummaries,
+  currentDataNum,
 }: {
   eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
   title: string;
   data: T;
   resultSummary: U;
+  savedDataSummaries: V[];
+  currentDataNum?: number;
 }) {
   return (
     <>
@@ -346,6 +362,27 @@ function ResultSummaryDiv<T, U extends ResultSummary>({
           data={data as DivraceStageData}
           resultSummary={resultSummary as DivraceStageResult}
         />
+      ) : [
+          "raid-first",
+          "raid-second",
+          "raid-mega",
+          "raidwar",
+          "clubcup",
+          "championship",
+          "championship-defense",
+          "tower",
+          "divrace",
+          "board",
+          "normal-battle",
+        ].includes(eventId) ? (
+        <DeckSimulatorResultSummaryDiv
+          eventId={eventId}
+          resultSummary={resultSummary as DeckSimulatorResult}
+          savedDataSummaries={
+            savedDataSummaries as DeckSimulatorSavedDataSummary[]
+          }
+          currentDataNum={currentDataNum}
+        />
       ) : (
         <></>
       )}
@@ -357,7 +394,7 @@ function SavedDataPerEventDiv({
   eventId,
   savedDataSummary,
 }: {
-  eventId: string;
+  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
   savedDataSummary: OriginSavedDataSummary;
 }) {
   return (
@@ -365,6 +402,24 @@ function SavedDataPerEventDiv({
       {eventId === "divrace-stage" && (
         <DivraceStageSavedDataDiv
           savedDataSummary={savedDataSummary as DivraceStageSavedDataSummary}
+        />
+      )}
+      {[
+        "raid-first",
+        "raid-second",
+        "raid-mega",
+        "raidwar",
+        "clubcup",
+        "championship",
+        "championship-defense",
+        "tower",
+        "divrace",
+        "board",
+        "normal-battle",
+      ].includes(eventId) && (
+        <DeckSimulatorSavedDataDiv
+          eventId={eventId}
+          savedDataSummary={savedDataSummary as DeckSimulatorSavedDataSummary}
         />
       )}
     </>
