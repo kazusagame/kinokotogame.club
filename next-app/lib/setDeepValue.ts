@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type AnyObject = { [key: string]: any };
+type AnyObject = { [key: string | number]: any };
 type Primitive = string | number | boolean;
 
 /**
@@ -9,12 +9,12 @@ type Primitive = string | number | boolean;
  * @export
  * @param {AnyObject} obj
  * @param {string} path chapter.section.titleなど
- * @param {Primitive | { [key: string]: Primitive }} value
+ * @param {Primitive | AnyObject} value
  */
 export function setDeepValue(
   obj: AnyObject,
   path: string,
-  value: Primitive | { [key: string]: Primitive }
+  value: Primitive | AnyObject
 ): void {
   const keys = path.split(".");
   if (keys.length === 0) return;

@@ -183,12 +183,14 @@ export interface DeckSimulatorData {
       [K: number]: {
         id: string;
         rarity: string;
+        headcount?: number | string;
       };
     };
     defense?: {
       [K: number]: {
         id: string;
         rarity: string;
+        headcount?: number | string;
       };
     };
   };
@@ -438,46 +440,80 @@ export interface DeckSimulatorResult {
   dataType: keyof typeof EVENT_ID_TO_NAME_DICT;
   initCondition: boolean;
   summaries: {
-    attackPerformance: {
-      minPower?: number;
-      expPower?: number;
-      maxPower?: number;
-    };
-    defensePerformance: {
-      minPower?: number;
-      expPower?: number;
-      maxPower?: number;
-    };
     totalPerformance: {
-      minPower?: number;
-      expPower?: number;
-      maxPower?: number;
-    }
+      attack: {
+        minPower?: number;
+        expPower?: number;
+        maxPower?: number;
+      };
+      defense: {
+        minPower?: number;
+        expPower?: number;
+        maxPower?: number;
+      };
+    };
     mainScenes: {
-      [K: number]: {
-        estimatedPower?: number;
+      attack: {
+        [K: number]: {
+          estimatedPower?: number;
+        };
+      };
+      defense: {
+        [K: number]: {
+          estimatedPower?: number;
+        };
       };
     };
     mainSkill: {
-      [K: number]: {
-        estimatedPower?: number;
-        skillEffect?: number;
+      attack: {
+        [K: number]: {
+          estimatedPower?: number;
+          skillEffect?: number;
+        };
+      };
+      defense: {
+        [K: number]: {
+          estimatedPower?: number;
+          skillEffect?: number;
+        };
       };
     };
     subScenes: {
-      [K: number]: {
-        estimatedPower?: number;
+      attack: {
+        [K: number]: {
+          estimatedPower?: number;
+        };
+      };
+      defense: {
+        [K: number]: {
+          estimatedPower?: number;
+        };
       };
     };
     subSwitch: {
-      [K: number]: {
-        estimatedPower?: number;
-        skillEffect?: number;
+      attack: {
+        [K: number]: {
+          estimatedPower?: number;
+          skillEffect?: number;
+        };
+      };
+      defense: {
+        [K: number]: {
+          estimatedPower?: number;
+          skillEffect?: number;
+        };
       };
     };
     preciousScenes: {
-      [K: number]: {
-        estimatedPower?: number;
+      attack: {
+        [K: number]: {
+          estimatedPower?: number;
+        };
+      };
+      defense: {
+        [K: number]: {
+          estimatedPower?: number;
+        };
       };
     };
   };
@@ -486,14 +522,12 @@ const initResultSummary: DeckSimulatorResult = {
   dataType: "raidwar",
   initCondition: true,
   summaries: {
-    attackPerformance: {},
-    defensePerformance: {},
-    totalPerformance: {},
-    mainScenes: {},
-    mainSkill: {},
-    subScenes: {},
-    subSwitch: {},
-    preciousScenes: {},
+    totalPerformance: { attack: {}, defense: {} },
+    mainScenes: { attack: {}, defense: {} },
+    mainSkill: { attack: {}, defense: {} },
+    subScenes: { attack: {}, defense: {} },
+    subSwitch: { attack: {}, defense: {} },
+    preciousScenes: { attack: {}, defense: {} },
   },
 } as const;
 
@@ -717,7 +751,7 @@ export function useDeckSimulatorData({
       value,
     }: {
       path: string;
-      value: { [K: string]: string | number | boolean };
+      value: { [key: string | number]: unknown };
     }) => {
       const nextData = structuredClone(data);
       const nextCommonData = structuredClone(commonData);

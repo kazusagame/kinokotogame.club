@@ -97,7 +97,7 @@ function EffectSelectionBlock({
   ) => void;
   setValueAtPath: (obj: {
     path: string;
-    value: { [K: string]: string };
+    value: { [key: string | number]: unknown };
   }) => void;
 }) {
   const [effectModalOpen, setEffectModalOpen] = useState(false);
@@ -491,7 +491,7 @@ function PetitGirlDetailsBlock({
                   <div className="flex items-center gap-4">
                     <p className="text-base">{i + 1}:</p>
                   </div>
-                  <div className="w-fit text-base pl-2 md:pl-4">
+                  <div className="w-fit text-base ml-2 md:ml-4 border border-base-300 rounded-xl">
                     <div className="grid grid-cols-2 sm:grid-cols-4 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl">
                       <div>攻援力</div>
                       <div>タイプ</div>
@@ -548,7 +548,7 @@ function RowBoardPetitDetail({
 
   return (
     <div
-      className={`grid grid-cols-2 sm:grid-cols-4 gap-2 px-1 py-2 odd:bg-base-300 even:bg-base-200 ${
+      className={`grid grid-cols-2 sm:grid-cols-4 gap-2 px-1 py-2 odd:bg-base-200 even:bg-base-100 ${
         girlNum === 10 ? "rounded-b-xl" : ""
       }`}
     >
@@ -666,7 +666,7 @@ export function PetitGirls({
   onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
   setValueAtPath: (obj: {
     path: string;
-    value: { [K: string]: string };
+    value: { [key: string | number]: unknown };
   }) => void;
 }) {
   return (

@@ -124,13 +124,13 @@ export function PlayerData({
         )}
         <div className="flex flex-col gap-2 mt-4 pl-2 md:pl-4">
           <p className="text-base">メンズコロンLv</p>
-          <div className="w-fit text-base pl-2 md:pl-4">
+          <div className="w-fit text-base ml-2 md:ml-4 border border-base-300 rounded-xl">
             <div className="grid grid-cols-3 text-center text-xs font-bold rounded-t-xl">
               <div className="bg-sweet w-24 py-1 rounded-tl-xl">SWEET</div>
               <div className="bg-cool w-24 py-1">COOL</div>
               <div className="bg-pop w-24 py-1 rounded-tr-xl">POP</div>
             </div>
-            <div className="grid grid-cols-3 gap-2 px-1 py-2 odd:bg-base-300 even:bg-base-200 rounded-b-xl">
+            <div className="grid grid-cols-3 gap-2 px-1 py-2 odd:bg-base-200 even:bg-base-100 rounded-b-xl">
               <div className="flex justify-center">
                 <input
                   type="number"
@@ -184,13 +184,13 @@ export function PlayerData({
                 tipText="所属している部活で部活設備が購入済みの場合はチェックを入れます。未購入の場合はチェックを外します。"
               />
             </p>
-            <div className="w-fit text-base pl-2 md:pl-4">
+            <div className="w-fit text-base ml-2 md:ml-4 border border-base-300 rounded-xl">
               <div className="grid grid-cols-3 text-center text-xs font-bold rounded-t-xl">
                 <div className="bg-sweet w-24 py-1 rounded-tl-xl">SWEET</div>
                 <div className="bg-cool w-24 py-1">COOL</div>
                 <div className="bg-pop w-24 py-1 rounded-tr-xl">POP</div>
               </div>
-              <div className="grid grid-cols-3 gap-2 px-1 py-2 odd:bg-base-300 even:bg-base-200 rounded-b-xl">
+              <div className="grid grid-cols-3 gap-2 px-1 py-2 odd:bg-base-200 even:bg-base-100 rounded-b-xl">
                 <div className="flex justify-center">
                   <input
                     type="checkbox"

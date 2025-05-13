@@ -150,18 +150,18 @@ export default function DeckSimulator({
                   <div className="flex flex-col gap-6">
                     <MainScenes
                       data={data}
+                      summary={resultSummary}
                       eventId={eventId}
                       type="攻援"
-                      onChange={handleChangeParameters}
-                      onBlur={handleBlurParameters}
+                      setValueAtPath={setValueAtPath}
                     />
                     <hr className="mx-4 h-px bg-base-300 border-0" />
                     <MainSkill
                       data={data}
+                      summary={resultSummary}
                       eventId={eventId}
                       type="攻援"
-                      onChange={handleChangeParameters}
-                      onBlur={handleBlurParameters}
+                      setValueAtPath={setValueAtPath}
                     />
                   </div>
                 </div>
@@ -179,23 +179,26 @@ export default function DeckSimulator({
                   <div className="flex flex-col gap-6">
                     <SubScenes
                       data={data}
+                      summary={resultSummary}
                       eventId={eventId}
                       type="攻援"
-                      onChange={handleChangeParameters}
-                      onBlur={handleBlurParameters}
+                      setValueAtPath={setValueAtPath}
                     />
                     <hr className="mx-4 h-px bg-base-300 border-0" />
                     <SubSwitch
                       data={data}
+                      summary={resultSummary}
                       eventId={eventId}
                       type="攻援"
-                      onChange={handleChangeParameters}
-                      onBlur={handleBlurParameters}
+                      setValueAtPath={setValueAtPath}
                     />
                     <hr className="mx-4 h-px bg-base-300 border-0" />
                     <PreciousScenes
                       data={data}
+                      summary={resultSummary}
                       type="攻援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
                       setValueAtPath={setValueAtPath}
                     />
                   </div>
@@ -218,39 +221,42 @@ export default function DeckSimulator({
                   <div className="flex flex-col gap-6">
                     <MainScenes
                       data={data}
+                      summary={resultSummary}
                       eventId={eventId}
                       type="攻援"
-                      onChange={handleChangeParameters}
-                      onBlur={handleBlurParameters}
+                      setValueAtPath={setValueAtPath}
                     />
                     <hr className="mx-4 h-px bg-base-300 border-0" />
                     <MainSkill
                       data={data}
+                      summary={resultSummary}
                       eventId={eventId}
                       type="攻援"
-                      onChange={handleChangeParameters}
-                      onBlur={handleBlurParameters}
+                      setValueAtPath={setValueAtPath}
                     />
                     <hr className="mx-4 h-px bg-base-300 border-0" />
                     <SubScenes
                       data={data}
+                      summary={resultSummary}
                       eventId={eventId}
                       type="攻援"
-                      onChange={handleChangeParameters}
-                      onBlur={handleBlurParameters}
+                      setValueAtPath={setValueAtPath}
                     />
                     <hr className="mx-4 h-px bg-base-300 border-0" />
                     <SubSwitch
                       data={data}
+                      summary={resultSummary}
                       eventId={eventId}
                       type="攻援"
-                      onChange={handleChangeParameters}
-                      onBlur={handleBlurParameters}
+                      setValueAtPath={setValueAtPath}
                     />
                     <hr className="mx-4 h-px bg-base-300 border-0" />
                     <PreciousScenes
                       data={data}
+                      summary={resultSummary}
                       type="攻援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
                       setValueAtPath={setValueAtPath}
                     />
                   </div>
@@ -269,39 +275,42 @@ export default function DeckSimulator({
                   <div className="flex flex-col gap-6">
                     <MainScenes
                       data={data}
+                      summary={resultSummary}
                       eventId={eventId}
                       type="守援"
-                      onChange={handleChangeParameters}
-                      onBlur={handleBlurParameters}
+                      setValueAtPath={setValueAtPath}
                     />
                     <hr className="mx-4 h-px bg-base-300 border-0" />
                     <MainSkill
                       data={data}
+                      summary={resultSummary}
                       eventId={eventId}
                       type="守援"
-                      onChange={handleChangeParameters}
-                      onBlur={handleBlurParameters}
+                      setValueAtPath={setValueAtPath}
                     />
                     <hr className="mx-4 h-px bg-base-300 border-0" />
                     <SubScenes
                       data={data}
+                      summary={resultSummary}
                       eventId={eventId}
                       type="守援"
-                      onChange={handleChangeParameters}
-                      onBlur={handleBlurParameters}
+                      setValueAtPath={setValueAtPath}
                     />
                     <hr className="mx-4 h-px bg-base-300 border-0" />
                     <SubSwitch
                       data={data}
+                      summary={resultSummary}
                       eventId={eventId}
                       type="守援"
-                      onChange={handleChangeParameters}
-                      onBlur={handleBlurParameters}
+                      setValueAtPath={setValueAtPath}
                     />
                     <hr className="mx-4 h-px bg-base-300 border-0" />
                     <PreciousScenes
                       data={data}
+                      summary={resultSummary}
                       type="守援"
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
                       setValueAtPath={setValueAtPath}
                     />
                   </div>
