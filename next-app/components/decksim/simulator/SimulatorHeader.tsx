@@ -11,7 +11,7 @@ import {
 } from "@/components/decksim/simulator/useLocalStorageData";
 
 import { MAX_SAVE_DATA_NUM } from "@/components/decksim/simulator/globalConfig";
-import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
+import { EventId } from "@/components/decksim/data/eventData";
 import { RaidwarSkillResultSummaryDiv } from "@/components/decksim/simulator/RaidwarSkillSimulator";
 import { RaidwarSkillResult } from "@/components/decksim/simulator/useRaidwarSkillData";
 import {
@@ -33,7 +33,7 @@ import {
 } from "@/components/decksim/simulator/useDeckSimulatorData";
 
 interface HeaderProps<T, U, V> {
-  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  eventId: EventId;
   title: string;
   isFixHeader: boolean;
   data: T;
@@ -143,7 +143,7 @@ function LoadButton<
   savedDataSummaries,
   handleChangeMemo,
 }: {
-  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  eventId: EventId;
   handleLoadData: (newData: T) => void;
   savedDataSummaries: U[];
   handleChangeMemo: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -253,7 +253,7 @@ function SaveButton<T extends OriginSavedDataSummary>({
   handleChangeMemo,
   handleClickIndividualSave,
 }: {
-  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  eventId: EventId;
   savedDataSummaries: T[];
   handleChangeMemo: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   handleClickIndividualSave: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -340,7 +340,7 @@ function ResultSummaryDiv<T, U extends ResultSummary, V>({
   savedDataSummaries,
   currentDataNum,
 }: {
-  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  eventId: EventId;
   title: string;
   data: T;
   resultSummary: U;
@@ -394,7 +394,7 @@ function SavedDataPerEventDiv({
   eventId,
   savedDataSummary,
 }: {
-  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  eventId: EventId;
   savedDataSummary: OriginSavedDataSummary;
 }) {
   return (

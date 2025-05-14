@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useCallback } from "react";
 
-import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
+import { DeckSimulatorEventId, EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
 import { formatNumber } from "@/lib/formatNumber";
@@ -33,7 +33,7 @@ import { DeckSimulatorHowToUse } from "@/components/decksim/manual/DeckSimulator
 export default function DeckSimulator({
   eventId,
 }: {
-  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  eventId: DeckSimulatorEventId;
 }) {
   const simulatorTabButtonRef = useRef(null);
   const {

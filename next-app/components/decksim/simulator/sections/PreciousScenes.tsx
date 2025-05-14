@@ -75,17 +75,16 @@ function RegisteredPreciousScenesBlock({
   }) => void;
 }) {
   const typeIndex = type === "攻援" ? "attack" : "defense";
-  const registeredData =
-    data.preciousScenes?.[type === "攻援" ? "attack" : "defense"] ?? {};
+  const registeredData = data.preciousScenes?.[typeIndex] ?? {};
   const registeredCount = Object.keys(registeredData).length;
-  const summaryData =
-    summary.summaries.preciousScenes?.[
-      type === "攻援" ? "attack" : "defense"
-    ] ?? {};
+  const summaryData = summary.summaries.preciousScenes?.[typeIndex] ?? {};
 
   const handleDeleteButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     const key = e.currentTarget.dataset.key;
-    const newData = removeKeyAndReindex(registeredData, Number(key)) as DeckSimulatorData["preciousScenes"][typeof typeIndex];
+    const newData = removeKeyAndReindex(
+      registeredData,
+      Number(key)
+    ) as DeckSimulatorData["preciousScenes"][typeof typeIndex];
     if (newData === undefined) return;
     setValueAtPath({
       path: `preciousScenes.${typeIndex}`,

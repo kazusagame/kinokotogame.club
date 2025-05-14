@@ -6,7 +6,7 @@ import ArticleHeader from "@/components/common/ArticleHeader";
 import ArticleFooter from "@/components/common/ArticleFooter";
 import SkillProbabilityTable from "@/components/decksim/manual/SkillProbabilityTable";
 import BonusEffectiveRateTable from "@/components/decksim/manual/BonusEffectiveRateTable";
-import { EventType } from "@/components/decksim/data/eventData";
+import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 
 export const metadata: Metadata = {
   title: "計算式 - センバツシミュレーター - きのことゲーム部",
@@ -59,22 +59,22 @@ export default function Page() {
           </h2>
           {/* prettier-ignore */}
           <div className="flex flex-wrap gap-4 pt-4 md:pl-4">
-            <LinkButton url="#raidFirst" text="たすけて！マイヒーロー 前半 超レア" />
-            <LinkButton url="#raidSecond" text="たすけて！マイヒーロー 後半 超レア" />
-            <LinkButton url="#raidMega" text="たすけて！マイヒーロー メガ悪男" />
+            <LinkButton url="#raid-first" text="たすけて！マイヒーロー 前半 超レア" />
+            <LinkButton url="#raid-second" text="たすけて！マイヒーロー 後半 超レア" />
+            <LinkButton url="#raid-mega" text="たすけて！マイヒーロー メガ悪男" />
             <LinkButton url="#raidwar" text="おねがい★ハンターズ" />
             <LinkButton url="#clubcup" text="部活対抗！勧誘★グランプリ" />
             <LinkButton url="#championship" text="聖櫻学園★カリスマ決定戦" />
             <LinkButton url="#tower" text="聖櫻学園メモリアルストーリー" />
             <LinkButton url="#divrace" text="全国高校生課外活動コンテスト" />
             <LinkButton url="#board" text="散策♪聖櫻ワールド" />
-            <LinkButton url="#normalBattle" text="通常バトル" />
+            <LinkButton url="#normal-battle" text="通常バトル" />
           </div>
         </section>
 
         <FormulaSection
           title="たすけて！マイヒーロー 前半 超レア"
-          eventType="raidFirst"
+          eventId="raid-first"
           comments={[
             "主センバツ：リーダー(1番左)は声援の発動率が 100 % なので声援が一番強い子にする。他は声援が強い順に並べる必要はない。",
             "副センバツへの声援に掛かる補正値はハンターズと同じ 80 % 。",
@@ -102,7 +102,7 @@ export default function Page() {
 
         <FormulaSection
           title="たすけて！マイヒーロー 後半 超レア"
-          eventType="raidSecond"
+          eventId="raid-second"
           comments={[
             "声援の発動の仕方が特殊。主センバツを声援が強い順に並べる必要はない。",
             "副センバツへの声援に掛かる補正値はハンターズと同じ 80 % 。",
@@ -146,7 +146,7 @@ export default function Page() {
 
         <FormulaSection
           title="たすけて！マイヒーロー メガ悪男"
-          eventType="raidMega"
+          eventId="raid-mega"
           comments={[
             "主センバツ：リーダー(1番左)は声援の発動率が 100 % なので声援が一番強い子にする。他は声援が強い順に並べる必要はない。",
             "副センバツ：プレシャスシーン以外の効果は無し。",
@@ -178,7 +178,7 @@ export default function Page() {
 
         <FormulaSection
           title="おねがい★ハンターズ"
-          eventType="raidwar"
+          eventId="raidwar"
           comments={[
             "主センバツ：リーダー(1番左)は声援の発動率が 100 % なので声援が一番強い子にする。左から声援が強い順に並べる。",
           ]}
@@ -205,7 +205,7 @@ export default function Page() {
 
         <FormulaSection
           title="部活対抗！勧誘★グランプリ"
-          eventType="clubcup"
+          eventId="clubcup"
           comments={[
             "基本的には発揮値よりも声援効果値の方を重視したセンバツの方が獲得勧誘ptは増えやすい。",
             "声援の発動の仕方が特殊。",
@@ -246,7 +246,7 @@ export default function Page() {
 
         <FormulaSection
           title="聖櫻学園★カリスマ決定戦"
-          eventType="championship"
+          eventId="championship"
           comments={[
             "主センバツ：リーダー(左上)は声援の発動率が 100 % なので声援が一番強い子にする。左上から声援が強い順に並べる。",
             "アピールタイムの攻援/守援は、正確には主センバツのガール10人に対して、副センバツ/ぷちセンバツ/SP応援効果/部員呼出の合計値の1/10ずつが加算されているイメージ。",
@@ -293,7 +293,7 @@ export default function Page() {
 
         <FormulaSection
           title="聖櫻学園メモリアルストーリー"
-          eventType="tower"
+          eventId="tower"
           comments={[
             "主センバツ：リーダー(1番左)は声援の発動率が 100 % なので声援が一番強い子にする。左から声援が強い順に並べる。",
             "【聖櫻ストーリー】は有利なガールが設定されていないことを除いて計算式が同じ。",
@@ -317,7 +317,7 @@ export default function Page() {
 
         <FormulaSection
           title="全国高校生課外活動コンテスト"
-          eventType="divrace"
+          eventId="divrace"
           comments={[
             "主センバツ：リーダー(1番左)は声援の発動率が 100 % なので声援が一番強い子にする。左から声援が強い順に並べる。",
           ]}
@@ -341,7 +341,7 @@ export default function Page() {
 
         <FormulaSection
           title="散策♪聖櫻ワールド"
-          eventType="board"
+          eventId="board"
           comments={[
             "主センバツ：リーダー(1番左)は声援の発動率が 100 % なので声援が一番強い子にする。左から声援が強い順に並べる。",
           ]}
@@ -365,7 +365,7 @@ export default function Page() {
 
         <FormulaSection
           title="通常バトル"
-          eventType="normalBattle"
+          eventId="normal-battle"
           comments={[
             "主センバツ：リーダー(1番左)は声援の発動率が 100 % なので声援が一番強い子にする。左から声援が強い順に並べる。",
           ]}
@@ -393,17 +393,17 @@ export default function Page() {
 
 function FormulaSection({
   title,
-  eventType,
+  eventId,
   comments,
   children,
 }: {
   title: string;
-  eventType: EventType;
+  eventId: DeckSimulatorEventId;
   comments: string[];
   children: ReactNode;
 }) {
   return (
-    <section className="mt-4 mb-8 md:pl-4" id={eventType}>
+    <section className="mt-4 mb-8 md:pl-4" id={eventId}>
       <h2 className="text-2xl/relaxed pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-[10px]">
         {title}
       </h2>
@@ -412,10 +412,10 @@ function FormulaSection({
         {children}
 
         <h2 className="text-lg mt-4">ボーナス有効率</h2>
-        <BonusEffectiveRateTable eventType={eventType} />
+        <BonusEffectiveRateTable eventId={eventId} />
 
         <h2 className="text-lg mt-4">声援</h2>
-        <SkillProbabilityTable eventType={eventType} />
+        <SkillProbabilityTable eventId={eventId} />
 
         <h2 className="text-lg mt-4">補足</h2>
         <div className="md:pl-4 py-2">

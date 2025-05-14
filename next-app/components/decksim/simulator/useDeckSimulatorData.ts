@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
-import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
+import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 import { calcDeckSimulatorResult } from "@/components/decksim/simulator/calcDeckSimulatorResult";
 
 import { setDeepValue } from "@/lib/setDeepValue";
 
 export interface DeckSimulatorData {
-  dataType: keyof typeof EVENT_ID_TO_NAME_DICT;
+  dataType: DeckSimulatorEventId;
   mainScenes: {
     attack: {
       [K: number]: {
@@ -47,13 +47,12 @@ export interface DeckSimulatorData {
   mainSkill: {
     attack: {
       [K: number]: {
-        isValid?: boolean;
-        skillLv?: number | string;
-        target?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
-        range?: "主＋副" | "主のみ" | "副のみ";
-        subRange?: number | string;
-        type?: "攻" | "守" | "攻守";
-        strength?:
+        skillLv: string;
+        target: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
+        range: "主＋副" | "主のみ" | "副のみ";
+        subRange: string;
+        type: "攻" | "守" | "攻守";
+        strength:
           | "中"
           | "中+"
           | "中++"
@@ -70,13 +69,12 @@ export interface DeckSimulatorData {
     };
     defense?: {
       [K: number]: {
-        isValid?: boolean;
-        skillLv?: number | string;
-        target?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
-        range?: "主＋副" | "主のみ" | "副のみ";
-        subRange?: number | string;
-        type?: "攻" | "守" | "攻守";
-        strength?:
+        skillLv: string;
+        target: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
+        range: "主＋副" | "主のみ" | "副のみ";
+        subRange: string;
+        type: "攻" | "守" | "攻守";
+        strength:
           | "中"
           | "中+"
           | "中++"
@@ -133,13 +131,12 @@ export interface DeckSimulatorData {
   subSwitch: {
     attack: {
       [K: number]: {
-        isValid?: boolean;
-        skillLv?: number | string;
-        target?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
-        range?: "主＋副" | "主のみ" | "副のみ";
-        subRange?: number | string;
-        type?: "攻" | "守" | "攻守";
-        strength?:
+        skillLv: string;
+        target: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
+        range: "主＋副" | "主のみ" | "副のみ";
+        subRange: string;
+        type: "攻" | "守" | "攻守";
+        strength:
           | "中"
           | "中+"
           | "中++"
@@ -156,13 +153,12 @@ export interface DeckSimulatorData {
     };
     defense?: {
       [K: number]: {
-        isValid?: boolean;
-        skillLv?: number | string;
-        target?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
-        range?: "主＋副" | "主のみ" | "副のみ";
-        subRange?: number | string;
-        type?: "攻" | "守" | "攻守";
-        strength?:
+        skillLv: string;
+        target: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
+        range: "主＋副" | "主のみ" | "副のみ";
+        subRange: string;
+        type: "攻" | "守" | "攻守";
+        strength:
           | "中"
           | "中+"
           | "中++"
@@ -240,7 +236,7 @@ export interface DeckSimulatorData {
     };
   };
   eventSpecial: {
-    raidFirst?: {
+    "raid-first"?: {
       enemyType?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "通常タイプ";
       attackType?: "元気炭酸アメ" | "元気炭酸" | "勇気炭酸";
       comboNum?: "0" | "1" | "5" | "10" | "50" | "100";
@@ -248,7 +244,7 @@ export interface DeckSimulatorData {
       isConvertPoint?: boolean;
       isAssistMembers?: boolean;
     };
-    raidSecond?: {
+    "raid-second"?: {
       enemyType?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "通常タイプ";
       attackType?: "元気炭酸アメ" | "元気炭酸" | "勇気炭酸";
       comboNum?: "0" | "1" | "5" | "10" | "50" | "100";
@@ -256,7 +252,7 @@ export interface DeckSimulatorData {
       isConvertPoint?: boolean;
       isAssistMembers?: boolean;
     };
-    raidMega?: {
+    "raid-mega"?: {
       enemyType?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ";
       attackType?: "元気炭酸アメ" | "元気炭酸" | "勇気炭酸";
       specialGirlsEffect?: number | string;
@@ -303,7 +299,7 @@ export interface DeckSimulatorData {
       specialGirlsEffect?: number | string;
       isConvertPoint?: boolean;
     };
-    championshipDefense?: Record<string, never>;
+    "championship-defense"?: Record<string, never>;
     tower?: Record<string, never>;
     divrace?: {
       specialGirlsEffect?: number | string;
@@ -323,7 +319,7 @@ export interface DeckSimulatorData {
         };
       };
     };
-    normalBattle?: {
+    "normal-battle"?: {
       isWinBonus?: boolean;
     };
   };
@@ -437,7 +433,7 @@ const initCommonData: DeckSimulatorCommonData = {
 } as const;
 
 export interface DeckSimulatorResult {
-  dataType: keyof typeof EVENT_ID_TO_NAME_DICT;
+  dataType: DeckSimulatorEventId;
   initCondition: boolean;
   summaries: {
     totalPerformance: {
@@ -561,7 +557,7 @@ export function useDeckSimulatorData({
   eventId,
 }: {
   simulatorTabButtonRef: React.RefObject<HTMLInputElement>;
-  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  eventId: DeckSimulatorEventId;
 }) {
   const [data, setData] = useState(() => {
     const baseData = structuredClone(initData);

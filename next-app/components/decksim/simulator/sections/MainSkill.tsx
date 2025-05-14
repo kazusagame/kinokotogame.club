@@ -1,6 +1,6 @@
 import { DeckSimulatorData,
   DeckSimulatorResult } from "@/components/decksim/simulator/useDeckSimulatorData";
-import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
+import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
 
@@ -13,7 +13,7 @@ export function MainSkill({
 }: {
   data: DeckSimulatorData;
     summary: DeckSimulatorResult;
-  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  eventId: DeckSimulatorEventId;
   type: "攻援" | "守援";
   setValueAtPath: (obj: {
     path: string;

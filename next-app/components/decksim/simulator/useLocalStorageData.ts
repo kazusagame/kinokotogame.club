@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { MAX_SAVE_DATA_NUM } from "@/components/decksim/simulator/globalConfig";
 import {
+  EventId,
   EVENT_ID_TO_NAME_DICT,
   SAVE_DATA_SUMMARY_KEY_LIST,
   SAVE_DATA_COMPATIBILITY_TABLE,
@@ -30,7 +31,7 @@ export function useLocalStorageData<
   eventId,
   initSavedDataSummary,
 }: {
-  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  eventId: EventId;
   initSavedDataSummary: T;
 }) {
   const [savedDataSummaries, setSavedDataSummaries] = useState<T[]>(

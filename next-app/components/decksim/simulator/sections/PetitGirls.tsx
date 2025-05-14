@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulatorData";
-import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
+import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 import { PETIT_GIRLS_EFFECTS_DATA } from "@/components/decksim/data/petitGirlsEffectData";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
@@ -31,7 +31,7 @@ function TotalPowerInputs({
   onBlur,
 }: {
   data: DeckSimulatorData;
-  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  eventId: DeckSimulatorEventId;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
@@ -466,7 +466,7 @@ function PetitGirlDetailsBlock({
   onBlur,
 }: {
   data: DeckSimulatorData;
-  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  eventId: DeckSimulatorEventId;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
@@ -659,7 +659,7 @@ export function PetitGirls({
   setValueAtPath,
 }: {
   data: DeckSimulatorData;
-  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  eventId: DeckSimulatorEventId;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;

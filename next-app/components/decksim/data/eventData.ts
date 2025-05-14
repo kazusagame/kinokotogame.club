@@ -1,14 +1,7 @@
-export type EventType =
-  | "raidFirst"
-  | "raidSecond"
-  | "raidMega"
-  | "raidwar"
-  | "clubcup"
-  | "championship"
-  | "tower"
-  | "divrace"
-  | "board"
-  | "normalBattle";
+export type EventId = keyof typeof EVENT_ID_TO_NAME_DICT;
+
+export type DeckSimulatorEventId =
+  Exclude<EventId, "raidwar-skill" | "divrace-stage">;
 
 export const EVENT_ID_TO_NAME_DICT = {
   "raid-first": "たすけて！マイヒーロー 前半",
@@ -27,7 +20,7 @@ export const EVENT_ID_TO_NAME_DICT = {
 } as const;
 
 export const SAVE_DATA_COMPATIBILITY_TABLE: {
-  [K in keyof typeof EVENT_ID_TO_NAME_DICT]?: string[]
+  [K in EventId]?: string[]
 } = {
   "raidwar-skill": ["raidwar-skill"],
   "divrace-stage": ["divrace-stage"],
@@ -89,7 +82,7 @@ export const SAVE_DATA_COMPATIBILITY_TABLE: {
 } as const;
 
 export const SAVE_DATA_SUMMARY_KEY_LIST: {
-  [K in keyof typeof EVENT_ID_TO_NAME_DICT]?: string[]
+  [K in EventId]?: string[]
 } = {
   "raidwar-skill": ["lastUpdate", "memo"],
   "divrace-stage": [

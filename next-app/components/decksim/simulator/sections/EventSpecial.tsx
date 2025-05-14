@@ -1,5 +1,5 @@
 import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulatorData";
-import { EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
+import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
 import { formatNumber } from "@/lib/formatNumber";
@@ -11,7 +11,7 @@ export function EventSpecial({
   onBlur,
 }: {
   data: DeckSimulatorData;
-  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+  eventId: DeckSimulatorEventId;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;

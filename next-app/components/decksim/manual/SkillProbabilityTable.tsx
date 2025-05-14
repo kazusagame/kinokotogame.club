@@ -1,12 +1,12 @@
-import { EventType } from "@/components/decksim/data/eventData";
+import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 import { SKILL_DATA_PER_EVENT } from "@/components/decksim/data/skillData";
 
 interface Props {
-  eventType: EventType;
+  eventId: DeckSimulatorEventId;
 }
 
-export default function SkillProbabilityTable({ eventType }: Props) {
-  const skillData = SKILL_DATA_PER_EVENT[eventType];
+export default function SkillProbabilityTable({ eventId }: Props) {
+  const skillData = SKILL_DATA_PER_EVENT[eventId];
   return (
     <div className="md:pl-4 py-2">
       <table className="table table-xs md:table-md w-auto text-base whitespace-nowrap">
@@ -35,14 +35,14 @@ export default function SkillProbabilityTable({ eventType }: Props) {
           <tr className="odd:bg-base-200 even:bg-base-300">
             <td>主センバツ</td>
             <td className="text-center">{`${skillData.skillMaxNumMain} 人`}</td>
-            {skillData.skillProbabilityMain.map((r, i) => (
+            {(skillData.skillProbabilityMain ?? []).map((r, i) => (
               <TdDataCell key={i} value={r} />
             ))}
           </tr>
           <tr className="odd:bg-base-200 even:bg-base-300">
             <td>副センバツ (スイッチOFF)</td>
             <td className="text-center">{`${skillData.skillMaxNumSubSwitchOff} 人`}</td>
-            {skillData.skillProbabilitySubSwitchOff.map((r, i) => (
+            {(skillData.skillProbabilitySubSwitchOff ?? []).map((r, i) => (
               <TdDataCell key={i} value={r} />
             ))}
           </tr>

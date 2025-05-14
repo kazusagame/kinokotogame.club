@@ -1,4 +1,4 @@
-import { EventType } from "@/components/decksim/data/eventData";
+import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 import {
   BONUS_DATA_PER_EVENT,
   BonusList,
@@ -6,11 +6,11 @@ import {
 } from "@/components/decksim/data/bonusData";
 
 interface Props {
-  eventType: EventType;
+  eventId: DeckSimulatorEventId;
 }
 
-export default function BonusEffectiveRateTable({ eventType }: Props) {
-  const bonusData = BONUS_DATA_PER_EVENT[eventType];
+export default function BonusEffectiveRateTable({ eventId }: Props) {
+  const bonusData = BONUS_DATA_PER_EVENT[eventId];
   return (
     <div className="md:pl-4 py-2">
       <table className="table table-xs md:table-md w-auto text-base whitespace-nowrap">

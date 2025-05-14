@@ -6,9 +6,9 @@ import {
 import TdDataCell from "@/components/decksim/manual/TdDataCell";
 
 export default function BonusEventUniqueRaidSuperRare() {
-  const typeAdvantageBonusMap = BONUS_DATA_PER_EVENT.raidFirst.eventUniqueBonus!
+  const typeAdvantageBonusMap = BONUS_DATA_PER_EVENT["raid-first"].eventUniqueBonus!
     .typeAdvantage.value as RaidTypeAdvantageSuperRareBonusMap;
-  const comboBonusMap = BONUS_DATA_PER_EVENT.raidFirst.eventUniqueBonus!.combo
+  const comboBonusMap = BONUS_DATA_PER_EVENT["raid-first"].eventUniqueBonus!.combo
     .value as RaidComboMap;
   return (
     <>

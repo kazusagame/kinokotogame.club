@@ -81,43 +81,43 @@ export default function Page() {
             <h2 className="text-xl/relaxed pl-4 relative before:w-2 before:h-4 before:rounded before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[10px] mt-4">
               たすけて！マイヒーロー 前半 超レア
             </h2>
-            <BonusEffectiveRateTable eventType="raidFirst" />
+            <BonusEffectiveRateTable eventId="raid-first" />
             <h2 className="text-xl/relaxed pl-4 relative before:w-2 before:h-4 before:rounded before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[10px] mt-4">
               たすけて！マイヒーロー 後半 超レア
             </h2>
-            <BonusEffectiveRateTable eventType="raidSecond" />
+            <BonusEffectiveRateTable eventId="raid-second" />
             <h2 className="text-xl/relaxed pl-4 relative before:w-2 before:h-4 before:rounded before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[10px] mt-4">
               たすけて！マイヒーロー メガ悪男
             </h2>
-            <BonusEffectiveRateTable eventType="raidMega" />
+            <BonusEffectiveRateTable eventId="raid-mega" />
             <h2 className="text-xl/relaxed pl-4 relative before:w-2 before:h-4 before:rounded before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[10px] mt-4">
               おねがい★ハンターズ
             </h2>
-            <BonusEffectiveRateTable eventType="raidwar" />
+            <BonusEffectiveRateTable eventId="raidwar" />
             <h2 className="text-xl/relaxed pl-4 relative before:w-2 before:h-4 before:rounded before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[10px] mt-4">
               部活対抗！勧誘★グランプリ
             </h2>
-            <BonusEffectiveRateTable eventType="clubcup" />
+            <BonusEffectiveRateTable eventId="clubcup" />
             <h2 className="text-xl/relaxed pl-4 relative before:w-2 before:h-4 before:rounded before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[10px] mt-4">
               聖櫻学園★カリスマ決定戦
             </h2>
-            <BonusEffectiveRateTable eventType="championship" />
+            <BonusEffectiveRateTable eventId="championship" />
             <h2 className="text-xl/relaxed pl-4 relative before:w-2 before:h-4 before:rounded before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[10px] mt-4">
               聖櫻学園メモリアルストーリー
             </h2>
-            <BonusEffectiveRateTable eventType="tower" />
+            <BonusEffectiveRateTable eventId="tower" />
             <h2 className="text-xl/relaxed pl-4 relative before:w-2 before:h-4 before:rounded before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[10px] mt-4">
               全国高校生課外活動コンテスト
             </h2>
-            <BonusEffectiveRateTable eventType="divrace" />
+            <BonusEffectiveRateTable eventId="divrace" />
             <h2 className="text-xl/relaxed pl-4 relative before:w-2 before:h-4 before:rounded before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[10px] mt-4">
               散策♪聖櫻ワールド
             </h2>
-            <BonusEffectiveRateTable eventType="board" />
+            <BonusEffectiveRateTable eventId="board" />
             <h2 className="text-xl/relaxed pl-4 relative before:w-2 before:h-4 before:rounded before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[10px] mt-4">
               通常バトル
             </h2>
-            <BonusEffectiveRateTable eventType="normalBattle" />
+            <BonusEffectiveRateTable eventId="normal-battle" />
           </div>
         </SectionBonus>
         <SectionBonus id="skillRate" title="声援効果">

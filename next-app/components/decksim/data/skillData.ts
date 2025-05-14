@@ -1,4 +1,4 @@
-import { EventType } from "./eventData";
+import { DeckSimulatorEventId } from "./eventData";
 
 export const MAX_SKILL_LEVEL = 18;
 export const INIT_SKILL_LEVEL = 12;
@@ -11,65 +11,71 @@ export interface SkillDataPerEvent {
   annotations?: string[];
 }
 
-export const SKILL_DATA_PER_EVENT: { [K in EventType]: SkillDataPerEvent } = {
-  raidFirst: {
+export const SKILL_DATA_PER_EVENT: { [K in DeckSimulatorEventId]: SkillDataPerEvent } = {
+  "raid-first": {
     skillMaxNumMain: 5,
     skillProbabilityMain: [100.00, 30.00, 30.00, 30.00, 30.00],
     skillMaxNumSubSwitchOff: 2,
     skillProbabilitySubSwitchOff: [30.00, 30.00, 27.30, 23.52, 19.55, 15.85, 12.61, 9.88, 7.66, 5.88],
   },
-  raidSecond: {
+  "raid-second": {
     skillMaxNumMain: 3,
     skillProbabilityMain: [100.00, 100.00, 100.00, 0.00, 0.00],
     skillMaxNumSubSwitchOff: 2,
     skillProbabilitySubSwitchOff: [100.00, 100.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00],
     annotations: ["主センバツは(基本的には)効果が高い順に自動で 3人まで 選出される。", "副センバツに配置したスイッチOFFガールの声援は 2人まで 100% の確率で発動する。"]
   },
-  raidMega: {
+  "raid-mega": {
     skillMaxNumMain: 5,
     skillProbabilityMain: [100.00, 30.00, 30.00, 30.00, 30.00],
     skillMaxNumSubSwitchOff: 0,
     skillProbabilitySubSwitchOff: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00],
     annotations: ["副センバツにスイッチOFFガールを配置しても声援は発動しない。"]
   },
-  raidwar: {
+  "raidwar": {
     skillMaxNumMain: 3,
     skillProbabilityMain: [100.00, 30.00, 30.00, 27.30, 23.52],
     skillMaxNumSubSwitchOff: 2,
     skillProbabilitySubSwitchOff: [30.00, 30.00, 27.30, 23.52, 19.55, 15.85, 12.61, 9.88, 7.66, 5.88],
   },
-  clubcup: {
+  "clubcup": {
     skillMaxNumMain: 5,
     skillProbabilityMain: [100.00, 100.00, 100.00, 100.00, 100.00],
     skillMaxNumSubSwitchOff: 2,
     skillProbabilitySubSwitchOff: [100.00, 100.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00],
     annotations: ["主センバツ全員の声援が 100% の確率で発動する。", "副センバツに配置したスイッチOFFガールの声援は 2人まで 100% の確率で発動する。"]
   },
-  championship: {
+  "championship": {
     skillMaxNumMain: 5,
     skillProbabilityMain: [100.00, 30.00, 30.00, 30.00, 30.00, 29.76, 29.08, 27.89, 26.22, 24.18],
     skillMaxNumSubSwitchOff: 2,
     skillProbabilitySubSwitchOff: [30.00, 30.00, 27.30, 23.52, 19.55, 15.85, 12.61, 9.88, 7.66, 5.88],
   },
-  tower: {
+  "championship-defense": {
+    skillMaxNumMain: 5,
+    skillProbabilityMain: [100.00, 30.00, 30.00, 30.00, 30.00, 29.76, 29.08, 27.89, 26.22, 24.18],
+    skillMaxNumSubSwitchOff: 2,
+    skillProbabilitySubSwitchOff: [30.00, 30.00, 27.30, 23.52, 19.55, 15.85, 12.61, 9.88, 7.66, 5.88],
+  },
+  "tower": {
     skillMaxNumMain: 3,
     skillProbabilityMain: [100.00, 30.00, 30.00, 27.30, 23.52],
     skillMaxNumSubSwitchOff: 2,
     skillProbabilitySubSwitchOff: [30.00, 30.00, 27.30, 23.52, 19.55, 15.85, 12.61, 9.88, 7.66, 5.88],
   },
-  divrace: {
+  "divrace": {
     skillMaxNumMain: 3,
     skillProbabilityMain: [100.00, 30.00, 30.00, 27.30, 23.52],
     skillMaxNumSubSwitchOff: 2,
     skillProbabilitySubSwitchOff: [30.00, 30.00, 27.30, 23.52, 19.55, 15.85, 12.61, 9.88, 7.66, 5.88],
   },
-  board: {
+  "board": {
     skillMaxNumMain: 3,
     skillProbabilityMain: [100.00, 30.00, 30.00, 27.30, 23.52],
     skillMaxNumSubSwitchOff: 2,
     skillProbabilitySubSwitchOff: [30.00, 30.00, 27.30, 23.52, 19.55, 15.85, 12.61, 9.88, 7.66, 5.88],
   },
-  normalBattle: {
+  "normal-battle": {
     skillMaxNumMain: 3,
     skillProbabilityMain: [100.00, 30.00, 30.00, 27.30, 23.52],
     skillMaxNumSubSwitchOff: 2,

@@ -1,4 +1,4 @@
-import { EventType } from "./eventData";
+import { DeckSimulatorEventId } from "./eventData";
 
 export interface BonusList {
   base: number;
@@ -109,8 +109,8 @@ export const BONUS_DATA_COMMON = {
   limitBreak: { attack: 3, defense: 3, probability: 20 },
 } as const;
 
-export const BONUS_DATA_PER_EVENT: { [K in EventType]: BonusDataPerEvent } = {
-  raidFirst: {
+export const BONUS_DATA_PER_EVENT: { [K in DeckSimulatorEventId]: BonusDataPerEvent } = {
+  "raid-first": {
     mainScenes: {
       base: 100, typeMatch: 100, clubMatch: 100, clubItem: 100, clubPosition: 100,
       deck: 0, date: 100, touch: 100, birthday: 100, mensCologne: 100,
@@ -167,7 +167,7 @@ export const BONUS_DATA_PER_EVENT: { [K in EventType]: BonusDataPerEvent } = {
     },
     annotations: ["センバツボーナスはこのイベントでは 無効 (0 %) なので無視してOKです。"],
   },
-  raidSecond: {
+  "raid-second": {
     mainScenes: {
       base: 100, typeMatch: 100, clubMatch: 100, clubItem: 100, clubPosition: 100,
       deck: 0, date: 100, touch: 100, birthday: 100, mensCologne: 100,
@@ -229,7 +229,7 @@ export const BONUS_DATA_PER_EVENT: { [K in EventType]: BonusDataPerEvent } = {
     },
     annotations: ["センバツボーナスはこのイベントでは 無効 (0 %) なので無視してOKです。"],
   },
-  raidMega: {
+  "raid-mega": {
     mainScenes: {
       base: 100, typeMatch: 100, clubMatch: 100, clubItem: 100, clubPosition: 100,
       deck: 0, date: 100, touch: 100, birthday: 100, mensCologne: 100,
@@ -491,6 +491,39 @@ export const BONUS_DATA_PER_EVENT: { [K in EventType]: BonusDataPerEvent } = {
       },
     },
   },
+  "championship-defense": {
+    mainScenes: {
+      base: 100, typeMatch: 100, clubMatch: 100, clubItem: 100, clubPosition: 100,
+      deck: 100, date: 100, touch: 100, birthday: 100, mensCologne: 100,
+      petitEffects: 100, limitBreak: 100, skill: 100
+    },
+    mainStrap: {
+      base: 100, typeMatch: 100, clubMatch: 100, clubItem: 100, clubPosition: 100,
+      deck: 100, date: 100, touch: 100, birthday: 100, mensCologne: 100,
+      petitEffects: 100, limitBreak: 100, skill: 100
+    },
+    mainPrecious: {
+      base: 100, typeMatch: 100, clubMatch: 100, clubItem: 100, clubPosition: 100,
+      deck: 100, date: 100, touch: 0, birthday: 0, mensCologne: 100,
+      petitEffects: 100, limitBreak: 100, skill: 100
+    },
+    subScenes: {
+      base: 80, typeMatch: 0, clubMatch: 0, clubItem: 0, clubPosition: 0,
+      deck: 80, date: 80, touch: 80, birthday: 80, mensCologne: 80,
+      petitEffects: 80, limitBreak: 80, skill: 80
+    },
+    subPrecious: {
+      base: 80, typeMatch: 0, clubMatch: 0, clubItem: 0, clubPosition: 0,
+      deck: 80, date: 80, touch: 0, birthday: 0, mensCologne: 80,
+      petitEffects: 80, limitBreak: 80, skill: 80
+    },
+    petitGirls: {
+      base: 100, typeMatch: 0, clubMatch: 0, clubItem: 0, clubPosition: 0,
+      deck: 0, date: 0, touch: 0, birthday: 0, mensCologne: 0,
+      petitEffects: 0, limitBreak: 0, skill: 0
+    },
+    eventUniqueBonus: {},
+  },
   tower: {
     mainScenes: {
       base: 100, typeMatch: 0, clubMatch: 0, clubItem: 100, clubPosition: 0,
@@ -632,7 +665,7 @@ export const BONUS_DATA_PER_EVENT: { [K in EventType]: BonusDataPerEvent } = {
       },
     },
   },
-  normalBattle: {
+  "normal-battle": {
     mainScenes: {
       base: 100, typeMatch: 100, clubMatch: 100, clubItem: 100, clubPosition: 100,
       deck: 100, date: 100, touch: 100, birthday: 100, mensCologne: 100,

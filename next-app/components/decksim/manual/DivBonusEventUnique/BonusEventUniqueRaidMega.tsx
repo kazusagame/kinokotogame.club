@@ -5,7 +5,7 @@ import {
 import TdDataCell from "@/components/decksim/manual/TdDataCell";
 
 export default function BonusEventUniqueRaidMega() {
-  const typeAdvantageBonusMap = BONUS_DATA_PER_EVENT.raidMega.eventUniqueBonus!
+  const typeAdvantageBonusMap = BONUS_DATA_PER_EVENT["raid-mega"].eventUniqueBonus!
     .typeAdvantage.value as RaidTypeAdvantageMegaBonusMap;
   return (
     <>
