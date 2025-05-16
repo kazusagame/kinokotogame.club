@@ -5,10 +5,33 @@ import {
   DeckSimulatorResult,
 } from "@/components/decksim/simulator/useDeckSimulatorData";
 import { PRECIOUS_SCENES_DATA } from "@/components/decksim/data/preciousScenesData";
+import { MAX_PRECIOUS_SCENES_NUM } from "@/components/decksim/simulator/globalConfig";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
 import { formatNumber } from "@/lib/formatNumber";
 import { removeKeyAndReindex } from "@/lib/removeKeyAndReindex";
+
+type SceneSelectModalProps = {
+  title: string;
+  onSubmit: (
+    selectedScene: SelectState,
+    currentFilterState: FilterState
+  ) => void;
+  onClose: (selectedScene: SelectState, filterState: FilterState) => void;
+  initialSelected: SelectState;
+  initialFilterState: FilterState;
+};
+
+type SelectState = {
+  id: string | null;
+  rarity: string | null;
+};
+
+type FilterState = {
+  initialRarity: string | null;
+  effectTarget: string | null;
+  effectType: string | null;
+};
 
 export function PreciousScenes({
   data,
@@ -30,59 +53,80 @@ export function PreciousScenes({
     value: { [key: string | number]: unknown };
   }) => void;
 }) {
-  return (
-    <>
-      <section className="pl-1">
-        <h2 className="text-lg font-bold">プレシャスシーン</h2>
-        <div className="flex flex-col gap-6 mt-4 pl-2 md:pl-4">
-          <RegisteredPreciousScenesBlock
-            data={data}
-            summary={summary}
-            type={type}
-            onChange={onChange}
-            onBlur={onBlur}
-            setValueAtPath={setValueAtPath}
-          />
-          <AddPreciousScenesBlock
-            data={data}
-            type={type}
-            setValueAtPath={setValueAtPath}
-          />
-        </div>
-      </section>
-    </>
-  );
-}
-
-function RegisteredPreciousScenesBlock({
-  data,
-  summary,
-  type,
-  onChange,
-  onBlur,
-  setValueAtPath,
-}: {
-  data: DeckSimulatorData;
-  summary: DeckSimulatorResult;
-  type: "攻援" | "守援";
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => void;
-  onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
-  setValueAtPath: (obj: {
-    path: string;
-    value: { [key: string | number]: unknown };
-  }) => void;
-}) {
   const typeIndex = type === "攻援" ? "attack" : "defense";
-  const registeredData = data.preciousScenes?.[typeIndex] ?? {};
-  const registeredCount = Object.keys(registeredData).length;
+  const scenesData = data.preciousScenes?.[typeIndex] ?? {};
+  const scenesCount = Object.keys(scenesData).length;
   const summaryData = summary.summaries.preciousScenes?.[typeIndex] ?? {};
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [resolveModal, setResolveModal] = useState<
+    ((obj: { id: string | null; rarity: string | null }) => void) | null
+  >(null);
+  const [selectedState, setSelectedState] = useState<SelectState>({
+    id: null,
+    rarity: null,
+  });
+  const [filterState, setFilterState] = useState<FilterState>({
+    initialRarity: null,
+    effectTarget: null,
+    effectType: null,
+  });
+
+  const openSelectModal = (): Promise<{
+    id: string | null;
+    rarity: string | null;
+  }> => {
+    setModalOpen(true);
+    return new Promise((resolve) => {
+      setResolveModal(() => resolve);
+    });
+  };
+
+  const handleSceneSelect = (
+    selectedScene: { id: string | null; rarity: string | null },
+    currentFilterState: FilterState
+  ) => {
+    if (resolveModal) {
+      resolveModal(selectedScene);
+      setResolveModal(null);
+    }
+    setSelectedState(selectedScene);
+    setFilterState(currentFilterState);
+    setModalOpen(false);
+  };
+
+  const handleAddButton = async () => {
+    if (modalOpen) return;
+    setModalTitle("新規追加");
+    const result = await openSelectModal();
+    if (result.id !== null && result.rarity !== null) {
+      setValueAtPath({
+        path: `preciousScenes.${typeIndex}.${scenesCount + 1}`,
+        value: { id: result.id, rarity: result.rarity },
+      });
+    }
+  };
+
+  const handleEditButton = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (modalOpen) return;
+    const key = e.currentTarget.dataset.key;
+    if (!key) return;
+    setModalTitle("編集");
+    setSelectedState(scenesData[Number(key)]);
+    const result = await openSelectModal();
+    if (result.id !== null && result.rarity !== null) {
+      setValueAtPath({
+        path: `preciousScenes.${typeIndex}.${key}`,
+        value: { id: result.id, rarity: result.rarity },
+      });
+    }
+  };
 
   const handleDeleteButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     const key = e.currentTarget.dataset.key;
     const newData = removeKeyAndReindex(
-      registeredData,
+      scenesData,
       Number(key)
     ) as DeckSimulatorData["preciousScenes"][typeof typeIndex];
     if (newData === undefined) return;
@@ -93,15 +137,86 @@ function RegisteredPreciousScenesBlock({
   };
 
   return (
+    <section className="pl-1">
+      <h2 className="text-lg font-bold">プレシャスシーン</h2>
+      <div className="flex flex-col gap-6 mt-4 pl-2 md:pl-4">
+        <RegisteredPreciousScenesBlock
+          typeIndex={typeIndex}
+          scenesData={scenesData}
+          scenesCount={scenesCount}
+          summaryData={summaryData}
+          onChange={onChange}
+          onBlur={onBlur}
+          handleEditButton={handleEditButton}
+          handleDeleteButton={handleDeleteButton}
+        />
+        <AddPreciousScenesBlock
+          scenesCount={scenesCount}
+          handleAddButton={handleAddButton}
+        />
+      </div>
+      {modalOpen && (
+        <SceneSelectModal
+          title={modalTitle}
+          onSubmit={handleSceneSelect}
+          onClose={(selectedScene, currentFilters) => {
+            if (resolveModal) {
+              resolveModal({ id: null, rarity: null });
+              setResolveModal(null);
+            }
+            setSelectedState(selectedScene);
+            setFilterState(currentFilters);
+            setModalOpen(false);
+          }}
+          initialSelected={selectedState}
+          initialFilterState={
+            modalTitle === "追加"
+              ? filterState
+              : {
+                  initialRarity: null,
+                  effectTarget: null,
+                  effectType: null,
+                }
+          }
+        />
+      )}
+    </section>
+  );
+}
+
+function RegisteredPreciousScenesBlock({
+  typeIndex,
+  scenesData = {},
+  scenesCount,
+  summaryData,
+  onChange,
+  onBlur,
+  handleEditButton,
+  handleDeleteButton,
+}: {
+  typeIndex: "attack" | "defense";
+  scenesData: DeckSimulatorData["preciousScenes"]["attack" | "defense"];
+  scenesCount: number;
+  summaryData: DeckSimulatorResult["summaries"]["preciousScenes"][
+    | "attack"
+    | "defense"];
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
+  onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  handleEditButton: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  handleDeleteButton: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}) {
+  return (
     <div className="w-fit text-base border border-base-300 rounded-xl">
-      <div className="grid grid-cols-3 sm:grid-cols-[40px_200px_30px_80px_90px_90px] gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl">
-        <div></div>
+      <div className="grid grid-cols-3 sm:grid-cols-[40px_200px_30px_80px_90px_140px] gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl">
+        <div>No.</div>
         <div>名称</div>
         <div>レア</div>
         <div className="flex justify-center items-center">
           <TextWithTooltip
             displayText="人数"
-            tipText="最大効果発揮条件に「特定の～」や「様々な～」の文が入るシーンにおいてそのカウント数値を入力します。未入力のままの場合は最大効果発揮条件を満たしているものと見なして最大効果値を計算に使用します。"
+            tipText="最大効果発揮条件に「特定の～ガール」や「様々な～ガール」の文があるシーンにおいて、そのガールのカウント数値を入力します。その他のシーンでは入力欄は表示されません。未入力のままの場合は最大効果発揮条件を満たしているものと見なして最大効果値を計算に使用します。"
           />
         </div>
         <div className="flex justify-center items-center">
@@ -112,19 +227,19 @@ function RegisteredPreciousScenesBlock({
         </div>
         <div></div>
       </div>
-      {registeredCount === 0 ? (
+      {scenesCount === 0 ? (
         <div className="text-center text-sm font-bold py-4">
           まだ何も設定されていません
         </div>
       ) : (
         <>
-          {Object.entries(registeredData).map(([key, value]) => {
+          {Object.entries(scenesData).map(([key, value]) => {
             const sceneData = PRECIOUS_SCENES_DATA[Number(value.id)];
             return (
               <div
                 key={key}
-                className={`grid grid-cols-3 sm:grid-cols-[40px_200px_30px_80px_90px_90px] gap-3 min-h-10 text-sm py-1 odd:bg-base-200 even:bg-base-100 ${
-                  registeredCount === Number(key) ? "rounded-b-xl" : ""
+                className={`grid grid-cols-3 sm:grid-cols-[40px_200px_30px_80px_90px_140px] gap-3 min-h-10 text-sm py-1 odd:bg-base-200 even:bg-base-100 ${
+                  scenesCount === Number(key) ? "rounded-b-xl" : ""
                 }`}
               >
                 <div className="flex justify-center items-center">{key}</div>
@@ -153,7 +268,14 @@ function RegisteredPreciousScenesBlock({
                     summaryData?.[Number(key)]?.estimatedPower ?? 0
                   )}
                 </div>
-                <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center gap-2 md:gap-4 px-2">
+                  <button
+                    className="btn btn-sm btn-primary"
+                    data-key={key}
+                    onClick={handleEditButton}
+                  >
+                    編集
+                  </button>
                   <button
                     className="btn btn-sm btn-secondary"
                     data-key={key}
@@ -171,125 +293,32 @@ function RegisteredPreciousScenesBlock({
   );
 }
 
-type SceneSelectModalProps = {
-  onSubmit: (
-    selectedScene: SelectState,
-    currentFilterState: FilterState
-  ) => void;
-  onClose: (selectedScene: SelectState, filterState: FilterState) => void;
-  initialSelected: SelectState;
-  initialFilterState: FilterState;
-};
-
-type SelectState = {
-  id: string | null;
-  rarity: string | null;
-};
-
-type FilterState = {
-  initialRarity: string | null;
-  effectTarget: string | null;
-  effectType: string | null;
-};
-
 function AddPreciousScenesBlock({
-  data,
-  type,
-  setValueAtPath,
+  scenesCount,
+  handleAddButton,
 }: {
-  data: DeckSimulatorData;
-  type: "攻援" | "守援";
-  setValueAtPath: (obj: {
-    path: string;
-    value: { [key: string | number]: unknown };
-  }) => void;
+  scenesCount: number;
+  handleAddButton: () => void;
 }) {
-  const typeIndex = type === "攻援" ? "attack" : "defense";
-  const scenesData = data.preciousScenes?.[typeIndex] ?? {};
-  const scenesCount = Object.keys(scenesData).length;
-  const isScenesCountFull = scenesCount >= 10;
-
-  const [modalOpen, setModalOpen] = useState(false);
-  const [resolveModal, setResolveModal] = useState<
-    ((obj: { id: string | null; rarity: string | null }) => void) | null
-  >(null);
-  const [selectedState, setSelectedState] = useState<SelectState>({
-    id: null,
-    rarity: null,
-  });
-  const [filterState, setFilterState] = useState<FilterState>({
-    initialRarity: null,
-    effectTarget: null,
-    effectType: null,
-  });
-
-  const handleClickAddButton = async () => {
-    if (modalOpen) return;
-    const result = await openSelectModal();
-    if (result.id !== null && result.rarity !== null) {
-      setValueAtPath({
-        path: `preciousScenes.${typeIndex}.${scenesCount + 1}`,
-        value: { id: result.id, rarity: result.rarity },
-      });
-    }
-  };
-
-  const openSelectModal = (): Promise<{
-    id: string | null;
-    rarity: string | null;
-  }> => {
-    setModalOpen(true);
-    return new Promise((resolve) => {
-      setResolveModal(() => resolve);
-    });
-  };
-
-  const handleSceneSelect = (
-    selectedScene: { id: string | null; rarity: string | null },
-    currentFilterState: FilterState
-  ) => {
-    if (resolveModal) {
-      resolveModal(selectedScene);
-      setResolveModal(null);
-    }
-    setSelectedState(selectedScene);
-    setFilterState(currentFilterState);
-    setModalOpen(false);
-  };
-
+  const isScenesCountFull = scenesCount >= MAX_PRECIOUS_SCENES_NUM;
   return (
     <>
       <div className="pl-4">
         <button
           type="button"
           className="btn btn-md w-24 btn-primary"
-          onClick={() => handleClickAddButton()}
+          onClick={() => handleAddButton()}
           disabled={isScenesCountFull}
         >
           追加する
         </button>
       </div>
-      {modalOpen && (
-        <SceneSelectModal
-          onSubmit={handleSceneSelect}
-          onClose={(selectedScene, currentFilters) => {
-            if (resolveModal) {
-              resolveModal({ id: null, rarity: null });
-              setResolveModal(null);
-            }
-            setSelectedState(selectedScene);
-            setFilterState(currentFilters);
-            setModalOpen(false);
-          }}
-          initialSelected={selectedState}
-          initialFilterState={filterState}
-        />
-      )}
     </>
   );
 }
 
 function SceneSelectModal({
+  title,
   onSubmit,
   onClose,
   initialSelected,
@@ -357,10 +386,11 @@ function SceneSelectModal({
             ✕
           </button>
           <div className="flex flex-col gap-6 mt-6">
+            <h2 className="text-lg font-bold">{title}</h2>
             {/* 初期レアリティ */}
             <div>
-              <div className="font-bold">初期レアリティ</div>
-              <div className="flex gap-5 flex-wrap pl-2 md:pl-4 mt-3">
+              <label className="label">初期レアリティ</label>
+              <div className="flex gap-5 flex-wrap pl-2 md:pl-4">
                 {["未選択", "星1", "星2", "星3"].map((rarity) => (
                   <label
                     key={rarity}
@@ -385,8 +415,8 @@ function SceneSelectModal({
 
             {/* 効果対象 */}
             <div>
-              <div className="font-bold">効果対象</div>
-              <div className="flex gap-5 flex-wrap pl-2 md:pl-4 mt-3">
+              <label className="label">効果対象</label>
+              <div className="flex gap-5 flex-wrap pl-2 md:pl-4">
                 {[
                   "未選択",
                   "全タイプ",
@@ -417,8 +447,8 @@ function SceneSelectModal({
 
             {/* 効果タイプ */}
             <div>
-              <div className="font-bold">効果タイプ</div>
-              <div className="flex gap-5 flex-wrap pl-2 md:pl-4 mt-3">
+              <label className="label">効果タイプ</label>
+              <div className="flex gap-5 flex-wrap pl-2 md:pl-4">
                 {["未選択", "攻援UP", "守援UP", "攻守UP"].map((type) => (
                   <label
                     key={type}

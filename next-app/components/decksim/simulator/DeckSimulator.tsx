@@ -2,7 +2,10 @@
 
 import React, { useState, useRef, useCallback } from "react";
 
-import { DeckSimulatorEventId, EVENT_ID_TO_NAME_DICT } from "@/components/decksim/data/eventData";
+import {
+  DeckSimulatorEventId,
+  EVENT_ID_TO_NAME_DICT,
+} from "@/components/decksim/data/eventData";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
 import { formatNumber } from "@/lib/formatNumber";
@@ -221,7 +224,9 @@ export default function DeckSimulator({
                       type="攻援"
                       setValueAtPath={setValueAtPath}
                     />
-                    <hr className="mx-4 h-px bg-base-300 border-0" />
+                    {eventId !== "raid-mega" && (
+                        <hr className="mx-4 h-px bg-base-300 border-0" />
+                      )}
                     <PreciousScenes
                       data={data}
                       summary={resultSummary}

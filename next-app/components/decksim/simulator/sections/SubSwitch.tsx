@@ -13,6 +13,7 @@ import {
   SKILL_DATA_PER_EVENT,
   SKILL_RATE_DATA,
 } from "@/components/decksim/data/skillData";
+import { MAX_SWITCH_OFF_GIRLS_NUM } from "@/components/decksim/simulator/globalConfig";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
 import { formatNumber } from "@/lib/formatNumber";
@@ -25,25 +26,9 @@ type SelectModalProps = {
   initialSelected: SelectState;
 };
 
-type SelectState = {
-  skillLv: number | string;
-  target: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
-  range: "主＋副" | "主のみ" | "副のみ";
-  subRange: number | string;
-  type: "攻" | "守" | "攻守";
-  strength:
-    | "中"
-    | "中+"
-    | "中++"
-    | "大"
-    | "特大"
-    | "特大+"
-    | "特大++"
-    | "スーパー特大"
-    | "スーパー特大+"
-    | "スーパー特大++"
-    | "超スーパー特大";
-};
+type SelectState = NonNullable<
+  DeckSimulatorData["subSwitch"]["attack" | "defense"]
+>[number];
 
 export function SubSwitch({
   data,
@@ -61,57 +46,137 @@ export function SubSwitch({
     value: { [key: string | number]: unknown };
   }) => void;
 }) {
+  const typeIndex = type === "攻援" ? "attack" : "defense";
+  const skillData = data.subSwitch?.[typeIndex] ?? {};
+  const skillCount = Object.keys(skillData).length;
+  const summaryData = summary.summaries.subSwitch?.[typeIndex] ?? {};
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [resolveModal, setResolveModal] = useState<
+    ((obj: SelectState | null) => void) | null
+  >(null);
+  const [selectedState, setSelectedState] = useState<SelectState>({
+    skillLv: String(INIT_SKILL_LEVEL),
+    target: "SWEETタイプ",
+    range: "主のみ",
+    subRange: String(0),
+    type: "攻",
+    strength: "特大",
+  });
+
+  const openSelectModal = (): Promise<SelectState | null> => {
+    setModalOpen(true);
+    return new Promise((resolve) => {
+      setResolveModal(() => resolve);
+    });
+  };
+
+  const handleGirlSelect = (selected: SelectState) => {
+    if (resolveModal) {
+      resolveModal(selected);
+      setResolveModal(null);
+    }
+    setSelectedState(selected);
+    setModalOpen(false);
+  };
+
+  const handleAddButton = async () => {
+    if (modalOpen) return;
+    setModalTitle("新規追加");
+    const result = await openSelectModal();
+    if (result !== null) {
+      setValueAtPath({
+        path: `subSwitch.${typeIndex}.${skillCount + 1}`,
+        value: result,
+      });
+    }
+  };
+
+  const handleEditButton = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (modalOpen) return;
+    const key = e.currentTarget.dataset.key;
+    if (!key) return;
+    setModalTitle("編集");
+    setSelectedState(skillData[Number(key)]);
+    const result = await openSelectModal();
+    if (result !== null) {
+      setValueAtPath({
+        path: `subSwitch.${typeIndex}.${key}`,
+        value: result,
+      });
+    }
+  };
+
+  const handleDeleteButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const key = e.currentTarget.dataset.key;
+    const newData = removeKeyAndReindex(
+      skillData,
+      Number(key)
+    ) as DeckSimulatorData["subSwitch"][typeof typeIndex];
+    if (newData === undefined) return;
+    setValueAtPath({
+      path: `subSwitch.${typeIndex}`,
+      value: newData,
+    });
+  };
+
   return (
-    <>
-      <section className="pl-1">
-        <h2 className="text-lg font-bold">副センバツ内のスイッチOFFガール</h2>
-        <div className="flex flex-col gap-6 mt-4 pl-2 md:pl-4">
-          <RegisteredSubSwitchBlock
-            data={data}
-            summary={summary}
-            eventId={eventId}
-            type={type}
-            setValueAtPath={setValueAtPath}
-          />
-          <AddSubSwitchBlock
-            data={data}
-            type={type}
-            setValueAtPath={setValueAtPath}
-          />
-        </div>
-      </section>
-    </>
+    <section className="pl-1">
+      <h2 className="text-lg font-bold">
+        副センバツ内のスイッチOFFガール 声援
+      </h2>
+      <div className="flex flex-col gap-6 mt-4 pl-2 md:pl-4">
+        <RegisteredSubSwitchBlock
+          eventId={eventId}
+          skillData={skillData}
+          skillCount={skillCount}
+          summaryData={summaryData}
+          handleEditButton={handleEditButton}
+          handleDeleteButton={handleDeleteButton}
+        />
+        <AddSubSwitchBlock
+          skillCount={skillCount}
+          handleAddButton={handleAddButton}
+        />
+      </div>
+      {modalOpen && (
+        <SkillSelectModal
+          title={modalTitle}
+          onSubmit={handleGirlSelect}
+          onClose={(selected) => {
+            if (resolveModal) {
+              resolveModal(null);
+              setResolveModal(null);
+            }
+            setSelectedState(selected);
+            setModalOpen(false);
+          }}
+          initialSelected={selectedState}
+        />
+      )}
+    </section>
   );
 }
 
 function RegisteredSubSwitchBlock({
-  data,
-  summary,
   eventId,
-  type,
-  setValueAtPath,
+  skillData = {},
+  skillCount,
+  summaryData,
+  handleEditButton,
+  handleDeleteButton,
 }: {
-  data: DeckSimulatorData;
-  summary: DeckSimulatorResult;
   eventId: DeckSimulatorEventId;
-  type: "攻援" | "守援";
-  setValueAtPath: (obj: {
-    path: string;
-    value: { [key: string | number]: unknown };
-  }) => void;
+  skillData: DeckSimulatorData["subSwitch"]["attack" | "defense"];
+  skillCount: number;
+  summaryData: DeckSimulatorResult["summaries"]["subSwitch"][
+    | "attack"
+    | "defense"];
+  handleEditButton: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  handleDeleteButton: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }) {
-  const typeIndex = type === "攻援" ? "attack" : "defense";
-  const registeredData = data.subSwitch?.[typeIndex] ?? {};
-  const registeredCount = Object.keys(registeredData).length;
-  const summaryData = summary.summaries.subSwitch?.[typeIndex] ?? {};
-  const skillData = SKILL_DATA_PER_EVENT[eventId].skillProbabilitySubSwitchOff;
-
-  const gridColumnCss =
-    eventId !== "clubcup"
-      ? "lg:grid-cols-[40px_40px_90px_55px_60px_60px_55px_75px_85px_75px_auto]"
-      : "lg:grid-cols-[40px_40px_90px_55px_60px_60px_55px_75px_85px_75px_75px_auto]";
-
-  const skillRates = Object.values(registeredData).map((value) => {
+  const skillRates = Object.values(skillData).map((value) => {
     const target = value.target !== "全タイプ" ? "単タイプ" : "全タイプ";
     const range = value.range ?? "主＋副";
     const subRange =
@@ -129,159 +194,130 @@ function RegisteredSubSwitchBlock({
 
     return baseValue ? baseValue + Number(value.skillLv) - 1 : 0;
   });
+  const skillProbabilities =
+    SKILL_DATA_PER_EVENT[eventId].skillProbabilitySubSwitchOff;
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [resolveModal, setResolveModal] = useState<
-    ((obj: SelectState | null) => void) | null
-  >(null);
-  const [selectedState, setSelectedState] = useState<SelectState>({
-    skillLv: INIT_SKILL_LEVEL,
-    target: "SWEETタイプ",
-    range: "主のみ",
-    subRange: 0,
-    type: "攻",
-    strength: "特大",
-  });
-
-  const handleEditButton = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (modalOpen) return;
-    const key = e.currentTarget.dataset.key;
-    if (!key) return;
-    setSelectedState(registeredData[Number(key)]);
-    const result = await openSelectModal();
-    if (result !== null) {
-      setValueAtPath({
-        path: `subSwitch.${typeIndex}.${key}`,
-        value: result,
-      });
-    }
-  };
-
-  const openSelectModal = (): Promise<SelectState | null> => {
-    setModalOpen(true);
-    return new Promise((resolve) => {
-      setResolveModal(() => resolve);
-    });
-  };
-
-  const handleDeleteButton = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const key = e.currentTarget.dataset.key;
-    const newData = removeKeyAndReindex(
-      registeredData,
-      Number(key)
-    ) as DeckSimulatorData["subSwitch"][typeof typeIndex];
-    if (newData === undefined) return;
-    setValueAtPath({
-      path: `subSwitch.${typeIndex}`,
-      value: newData,
-    });
-  };
-
-  const handleSelect = (selected: SelectState) => {
-    if (resolveModal) {
-      resolveModal(selected);
-      setResolveModal(null);
-    }
-    setModalOpen(false);
-  };
+  const gridColumnCss =
+    eventId !== "clubcup"
+      ? "lg:grid-cols-[40px_40px_90px_55px_60px_60px_55px_75px_85px_75px_140px]"
+      : "lg:grid-cols-[40px_40px_90px_55px_60px_60px_55px_75px_85px_75px_75px_140px]";
 
   return (
-    <>
-      <div className="w-fit text-base border border-base-300 rounded-xl">
-        <div className={`grid grid-cols-4 md:grid-cols-6 ${gridColumnCss} gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl`}>
-          <div></div>
-          <div>声援Lv</div>
-          <div>対象タイプ</div>
-          <div>対象範囲</div>
-          <div>対象副人数</div>
-          <div>効果タイプ</div>
-          <div>効果強度</div>
-          <div className="flex justify-center items-center">
-            <TextWithTooltip
-              displayText="効果値"
-              tipText="入力した声援Lvや声援の内容から算出した声援効果値を自動で表示します。"
-            />
-          </div>
-          <div className="flex justify-center items-center">
-            <TextWithTooltip
-              displayText="発動時合計"
-              tipText="声援が発動したときの効果合計値を自動で表示します。声援が掛かる対象の応援力 × 効果値 × 対象人数 × 補正。基本的にはこの数値が大きい声援ほど効果が高いです。"
-            />
-          </div>
-          <div className="flex justify-center items-center">
-            <TextWithTooltip
-              displayText="発動率"
-              tipText="声援が発動する確率を自動で表示します。声援の同時発動数には制限があるため、老番のガールほど発動率は低くなります。"
-            />
-          </div>
-          {eventId === "clubcup" && (
-            <div className="flex justify-center items-center">
-              <TextWithTooltip
-                displayText="声援効果"
-                tipText="対抗戦における声援効果への加算値を自動で表示します。( 発動時合計 / 5,000) %。"
-              />
-            </div>
-          )}
-          <div></div>
+    <div className="w-fit text-base border border-base-300 rounded-xl">
+      <div
+        className={`grid grid-cols-4 md:grid-cols-6 ${gridColumnCss} gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl`}
+      >
+        <div>No.</div>
+        <div>声援Lv</div>
+        <div>対象タイプ</div>
+        <div>対象範囲</div>
+        <div>対象副人数</div>
+        <div>効果タイプ</div>
+        <div>効果強度</div>
+        <div className="flex justify-center items-center">
+          <TextWithTooltip
+            displayText="効果値"
+            tipText="入力した声援Lvや声援の内容から算出した声援効果値を自動で表示します。"
+          />
         </div>
-        {registeredCount === 0 ? (
-          <div className="text-center text-sm font-bold py-4">
-            まだ何も設定されていません
+        <div className="flex justify-center items-center">
+          <TextWithTooltip
+            displayText="発動時合計"
+            tipText="声援が発動したときの効果合計値を自動で表示します。声援が掛かる対象の応援力 × 効果値 × 対象人数 × 補正。基本的にはこの数値が大きい声援ほど効果が高いです。"
+          />
+        </div>
+        <div className="flex justify-center items-center">
+          <TextWithTooltip
+            displayText="発動率"
+            tipText="声援が発動する確率を自動で表示します。声援の同時発動数には制限があるため、老番のガールほど発動率は低くなります。"
+          />
+        </div>
+        {eventId === "clubcup" && (
+          <div className="flex justify-center items-center">
+            <TextWithTooltip
+              displayText="声援効果"
+              tipText="対抗戦における声援効果への加算値を自動で表示します。( 発動時合計 / 5,000) %。"
+            />
           </div>
-        ) : (
-          <>
-            {Object.entries(registeredData).map(([key, value]) => {
-              return (
-                <div
-                  key={key}
-                  className={`grid grid-cols-4 md:grid-cols-6 ${gridColumnCss} gap-3 min-h-10 text-sm py-1 odd:bg-base-200 even:bg-base-100 ${
-                    registeredCount === Number(key) ? "rounded-b-xl" : ""
-                  }`}
-                >
-                  <div className="flex justify-center items-center">{key}</div>
-                  <div className="flex justify-center items-center">
-                    {value.skillLv}
-                  </div>
-                  <div className="flex justify-center items-center">
-                    {value.target}
-                  </div>
-                  <div className="flex justify-center items-center">
-                    {value.range}
-                  </div>
+        )}
+        <div></div>
+      </div>
+      {skillCount === 0 ? (
+        <div className="text-center text-sm font-bold py-4">
+          まだ何も設定されていません
+        </div>
+      ) : (
+        <>
+          {Object.entries(skillData).map(([key, value]) => {
+            return (
+              <div
+                key={key}
+                className={`grid grid-cols-4 md:grid-cols-6 ${gridColumnCss} gap-3 min-h-10 text-sm py-1 odd:bg-base-200 even:bg-base-100 ${
+                  skillCount === Number(key) ? "rounded-b-xl" : ""
+                }`}
+              >
+                <div className="flex justify-center items-center">{key}</div>
+                <div className="flex justify-center items-center">
+                  {value.skillLv}
+                </div>
+                <div className="flex justify-center items-center">
+                  {value.target}
+                </div>
+                <div className="flex justify-center items-center">
+                  {value.range}
+                </div>
+                {value.range === "主のみ" ? (
+                  <div className="flex justify-center items-center">―</div>
+                ) : (
                   <div className="flex justify-center items-center">
                     {value.subRange}
                   </div>
-                  <div className="flex justify-center items-center">
-                    {value.type}
+                )}
+                <div className="flex justify-center items-center">
+                  {value.type}
+                </div>
+                <div className="flex justify-center items-center">
+                  {value.strength}
+                </div>
+                {skillRates[Number(key) - 1] ? (
+                  <div className="flex justify-end items-center pr-4">
+                    {`${skillRates[Number(key) - 1]} %`}
                   </div>
-                  <div className="flex justify-center items-center">
-                    {value.strength}
-                  </div>
-                  {skillRates[Number(key) - 1] ? (
-                    <div className="flex justify-end items-center pr-4">
-                      {`${skillRates[Number(key) - 1]} %`}
+                ) : (
+                  <Tooltip
+                    title="選択したパラメータの組み合わせの効果値は未登録です（いずれかのパラメータが間違っているのかも？）"
+                    arrow
+                    enterTouchDelay={0}
+                    leaveTouchDelay={10000}
+                  >
+                    <div className="flex justify-end items-center pr-4  bg-warning text-warning-content">
+                      <WarningIcon />
+                      <span className="ml-2">0 %</span>
                     </div>
-                  ) : (
-                    <Tooltip
-                      title="選択したパラメータの組み合わせの効果値は未登録です（どれかのパラメータが間違っているかも？）"
-                      arrow
-                      enterTouchDelay={0}
-                      leaveTouchDelay={10000}
-                    >
-                      <div className="flex justify-end items-center pr-4  bg-warning text-warning-content">
-                        <WarningIcon />
-                        <span className="ml-2">0 %</span>
-                      </div>
-                    </Tooltip>
+                  </Tooltip>
+                )}
+                <div className="flex justify-end items-center pr-2">
+                  {formatNumber(
+                    summaryData?.[Number(key)]?.estimatedPower ?? 0
                   )}
+                </div>
+                <div className="flex justify-end items-center pr-2">
+                  {formatNumber(
+                    skillProbabilities?.[Number(key) - 1] ?? 0,
+                    "0.00",
+                    "ja-JP",
+                    {
+                      style: "decimal",
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    }
+                  )}{" "}
+                  %
+                </div>
+                {eventId === "clubcup" && (
                   <div className="flex justify-end items-center pr-2">
                     {formatNumber(
-                      summaryData?.[Number(key)]?.estimatedPower ?? 0
-                    )}
-                  </div>
-                  <div className="flex justify-end items-center pr-2">
-                    {formatNumber(
-                      skillData?.[Number(key) - 1] ?? 0,
+                      summaryData?.[Number(key)]?.skillEffect ?? 0,
                       "0.00",
                       "ja-JP",
                       {
@@ -292,146 +328,51 @@ function RegisteredSubSwitchBlock({
                     )}{" "}
                     %
                   </div>
-                  {eventId === "clubcup" && (
-                    <div className="flex justify-end items-center pr-2">
-                      {formatNumber(
-                        summaryData?.[Number(key)]?.skillEffect ?? 0,
-                        "0.00",
-                        "ja-JP",
-                        {
-                          style: "decimal",
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2,
-                        }
-                      )}{" "}
-                      %
-                    </div>
-                  )}
-                  <div className="flex justify-center items-center gap-2 md:gap-4 px-2">
-                    <button
-                      className="btn btn-sm btn-primary"
-                      data-key={key}
-                      onClick={handleEditButton}
-                    >
-                      編集
-                    </button>
-                    <button
-                      className="btn btn-sm btn-secondary"
-                      data-key={key}
-                      onClick={handleDeleteButton}
-                    >
-                      削除
-                    </button>
-                  </div>
+                )}
+                <div className="flex justify-center items-center gap-2 md:gap-4 px-2">
+                  <button
+                    className="btn btn-sm btn-primary"
+                    data-key={key}
+                    onClick={handleEditButton}
+                  >
+                    編集
+                  </button>
+                  <button
+                    className="btn btn-sm btn-secondary"
+                    data-key={key}
+                    onClick={handleDeleteButton}
+                  >
+                    削除
+                  </button>
                 </div>
-              );
-            })}
-          </>
-        )}
-      </div>
-      {modalOpen && (
-        <SkillSelectModal
-          title="編集"
-          onSubmit={handleSelect}
-          onClose={() => {
-            if (resolveModal) {
-              resolveModal(null);
-              setResolveModal(null);
-            }
-            setModalOpen(false);
-          }}
-          initialSelected={selectedState}
-        />
+              </div>
+            );
+          })}
+        </>
       )}
-    </>
+    </div>
   );
 }
 
 function AddSubSwitchBlock({
-  data,
-  type,
-  setValueAtPath,
+  skillCount,
+  handleAddButton,
 }: {
-  data: DeckSimulatorData;
-  type: "攻援" | "守援";
-  setValueAtPath: (obj: {
-    path: string;
-    value: { [key: string | number]: unknown };
-  }) => void;
+  skillCount: number;
+  handleAddButton: () => void;
 }) {
-  const typeIndex = type === "攻援" ? "attack" : "defense";
-  const skillData = data.subSwitch?.[typeIndex] ?? {};
-  const skillCount = Object.keys(skillData).length;
-  const isSkillCountFull = skillCount >= 10;
-
-  const [modalOpen, setModalOpen] = useState(false);
-  const [resolveModal, setResolveModal] = useState<
-    ((obj: SelectState | null) => void) | null
-  >(null);
-  const [selectedState, setSelectedState] = useState<SelectState>({
-    skillLv: INIT_SKILL_LEVEL,
-    target: "SWEETタイプ",
-    range: "主のみ",
-    subRange: 0,
-    type: "攻",
-    strength: "特大",
-  });
-
-  const handleAddButton = async () => {
-    if (modalOpen) return;
-    const result = await openSelectModal();
-    if (result !== null) {
-      setValueAtPath({
-        path: `subSwitch.${typeIndex}.${skillCount + 1}`,
-        value: result,
-      });
-    }
-  };
-
-  const openSelectModal = (): Promise<SelectState | null> => {
-    setModalOpen(true);
-    return new Promise((resolve) => {
-      setResolveModal(() => resolve);
-    });
-  };
-
-  const handleSelect = (selected: SelectState) => {
-    if (resolveModal) {
-      resolveModal(selected);
-      setResolveModal(null);
-    }
-    setSelectedState(selected);
-    setModalOpen(false);
-  };
-
+  const isSkillCountFull = skillCount >= MAX_SWITCH_OFF_GIRLS_NUM;
   return (
-    <>
-      <div className="pl-4">
-        <button
-          type="button"
-          className="btn btn-md w-24 btn-primary"
-          onClick={() => handleAddButton()}
-          disabled={isSkillCountFull}
-        >
-          追加する
-        </button>
-      </div>
-      {modalOpen && (
-        <SkillSelectModal
-          title="新規追加"
-          onSubmit={handleSelect}
-          onClose={(selected) => {
-            if (resolveModal) {
-              resolveModal(null);
-              setResolveModal(null);
-            }
-            setSelectedState(selected);
-            setModalOpen(false);
-          }}
-          initialSelected={selectedState}
-        />
-      )}
-    </>
+    <div className="pl-4">
+      <button
+        type="button"
+        className="btn btn-md w-24 btn-primary"
+        onClick={() => handleAddButton()}
+        disabled={isSkillCountFull}
+      >
+        追加する
+      </button>
+    </div>
   );
 }
 
@@ -471,7 +412,7 @@ function SkillSelectModal({
                   onChange={(e) =>
                     setSelected({
                       ...selected,
-                      skillLv: Number(e.target.value),
+                      skillLv: e.target.value,
                     })
                   }
                 />
@@ -555,13 +496,13 @@ function SkillSelectModal({
                     type="number"
                     inputMode="numeric"
                     name="subRange"
-                    min={0}
+                    min={1}
                     className="input input-md input-bordered max-w-20 md:w-20 text-right"
                     value={selected.subRange}
                     onChange={(e) =>
                       setSelected({
                         ...selected,
-                        subRange: Number(e.target.value),
+                        subRange: e.target.value,
                       })
                     }
                   />
