@@ -64,7 +64,6 @@ export interface DeckSimulatorData {
           | "スーパー特大+"
           | "スーパー特大++"
           | "超スーパー特大";
-        oldUrChangeNum?: number | string;
       };
     };
     defense?: {
@@ -86,7 +85,6 @@ export interface DeckSimulatorData {
           | "スーパー特大+"
           | "スーパー特大++"
           | "超スーパー特大";
-        oldUrChangeNum?: number | string;
       };
     };
   };
@@ -148,7 +146,6 @@ export interface DeckSimulatorData {
           | "スーパー特大+"
           | "スーパー特大++"
           | "超スーパー特大";
-        oldUrChangeNum?: number | string;
       };
     };
     defense?: {
@@ -170,7 +167,6 @@ export interface DeckSimulatorData {
           | "スーパー特大+"
           | "スーパー特大++"
           | "超スーパー特大";
-        oldUrChangeNum?: number | string;
       };
     };
   };
@@ -637,8 +633,8 @@ export function useDeckSimulatorData({
       if (!target.dataset["path"]) return;
 
       const path = target.dataset["path"];
-      let value: string | number = target.value;
-      value = Number(value.replaceAll(",", ""));
+      let value = Number(target.value.replace(/,/g, "").trim());
+
       if (Number.isNaN(value)) value = 0;
 
       const keys = path.split(".");

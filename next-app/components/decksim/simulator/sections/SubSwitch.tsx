@@ -97,7 +97,7 @@ export function SubSwitch({
     if (modalOpen) return;
     const key = e.currentTarget.dataset.key;
     if (!key) return;
-    setModalTitle("編集");
+    setModalTitle(`編集: ${key}`);
     setSelectedState(skillData[Number(key)]);
     const result = await openSelectModal();
     if (result !== null) {
@@ -331,14 +331,14 @@ function RegisteredSubSwitchBlock({
                 )}
                 <div className="flex justify-center items-center gap-2 md:gap-4 px-2">
                   <button
-                    className="btn btn-sm btn-primary"
+                    className="btn btn-xs md:btn-sm btn-primary"
                     data-key={key}
                     onClick={handleEditButton}
                   >
                     編集
                   </button>
                   <button
-                    className="btn btn-sm btn-secondary"
+                    className="btn btn-xs md:btn-sm btn-secondary"
                     data-key={key}
                     onClick={handleDeleteButton}
                   >

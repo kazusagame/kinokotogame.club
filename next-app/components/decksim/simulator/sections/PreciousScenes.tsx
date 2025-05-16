@@ -112,7 +112,7 @@ export function PreciousScenes({
     if (modalOpen) return;
     const key = e.currentTarget.dataset.key;
     if (!key) return;
-    setModalTitle("編集");
+    setModalTitle(`編集: ${key}`);
     setSelectedState(scenesData[Number(key)]);
     const result = await openSelectModal();
     if (result.id !== null && result.rarity !== null) {
@@ -209,7 +209,7 @@ function RegisteredPreciousScenesBlock({
 }) {
   return (
     <div className="w-fit text-base border border-base-300 rounded-xl">
-      <div className="grid grid-cols-3 sm:grid-cols-[40px_200px_30px_80px_90px_140px] gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl">
+      <div className="grid grid-cols-3 md:grid-cols-[40px_200px_30px_80px_90px_140px] gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl">
         <div>No.</div>
         <div>名称</div>
         <div>レア</div>
@@ -238,7 +238,7 @@ function RegisteredPreciousScenesBlock({
             return (
               <div
                 key={key}
-                className={`grid grid-cols-3 sm:grid-cols-[40px_200px_30px_80px_90px_140px] gap-3 min-h-10 text-sm py-1 odd:bg-base-200 even:bg-base-100 ${
+                className={`grid grid-cols-3 md:grid-cols-[40px_200px_30px_80px_90px_140px] gap-3 min-h-10 text-sm py-1 odd:bg-base-200 even:bg-base-100 ${
                   scenesCount === Number(key) ? "rounded-b-xl" : ""
                 }`}
               >
@@ -270,14 +270,14 @@ function RegisteredPreciousScenesBlock({
                 </div>
                 <div className="flex justify-center items-center gap-2 md:gap-4 px-2">
                   <button
-                    className="btn btn-sm btn-primary"
+                    className="btn btn-xs md:btn-sm btn-primary"
                     data-key={key}
                     onClick={handleEditButton}
                   >
                     編集
                   </button>
                   <button
-                    className="btn btn-sm btn-secondary"
+                    className="btn btn-xs md:btn-sm btn-secondary"
                     data-key={key}
                     onClick={handleDeleteButton}
                   >
