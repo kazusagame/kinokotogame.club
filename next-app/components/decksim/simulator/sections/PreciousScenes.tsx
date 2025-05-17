@@ -1,4 +1,20 @@
-import { useState } from "react";
+import { useState, useId } from "react";
+
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+  TouchSensor,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 
 import {
   DeckSimulatorData,
@@ -8,6 +24,7 @@ import { PRECIOUS_SCENES_DATA } from "@/components/decksim/data/preciousScenesDa
 import { MAX_PRECIOUS_SCENES_NUM } from "@/components/decksim/simulator/globalConfig";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
+import { SortableItem } from "@/components/common/SortableItem";
 import { formatNumber } from "@/lib/formatNumber";
 import { removeKeyAndReindex } from "@/lib/removeKeyAndReindex";
 
@@ -136,6 +153,17 @@ export function PreciousScenes({
     });
   };
 
+  const handleReorder = (
+    newData: NonNullable<
+      DeckSimulatorData["preciousScenes"]["attack" | "defense"]
+    >
+  ) => {
+    setValueAtPath({
+      path: `preciousScenes.${typeIndex}`,
+      value: newData,
+    });
+  };
+
   return (
     <section className="pl-1">
       <h2 className="text-lg font-bold">プレシャスシーン</h2>
@@ -149,6 +177,7 @@ export function PreciousScenes({
           onBlur={onBlur}
           handleEditButton={handleEditButton}
           handleDeleteButton={handleDeleteButton}
+          handleReorder={handleReorder}
         />
         <AddPreciousScenesBlock
           scenesCount={scenesCount}
@@ -193,6 +222,7 @@ function RegisteredPreciousScenesBlock({
   onBlur,
   handleEditButton,
   handleDeleteButton,
+  handleReorder,
 }: {
   typeIndex: "attack" | "defense";
   scenesData: DeckSimulatorData["preciousScenes"]["attack" | "defense"];
@@ -206,10 +236,50 @@ function RegisteredPreciousScenesBlock({
   onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
   handleEditButton: (e: React.MouseEvent<HTMLButtonElement>) => void;
   handleDeleteButton: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  handleReorder: (
+    newScenesData: NonNullable<
+      DeckSimulatorData["preciousScenes"]["attack" | "defense"]
+    >
+  ) => void;
 }) {
+  const orderedKeys = Object.keys(scenesData);
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 10,
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 250,
+        tolerance: 10,
+      },
+    })
+  );
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!active || !over) return;
+    if (active.id !== over.id) {
+      const oldIndex = orderedKeys.indexOf(active.id.toString());
+      const newIndex = orderedKeys.indexOf(over.id.toString());
+      const newOrder = arrayMove(orderedKeys, oldIndex, newIndex);
+
+      // 新しい順番で並び替えたデータを作成
+      const newScenesData: typeof scenesData = {};
+      newOrder.forEach((key, i) => {
+        newScenesData[i + 1] = scenesData[Number(key)];
+      });
+      handleReorder(newScenesData);
+    }
+  };
+
+  const gridColumnCss = "md:grid-cols-[40px_200px_30px_80px_90px_140px]";
+
   return (
     <div className="w-fit text-base border border-base-300 rounded-xl">
-      <div className="grid grid-cols-3 md:grid-cols-[40px_200px_30px_80px_90px_140px] gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl">
+      <div
+        className={`grid grid-cols-3 ${gridColumnCss} gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl`}
+      >
         <div>No.</div>
         <div>名称</div>
         <div>レア</div>
@@ -232,62 +302,83 @@ function RegisteredPreciousScenesBlock({
           まだ何も設定されていません
         </div>
       ) : (
-        <>
-          {Object.entries(scenesData).map(([key, value]) => {
-            const sceneData = PRECIOUS_SCENES_DATA[Number(value.id)];
-            return (
-              <div
-                key={key}
-                className={`grid grid-cols-3 md:grid-cols-[40px_200px_30px_80px_90px_140px] gap-3 min-h-10 text-sm py-1 odd:bg-base-200 even:bg-base-100 ${
-                  scenesCount === Number(key) ? "rounded-b-xl" : ""
-                }`}
-              >
-                <div className="flex justify-center items-center">{key}</div>
-                <div className="flex items-center">{sceneData.name}</div>
-                <div className="flex justify-center items-center">{`星${value.rarity}`}</div>
-                <div className="flex justify-center items-center">
-                  {sceneData.effectCondition === "特定のガールで編成するほど" ||
-                  sceneData.effectCondition === "様々なガールで編成するほど" ? (
-                    <input
-                      type="number"
-                      inputMode="numeric"
-                      name={`headcount_${key}`}
-                      min={0}
-                      className="input input-sm input-bordered max-w-16 md:w-16 text-right"
-                      value={value.headcount ?? 0}
-                      onChange={onChange}
-                      onBlur={onBlur}
-                      data-path={`preciousScenes.${typeIndex}.${key}.headcount`}
-                    />
-                  ) : (
-                    <p>―</p>
-                  )}
-                </div>
-                <div className="flex justify-center items-center">
-                  {formatNumber(
-                    summaryData?.[Number(key)]?.estimatedPower ?? 0
-                  )}
-                </div>
-                <div className="flex justify-center items-center gap-2 md:gap-4 px-2">
-                  <button
-                    className="btn btn-xs md:btn-sm btn-primary"
-                    data-key={key}
-                    onClick={handleEditButton}
-                  >
-                    編集
-                  </button>
-                  <button
-                    className="btn btn-xs md:btn-sm btn-secondary"
-                    data-key={key}
-                    onClick={handleDeleteButton}
-                  >
-                    削除
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </>
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          modifiers={[restrictToVerticalAxis]}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext
+            items={orderedKeys}
+            strategy={verticalListSortingStrategy}
+          >
+            {orderedKeys.map((key) => {
+              const value = scenesData[Number(key)];
+              const summary = summaryData[Number(key)];
+              const sceneData = PRECIOUS_SCENES_DATA[Number(value.id)];
+              return (
+                <SortableItem
+                  key={key}
+                  id={key}
+                  classStrings={`grid grid-cols-4 md:grid-cols-6 ${gridColumnCss} gap-2 md:gap-3 min-h-10 text-xs md:text-sm py-1 odd:bg-base-200 even:bg-base-100`}
+                  itemCount={scenesCount}
+                >
+                  <div className="flex items-center">{sceneData.name}</div>
+                  <div className="flex justify-center items-center">{`星${value.rarity}`}</div>
+                  <div className="flex justify-center items-center">
+                    {sceneData.effectCondition ===
+                      "特定のガールで編成するほど" ||
+                    sceneData.effectCondition ===
+                      "様々なガールで編成するほど" ? (
+                      <input
+                        type="number"
+                        inputMode="numeric"
+                        name={`headcount_${key}`}
+                        min={0}
+                        className="input input-sm input-bordered max-w-16 md:w-16 text-right"
+                        value={value.headcount ?? 0}
+                        onChange={onChange}
+                        onBlur={onBlur}
+                        data-path={`preciousScenes.${typeIndex}.${key}.headcount`}
+                      />
+                    ) : sceneData.effectCondition ===
+                      "Ex進展ガールが多いほど" ? (
+                      <input
+                        type="number"
+                        inputMode="numeric"
+                        name={`headcount_${key}`}
+                        className="input input-sm input-bordered max-w-16 md:w-16 text-right"
+                        value={summary?.estimatedCount ?? 0}
+                        disabled
+                      />
+                    ) : (
+                      <p>―</p>
+                    )}
+                  </div>
+                  <div className="flex justify-center items-center">
+                    {formatNumber(summary?.estimatedPower ?? 0)}
+                  </div>
+                  <div className="flex justify-center items-center gap-2 md:gap-4 px-2">
+                    <button
+                      className="btn btn-xs md:btn-sm btn-primary"
+                      data-key={key}
+                      onClick={handleEditButton}
+                    >
+                      編集
+                    </button>
+                    <button
+                      className="btn btn-xs md:btn-sm btn-secondary"
+                      data-key={key}
+                      onClick={handleDeleteButton}
+                    >
+                      削除
+                    </button>
+                  </div>
+                </SortableItem>
+              );
+            })}
+          </SortableContext>
+        </DndContext>
       )}
     </div>
   );
@@ -324,6 +415,7 @@ function SceneSelectModal({
   initialSelected,
   initialFilterState,
 }: SceneSelectModalProps) {
+  const modalId = useId();
   const [selectedScene, setSelectedScene] =
     useState<SelectState>(initialSelected);
   const [selectedInitialRarity, setSelectedInitialRarity] = useState<
@@ -370,7 +462,7 @@ function SceneSelectModal({
   const rarityEndNum = selectedSceneInitialRarity;
 
   return (
-    <dialog id="effect-modal" className="modal modal-open" open>
+    <dialog id={modalId} className="modal modal-open" open>
       <div className="modal-box">
         <form method="dialog">
           <button

@@ -502,11 +502,13 @@ export interface DeckSimulatorResult {
       attack: {
         [K: number]: {
           estimatedPower?: number;
+          estimatedCount?: number;
         };
       };
       defense: {
         [K: number]: {
           estimatedPower?: number;
+          estimatedCount?: number;
         };
       };
     };

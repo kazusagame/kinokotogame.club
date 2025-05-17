@@ -1,4 +1,20 @@
-import { useState } from "react";
+import { useState, useId } from "react";
+
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+  TouchSensor,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 
 import WarningIcon from "@mui/icons-material/Warning";
 import Tooltip from "@mui/material/Tooltip";
@@ -16,6 +32,7 @@ import {
 import { MAX_MAIN_GIRLS_NUM } from "@/components/decksim/simulator/globalConfig";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
+import { SortableItem } from "@/components/common/SortableItem";
 import { formatNumber } from "@/lib/formatNumber";
 import { removeKeyAndReindex } from "@/lib/removeKeyAndReindex";
 
@@ -121,6 +138,15 @@ export function MainSkill({
     });
   };
 
+  const handleReorder = (
+    newData: NonNullable<DeckSimulatorData["mainSkill"]["attack" | "defense"]>
+  ) => {
+    setValueAtPath({
+      path: `mainSkill.${typeIndex}`,
+      value: newData,
+    });
+  };
+
   return (
     <section className="pl-1">
       <h2 className="text-lg font-bold">主センバツ 声援</h2>
@@ -132,6 +158,7 @@ export function MainSkill({
           summaryData={summaryData}
           handleEditButton={handleEditButton}
           handleDeleteButton={handleDeleteButton}
+          handleReorder={handleReorder}
         />
         <AddMainSkillBlock
           skillCount={skillCount}
@@ -164,6 +191,7 @@ function RegisteredMainSkillBlock({
   summaryData,
   handleEditButton,
   handleDeleteButton,
+  handleReorder,
 }: {
   eventId: DeckSimulatorEventId;
   skillData: DeckSimulatorData["mainSkill"]["attack" | "defense"];
@@ -173,7 +201,43 @@ function RegisteredMainSkillBlock({
     | "defense"];
   handleEditButton: (e: React.MouseEvent<HTMLButtonElement>) => void;
   handleDeleteButton: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  handleReorder: (
+    newSkillData: NonNullable<
+      DeckSimulatorData["mainSkill"]["attack" | "defense"]
+    >
+  ) => void;
 }) {
+  const orderedKeys = Object.keys(skillData);
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 10,
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 250,
+        tolerance: 10,
+      },
+    })
+  );
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!active || !over) return;
+    if (active.id !== over.id) {
+      const oldIndex = orderedKeys.indexOf(active.id.toString());
+      const newIndex = orderedKeys.indexOf(over.id.toString());
+      const newOrder = arrayMove(orderedKeys, oldIndex, newIndex);
+
+      // 新しい順番で並び替えたデータを作成
+      const newSkillData: typeof skillData = {};
+      newOrder.forEach((key, i) => {
+        newSkillData[i + 1] = skillData[Number(key)];
+      });
+      handleReorder(newSkillData);
+    }
+  };
+
   const skillRates = Object.values(skillData).map((value) => {
     const target = value.target !== "全タイプ" ? "単タイプ" : "全タイプ";
     const range = value.range ?? "主＋副";
@@ -192,18 +256,17 @@ function RegisteredMainSkillBlock({
 
     return baseValue ? baseValue + Number(value.skillLv) - 1 : 0;
   });
-  const skillProbabilities =
-    SKILL_DATA_PER_EVENT[eventId].skillProbabilityMain;
+  const skillProbabilities = SKILL_DATA_PER_EVENT[eventId].skillProbabilityMain;
 
   const gridColumnCss =
     eventId !== "clubcup"
-      ? "lg:grid-cols-[40px_40px_90px_55px_60px_60px_100px_75px_85px_75px_140px]"
-      : "lg:grid-cols-[40px_40px_90px_55px_60px_60px_100px_75px_85px_75px_75px_140px]";
+      ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_100px_75px_85px_75px_140px]"
+      : "lg:grid-cols-[45px_40px_90px_55px_60px_60px_100px_75px_85px_75px_75px_140px]";
 
   return (
     <div className="w-fit text-base border border-base-300 rounded-xl">
       <div
-        className={`grid grid-cols-4 md:grid-cols-6 ${gridColumnCss} gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl`}
+        className={`grid grid-cols-4 md:grid-cols-6 ${gridColumnCss} gap-2 md:gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl`}
       >
         <div>No.</div>
         <div>声援Lv</div>
@@ -245,108 +308,114 @@ function RegisteredMainSkillBlock({
           まだ何も設定されていません
         </div>
       ) : (
-        <>
-          {Object.entries(skillData).map(([key, value]) => {
-            return (
-              <div
-                key={key}
-                className={`grid grid-cols-4 md:grid-cols-6 ${gridColumnCss} gap-3 min-h-10 text-sm py-1 odd:bg-base-200 even:bg-base-100 ${
-                  skillCount === Number(key) ? "rounded-b-xl" : ""
-                }`}
-              >
-                <div className="flex justify-center items-center">{key}</div>
-                <div className="flex justify-center items-center">
-                  {value.skillLv}
-                </div>
-                <div className="flex justify-center items-center">
-                  {value.target}
-                </div>
-                <div className="flex justify-center items-center">
-                  {value.range}
-                </div>
-                {value.range === "主のみ" ? (
-                  <div className="flex justify-center items-center">―</div>
-                ) : (
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          modifiers={[restrictToVerticalAxis]}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext
+            items={orderedKeys}
+            strategy={verticalListSortingStrategy}
+          >
+            {orderedKeys.map((key) => {
+              const value = skillData[Number(key)];
+              const summary = summaryData[Number(key)];
+              const skillRate = skillRates[Number(key) - 1];
+              const skillProbability = skillProbabilities[Number(key) - 1];
+              return (
+                <SortableItem
+                  key={key}
+                  id={key}
+                  classStrings={`grid grid-cols-4 md:grid-cols-6 ${gridColumnCss} gap-2 md:gap-3 min-h-10 text-xs md:text-sm py-1 odd:bg-base-200 even:bg-base-100`}
+                  itemCount={skillCount}
+                >
                   <div className="flex justify-center items-center">
-                    {value.subRange}
+                    {value.skillLv}
                   </div>
-                )}
-                <div className="flex justify-center items-center">
-                  {value.type}
-                </div>
-                <div className="flex justify-center items-center">
-                  {value.strength}
-                </div>
-                {skillRates[Number(key) - 1] ? (
-                  <div className="flex justify-end items-center pr-4">
-                    {`${skillRates[Number(key) - 1]} %`}
+                  <div className="flex justify-center items-center">
+                    {value.target}
                   </div>
-                ) : (
-                  <Tooltip
-                    title="選択したパラメータの組み合わせの効果値は未登録です（いずれかのパラメータが間違っているのかも？）"
-                    arrow
-                    enterTouchDelay={0}
-                    leaveTouchDelay={10000}
-                  >
-                    <div className="flex justify-end items-center pr-4  bg-warning text-warning-content">
-                      <WarningIcon />
-                      <span className="ml-2">0 %</span>
+                  <div className="flex justify-center items-center">
+                    {value.range}
+                  </div>
+                  {value.range === "主のみ" ? (
+                    <div className="flex justify-center items-center">―</div>
+                  ) : (
+                    <div className="flex justify-center items-center">
+                      {value.subRange}
                     </div>
-                  </Tooltip>
-                )}
-                <div className="flex justify-end items-center pr-2">
-                  {formatNumber(
-                    summaryData?.[Number(key)]?.estimatedPower ?? 0
                   )}
-                </div>
-                <div className="flex justify-end items-center pr-2">
-                  {formatNumber(
-                    skillProbabilities?.[Number(key) - 1] ?? 0,
-                    "0.00",
-                    "ja-JP",
-                    {
+                  <div className="flex justify-center items-center">
+                    {value.type}
+                  </div>
+                  <div className="flex justify-center items-center">
+                    {value.strength}
+                  </div>
+                  {skillRate ? (
+                    <div className="flex justify-end items-center pr-4">
+                      {`${skillRate} %`}
+                    </div>
+                  ) : (
+                    <Tooltip
+                      title="選択したパラメータの組み合わせの効果値は未登録です（いずれかのパラメータが間違っているのかも？）"
+                      arrow
+                      enterTouchDelay={0}
+                      leaveTouchDelay={10000}
+                    >
+                      <div className="flex justify-end items-center pr-4  bg-warning text-warning-content">
+                        <WarningIcon />
+                        <span className="ml-2">0 %</span>
+                      </div>
+                    </Tooltip>
+                  )}
+                  <div className="flex justify-end items-center pr-2">
+                    {formatNumber(summary?.estimatedPower ?? 0)}
+                  </div>
+                  <div className="flex justify-end items-center pr-2">
+                    {formatNumber(skillProbability ?? 0, "0.00", "ja-JP", {
                       style: "decimal",
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
-                    }
-                  )}{" "}
-                  %
-                </div>
-                {eventId === "clubcup" && (
-                  <div className="flex justify-end items-center pr-2">
-                    {formatNumber(
-                      summaryData?.[Number(key)]?.skillEffect ?? 0,
-                      "0.00",
-                      "ja-JP",
-                      {
-                        style: "decimal",
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      }
-                    )}{" "}
+                    })}{" "}
                     %
                   </div>
-                )}
-                <div className="flex justify-center items-center gap-2 md:gap-4 px-2">
-                  <button
-                    className="btn btn-xs md:btn-sm btn-primary"
-                    data-key={key}
-                    onClick={handleEditButton}
-                  >
-                    編集
-                  </button>
-                  <button
-                    className="btn btn-xs md:btn-sm btn-secondary"
-                    data-key={key}
-                    onClick={handleDeleteButton}
-                  >
-                    削除
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </>
+                  {eventId === "clubcup" && (
+                    <div className="flex justify-end items-center pr-2">
+                      {formatNumber(
+                        summary?.skillEffect ?? 0,
+                        "0.00",
+                        "ja-JP",
+                        {
+                          style: "decimal",
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        }
+                      )}{" "}
+                      %
+                    </div>
+                  )}
+                  <div className="flex justify-center items-center gap-2 md:gap-4 px-2">
+                    <button
+                      className="btn btn-xs md:btn-sm btn-primary"
+                      data-key={key}
+                      onClick={handleEditButton}
+                    >
+                      編集
+                    </button>
+                    <button
+                      className="btn btn-xs md:btn-sm btn-secondary"
+                      data-key={key}
+                      onClick={handleDeleteButton}
+                    >
+                      削除
+                    </button>
+                  </div>
+                </SortableItem>
+              );
+            })}
+          </SortableContext>
+        </DndContext>
       )}
     </div>
   );
@@ -380,10 +449,11 @@ function SkillSelectModal({
   onClose,
   initialSelected,
 }: SelectModalProps) {
+  const modalId = useId();
   const [selected, setSelected] = useState<SelectState>(initialSelected);
 
   return (
-    <dialog id="effect-modal" className="modal modal-open" open>
+    <dialog id={modalId} className="modal modal-open" open>
       <div className="modal-box">
         <form method="dialog">
           <button

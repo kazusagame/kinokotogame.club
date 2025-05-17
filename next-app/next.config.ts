@@ -21,6 +21,7 @@ const nextConfig = withExportImages({
       },
     ],
   },
+  allowedDevOrigins: ["192.168.0.211"],
 });
 
 export default nextConfig;

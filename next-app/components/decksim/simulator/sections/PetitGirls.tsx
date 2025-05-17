@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useId } from "react";
 
 import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulatorData";
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
@@ -269,6 +269,7 @@ function EffectSelectModal({
     effectType: null,
   },
 }: EffectSelectModalProps) {
+  const modalId = useId();
   const [selectedId, setSelectedId] = useState<string | null>(initialSelected);
   const [selectedMarkerType, setSelectedMarkerType] = useState<string | null>(
     initialFilterState.markerType
@@ -304,7 +305,7 @@ function EffectSelectModal({
     .sort(([a], [b]) => Number(a) - Number(b));
 
   return (
-    <dialog id="effect-modal" className="modal modal-open" open>
+    <dialog id={modalId} className="modal modal-open" open>
       <div className="modal-box">
         <form method="dialog">
           <button
