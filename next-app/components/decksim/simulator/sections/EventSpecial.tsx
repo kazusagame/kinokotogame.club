@@ -51,7 +51,7 @@ function RaidwarSpecialSection({
   return (
     <section className="pl-1">
       <h2 className="text-lg font-bold">イベント固有</h2>
-      <div className="flex flex-col gap-6 mt-4 pl-2 md:pl-4">
+      <div className="flex flex-col gap-6 mt-4 pl-0 sm:pl-2 md:pl-4">
         <div className="flex items-center gap-2 md:gap-4">
           <p className="text-base">SP応援効果</p>
           <input

@@ -71,8 +71,8 @@ export function PreciousScenes({
   }) => void;
 }) {
   const typeIndex = type === "攻援" ? "attack" : "defense";
-  const scenesData = data.preciousScenes?.[typeIndex] ?? {};
-  const scenesCount = Object.keys(scenesData).length;
+  const sceneData = data.preciousScenes?.[typeIndex] ?? {};
+  const sceneCount = Object.keys(sceneData).length;
   const summaryData = summary.summaries.preciousScenes?.[typeIndex] ?? {};
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -119,7 +119,7 @@ export function PreciousScenes({
     const result = await openSelectModal();
     if (result.id !== null && result.rarity !== null) {
       setValueAtPath({
-        path: `preciousScenes.${typeIndex}.${scenesCount + 1}`,
+        path: `preciousScenes.${typeIndex}.${sceneCount + 1}`,
         value: { id: result.id, rarity: result.rarity },
       });
     }
@@ -130,7 +130,7 @@ export function PreciousScenes({
     const key = e.currentTarget.dataset.key;
     if (!key) return;
     setModalTitle(`編集: ${key}`);
-    setSelectedState(scenesData[Number(key)]);
+    setSelectedState(sceneData[Number(key)]);
     const result = await openSelectModal();
     if (result.id !== null && result.rarity !== null) {
       setValueAtPath({
@@ -143,7 +143,7 @@ export function PreciousScenes({
   const handleDeleteButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     const key = e.currentTarget.dataset.key;
     const newData = removeKeyAndReindex(
-      scenesData,
+      sceneData,
       Number(key)
     ) as DeckSimulatorData["preciousScenes"][typeof typeIndex];
     if (newData === undefined) return;
@@ -167,11 +167,11 @@ export function PreciousScenes({
   return (
     <section className="pl-1">
       <h2 className="text-lg font-bold">プレシャスシーン</h2>
-      <div className="flex flex-col gap-6 mt-4 pl-2 md:pl-4">
+      <div className="flex flex-col gap-6 mt-4 pl-0 sm:pl-2 md:pl-4">
         <RegisteredPreciousScenesBlock
           typeIndex={typeIndex}
-          scenesData={scenesData}
-          scenesCount={scenesCount}
+          sceneData={sceneData}
+          sceneCount={sceneCount}
           summaryData={summaryData}
           onChange={onChange}
           onBlur={onBlur}
@@ -180,7 +180,7 @@ export function PreciousScenes({
           handleReorder={handleReorder}
         />
         <AddPreciousScenesBlock
-          scenesCount={scenesCount}
+          sceneCount={sceneCount}
           handleAddButton={handleAddButton}
         />
       </div>
@@ -215,8 +215,8 @@ export function PreciousScenes({
 
 function RegisteredPreciousScenesBlock({
   typeIndex,
-  scenesData = {},
-  scenesCount,
+  sceneData = {},
+  sceneCount,
   summaryData,
   onChange,
   onBlur,
@@ -225,8 +225,8 @@ function RegisteredPreciousScenesBlock({
   handleReorder,
 }: {
   typeIndex: "attack" | "defense";
-  scenesData: DeckSimulatorData["preciousScenes"]["attack" | "defense"];
-  scenesCount: number;
+  sceneData: DeckSimulatorData["preciousScenes"]["attack" | "defense"];
+  sceneCount: number;
   summaryData: DeckSimulatorResult["summaries"]["preciousScenes"][
     | "attack"
     | "defense"];
@@ -242,7 +242,7 @@ function RegisteredPreciousScenesBlock({
     >
   ) => void;
 }) {
-  const orderedKeys = Object.keys(scenesData);
+  const orderedKeys = Object.keys(sceneData);
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -265,18 +265,18 @@ function RegisteredPreciousScenesBlock({
       const newOrder = arrayMove(orderedKeys, oldIndex, newIndex);
 
       // 新しい順番で並び替えたデータを作成
-      const newScenesData: typeof scenesData = {};
+      const newScenesData: typeof sceneData = {};
       newOrder.forEach((key, i) => {
-        newScenesData[i + 1] = scenesData[Number(key)];
+        newScenesData[i + 1] = sceneData[Number(key)];
       });
       handleReorder(newScenesData);
     }
   };
 
-  const gridColumnCss = "md:grid-cols-[40px_200px_30px_80px_90px_140px]";
+  const gridColumnCss = "md:grid-cols-[40px_200px_30px_80px_90px_65px_65px]";
 
   return (
-    <div className="w-fit text-base border border-base-300 rounded-xl">
+    <div className="text-base border border-base-300 rounded-xl">
       <div
         className={`grid grid-cols-3 ${gridColumnCss} gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl`}
       >
@@ -297,7 +297,7 @@ function RegisteredPreciousScenesBlock({
         </div>
         <div></div>
       </div>
-      {scenesCount === 0 ? (
+      {sceneCount === 0 ? (
         <div className="text-center text-sm font-bold py-4">
           まだ何も設定されていません
         </div>
@@ -313,22 +313,22 @@ function RegisteredPreciousScenesBlock({
             strategy={verticalListSortingStrategy}
           >
             {orderedKeys.map((key) => {
-              const value = scenesData[Number(key)];
+              const value = sceneData[Number(key)];
               const summary = summaryData[Number(key)];
-              const sceneData = PRECIOUS_SCENES_DATA[Number(value.id)];
+              const sceneProfile = PRECIOUS_SCENES_DATA[Number(value.id)];
               return (
                 <SortableItem
                   key={key}
                   id={key}
                   classStrings={`grid grid-cols-4 md:grid-cols-6 ${gridColumnCss} gap-2 md:gap-3 min-h-10 text-xs md:text-sm py-1 odd:bg-base-200 even:bg-base-100`}
-                  itemCount={scenesCount}
+                  itemCount={sceneCount}
                 >
-                  <div className="flex items-center">{sceneData.name}</div>
+                  <div className="flex items-center">{sceneProfile.name}</div>
                   <div className="flex justify-center items-center">{`星${value.rarity}`}</div>
                   <div className="flex justify-center items-center">
-                    {sceneData.effectCondition ===
+                    {sceneProfile.effectCondition ===
                       "特定のガールで編成するほど" ||
-                    sceneData.effectCondition ===
+                    sceneProfile.effectCondition ===
                       "様々なガールで編成するほど" ? (
                       <input
                         type="number"
@@ -341,7 +341,7 @@ function RegisteredPreciousScenesBlock({
                         onBlur={onBlur}
                         data-path={`preciousScenes.${typeIndex}.${key}.headcount`}
                       />
-                    ) : sceneData.effectCondition ===
+                    ) : sceneProfile.effectCondition ===
                       "Ex進展ガールが多いほど" ? (
                       <input
                         type="number"
@@ -358,7 +358,7 @@ function RegisteredPreciousScenesBlock({
                   <div className="flex justify-center items-center">
                     {formatNumber(summary?.estimatedPower ?? 0)}
                   </div>
-                  <div className="flex justify-center items-center gap-2 md:gap-4 px-2">
+                  <div className="flex justify-center items-center">
                     <button
                       className="btn btn-xs md:btn-sm btn-primary"
                       data-key={key}
@@ -366,6 +366,8 @@ function RegisteredPreciousScenesBlock({
                     >
                       編集
                     </button>
+                  </div>
+                  <div className="flex justify-center items-center">
                     <button
                       className="btn btn-xs md:btn-sm btn-secondary"
                       data-key={key}
@@ -385,13 +387,13 @@ function RegisteredPreciousScenesBlock({
 }
 
 function AddPreciousScenesBlock({
-  scenesCount,
+  sceneCount,
   handleAddButton,
 }: {
-  scenesCount: number;
+  sceneCount: number;
   handleAddButton: () => void;
 }) {
-  const isScenesCountFull = scenesCount >= MAX_PRECIOUS_SCENES_NUM;
+  const isSceneCountFull = sceneCount >= MAX_PRECIOUS_SCENES_NUM;
   return (
     <>
       <div className="pl-4">
@@ -399,7 +401,7 @@ function AddPreciousScenesBlock({
           type="button"
           className="btn btn-md w-24 btn-primary"
           onClick={() => handleAddButton()}
-          disabled={isScenesCountFull}
+          disabled={isSceneCountFull}
         >
           追加する
         </button>
@@ -482,7 +484,7 @@ function SceneSelectModal({
             {/* 初期レアリティ */}
             <div>
               <label className="label">初期レアリティ</label>
-              <div className="flex gap-5 flex-wrap pl-2 md:pl-4">
+              <div className="flex gap-5 flex-wrap pl-0 sm:pl-2 md:pl-4">
                 {["未選択", "星1", "星2", "星3"].map((rarity) => (
                   <label
                     key={rarity}
@@ -508,7 +510,7 @@ function SceneSelectModal({
             {/* 効果対象 */}
             <div>
               <label className="label">効果対象</label>
-              <div className="flex gap-5 flex-wrap pl-2 md:pl-4">
+              <div className="flex gap-5 flex-wrap pl-0 sm:pl-2 md:pl-4">
                 {[
                   "未選択",
                   "全タイプ",
@@ -540,7 +542,7 @@ function SceneSelectModal({
             {/* 効果タイプ */}
             <div>
               <label className="label">効果タイプ</label>
-              <div className="flex gap-5 flex-wrap pl-2 md:pl-4">
+              <div className="flex gap-5 flex-wrap pl-0 sm:pl-2 md:pl-4">
                 {["未選択", "攻援UP", "守援UP", "攻守UP"].map((type) => (
                   <label
                     key={type}

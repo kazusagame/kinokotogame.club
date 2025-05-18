@@ -217,7 +217,7 @@ function LoadButton<
                     これを開く
                   </button>
                 </div>
-                <div className="flex flex-col gap-1 pt-2 pl-2 md:pl-4">
+                <div className="flex flex-col gap-1 pt-2 pl-0 sm:pl-2 md:pl-4">
                   <div>保存日時：{savedDataSummaries[i].lastUpdate}</div>
                   <SavedDataPerEventDiv
                     eventId={eventId}
@@ -302,7 +302,7 @@ function SaveButton<T extends OriginSavedDataSummary>({
                     ここに保存
                   </button>
                 </div>
-                <div className="flex flex-col gap-1 pt-2 pl-2 md:pl-4">
+                <div className="flex flex-col gap-1 pt-2 pl-0 sm:pl-2 md:pl-4">
                   <div>保存日時：{savedDataSummaries[i].lastUpdate}</div>
                   <SavedDataPerEventDiv
                     eventId={eventId}

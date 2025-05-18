@@ -216,7 +216,9 @@ export default function DeckSimulator({
                       type="攻援"
                       setValueAtPath={setValueAtPath}
                     />
-                    <hr className="mx-4 h-px bg-base-300 border-0" />
+                    {eventId !== "raid-mega" && (
+                        <hr className="mx-4 h-px bg-base-300 border-0" />
+                      )}
                     <SubSwitch
                       data={data}
                       summary={resultSummary}
@@ -384,7 +386,6 @@ export default function DeckSimulator({
                 <hr className="mx-4 h-px bg-base-300 border-0" />
                 <PlayerData
                   data={commonData}
-                  eventId={eventId}
                   onChange={handleChangeParameters}
                   onBlur={handleBlurParameters}
                 />

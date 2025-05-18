@@ -9,42 +9,42 @@ export interface DeckSimulatorData {
   mainScenes: {
     attack: {
       [K: number]: {
-        basePower?: number | string;
-        strap?: number | string;
-        type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
-        rarity?: "Luv" | "UR" | "SSR" | "SR";
-        cost?: number | string;
-        skillLv?: number | string;
+        basePower: string;
+        strap: string;
+        type: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
+        rarity: "Luv" | "UR" | "SSR" | "SR";
+        cost: string;
+        skillLv: string;
         grade?: "1年" | "2年" | "3年" | "その他";
-        isClubMatch?: boolean;
-        isDate?: boolean;
-        isTouch?: boolean;
-        isBirthday?: boolean;
-        isLimitBreak?: boolean;
-        isBestFriend?: boolean;
+        isClubMatch: boolean;
+        isDate: boolean;
+        isTouch: boolean;
+        isBirthday: boolean;
+        isLimitBreak: boolean;
+        isBestFriend: boolean;
         isSpecial?: boolean;
       };
     };
     defense?: {
       [K: number]: {
-        basePower?: number | string;
-        strap?: number | string;
-        type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
-        rarity?: "Luv" | "UR" | "SSR" | "SR";
-        cost?: number | string;
-        skillLv?: number | string;
+        basePower: string;
+        strap: string;
+        type: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
+        rarity: "Luv" | "UR" | "SSR" | "SR";
+        cost: string;
+        skillLv: string;
         grade?: "1年" | "2年" | "3年" | "その他";
-        isClubMatch?: boolean;
-        isDate?: boolean;
-        isTouch?: boolean;
-        isBirthday?: boolean;
-        isLimitBreak?: boolean;
-        isBestFriend?: boolean;
+        isClubMatch: boolean;
+        isDate: boolean;
+        isTouch: boolean;
+        isBirthday: boolean;
+        isLimitBreak: boolean;
+        isBestFriend: boolean;
         isSpecial?: boolean;
       };
     };
   };
-  mainSkill: {
+  mainSkills: {
     attack: {
       [K: number]: {
         skillLv: string;
@@ -91,42 +91,42 @@ export interface DeckSimulatorData {
   subScenes: {
     attack: {
       [K: number]: {
-        basePower?: number | string;
-        strap?: number | string;
-        type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
-        rarity?: "Luv" | "UR" | "SSR" | "SR";
-        cost?: number | string;
-        skillLv?: number | string;
+        basePower: string;
+        strap: string;
+        type: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
+        rarity: "Luv" | "UR" | "SSR" | "SR";
+        cost: string;
+        skillLv: string;
         grade?: "1年" | "2年" | "3年" | "その他";
-        isClubMatch?: boolean;
-        isDate?: boolean;
-        isTouch?: boolean;
-        isBirthday?: boolean;
-        isLimitBreak?: boolean;
-        isBestFriend?: boolean;
+        isClubMatch: boolean;
+        isDate: boolean;
+        isTouch: boolean;
+        isBirthday: boolean;
+        isLimitBreak: boolean;
+        isBestFriend: boolean;
         isSpecial?: boolean;
       };
     };
     defense?: {
       [K: number]: {
-        basePower?: number | string;
-        strap?: number | string;
-        type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
-        rarity?: "Luv" | "UR" | "SSR" | "SR";
-        cost?: number | string;
-        skillLv?: number | string;
+        basePower: string;
+        strap: string;
+        type: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
+        rarity: "Luv" | "UR" | "SSR" | "SR";
+        cost: string;
+        skillLv: string;
         grade?: "1年" | "2年" | "3年" | "その他";
-        isClubMatch?: boolean;
-        isDate?: boolean;
-        isTouch?: boolean;
-        isBirthday?: boolean;
-        isLimitBreak?: boolean;
-        isBestFriend?: boolean;
+        isClubMatch: boolean;
+        isDate: boolean;
+        isTouch: boolean;
+        isBirthday: boolean;
+        isLimitBreak: boolean;
+        isBestFriend: boolean;
         isSpecial?: boolean;
       };
     };
   };
-  subSwitch: {
+  subSwitches: {
     attack: {
       [K: number]: {
         skillLv: string;
@@ -325,13 +325,13 @@ const initData: DeckSimulatorData = {
   mainScenes: {
     attack: {},
   },
-  mainSkill: {
+  mainSkills: {
     attack: {},
   },
   subScenes: {
     attack: {},
   },
-  subSwitch: {
+  subSwitches: {
     attack: {},
   },
   preciousScenes: {
@@ -450,15 +450,23 @@ export interface DeckSimulatorResult {
       attack: {
         [K: number]: {
           estimatedPower?: number;
+          estimatedPowerAscOrder?: number;
+          skillEffect?: number;
+          eventGimmickTotalPower?: number;
+          eventGimmickTotalAscOrder?: number;
         };
       };
       defense: {
         [K: number]: {
           estimatedPower?: number;
+          estimatedPowerAscOrder?: number;
+          skillEffect?: number;
+          eventGimmickTotalPower?: number;
+          eventGimmickTotalAscOrder?: number;
         };
       };
     };
-    mainSkill: {
+    mainSkills: {
       attack: {
         [K: number]: {
           estimatedPower?: number;
@@ -476,15 +484,23 @@ export interface DeckSimulatorResult {
       attack: {
         [K: number]: {
           estimatedPower?: number;
+          estimatedPowerAscOrder?: number;
+          skillEffect?: number;
+          eventGimmickTotalPower?: number;
+          eventGimmickTotalAscOrder?: number;
         };
       };
       defense: {
         [K: number]: {
           estimatedPower?: number;
+          estimatedPowerAscOrder?: number;
+          skillEffect?: number;
+          eventGimmickTotalPower?: number;
+          eventGimmickTotalAscOrder?: number;
         };
       };
     };
-    subSwitch: {
+    subSwitches: {
       attack: {
         [K: number]: {
           estimatedPower?: number;
@@ -520,9 +536,9 @@ const initResultSummary: DeckSimulatorResult = {
   summaries: {
     totalPerformance: { attack: {}, defense: {} },
     mainScenes: { attack: {}, defense: {} },
-    mainSkill: { attack: {}, defense: {} },
+    mainSkills: { attack: {}, defense: {} },
     subScenes: { attack: {}, defense: {} },
-    subSwitch: { attack: {}, defense: {} },
+    subSwitches: { attack: {}, defense: {} },
     preciousScenes: { attack: {}, defense: {} },
   },
 } as const;

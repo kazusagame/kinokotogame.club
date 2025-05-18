@@ -44,7 +44,7 @@ type SelectModalProps = {
 };
 
 type SelectState = NonNullable<
-  DeckSimulatorData["mainSkill"]["attack" | "defense"]
+  DeckSimulatorData["mainSkills"]["attack" | "defense"]
 >[number];
 
 export function MainSkill({
@@ -64,9 +64,9 @@ export function MainSkill({
   }) => void;
 }) {
   const typeIndex = type === "攻援" ? "attack" : "defense";
-  const skillData = data.mainSkill?.[typeIndex] ?? {};
+  const skillData = data.mainSkills?.[typeIndex] ?? {};
   const skillCount = Object.keys(skillData).length;
-  const summaryData = summary.summaries.mainSkill?.[typeIndex] ?? {};
+  const summaryData = summary.summaries.mainSkills?.[typeIndex] ?? {};
 
   const [modalOpen, setModalOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
@@ -104,7 +104,7 @@ export function MainSkill({
     const result = await openSelectModal();
     if (result !== null) {
       setValueAtPath({
-        path: `mainSkill.${typeIndex}.${skillCount + 1}`,
+        path: `mainSkills.${typeIndex}.${skillCount + 1}`,
         value: result,
       });
     }
@@ -119,7 +119,7 @@ export function MainSkill({
     const result = await openSelectModal();
     if (result !== null) {
       setValueAtPath({
-        path: `mainSkill.${typeIndex}.${key}`,
+        path: `mainSkills.${typeIndex}.${key}`,
         value: result,
       });
     }
@@ -130,19 +130,19 @@ export function MainSkill({
     const newData = removeKeyAndReindex(
       skillData,
       Number(key)
-    ) as DeckSimulatorData["mainSkill"][typeof typeIndex];
+    ) as DeckSimulatorData["mainSkills"][typeof typeIndex];
     if (newData === undefined) return;
     setValueAtPath({
-      path: `mainSkill.${typeIndex}`,
+      path: `mainSkills.${typeIndex}`,
       value: newData,
     });
   };
 
   const handleReorder = (
-    newData: NonNullable<DeckSimulatorData["mainSkill"]["attack" | "defense"]>
+    newData: NonNullable<DeckSimulatorData["mainSkills"]["attack" | "defense"]>
   ) => {
     setValueAtPath({
-      path: `mainSkill.${typeIndex}`,
+      path: `mainSkills.${typeIndex}`,
       value: newData,
     });
   };
@@ -150,8 +150,8 @@ export function MainSkill({
   return (
     <section className="pl-1">
       <h2 className="text-lg font-bold">主センバツ 声援</h2>
-      <div className="flex flex-col gap-6 mt-4 pl-2 md:pl-4">
-        <RegisteredMainSkillBlock
+      <div className="flex flex-col gap-6 mt-4 pl-0 sm:pl-2 md:pl-4">
+        <RegisteredMainSkillsBlock
           eventId={eventId}
           skillData={skillData}
           skillCount={skillCount}
@@ -160,7 +160,7 @@ export function MainSkill({
           handleDeleteButton={handleDeleteButton}
           handleReorder={handleReorder}
         />
-        <AddMainSkillBlock
+        <AddMainSkillsBlock
           skillCount={skillCount}
           handleAddButton={handleAddButton}
         />
@@ -184,7 +184,7 @@ export function MainSkill({
   );
 }
 
-function RegisteredMainSkillBlock({
+function RegisteredMainSkillsBlock({
   eventId,
   skillData = {},
   skillCount,
@@ -194,16 +194,16 @@ function RegisteredMainSkillBlock({
   handleReorder,
 }: {
   eventId: DeckSimulatorEventId;
-  skillData: DeckSimulatorData["mainSkill"]["attack" | "defense"];
+  skillData: DeckSimulatorData["mainSkills"]["attack" | "defense"];
   skillCount: number;
-  summaryData: DeckSimulatorResult["summaries"]["mainSkill"][
+  summaryData: DeckSimulatorResult["summaries"]["mainSkills"][
     | "attack"
     | "defense"];
   handleEditButton: (e: React.MouseEvent<HTMLButtonElement>) => void;
   handleDeleteButton: (e: React.MouseEvent<HTMLButtonElement>) => void;
   handleReorder: (
     newSkillData: NonNullable<
-      DeckSimulatorData["mainSkill"]["attack" | "defense"]
+      DeckSimulatorData["mainSkills"]["attack" | "defense"]
     >
   ) => void;
 }) {
@@ -260,11 +260,11 @@ function RegisteredMainSkillBlock({
 
   const gridColumnCss =
     eventId !== "clubcup"
-      ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_100px_75px_85px_75px_140px]"
-      : "lg:grid-cols-[45px_40px_90px_55px_60px_60px_100px_75px_85px_75px_75px_140px]";
+      ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_100px_75px_85px_75px_65px_65px]"
+      : "lg:grid-cols-[45px_40px_90px_55px_60px_60px_100px_75px_85px_75px_75px_65px_65px]";
 
   return (
-    <div className="w-fit text-base border border-base-300 rounded-xl">
+    <div className="text-base border border-base-300 rounded-xl">
       <div
         className={`grid grid-cols-4 md:grid-cols-6 ${gridColumnCss} gap-2 md:gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl`}
       >
@@ -360,8 +360,8 @@ function RegisteredMainSkillBlock({
                     <Tooltip
                       title="選択したパラメータの組み合わせの効果値は未登録です（いずれかのパラメータが間違っているのかも？）"
                       arrow
-                      enterTouchDelay={0}
-                      leaveTouchDelay={10000}
+                      enterTouchDelay={250}
+                      leaveTouchDelay={5000}
                     >
                       <div className="flex justify-end items-center pr-4  bg-warning text-warning-content">
                         <WarningIcon />
@@ -395,7 +395,7 @@ function RegisteredMainSkillBlock({
                       %
                     </div>
                   )}
-                  <div className="flex justify-center items-center gap-2 md:gap-4 px-2">
+                  <div className="flex justify-center items-center">
                     <button
                       className="btn btn-xs md:btn-sm btn-primary"
                       data-key={key}
@@ -403,6 +403,8 @@ function RegisteredMainSkillBlock({
                     >
                       編集
                     </button>
+                  </div>
+                  <div className="flex justify-center items-center">
                     <button
                       className="btn btn-xs md:btn-sm btn-secondary"
                       data-key={key}
@@ -421,7 +423,7 @@ function RegisteredMainSkillBlock({
   );
 }
 
-function AddMainSkillBlock({
+function AddMainSkillsBlock({
   skillCount,
   handleAddButton,
 }: {

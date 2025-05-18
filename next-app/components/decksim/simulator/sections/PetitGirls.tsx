@@ -86,7 +86,7 @@ function TotalPowerInputs({
   );
 }
 
-function EffectSelectionBlock({
+function EffectsSelectionBlock({
   data,
   onChange,
   setValueAtPath,
@@ -166,7 +166,7 @@ function EffectSelectionBlock({
           tipText="ぷち主センバツ3人の応援力効果を選択します。経験値UPなど発揮値計算に影響を与えない効果の場合は選択不要です。成長Lvを上限まで上げてある状態を想定して計算を行うため、まだ成長の途中で効果Lvが上限に到達していない場合は誤差が発生します。"
         />
       </p>
-      <div className="flex flex-col gap-3 mt-2 pl-2 md:pl-4">
+      <div className="flex flex-col gap-3 mt-2 pl-0 sm:pl-2 md:pl-4">
         {Array(MAIN_GIRLS_COUNT)
           .fill(0)
           .map((_, i) => (
@@ -189,7 +189,7 @@ function EffectSelectionBlock({
                   </label>
                 </div>
               </div>
-              <div className="flex flex-wrap gap-4 pl-2 md:pl-4">
+              <div className="flex flex-wrap gap-4 pl-0 sm:pl-2 md:pl-4">
                 {Array(EFFECTS_PER_GIRL)
                   .fill(0)
                   .map((_, j) => (
@@ -324,7 +324,7 @@ function EffectSelectModal({
             {/* Marker Type */}
             <div>
               <div className="font-bold">マーカータイプ</div>
-              <div className="flex gap-5 flex-wrap pl-2 md:pl-4 mt-3">
+              <div className="flex gap-5 flex-wrap pl-0 sm:pl-2 md:pl-4 mt-3">
                 {["未選択", "ピンク", "イエロー", "ブルー"].map((type) => (
                   <label key={type} className="label cursor-pointer flex items-center gap-2">
                     <input
@@ -346,7 +346,7 @@ function EffectSelectModal({
             {/* Condition Detail */}
             <div>
               <div className="font-bold">発動条件</div>
-              <div className="flex gap-5 flex-wrap pl-2 md:pl-4 mt-3">
+              <div className="flex gap-5 flex-wrap pl-0 sm:pl-2 md:pl-4 mt-3">
                 {[
                   "未選択",
                   "全タイプ",
@@ -375,7 +375,7 @@ function EffectSelectModal({
             {/* Effect Type */}
             <div>
               <div className="font-bold">効果タイプ</div>
-              <div className="flex gap-5 flex-wrap pl-2 md:pl-4 mt-3">
+              <div className="flex gap-5 flex-wrap pl-0 sm:pl-2 md:pl-4 mt-3">
                 {["未選択", "攻援UP", "守援UP", "攻守UP"].map((type) => (
                   <label key={type} className="label cursor-pointer flex items-center gap-2">
                     <input
@@ -460,7 +460,7 @@ function EffectSelectModal({
   );
 }
 
-function PetitGirlDetailsBlock({
+function PetitGirlsDetailBlock({
   data,
   eventId,
   onChange,
@@ -484,7 +484,7 @@ function PetitGirlDetailsBlock({
               tipText="ぶちセンバツ内のぷちガールちゃんの詳細データを入力します。ここでの入力は散策♪聖櫻ワールドのマス効果を計算する時にのみ使用されます。"
             />
           </p>
-          <div className="flex flex-col gap-3 mt-2 pl-2 md:pl-4">
+          <div className="flex flex-col gap-3 mt-2 pl-0 sm:pl-2 md:pl-4">
             {Array(MAIN_GIRLS_COUNT)
               .fill(0)
               .map((_, i) => (
@@ -674,19 +674,19 @@ export function PetitGirls({
     <>
       <section className="pl-1">
         <h2 className="text-lg font-bold">ぷちセンバツ</h2>
-        <div className="flex flex-col gap-6 mt-4 pl-2 md:pl-4">
+        <div className="flex flex-col gap-6 mt-4 pl-0 sm:pl-2 md:pl-4">
           <TotalPowerInputs
             data={data}
             eventId={eventId}
             onChange={onChange}
             onBlur={onBlur}
           />
-          <EffectSelectionBlock
+          <EffectsSelectionBlock
             data={data}
             onChange={onChange}
             setValueAtPath={setValueAtPath}
           />
-          <PetitGirlDetailsBlock
+          <PetitGirlsDetailBlock
             data={data}
             eventId={eventId}
             onChange={onChange}

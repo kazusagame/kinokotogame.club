@@ -22,8 +22,8 @@ export default function TextWithTooltip({
       <Tooltip
         title={tipText}
         arrow
-        enterTouchDelay={0}
-        leaveTouchDelay={10000}
+        enterTouchDelay={250}
+        leaveTouchDelay={5000}
       >
         <span className="flex flex-row items-center w-fit">
           <span className="mr-1">{displayText}</span>

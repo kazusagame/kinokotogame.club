@@ -44,7 +44,7 @@ type SelectModalProps = {
 };
 
 type SelectState = NonNullable<
-  DeckSimulatorData["subSwitch"]["attack" | "defense"]
+  DeckSimulatorData["subSwitches"]["attack" | "defense"]
 >[number];
 
 export function SubSwitch({
@@ -64,9 +64,10 @@ export function SubSwitch({
   }) => void;
 }) {
   const typeIndex = type === "攻援" ? "attack" : "defense";
-  const skillData = data.subSwitch?.[typeIndex] ?? {};
+  const skillData = data.subSwitches?.[typeIndex] ?? {};
   const skillCount = Object.keys(skillData).length;
-  const summaryData = summary.summaries.subSwitch?.[typeIndex] ?? {};
+  const summaryData = summary.summaries.subSwitches?.[typeIndex] ?? {};
+  const isSubSwitchValid = eventId !== "raid-mega";
 
   const [modalOpen, setModalOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
@@ -104,7 +105,7 @@ export function SubSwitch({
     const result = await openSelectModal();
     if (result !== null) {
       setValueAtPath({
-        path: `subSwitch.${typeIndex}.${skillCount + 1}`,
+        path: `subSwitches.${typeIndex}.${skillCount + 1}`,
         value: result,
       });
     }
@@ -119,7 +120,7 @@ export function SubSwitch({
     const result = await openSelectModal();
     if (result !== null) {
       setValueAtPath({
-        path: `subSwitch.${typeIndex}.${key}`,
+        path: `subSwitches.${typeIndex}.${key}`,
         value: result,
       });
     }
@@ -130,63 +131,67 @@ export function SubSwitch({
     const newData = removeKeyAndReindex(
       skillData,
       Number(key)
-    ) as DeckSimulatorData["subSwitch"][typeof typeIndex];
+    ) as DeckSimulatorData["subSwitches"][typeof typeIndex];
     if (newData === undefined) return;
     setValueAtPath({
-      path: `subSwitch.${typeIndex}`,
+      path: `subSwitches.${typeIndex}`,
       value: newData,
     });
   };
 
   const handleReorder = (
-    newData: NonNullable<DeckSimulatorData["subSwitch"]["attack" | "defense"]>
+    newData: NonNullable<DeckSimulatorData["subSwitches"]["attack" | "defense"]>
   ) => {
     setValueAtPath({
-      path: `subSwitch.${typeIndex}`,
+      path: `subSwitches.${typeIndex}`,
       value: newData,
     });
   };
 
   return (
-    <section className="pl-1">
-      <h2 className="text-lg font-bold">
-        副センバツ内のスイッチOFFガール 声援
-      </h2>
-      <div className="flex flex-col gap-6 mt-4 pl-2 md:pl-4">
-        <RegisteredSubSwitchBlock
-          eventId={eventId}
-          skillData={skillData}
-          skillCount={skillCount}
-          summaryData={summaryData}
-          handleEditButton={handleEditButton}
-          handleDeleteButton={handleDeleteButton}
-          handleReorder={handleReorder}
-        />
-        <AddSubSwitchBlock
-          skillCount={skillCount}
-          handleAddButton={handleAddButton}
-        />
-      </div>
-      {modalOpen && (
-        <SkillSelectModal
-          title={modalTitle}
-          onSubmit={handleGirlSelect}
-          onClose={(selected) => {
-            if (resolveModal) {
-              resolveModal(null);
-              setResolveModal(null);
-            }
-            setSelectedState(selected);
-            setModalOpen(false);
-          }}
-          initialSelected={selectedState}
-        />
+    <>
+      {isSubSwitchValid && (
+        <section className="pl-1">
+          <h2 className="text-lg font-bold">
+            副センバツ内のスイッチOFFガール 声援
+          </h2>
+          <div className="flex flex-col gap-6 mt-4 pl-0 sm:pl-2 md:pl-4">
+            <RegisteredSubSwitchesBlock
+              eventId={eventId}
+              skillData={skillData}
+              skillCount={skillCount}
+              summaryData={summaryData}
+              handleEditButton={handleEditButton}
+              handleDeleteButton={handleDeleteButton}
+              handleReorder={handleReorder}
+            />
+            <AddSubSwitchesBlock
+              skillCount={skillCount}
+              handleAddButton={handleAddButton}
+            />
+          </div>
+          {modalOpen && (
+            <SkillSelectModal
+              title={modalTitle}
+              onSubmit={handleGirlSelect}
+              onClose={(selected) => {
+                if (resolveModal) {
+                  resolveModal(null);
+                  setResolveModal(null);
+                }
+                setSelectedState(selected);
+                setModalOpen(false);
+              }}
+              initialSelected={selectedState}
+            />
+          )}
+        </section>
       )}
-    </section>
+    </>
   );
 }
 
-function RegisteredSubSwitchBlock({
+function RegisteredSubSwitchesBlock({
   eventId,
   skillData = {},
   skillCount,
@@ -196,16 +201,16 @@ function RegisteredSubSwitchBlock({
   handleReorder,
 }: {
   eventId: DeckSimulatorEventId;
-  skillData: DeckSimulatorData["subSwitch"]["attack" | "defense"];
+  skillData: DeckSimulatorData["subSwitches"]["attack" | "defense"];
   skillCount: number;
-  summaryData: DeckSimulatorResult["summaries"]["subSwitch"][
+  summaryData: DeckSimulatorResult["summaries"]["subSwitches"][
     | "attack"
     | "defense"];
   handleEditButton: (e: React.MouseEvent<HTMLButtonElement>) => void;
   handleDeleteButton: (e: React.MouseEvent<HTMLButtonElement>) => void;
   handleReorder: (
     newSkillData: NonNullable<
-      DeckSimulatorData["subSwitch"]["attack" | "defense"]
+      DeckSimulatorData["subSwitches"]["attack" | "defense"]
     >
   ) => void;
 }) {
@@ -263,11 +268,11 @@ function RegisteredSubSwitchBlock({
 
   const gridColumnCss =
     eventId !== "clubcup"
-      ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_55px_75px_85px_75px_140px]"
-      : "lg:grid-cols-[45px_40px_90px_55px_60px_60px_55px_75px_85px_75px_75px_140px]";
+      ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_55px_75px_85px_75px_65px_65px]"
+      : "lg:grid-cols-[45px_40px_90px_55px_60px_60px_55px_75px_85px_75px_75px_65px_65px]";
 
   return (
-    <div className="w-fit text-base border border-base-300 rounded-xl">
+    <div className="text-base border border-base-300 rounded-xl">
       <div
         className={`grid grid-cols-4 md:grid-cols-6 ${gridColumnCss} gap-2 md:gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl`}
       >
@@ -363,10 +368,10 @@ function RegisteredSubSwitchBlock({
                     <Tooltip
                       title="選択したパラメータの組み合わせの効果値は未登録です（いずれかのパラメータが間違っているのかも？）"
                       arrow
-                      enterTouchDelay={0}
-                      leaveTouchDelay={10000}
+                      enterTouchDelay={250}
+                      leaveTouchDelay={5000}
                     >
-                      <div className="flex justify-end items-center pr-4  bg-warning text-warning-content">
+                      <div className="flex justify-end items-center pr-4 bg-warning text-warning-content">
                         <WarningIcon />
                         <span className="ml-2">0 %</span>
                       </div>
@@ -398,7 +403,7 @@ function RegisteredSubSwitchBlock({
                       %
                     </div>
                   )}
-                  <div className="flex justify-center items-center gap-2 md:gap-4 px-2">
+                  <div className="flex justify-center items-center">
                     <button
                       className="btn btn-xs md:btn-sm btn-primary"
                       data-key={key}
@@ -406,6 +411,8 @@ function RegisteredSubSwitchBlock({
                     >
                       編集
                     </button>
+                  </div>
+                  <div className="flex justify-center items-center">
                     <button
                       className="btn btn-xs md:btn-sm btn-secondary"
                       data-key={key}
@@ -424,7 +431,7 @@ function RegisteredSubSwitchBlock({
   );
 }
 
-function AddSubSwitchBlock({
+function AddSubSwitchesBlock({
   skillCount,
   handleAddButton,
 }: {
