@@ -44,6 +44,7 @@ interface HeaderProps<T, U, V> {
   handleLoadData: (newData: T) => void;
   handleChangeMemo: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   handleClickIndividualSave: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  setCurrentDataNum?:  React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface ResultSummary {
@@ -69,6 +70,7 @@ export default function SimulatorHeader<
   handleLoadData,
   handleChangeMemo,
   handleClickIndividualSave,
+  setCurrentDataNum,
 }: HeaderProps<T, U, V>) {
   const position = isFixHeader ? "sticky top-0" : "static";
 
@@ -86,6 +88,7 @@ export default function SimulatorHeader<
         handleLoadData={handleLoadData}
         savedDataSummaries={savedDataSummaries}
         handleChangeMemo={handleChangeMemo}
+        setCurrentDataNum={setCurrentDataNum}
       />
       <SaveButton<V>
         eventId={eventId}
@@ -142,11 +145,13 @@ function LoadButton<
   handleLoadData,
   savedDataSummaries,
   handleChangeMemo,
+  setCurrentDataNum,
 }: {
   eventId: EventId;
   handleLoadData: (newData: T) => void;
   savedDataSummaries: U[];
   handleChangeMemo: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  setCurrentDataNum?:  React.Dispatch<React.SetStateAction<number>>;
 }) {
   const modalId = useId();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -170,6 +175,9 @@ function LoadButton<
         if (parsedData.version !== 2) return;
 
         handleLoadData(parsedData.data as T);
+
+        // センバツシミュレーターの場合は setCurrentDataNum で現在のデータ番号を更新する
+        if (setCurrentDataNum) setCurrentDataNum(Number(num));
 
         // ロードしたらモーダルは閉じる
         if (buttonRef.current) {

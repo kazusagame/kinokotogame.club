@@ -107,6 +107,8 @@ export default function DeckSimulator({
       const skillEffect =
         (result.summaries.totalPerformance.attack.skillEffect ?? 0) +
         (result.summaries.totalPerformance.defense.skillEffect ?? 0);
+      const isConvertPoint =
+        result.summaries.totalPerformance.isConvertPoint ?? false;
 
       const tempData = {
         lastUpdate: dateStr,
@@ -117,6 +119,7 @@ export default function DeckSimulator({
         powerExp: powerExp,
         powerMax: powerMax,
         skillEffect: skillEffect,
+        isConvertPoint: isConvertPoint,
       };
       const convertData = JSON.stringify(tempData);
       localStorage.setItem(key, convertData);
@@ -125,6 +128,11 @@ export default function DeckSimulator({
       handleSaveDataSummaries(Number(num) - 1, "powerExp", powerExp);
       handleSaveDataSummaries(Number(num) - 1, "powerMax", powerMax);
       handleSaveDataSummaries(Number(num) - 1, "skillEffect", skillEffect);
+      handleSaveDataSummaries(
+        Number(num) - 1,
+        "isConvertPoint",
+        isConvertPoint
+      );
       setCurrentDataNum(Number(num));
     }
   };
@@ -148,6 +156,7 @@ export default function DeckSimulator({
         handleLoadData={handleLoadData}
         handleChangeMemo={handleChangeMemo}
         handleClickIndividualSave={handleClickIndividualSave}
+        setCurrentDataNum={setCurrentDataNum}
       />
       <div className="my-2" />
       <div role="tablist" className="tabs tabs-lifted">
@@ -217,8 +226,8 @@ export default function DeckSimulator({
                       setValueAtPath={setValueAtPath}
                     />
                     {eventId !== "raid-mega" && (
-                        <hr className="mx-4 h-px bg-base-300 border-0" />
-                      )}
+                      <hr className="mx-4 h-px bg-base-300 border-0" />
+                    )}
                     <SubSwitch
                       data={data}
                       summary={resultSummary}
@@ -227,8 +236,8 @@ export default function DeckSimulator({
                       setValueAtPath={setValueAtPath}
                     />
                     {eventId !== "raid-mega" && (
-                        <hr className="mx-4 h-px bg-base-300 border-0" />
-                      )}
+                      <hr className="mx-4 h-px bg-base-300 border-0" />
+                    )}
                     <PreciousScenes
                       data={data}
                       summary={resultSummary}
@@ -542,134 +551,252 @@ function DataExportAndImport({
   );
 }
 
-export function DeckSimulatorResultSummaryDiv({}: // eventId,
-// resultSummary,
-// savedDataSummaries,
-// currentDataNum,
-{
-  eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
+export function DeckSimulatorResultSummaryDiv({
+  eventId,
+  resultSummary,
+  savedDataSummaries,
+  currentDataNum,
+}: {
+  eventId: DeckSimulatorEventId;
   resultSummary: DeckSimulatorResult;
   savedDataSummaries: DeckSimulatorSavedDataSummary[];
-  currentDataNum: number | undefined;
+  currentDataNum?: number;
 }) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  // const [startPage, setStartPage] = useState<number>(0);
-  // const chunks: string[][] = [];
-  // const maxPageNum: number = Math.ceil(
-  //   Object.keys(resultSummary.summaries).length / 3
-  // );
-  // for (let page = startPage; page < maxPageNum; page++) {
-  //   chunks[page - startPage] = [];
-  //   for (let i = 0; i < 3; i++) {
-  //     if (resultSummary.summaries[page * 3 + i])
-  //       chunks[page - startPage].push(resultSummary.summaries[page * 3 + i]);
-  //   }
-  // }
+  const [displayNum, setDisplayNum] = useState<number>(0);
+  const summary = resultSummary.summaries.totalPerformance;
+  const savedDataSummary = currentDataNum
+    ? savedDataSummaries?.[currentDataNum - 1]
+    : undefined;
 
-  // const handleClickResultDiv = () => {
-  //   let addPageNum = 1;
-  //   const width = window.innerWidth;
-  //   if (width >= 1536) {
-  //     addPageNum = 5;
-  //   } else if (width >= 1280) {
-  //     addPageNum = 4;
-  //   } else if (width >= 1024) {
-  //     addPageNum = 3;
-  //   } else if (width >= 768) {
-  //     addPageNum = 2;
-  //   }
+  const handleClickResultDiv = () => {
+    setDisplayNum((v) => {
+      return savedDataSummary?.lastUpdate ? (v + 1) % 2 : 0;
+    });
+  };
 
-  //   let nextPage = startPage + addPageNum;
-  //   if (nextPage >= maxPageNum) {
-  //     nextPage = 0;
-  //   } else if (nextPage >= 10) {
-  //     // 長すぎても意味がないので10ページまでにする
-  //     nextPage = 0;
-  //   }
+  const baseCss = displayNum === 0 ? "" : "hidden";
+  const differenceCss = displayNum === 1 ? "" : "hidden";
 
-  //   setStartPage(nextPage);
-  // };
+  const isConvertPoint = summary.isConvertPoint ?? false;
+  const attackMin = summary.attack.minPower ?? 0;
+  const attackExp = summary.attack.expPower ?? 0;
+  const attackMax = summary.attack.maxPower ?? 0;
+  const attackSkillEffect = summary.attack.skillEffect ?? 0;
+  const defenseMin = summary.defense.minPower ?? 0;
+  const defenseExp = summary.defense.expPower ?? 0;
+  const defenseMax = summary.defense.maxPower ?? 0;
+  // const defenseSkillEffect = summary.defense.skillEffect ?? 0;
+
+  let totalMin = 0;
+  let totalExp = 0;
+  let totalMax = 0;
+
+  if (eventId === "raid-second") {
+    totalMin = attackMin + defenseMin;
+    totalExp = attackExp + defenseExp;
+    totalMax = attackMax + defenseMax;
+  } else if (eventId === "championship-defense") {
+    totalMin = defenseMin;
+    totalExp = defenseExp;
+    totalMax = defenseMax;
+  } else {
+    totalMin = attackMin;
+    totalExp = attackExp;
+    totalMax = attackMax;
+  }
+
+  const savedIsConvertPoint = savedDataSummary?.isConvertPoint ?? undefined;
+  const savedMin = savedDataSummary?.powerMin ?? 0;
+  const savedExp = savedDataSummary?.powerExp ?? 0;
+  const savedMax = savedDataSummary?.powerMax ?? 0;
+  const savedSkillEffect = savedDataSummary?.skillEffect ?? 0;
 
   return (
-    // <div
-    //   className="ml-4 md:ml-8 mr-2 flex flex-col justify-start"
-    //   role="button"
-    //   onClick={handleClickResultDiv}
-    // >
-    //   <div className="flex flex-row gap-8">
-    //     {chunks[0] && (
-    //       <div>
-    //         {chunks[0].map((v, i) => (
-    //           <p key={i} className="text-xs">
-    //             アタック
-    //             <span className="inline-block w-4 text-right">
-    //               {startPage * 3 + i + 1}
-    //             </span>
-    //             回目 ダメージ声援:{" "}
-    //             <span className="inline-block w-8 text-right">{v}</span> %
-    //           </p>
-    //         ))}
-    //       </div>
-    //     )}
-    //     {chunks[1] && (
-    //       <div className="max-md:hidden">
-    //         {chunks[1].map((v, i) => (
-    //           <p key={i} className="text-xs">
-    //             アタック
-    //             <span className="inline-block w-4 text-right">
-    //               {startPage * 3 + i + 4}
-    //             </span>
-    //             回目 ダメージ声援:{" "}
-    //             <span className="inline-block w-8 text-right">{v}</span> %
-    //           </p>
-    //         ))}
-    //       </div>
-    //     )}
-    //     {chunks[2] && (
-    //       <div className="max-lg:hidden">
-    //         {chunks[2].map((v, i) => (
-    //           <p key={i} className="text-xs">
-    //             アタック
-    //             <span className="inline-block w-4 text-right">
-    //               {startPage * 3 + i + 7}
-    //             </span>
-    //             回目 ダメージ声援:{" "}
-    //             <span className="inline-block w-8 text-right">{v}</span> %
-    //           </p>
-    //         ))}
-    //       </div>
-    //     )}
-    //     {chunks[3] && (
-    //       <div className="max-xl:hidden">
-    //         {chunks[3].map((v, i) => (
-    //           <p key={i} className="text-xs">
-    //             アタック
-    //             <span className="inline-block w-4 text-right">
-    //               {startPage * 3 + i + 10}
-    //             </span>
-    //             回目 ダメージ声援:{" "}
-    //             <span className="inline-block w-8 text-right">{v}</span> %
-    //           </p>
-    //         ))}
-    //       </div>
-    //     )}
-    //     {chunks[4] && (
-    //       <div className="max-2xl:hidden">
-    //         {chunks[4].map((v, i) => (
-    //           <p key={i} className="text-xs">
-    //             アタック
-    //             <span className="inline-block w-4 text-right">
-    //               {startPage * 3 + i + 13}
-    //             </span>
-    //             回目 ダメージ声援:{" "}
-    //             <span className="inline-block w-8 text-right">{v}</span> %
-    //           </p>
-    //         ))}
-    //       </div>
-    //     )}
-    //   </div>
-    // </div>
-    <></>
+    <div
+      className="ml-4 md:ml-8 mr-2 flex flex-col justify-start"
+      role="button"
+      onClick={handleClickResultDiv}
+    >
+      <div className="flex gap-10 text-xs">
+        <div className={`${baseCss} lg:block`}>
+          <div className="flex gap-4">
+            <div className="flex flex-col items-center justify-start">
+              [計算結果]
+            </div>
+            <div className="flex flex-col">
+              <p>最小値：</p>
+              <p>期待値：</p>
+              <p>最大値：</p>
+            </div>
+            <div className="flex flex-col">
+              <p className="text-right">
+                {isConvertPoint
+                  ? `${formatNumber(totalMin)} pt`
+                  : formatNumber(totalMin)}
+              </p>
+              <p className="text-right">
+                {isConvertPoint
+                  ? `${formatNumber(totalExp)} pt`
+                  : formatNumber(totalMin)}
+              </p>
+              <p className="text-right">
+                {isConvertPoint
+                  ? `${formatNumber(totalMax)} pt`
+                  : formatNumber(totalMin)}
+              </p>
+            </div>
+            {(eventId === "divrace" || eventId === "board") && (
+              <>
+                <div className="hidden lg:block">
+                  <div className="flex flex-col">
+                    <p>最小値(×6)：</p>
+                    <p>期待値(×6)：</p>
+                    <p>最大値(×6)：</p>
+                  </div>
+                </div>
+                <div className="hidden lg:block">
+                  <div className="flex flex-col">
+                    <p className="text-right">
+                      {isConvertPoint
+                        ? `${formatNumber(totalMin * 6)} pt`
+                        : formatNumber(totalMin * 6)}
+                    </p>
+                    <p className="text-right">
+                      {isConvertPoint
+                        ? `${formatNumber(totalExp * 6)} pt`
+                        : formatNumber(totalMin * 6)}
+                    </p>
+                    <p className="text-right">
+                      {isConvertPoint
+                        ? `${formatNumber(totalMax * 6)} pt`
+                        : formatNumber(totalMin * 6)}
+                    </p>
+                  </div>
+                </div>
+                <div className="hidden lg:block">
+                  <div className="flex flex-col">
+                    <p>最小値(×15)：</p>
+                    <p>期待値(×15)：</p>
+                    <p>最大値(×15)：</p>
+                  </div>
+                </div>
+                <div className="hidden lg:block">
+                  <div className="flex flex-col">
+                    <p className="text-right">
+                      {isConvertPoint
+                        ? `${formatNumber(totalMin * 15)} pt`
+                        : formatNumber(totalMin * 15)}
+                    </p>
+                    <p className="text-right">
+                      {isConvertPoint
+                        ? `${formatNumber(totalExp * 15)} pt`
+                        : formatNumber(totalMin * 15)}
+                    </p>
+                    <p className="text-right">
+                      {isConvertPoint
+                        ? `${formatNumber(totalMax * 15)} pt`
+                        : formatNumber(totalMin * 15)}
+                    </p>
+                  </div>
+                </div>
+              </>
+            )}
+            {eventId === "clubcup" && (
+              <>
+                <div className="hidden sm:block">
+                  <div className="flex flex-col">
+                    <p>声援効果：</p>
+                  </div>
+                </div>
+                <div className={`hidden sm:block`}>
+                  <div className="flex flex-col">
+                    <p className="text-right">
+                      {formatNumber(attackSkillEffect, "0.00", "ja-JP", {
+                        style: "decimal",
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}{" "}
+                      %
+                    </p>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+
+        <div className={`${differenceCss} lg:block`}>
+          {currentDataNum !== 0 && isConvertPoint === savedIsConvertPoint && (
+            <div className="flex gap-4">
+              <div className="flex flex-col items-center justify-start">
+                {`[データ${currentDataNum}との差分]`}
+              </div>
+              <div className="flex flex-col">
+                <p>最小値：</p>
+                <p>期待値：</p>
+                <p>最大値：</p>
+              </div>
+              <div className="flex flex-col">
+                <p
+                  className={`text-right ${
+                    totalMin - savedMin < 0 && "text-red-700"
+                  }`}
+                >
+                  {isConvertPoint
+                    ? `${formatNumber(totalMin - savedMin)} pt`
+                    : formatNumber(totalMin - savedMin)}
+                </p>
+                <p
+                  className={`text-right ${
+                    totalExp - savedExp < 0 && "text-red-700"
+                  }`}
+                >
+                  {isConvertPoint
+                    ? `${formatNumber(totalExp - savedExp)} pt`
+                    : formatNumber(totalExp - savedExp)}
+                </p>
+                <p
+                  className={`text-right ${
+                    totalMax - savedMax < 0 && "text-red-700"
+                  }`}
+                >
+                  {isConvertPoint
+                    ? `${formatNumber(totalMax - savedMax)} pt`
+                    : formatNumber(totalMax - savedMax)}
+                </p>
+              </div>
+              {eventId === "clubcup" && (
+                <>
+                  <div className="hidden sm:block">
+                    <div className="flex flex-col">
+                      <p>声援効果：</p>
+                    </div>
+                  </div>
+                  <div className="hidden sm:block">
+                    <div className="flex flex-col">
+                      <p className="text-right">
+                        {formatNumber(
+                          attackSkillEffect - savedSkillEffect,
+                          "0.00",
+                          "ja-JP",
+                          {
+                            style: "decimal",
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          }
+                        )}{" "}
+                        %
+                      </p>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -680,9 +807,10 @@ export function DeckSimulatorSavedDataDiv({
   eventId: keyof typeof EVENT_ID_TO_NAME_DICT;
   savedDataSummary: DeckSimulatorSavedDataSummary;
 }) {
-  const totalMin = formatNumber(savedDataSummary?.powerMin);
-  const totalExp = formatNumber(savedDataSummary?.powerExp);
-  const totalMax = formatNumber(savedDataSummary?.powerMax);
+  const savedIsConvertPoint = savedDataSummary.isConvertPoint;
+  const totalMin = formatNumber(savedDataSummary.powerMin);
+  const totalExp = formatNumber(savedDataSummary.powerExp);
+  const totalMax = formatNumber(savedDataSummary.powerMax);
 
   return (
     <>
@@ -694,9 +822,15 @@ export function DeckSimulatorSavedDataDiv({
             <p>最大値：</p>
           </div>
           <div className="flex flex-col gap-1">
-            <p className="text-right">{totalMin}</p>
-            <p className="text-right">{totalExp}</p>
-            <p className="text-right">{totalMax}</p>
+            <p className="text-right">
+              {savedIsConvertPoint ? `${totalMin} pt` : totalMin}
+            </p>
+            <p className="text-right">
+              {savedIsConvertPoint ? `${totalExp} pt` : totalExp}
+            </p>
+            <p className="text-right">
+              {savedIsConvertPoint ? `${totalMax} pt` : totalMax}
+            </p>
           </div>
         </div>
         {eventId === "clubcup" && (

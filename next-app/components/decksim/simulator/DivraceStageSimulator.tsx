@@ -813,6 +813,8 @@ export function DivraceStageResultSummaryDiv({
   data: DivraceStageData;
   resultSummary: DivraceStageResult;
 }) {
+  const [displayNum, setDisplayNum] = useState<number>(0);
+
   const summary = resultSummary.summaries;
 
   const baseLv =
@@ -920,9 +922,6 @@ export function DivraceStageResultSummaryDiv({
     `${totalPoint} pt`,
     `飴 ${totalCandy} 個 / 元気炭酸 ${totalNormal} 個 / 熱中炭酸 ${totalSpecial} 個`,
   ];
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [displayNum, setDisplayNum] = useState<number>(0);
 
   const handleClickResultDiv = () => {
     setDisplayNum((v) => (v + 1) % 3);

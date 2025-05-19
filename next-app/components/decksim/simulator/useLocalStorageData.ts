@@ -88,7 +88,7 @@ export function useLocalStorageData<
   }, [eventId]);
 
   const handleSaveDataSummaries = useCallback(
-    (index: number, key: keyof T, value: string | number) => {
+    (index: number, key: keyof T, value: string | number | boolean) => {
       setSavedDataSummaries((prev) =>
         prev.map((currentObj, i) => {
           if (index === i) {

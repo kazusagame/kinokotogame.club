@@ -91,46 +91,46 @@ export const SAVE_DATA_SUMMARY_KEY_LIST: {
   ],
   "raid-first": [
     "lastUpdate", "memo",
-    "powerMin", "powerExp", "powerMax",
+    "powerMin", "powerExp", "powerMax", "isConvertPoint",
   ],
   "raid-second": [
     "lastUpdate", "memo",
-    "powerMin", "powerExp", "powerMax",
+    "powerMin", "powerExp", "powerMax", "isConvertPoint",
   ],
   "raid-mega": [
     "lastUpdate", "memo",
-    "powerMin", "powerExp", "powerMax",
+    "powerMin", "powerExp", "powerMax", "isConvertPoint",
   ],
   "raidwar": [
     "lastUpdate", "memo",
-    "powerMin", "powerExp", "powerMax",
+    "powerMin", "powerExp", "powerMax", "isConvertPoint",
   ],
   "clubcup": [
     "lastUpdate", "memo",
-    "powerMin", "powerExp", "powerMax", "skillEffect",
+    "powerMin", "powerExp", "powerMax", "isConvertPoint", "skillEffect",
   ],
   "championship": [
     "lastUpdate", "memo",
-    "powerMin", "powerExp", "powerMax",
+    "powerMin", "powerExp", "powerMax", "isConvertPoint",
   ],
   "championship-defense": [
     "lastUpdate", "memo",
-    "powerMin", "powerExp", "powerMax",
+    "powerMin", "powerExp", "powerMax", "isConvertPoint",
   ],
   "tower": [
     "lastUpdate", "memo",
-    "powerMin", "powerExp", "powerMax",
+    "powerMin", "powerExp", "powerMax", "isConvertPoint",
   ],
   "divrace": [
     "lastUpdate", "memo",
-    "powerMin", "powerExp", "powerMax",
+    "powerMin", "powerExp", "powerMax", "isConvertPoint",
   ],
   "board": [
     "lastUpdate", "memo",
-    "powerMin", "powerExp", "powerMax",
+    "powerMin", "powerExp", "powerMax", "isConvertPoint",
   ],
   "normal-battle": [
     "lastUpdate", "memo",
-    "powerMin", "powerExp", "powerMax",
+    "powerMin", "powerExp", "powerMax", "isConvertPoint",
   ],
 } as const;

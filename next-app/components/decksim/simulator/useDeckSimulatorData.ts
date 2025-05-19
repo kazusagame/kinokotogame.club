@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
-import { calcDeckSimulatorResult } from "@/components/decksim/simulator/calcDeckSimulatorResult";
+import { calcDeckSimulatorResult } from "@/components/decksim/simulator/calculator/calcDeckSimulatorResult";
 
 import { setDeepValue } from "@/lib/setDeepValue";
 
@@ -445,6 +445,7 @@ export interface DeckSimulatorResult {
         maxPower?: number;
         skillEffect?: number;
       };
+      isConvertPoint?: boolean;
     };
     mainScenes: {
       attack: {
@@ -550,6 +551,7 @@ export interface DeckSimulatorSavedDataSummary {
   powerExp: number;
   powerMax: number;
   skillEffect: number;
+  isConvertPoint: boolean;
 }
 export const initDeckSimulatorSavedDataSummary: DeckSimulatorSavedDataSummary =
   {
@@ -559,6 +561,7 @@ export const initDeckSimulatorSavedDataSummary: DeckSimulatorSavedDataSummary =
     powerExp: 0,
     powerMax: 0,
     skillEffect: 0,
+    isConvertPoint: false,
   } as const;
 export interface DeckSimulatorLocalStorageData
   extends DeckSimulatorSavedDataSummary {
