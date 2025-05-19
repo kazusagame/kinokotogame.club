@@ -193,6 +193,130 @@ export function MainScenes({
   );
 }
 
+function MainScenesHeader({
+  eventId,
+  type,
+  classStrings,
+  isGradeValid,
+  isClubMatchValid,
+  isSpecialValid,
+}: {
+  eventId: DeckSimulatorEventId;
+  type: "攻援" | "守援";
+  classStrings: string;
+  isGradeValid: boolean;
+  isClubMatchValid: boolean;
+  isSpecialValid: boolean;
+}) {
+  return (
+    <div className={classStrings}>
+      <div>No.</div>
+      <div>{type === "攻援" ? "攻援力" : "守援力"}</div>
+      <div className="max-sm:hidden">ストラップ</div>
+      <div>タイプ</div>
+      <div>レアリティ</div>
+      <div>コスト</div>
+      <div>声援Lv</div>
+      {isGradeValid && <div className="max-sm:hidden">学年</div>}
+      {isClubMatchValid && (
+        <div className="flex flex-col justify-center items-center max-sm:hidden">
+          <span>部活</span>
+          <span>一致</span>
+        </div>
+      )}
+      <div className="max-sm:hidden">デート中</div>
+      <div className="max-sm:hidden">タッチ中</div>
+      <div className="max-sm:hidden">誕生日</div>
+      <div className="max-sm:hidden">Ex進展</div>
+      <div className="max-sm:hidden">本命ガール</div>
+      {isSpecialValid && eventId === "tower" && (
+        <div className="max-sm:hidden">有利ガール</div>
+      )}
+      {isSpecialValid && eventId === "divrace" && (
+        <div className="max-sm:hidden">予選ガール</div>
+      )}
+      <div>
+        <Tooltip
+          title="【声援を除いて】各種ボーナスや各種効果による補正後の応援力を自動で表示します。基本的にはこの数値が大きいガールほど効果が高いです。"
+          arrow
+          enterTouchDelay={250}
+          leaveTouchDelay={5000}
+        >
+          <div className="flex justify-center items-center gap-1">
+            <div className="flex flex-col justify-center items-center">
+              <span>補正後</span>
+              <span>個人</span>
+            </div>
+            <HelpOutlineIcon fontSize="small" />
+          </div>
+        </Tooltip>
+      </div>
+      <div>← 昇順</div>
+      {eventId === "clubcup" && (
+        <div className="max-sm:hidden">
+          <Tooltip
+            title="対抗戦における声援効果への加算値を自動で表示します。"
+            arrow
+            enterTouchDelay={250}
+            leaveTouchDelay={5000}
+          >
+            <div className="flex justify-center items-center gap-1">
+              <div className="flex flex-col justify-center items-center">
+                <span>声援</span>
+                <span>効果</span>
+              </div>
+              <HelpOutlineIcon fontSize="small" />
+            </div>
+          </Tooltip>
+        </div>
+      )}
+      {eventId === "divrace" && (
+        <>
+          <div>
+            <Tooltip
+              title="選択した風向きアイテムの効果を加算した後の応援力を自動で表示します。"
+              arrow
+              enterTouchDelay={250}
+              leaveTouchDelay={5000}
+            >
+              <div className="flex justify-center items-center gap-1">
+                <div className="flex flex-col justify-center items-center">
+                  <span>風向き</span>
+                  <span>加算後</span>
+                </div>
+                <HelpOutlineIcon fontSize="small" />
+              </div>
+            </Tooltip>
+          </div>
+          <div>← 昇順</div>
+        </>
+      )}
+      {eventId === "board" && (
+        <>
+          <div>
+            <Tooltip
+              title="天気効果やマス効果を加算した後の応援力を自動で表示します。"
+              arrow
+              enterTouchDelay={250}
+              leaveTouchDelay={5000}
+            >
+              <div className="flex justify-center items-center gap-1">
+                <div className="flex flex-col justify-center items-center">
+                  <span>マス/天気</span>
+                  <span>加算後</span>
+                </div>
+                <HelpOutlineIcon fontSize="small" />
+              </div>
+            </Tooltip>
+          </div>
+          <div>← 昇順</div>
+        </>
+      )}
+      <div></div>
+    </div>
+  );
+}
+
 function RegisteredMainScenesBlock({
   eventId,
   type,
@@ -281,113 +405,14 @@ function RegisteredMainScenesBlock({
 
   return (
     <div className="text-base border border-base-300 rounded-xl">
-      <div
-        className={`grid grid-cols-6 sm:grid-cols-9 ${gridColumnCss} gap-2 md:gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl`}
-      >
-        <div>No.</div>
-        <div>{type === "攻援" ? "攻援力" : "守援力"}</div>
-        <div className="max-sm:hidden">ストラップ</div>
-        <div>タイプ</div>
-        <div>レアリティ</div>
-        <div>コスト</div>
-        <div>声援Lv</div>
-        {isGradeValid && <div className="max-sm:hidden">学年</div>}
-        {isClubMatchValid && (
-          <div className="flex flex-col justify-center items-center max-sm:hidden">
-            <span>部活</span>
-            <span>一致</span>
-          </div>
-        )}
-        <div className="max-sm:hidden">デート中</div>
-        <div className="max-sm:hidden">タッチ中</div>
-        <div className="max-sm:hidden">誕生日</div>
-        <div className="max-sm:hidden">Ex進展</div>
-        <div className="max-sm:hidden">本命ガール</div>
-        {isSpecialValid && eventId === "tower" && (
-          <div className="max-sm:hidden">有利ガール</div>
-        )}
-        {isSpecialValid && eventId === "divrace" && (
-          <div className="max-sm:hidden">予選ガール</div>
-        )}
-        <div>
-          <Tooltip
-            title="【声援を除いて】各種ボーナスや各種効果による補正後の応援力を自動で表示します。基本的にはこの数値が大きいガールほど効果が高いです。"
-            arrow
-            enterTouchDelay={250}
-            leaveTouchDelay={5000}
-          >
-            <div className="flex justify-center items-center gap-1">
-              <div className="flex flex-col justify-center items-center">
-                <span>補正後</span>
-                <span>個人</span>
-              </div>
-              <HelpOutlineIcon fontSize="small" />
-            </div>
-          </Tooltip>
-        </div>
-        <div>← 昇順</div>
-        {eventId === "clubcup" && (
-          <div className="max-sm:hidden">
-            <Tooltip
-              title="対抗戦における声援効果への加算値を自動で表示します。"
-              arrow
-              enterTouchDelay={250}
-              leaveTouchDelay={5000}
-            >
-              <div className="flex justify-center items-center gap-1">
-                <div className="flex flex-col justify-center items-center">
-                  <span>声援</span>
-                  <span>効果</span>
-                </div>
-                <HelpOutlineIcon fontSize="small" />
-              </div>
-            </Tooltip>
-          </div>
-        )}
-        {eventId === "divrace" && (
-          <>
-            <div>
-              <Tooltip
-                title="選択した風向きアイテムの効果を加算した後の応援力を自動で表示します。"
-                arrow
-                enterTouchDelay={250}
-                leaveTouchDelay={5000}
-              >
-                <div className="flex justify-center items-center gap-1">
-                  <div className="flex flex-col justify-center items-center">
-                    <span>風向き</span>
-                    <span>加算後</span>
-                  </div>
-                  <HelpOutlineIcon fontSize="small" />
-                </div>
-              </Tooltip>
-            </div>
-            <div>← 昇順</div>
-          </>
-        )}
-        {eventId === "board" && (
-          <>
-            <div>
-              <Tooltip
-                title="天気効果やマス効果を加算した後の応援力を自動で表示します。"
-                arrow
-                enterTouchDelay={250}
-                leaveTouchDelay={5000}
-              >
-                <div className="flex justify-center items-center gap-1">
-                  <div className="flex flex-col justify-center items-center">
-                    <span>マス/天気</span>
-                    <span>加算後</span>
-                  </div>
-                  <HelpOutlineIcon fontSize="small" />
-                </div>
-              </Tooltip>
-            </div>
-            <div>← 昇順</div>
-          </>
-        )}
-        <div></div>
-      </div>
+      <MainScenesHeader
+        eventId={eventId}
+        type={type}
+        classStrings={`grid grid-cols-6 sm:grid-cols-9 ${gridColumnCss} gap-2 md:gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl`}
+        isGradeValid={isGradeValid}
+        isClubMatchValid={isClubMatchValid}
+        isSpecialValid={isSpecialValid}
+      />
       {sceneCount === 0 ? (
         <div className="text-center text-sm font-bold py-4">
           まだ何も設定されていません
@@ -403,116 +428,132 @@ function RegisteredMainScenesBlock({
             items={orderedKeys}
             strategy={verticalListSortingStrategy}
           >
-            {orderedKeys.map((key) => {
+            {orderedKeys.map((key, index) => {
               const value = sceneData[Number(key)];
               const summary = summaryData[Number(key)];
               return (
-                <SortableItem
+                <div
                   key={key}
-                  id={key}
-                  classStrings={`grid grid-cols-6 sm:grid-cols-9 ${gridColumnCss} gap-2 md:gap-3 min-h-10 text-xs md:text-sm py-1 odd:bg-base-200 even:bg-base-100`}
-                  itemCount={sceneCount}
+                  className={`odd:bg-base-200 even:bg-base-100 ${
+                    index + 1 === sceneCount && "rounded-b-xl"
+                  }`}
                 >
-                  <div className="flex justify-end items-center md:pr-2">
-                    {formatNumber(value.basePower ?? 0)}
-                  </div>
-                  <div className="flex justify-end items-center md:pr-2 max-sm:hidden">
-                    {formatNumber(value.strap ?? 0)}
-                  </div>
-                  <div className="flex justify-center items-center">
-                    {value.type.replace(/タイプ/, "")}
-                  </div>
-                  <div className="flex justify-center items-center">
-                    {value.rarity}
-                  </div>
-                  <div className="flex justify-center items-center">
-                    {value.cost}
-                  </div>
-                  <div className="flex justify-center items-center">
-                    {value.skillLv}
-                  </div>
-                  {isGradeValid && (
-                    <div className="flex justify-center items-center max-sm:hidden">
-                      {value.grade}
+                  <SortableItem
+                    id={key}
+                    classStrings={`grid grid-cols-6 sm:grid-cols-9 ${gridColumnCss} gap-2 md:gap-3 min-h-10 text-xs md:text-sm py-1`}
+                    itemCount={sceneCount}
+                  >
+                    <div className="flex justify-end items-center md:pr-2">
+                      {formatNumber(value.basePower ?? 0)}
                     </div>
-                  )}
-                  {isClubMatchValid && (
-                    <div className="flex justify-center items-center max-sm:hidden">
-                      {value.isClubMatch && <CheckIcon fontSize="small" />}
-                    </div>
-                  )}
-                  <div className="flex justify-center items-center max-sm:hidden">
-                    {value.isDate && <CheckIcon fontSize="small" />}
-                  </div>
-                  <div className="flex justify-center items-center max-sm:hidden">
-                    {value.isTouch && <CheckIcon fontSize="small" />}
-                  </div>
-                  <div className="flex justify-center items-center max-sm:hidden">
-                    {value.isBirthday && <CheckIcon fontSize="small" />}
-                  </div>
-                  <div className="flex justify-center items-center max-sm:hidden">
-                    {(value.isLimitBreak || value.rarity === "Luv") && (
-                      <CheckIcon fontSize="small" />
-                    )}
-                  </div>
-                  <div className="flex justify-center items-center max-sm:hidden">
-                    {value.isBestFriend && <CheckIcon fontSize="small" />}
-                  </div>
-                  {isSpecialValid && (
-                    <div className="flex justify-center items-center max-sm:hidden">
-                      {value.isSpecial && <CheckIcon fontSize="small" />}
-                    </div>
-                  )}
-                  <div className="flex justify-end items-center md:pr-2">
-                    {formatNumber(summary?.estimatedPower ?? 0)}
-                  </div>
-                  <div className="flex justify-center items-center">
-                    {summary?.estimatedPowerAscOrder ?? "―"}
-                  </div>
-                  {(eventId === "divrace" || eventId === "board") && (
-                    <>
-                      <div className="flex justify-end items-center md:pr-2">
-                        {formatNumber(summary?.eventGimmickTotalPower ?? 0)}
-                      </div>
-                      <div className="flex justify-center items-center">
-                        {summary?.eventGimmickTotalAscOrder ?? "―"}
-                      </div>
-                    </>
-                  )}
-                  {eventId === "clubcup" && (
                     <div className="flex justify-end items-center md:pr-2 max-sm:hidden">
-                      {formatNumber(
-                        summary?.skillEffect ?? 0,
-                        "0.00",
-                        "ja-JP",
-                        {
-                          style: "decimal",
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2,
-                        }
-                      )}{" "}
-                      %
+                      {formatNumber(value.strap ?? 0)}
                     </div>
+                    <div className="flex justify-center items-center">
+                      {value.type.replace(/タイプ/, "")}
+                    </div>
+                    <div className="flex justify-center items-center">
+                      {value.rarity}
+                    </div>
+                    <div className="flex justify-center items-center">
+                      {value.cost}
+                    </div>
+                    <div className="flex justify-center items-center">
+                      {value.skillLv}
+                    </div>
+                    {isGradeValid && (
+                      <div className="flex justify-center items-center max-sm:hidden">
+                        {value.grade}
+                      </div>
+                    )}
+                    {isClubMatchValid && (
+                      <div className="flex justify-center items-center max-sm:hidden">
+                        {value.isClubMatch && <CheckIcon fontSize="small" />}
+                      </div>
+                    )}
+                    <div className="flex justify-center items-center max-sm:hidden">
+                      {value.isDate && <CheckIcon fontSize="small" />}
+                    </div>
+                    <div className="flex justify-center items-center max-sm:hidden">
+                      {value.isTouch && <CheckIcon fontSize="small" />}
+                    </div>
+                    <div className="flex justify-center items-center max-sm:hidden">
+                      {value.isBirthday && <CheckIcon fontSize="small" />}
+                    </div>
+                    <div className="flex justify-center items-center max-sm:hidden">
+                      {(value.isLimitBreak || value.rarity === "Luv") && (
+                        <CheckIcon fontSize="small" />
+                      )}
+                    </div>
+                    <div className="flex justify-center items-center max-sm:hidden">
+                      {value.isBestFriend && <CheckIcon fontSize="small" />}
+                    </div>
+                    {isSpecialValid && (
+                      <div className="flex justify-center items-center max-sm:hidden">
+                        {value.isSpecial && <CheckIcon fontSize="small" />}
+                      </div>
+                    )}
+                    <div className="flex justify-end items-center md:pr-2">
+                      {formatNumber(summary?.estimatedPower ?? 0)}
+                    </div>
+                    <div className="flex justify-center items-center">
+                      {summary?.estimatedPowerAscOrder ?? "―"}
+                    </div>
+                    {(eventId === "divrace" || eventId === "board") && (
+                      <>
+                        <div className="flex justify-end items-center md:pr-2">
+                          {formatNumber(summary?.eventGimmickTotalPower ?? 0)}
+                        </div>
+                        <div className="flex justify-center items-center">
+                          {summary?.eventGimmickTotalAscOrder ?? "―"}
+                        </div>
+                      </>
+                    )}
+                    {eventId === "clubcup" && (
+                      <div className="flex justify-end items-center md:pr-2 max-sm:hidden">
+                        {formatNumber(
+                          summary?.skillEffect ?? 0,
+                          "0.00",
+                          "ja-JP",
+                          {
+                            style: "decimal",
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          }
+                        )}{" "}
+                        %
+                      </div>
+                    )}
+                    <div className="flex justify-center items-center">
+                      <button
+                        className="btn btn-xs md:btn-sm btn-primary"
+                        data-key={key}
+                        onClick={handleEditButton}
+                      >
+                        編集
+                      </button>
+                    </div>
+                    <div className="flex justify-center items-center">
+                      <button
+                        className="btn btn-xs md:btn-sm btn-secondary"
+                        data-key={key}
+                        onClick={handleDeleteButton}
+                      >
+                        削除
+                      </button>
+                    </div>
+                  </SortableItem>
+                  {index + 1 !== sceneCount && index % 10 === 9 && (
+                    <MainScenesHeader
+                      eventId={eventId}
+                      type={type}
+                      classStrings={`grid grid-cols-6 sm:grid-cols-9 ${gridColumnCss} gap-2 md:gap-3 bg-base-300 text-center text-xs font-bold py-1`}
+                      isGradeValid={isGradeValid}
+                      isClubMatchValid={isClubMatchValid}
+                      isSpecialValid={isSpecialValid}
+                    />
                   )}
-                  <div className="flex justify-center items-center">
-                    <button
-                      className="btn btn-xs md:btn-sm btn-primary"
-                      data-key={key}
-                      onClick={handleEditButton}
-                    >
-                      編集
-                    </button>
-                  </div>
-                  <div className="flex justify-center items-center">
-                    <button
-                      className="btn btn-xs md:btn-sm btn-secondary"
-                      data-key={key}
-                      onClick={handleDeleteButton}
-                    >
-                      削除
-                    </button>
-                  </div>
-                </SortableItem>
+                </div>
               );
             })}
           </SortableContext>

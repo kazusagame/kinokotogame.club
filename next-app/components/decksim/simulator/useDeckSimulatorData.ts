@@ -15,14 +15,14 @@ export interface DeckSimulatorData {
         rarity: "Luv" | "UR" | "SSR" | "SR";
         cost: string;
         skillLv: string;
-        grade?: "1年" | "2年" | "3年" | "その他";
+        grade: "1年" | "2年" | "3年" | "その他";
         isClubMatch: boolean;
         isDate: boolean;
         isTouch: boolean;
         isBirthday: boolean;
         isLimitBreak: boolean;
         isBestFriend: boolean;
-        isSpecial?: boolean;
+        isSpecial: boolean;
       };
     };
     defense?: {
@@ -33,14 +33,14 @@ export interface DeckSimulatorData {
         rarity: "Luv" | "UR" | "SSR" | "SR";
         cost: string;
         skillLv: string;
-        grade?: "1年" | "2年" | "3年" | "その他";
+        grade: "1年" | "2年" | "3年" | "その他";
         isClubMatch: boolean;
         isDate: boolean;
         isTouch: boolean;
         isBirthday: boolean;
         isLimitBreak: boolean;
         isBestFriend: boolean;
-        isSpecial?: boolean;
+        isSpecial: boolean;
       };
     };
   };
@@ -92,37 +92,37 @@ export interface DeckSimulatorData {
     attack: {
       [K: number]: {
         basePower: string;
-        strap: string;
+        strap?: string;
         type: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
         rarity: "Luv" | "UR" | "SSR" | "SR";
         cost: string;
         skillLv: string;
-        grade?: "1年" | "2年" | "3年" | "その他";
+        grade: "1年" | "2年" | "3年" | "その他";
         isClubMatch: boolean;
         isDate: boolean;
         isTouch: boolean;
         isBirthday: boolean;
         isLimitBreak: boolean;
         isBestFriend: boolean;
-        isSpecial?: boolean;
+        isSpecial: boolean;
       };
     };
     defense?: {
       [K: number]: {
         basePower: string;
-        strap: string;
+        strap?: string;
         type: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
         rarity: "Luv" | "UR" | "SSR" | "SR";
         cost: string;
         skillLv: string;
-        grade?: "1年" | "2年" | "3年" | "その他";
+        grade: "1年" | "2年" | "3年" | "その他";
         isClubMatch: boolean;
         isDate: boolean;
         isTouch: boolean;
         isBirthday: boolean;
         isLimitBreak: boolean;
         isBestFriend: boolean;
-        isSpecial?: boolean;
+        isSpecial: boolean;
       };
     };
   };
