@@ -28,10 +28,11 @@ export const setPreciousSceneParameter = ({
   (["attack", "defense"] as const).forEach((value) => {
     if (inputData.preciousScenes[value]) {
       Object.entries(inputData.preciousScenes[value]).forEach(
-        ([key, { id, rarity }]) => {
+        ([key, { id, rarity, headcount }]) => {
           newData[value]![Number(key)] = selectPreciousScenesParameter({
             id,
             rarity,
+            headcount,
           });
         }
       );
@@ -81,9 +82,11 @@ const calcLimitBreakCount = ({
 const selectPreciousScenesParameter = ({
   id,
   rarity,
+  headcount,
 }: {
   id: string;
   rarity: string;
+  headcount?: number | string;
 }) => {
   const parameters: SelectPreciousSceneParameters = {
     effectCondition: "---",
@@ -95,6 +98,7 @@ const selectPreciousScenesParameter = ({
     valueFormat: "割合(%)",
     value: 0,
     factor: 0,
+    headcount: headcount,
   };
 
   // IDからプレシャスシーンのプロフィールを取得

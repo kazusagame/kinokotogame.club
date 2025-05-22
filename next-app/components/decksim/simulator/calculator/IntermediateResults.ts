@@ -128,6 +128,7 @@ export interface SelectPreciousSceneParameters {
   valueFormat: "割合(%)" | "固定値";
   value: number;
   factor: number;
+  headcount?: number | string;
 }
 
 interface targetType {

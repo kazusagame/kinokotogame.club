@@ -47,10 +47,18 @@ export const calcDeckSimulatorResult = ({
   /* イベント個別計算フェイズ  */
   // 計算式のイベント個別の部分、ポイント変換も
 
+  // intermediate から summary に 反映
+
   console.log(intermediateResults);
 
   summary.summaries.totalPerformance.isConvertPoint = false;
   summary.summaries.totalPerformance.attack.minPower = 1234567;
   summary.summaries.totalPerformance.attack.expPower = 1234567;
   summary.summaries.totalPerformance.attack.maxPower = 1234567;
-};
+  // summary.summaries.preciousScenes.attack[1] = {}
+  // summary.summaries.preciousScenes.attack[2] = {}
+  // summary.summaries.preciousScenes.attack[1].estimatedCount =
+  //   intermediateResults!.preciousScenes!.attack![1].estimatedCount;
+  // summary.summaries.preciousScenes.attack[2].estimatedCount =
+  //   intermediateResults!.preciousScenes!.attack![2].estimatedCount;
+}

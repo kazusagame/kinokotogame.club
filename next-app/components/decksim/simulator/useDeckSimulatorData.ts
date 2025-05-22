@@ -4,10 +4,10 @@ import { calcDeckSimulatorResult } from "@/components/decksim/simulator/calculat
 
 import { setDeepValue } from "@/lib/setDeepValue";
 
-export interface sceneParameters {
+export interface SceneParameters {
   basePower: string;
   strap?: string;
-  type: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
+  type: "SWEETタイプ" | "COOLタイプ" | "POPタイプ";
   rarity: "Luv" | "UR" | "SSR" | "SR";
   cost: string;
   skillLv: string;
@@ -21,7 +21,7 @@ export interface sceneParameters {
   isSpecial: boolean;
 }
 
-export interface skillParameters {
+export interface SkillParameters {
   skillLv: string;
   target: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
   range: "主＋副" | "主のみ" | "副のみ";
@@ -45,34 +45,34 @@ export interface DeckSimulatorData {
   dataType: DeckSimulatorEventId;
   mainScenes: {
     attack: {
-      [K: number]: sceneParameters;
+      [K: number]: SceneParameters;
     };
     defense?: {
-      [K: number]: sceneParameters;
+      [K: number]: SceneParameters;
     };
   };
   mainSkills: {
     attack: {
-      [K: number]: skillParameters;
+      [K: number]: SkillParameters;
     };
     defense?: {
-      [K: number]: skillParameters;
+      [K: number]: SkillParameters;
     };
   };
   subScenes: {
     attack: {
-      [K: number]: sceneParameters;
+      [K: number]: SceneParameters;
     };
     defense?: {
-      [K: number]: sceneParameters;
+      [K: number]: SceneParameters;
     };
   };
   subSwitches: {
     attack: {
-      [K: number]: skillParameters;
+      [K: number]: SkillParameters;
     };
     defense?: {
-      [K: number]: skillParameters;
+      [K: number]: SkillParameters;
     };
   };
   preciousScenes: {
