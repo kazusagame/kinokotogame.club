@@ -110,7 +110,7 @@ export function SubScenes({
     if (result !== null) {
       setValueAtPath({
         path: `subScenes.${typeIndex}.${sceneCount + 1}`,
-        value: result,
+        value: result as unknown as { [key: string]: unknown },
       });
     }
   };
@@ -125,7 +125,7 @@ export function SubScenes({
     if (result !== null) {
       setValueAtPath({
         path: `subScenes.${typeIndex}.${key}`,
-        value: result,
+        value: result as unknown as { [key: string]: unknown },
       });
     }
   };

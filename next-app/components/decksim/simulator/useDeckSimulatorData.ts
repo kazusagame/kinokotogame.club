@@ -4,170 +4,75 @@ import { calcDeckSimulatorResult } from "@/components/decksim/simulator/calculat
 
 import { setDeepValue } from "@/lib/setDeepValue";
 
+export interface sceneParameters {
+  basePower: string;
+  strap?: string;
+  type: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
+  rarity: "Luv" | "UR" | "SSR" | "SR";
+  cost: string;
+  skillLv: string;
+  grade: "1年" | "2年" | "3年" | "その他";
+  isClubMatch: boolean;
+  isDate: boolean;
+  isTouch: boolean;
+  isBirthday: boolean;
+  isLimitBreak: boolean;
+  isBestFriend: boolean;
+  isSpecial: boolean;
+}
+
+export interface skillParameters {
+  skillLv: string;
+  target: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
+  range: "主＋副" | "主のみ" | "副のみ";
+  subRange: string;
+  type: "攻" | "守" | "攻守";
+  strength:
+    | "中"
+    | "中+"
+    | "中++"
+    | "大"
+    | "特大"
+    | "特大+"
+    | "特大++"
+    | "スーパー特大"
+    | "スーパー特大+"
+    | "スーパー特大++"
+    | "超スーパー特大";
+}
+
 export interface DeckSimulatorData {
   dataType: DeckSimulatorEventId;
   mainScenes: {
     attack: {
-      [K: number]: {
-        basePower: string;
-        strap: string;
-        type: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
-        rarity: "Luv" | "UR" | "SSR" | "SR";
-        cost: string;
-        skillLv: string;
-        grade: "1年" | "2年" | "3年" | "その他";
-        isClubMatch: boolean;
-        isDate: boolean;
-        isTouch: boolean;
-        isBirthday: boolean;
-        isLimitBreak: boolean;
-        isBestFriend: boolean;
-        isSpecial: boolean;
-      };
+      [K: number]: sceneParameters;
     };
     defense?: {
-      [K: number]: {
-        basePower: string;
-        strap: string;
-        type: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
-        rarity: "Luv" | "UR" | "SSR" | "SR";
-        cost: string;
-        skillLv: string;
-        grade: "1年" | "2年" | "3年" | "その他";
-        isClubMatch: boolean;
-        isDate: boolean;
-        isTouch: boolean;
-        isBirthday: boolean;
-        isLimitBreak: boolean;
-        isBestFriend: boolean;
-        isSpecial: boolean;
-      };
+      [K: number]: sceneParameters;
     };
   };
   mainSkills: {
     attack: {
-      [K: number]: {
-        skillLv: string;
-        target: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
-        range: "主＋副" | "主のみ" | "副のみ";
-        subRange: string;
-        type: "攻" | "守" | "攻守";
-        strength:
-          | "中"
-          | "中+"
-          | "中++"
-          | "大"
-          | "特大"
-          | "特大+"
-          | "特大++"
-          | "スーパー特大"
-          | "スーパー特大+"
-          | "スーパー特大++"
-          | "超スーパー特大";
-      };
+      [K: number]: skillParameters;
     };
     defense?: {
-      [K: number]: {
-        skillLv: string;
-        target: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
-        range: "主＋副" | "主のみ" | "副のみ";
-        subRange: string;
-        type: "攻" | "守" | "攻守";
-        strength:
-          | "中"
-          | "中+"
-          | "中++"
-          | "大"
-          | "特大"
-          | "特大+"
-          | "特大++"
-          | "スーパー特大"
-          | "スーパー特大+"
-          | "スーパー特大++"
-          | "超スーパー特大";
-      };
+      [K: number]: skillParameters;
     };
   };
   subScenes: {
     attack: {
-      [K: number]: {
-        basePower: string;
-        strap?: string;
-        type: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
-        rarity: "Luv" | "UR" | "SSR" | "SR";
-        cost: string;
-        skillLv: string;
-        grade: "1年" | "2年" | "3年" | "その他";
-        isClubMatch: boolean;
-        isDate: boolean;
-        isTouch: boolean;
-        isBirthday: boolean;
-        isLimitBreak: boolean;
-        isBestFriend: boolean;
-        isSpecial: boolean;
-      };
+      [K: number]: sceneParameters;
     };
     defense?: {
-      [K: number]: {
-        basePower: string;
-        strap?: string;
-        type: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "その他";
-        rarity: "Luv" | "UR" | "SSR" | "SR";
-        cost: string;
-        skillLv: string;
-        grade: "1年" | "2年" | "3年" | "その他";
-        isClubMatch: boolean;
-        isDate: boolean;
-        isTouch: boolean;
-        isBirthday: boolean;
-        isLimitBreak: boolean;
-        isBestFriend: boolean;
-        isSpecial: boolean;
-      };
+      [K: number]: sceneParameters;
     };
   };
   subSwitches: {
     attack: {
-      [K: number]: {
-        skillLv: string;
-        target: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
-        range: "主＋副" | "主のみ" | "副のみ";
-        subRange: string;
-        type: "攻" | "守" | "攻守";
-        strength:
-          | "中"
-          | "中+"
-          | "中++"
-          | "大"
-          | "特大"
-          | "特大+"
-          | "特大++"
-          | "スーパー特大"
-          | "スーパー特大+"
-          | "スーパー特大++"
-          | "超スーパー特大";
-      };
+      [K: number]: skillParameters;
     };
     defense?: {
-      [K: number]: {
-        skillLv: string;
-        target: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
-        range: "主＋副" | "主のみ" | "副のみ";
-        subRange: string;
-        type: "攻" | "守" | "攻守";
-        strength:
-          | "中"
-          | "中+"
-          | "中++"
-          | "大"
-          | "特大"
-          | "特大+"
-          | "特大++"
-          | "スーパー特大"
-          | "スーパー特大+"
-          | "スーパー特大++"
-          | "超スーパー特大";
-      };
+      [K: number]: skillParameters;
     };
   };
   preciousScenes: {
@@ -607,7 +512,7 @@ export function useDeckSimulatorData({
       const summary = structuredClone(initResultSummary);
       summary.dataType = eventId;
       summary.initCondition = false;
-      calcDeckSimulatorResult({ data, commonData, summary });
+      calcDeckSimulatorResult({ inputData: data, commonData, summary });
       setResultSummary(summary);
     },
     [eventId]

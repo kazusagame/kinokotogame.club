@@ -45,6 +45,7 @@ interface HeaderProps<T, U, V> {
   handleChangeMemo: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   handleClickIndividualSave: (e: React.MouseEvent<HTMLButtonElement>) => void;
   setCurrentDataNum?:  React.Dispatch<React.SetStateAction<number>>;
+  headerHeight?: string;
 }
 
 export interface ResultSummary {
@@ -71,6 +72,7 @@ export default function SimulatorHeader<
   handleChangeMemo,
   handleClickIndividualSave,
   setCurrentDataNum,
+  headerHeight = "h-[52px]",
 }: HeaderProps<T, U, V>) {
   const position = isFixHeader ? "sticky top-0" : "static";
 
@@ -81,7 +83,7 @@ export default function SimulatorHeader<
 
   return (
     <header
-      className={`bg-base-200 rounded-b-box flex h-[52px] z-[2] ${position}`}
+      className={`bg-base-200 rounded-b-box flex ${headerHeight} z-[2] ${position}`}
     >
       <LoadButton<T, V, W>
         eventId={eventId}

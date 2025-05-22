@@ -170,7 +170,7 @@ function EffectsSelectionBlock({
         {Array(MAIN_GIRLS_COUNT)
           .fill(0)
           .map((_, i) => (
-            <div key={i} className="flex flex-col gap-2">
+            <div key={i + 1} className="flex flex-col gap-2">
               <div className="flex items-center gap-24">
                 <p className="text-base">{i + 1}:</p>
                 <div>
@@ -194,23 +194,23 @@ function EffectsSelectionBlock({
                   .fill(0)
                   .map((_, j) => (
                     <div
-                      key={j}
+                      key={j + 1}
                       className="flex justify-end gap-2 items-center flex-none w-[266px] border border-base-300 rounded-box"
                     >
-                      {data.petitGirls.effects?.[i]?.[j]?.id ? (
+                      {data.petitGirls.effects?.[i + 1]?.[j + 1]?.id ? (
                         <>
                           <p className="flex-auto pl-3">
                             {
                               PETIT_GIRLS_EFFECTS_DATA?.[
-                                Number(data.petitGirls.effects[i][j].id)
+                                Number(data.petitGirls.effects[i + 1][j + 1].id)
                               ]?.name
                             }
                           </p>
                           <button
                             onClick={() =>
                               handleClickEffectDeleteButton({
-                                girlNum: i,
-                                effectNum: j,
+                                girlNum: i + 1,
+                                effectNum: j + 1,
                               })
                             }
                             className="btn btn-sm btn-secondary"
@@ -223,8 +223,8 @@ function EffectsSelectionBlock({
                           <button
                             onClick={() =>
                               handleClickEffectAddButton({
-                                girlNum: i,
-                                effectNum: j,
+                                girlNum: i + 1,
+                                effectNum: j + 1,
                               })
                             }
                             className="btn btn-sm btn-primary"

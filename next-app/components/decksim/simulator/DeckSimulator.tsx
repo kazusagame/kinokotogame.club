@@ -157,6 +157,7 @@ export default function DeckSimulator({
         handleChangeMemo={handleChangeMemo}
         handleClickIndividualSave={handleClickIndividualSave}
         setCurrentDataNum={setCurrentDataNum}
+        headerHeight={eventId === "clubcup" ? "h-[84px]" : "h-[68px]"}
       />
       <div className="my-2" />
       <div role="tablist" className="tabs tabs-lifted">
@@ -619,179 +620,165 @@ export function DeckSimulatorResultSummaryDiv({
       onClick={handleClickResultDiv}
     >
       <div className="flex gap-10 text-xs">
-        <div className={`${baseCss} lg:block`}>
-          <div className="flex gap-4">
-            <div className="flex flex-col items-center justify-start">
-              [計算結果]
+        <div className={`${baseCss} sm:block`}>
+          <div className="flex flex-col">
+            <div>
+              <p>[計算結果]</p>
             </div>
-            <div className="flex flex-col">
-              <p>最小値：</p>
-              <p>期待値：</p>
-              <p>最大値：</p>
-            </div>
-            <div className="flex flex-col">
-              <p className="text-right">
-                {isConvertPoint
-                  ? `${formatNumber(totalMin)} pt`
-                  : formatNumber(totalMin)}
-              </p>
-              <p className="text-right">
-                {isConvertPoint
-                  ? `${formatNumber(totalExp)} pt`
-                  : formatNumber(totalMin)}
-              </p>
-              <p className="text-right">
-                {isConvertPoint
-                  ? `${formatNumber(totalMax)} pt`
-                  : formatNumber(totalMin)}
-              </p>
-            </div>
-            {(eventId === "divrace" || eventId === "board") && (
-              <>
-                <div className="hidden lg:block">
-                  <div className="flex flex-col">
-                    <p>最小値(×6)：</p>
-                    <p>期待値(×6)：</p>
-                    <p>最大値(×6)：</p>
-                  </div>
-                </div>
-                <div className="hidden lg:block">
-                  <div className="flex flex-col">
-                    <p className="text-right">
-                      {isConvertPoint
-                        ? `${formatNumber(totalMin * 6)} pt`
-                        : formatNumber(totalMin * 6)}
-                    </p>
-                    <p className="text-right">
-                      {isConvertPoint
-                        ? `${formatNumber(totalExp * 6)} pt`
-                        : formatNumber(totalMin * 6)}
-                    </p>
-                    <p className="text-right">
-                      {isConvertPoint
-                        ? `${formatNumber(totalMax * 6)} pt`
-                        : formatNumber(totalMin * 6)}
-                    </p>
-                  </div>
-                </div>
-                <div className="hidden lg:block">
-                  <div className="flex flex-col">
-                    <p>最小値(×15)：</p>
-                    <p>期待値(×15)：</p>
-                    <p>最大値(×15)：</p>
-                  </div>
-                </div>
-                <div className="hidden lg:block">
-                  <div className="flex flex-col">
-                    <p className="text-right">
-                      {isConvertPoint
-                        ? `${formatNumber(totalMin * 15)} pt`
-                        : formatNumber(totalMin * 15)}
-                    </p>
-                    <p className="text-right">
-                      {isConvertPoint
-                        ? `${formatNumber(totalExp * 15)} pt`
-                        : formatNumber(totalMin * 15)}
-                    </p>
-                    <p className="text-right">
-                      {isConvertPoint
-                        ? `${formatNumber(totalMax * 15)} pt`
-                        : formatNumber(totalMin * 15)}
-                    </p>
-                  </div>
-                </div>
-              </>
-            )}
-            {eventId === "clubcup" && (
-              <>
-                <div className="hidden sm:block">
-                  <div className="flex flex-col">
-                    <p>声援効果：</p>
-                  </div>
-                </div>
-                <div className={`hidden sm:block`}>
-                  <div className="flex flex-col">
-                    <p className="text-right">
-                      {formatNumber(attackSkillEffect, "0.00", "ja-JP", {
-                        style: "decimal",
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      })}{" "}
-                      %
-                    </p>
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-
-        <div className={`${differenceCss} lg:block`}>
-          {currentDataNum !== 0 && isConvertPoint === savedIsConvertPoint && (
-            <div className="flex gap-4">
-              <div className="flex flex-col items-center justify-start">
-                {`[データ${currentDataNum}との差分]`}
-              </div>
+            <div className="flex gap-2 pl-2">
               <div className="flex flex-col">
                 <p>最小値：</p>
                 <p>期待値：</p>
                 <p>最大値：</p>
+                {eventId === "clubcup" && <p>声援効果：</p>}
               </div>
               <div className="flex flex-col">
-                <p
-                  className={`text-right ${
-                    totalMin - savedMin < 0 && "text-red-700"
-                  }`}
-                >
+                <p className="text-right">
                   {isConvertPoint
-                    ? `${formatNumber(totalMin - savedMin)} pt`
-                    : formatNumber(totalMin - savedMin)}
+                    ? `${formatNumber(totalMin)} pt`
+                    : formatNumber(totalMin)}
                 </p>
-                <p
-                  className={`text-right ${
-                    totalExp - savedExp < 0 && "text-red-700"
-                  }`}
-                >
+                <p className="text-right">
                   {isConvertPoint
-                    ? `${formatNumber(totalExp - savedExp)} pt`
-                    : formatNumber(totalExp - savedExp)}
+                    ? `${formatNumber(totalExp)} pt`
+                    : formatNumber(totalMin)}
                 </p>
-                <p
-                  className={`text-right ${
-                    totalMax - savedMax < 0 && "text-red-700"
-                  }`}
-                >
+                <p className="text-right">
                   {isConvertPoint
-                    ? `${formatNumber(totalMax - savedMax)} pt`
-                    : formatNumber(totalMax - savedMax)}
+                    ? `${formatNumber(totalMax)} pt`
+                    : formatNumber(totalMin)}
                 </p>
+                {eventId === "clubcup" && (
+                  <p className="text-right">
+                    {formatNumber(attackSkillEffect, "0.00", "ja-JP", {
+                      style: "decimal",
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}{" "}
+                    %
+                  </p>
+                )}
               </div>
-              {eventId === "clubcup" && (
+              {(eventId === "divrace" || eventId === "board") && (
                 <>
-                  <div className="hidden sm:block">
+                  <div className="hidden lg:block">
                     <div className="flex flex-col">
-                      <p>声援効果：</p>
+                      <p>最小値(×6)：</p>
+                      <p>期待値(×6)：</p>
+                      <p>最大値(×6)：</p>
                     </div>
                   </div>
-                  <div className="hidden sm:block">
+                  <div className="hidden lg:block">
                     <div className="flex flex-col">
                       <p className="text-right">
-                        {formatNumber(
-                          attackSkillEffect - savedSkillEffect,
-                          "0.00",
-                          "ja-JP",
-                          {
-                            style: "decimal",
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2,
-                          }
-                        )}{" "}
-                        %
+                        {isConvertPoint
+                          ? `${formatNumber(totalMin * 6)} pt`
+                          : formatNumber(totalMin * 6)}
+                      </p>
+                      <p className="text-right">
+                        {isConvertPoint
+                          ? `${formatNumber(totalExp * 6)} pt`
+                          : formatNumber(totalMin * 6)}
+                      </p>
+                      <p className="text-right">
+                        {isConvertPoint
+                          ? `${formatNumber(totalMax * 6)} pt`
+                          : formatNumber(totalMin * 6)}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="hidden lg:block">
+                    <div className="flex flex-col">
+                      <p>最小値(×15)：</p>
+                      <p>期待値(×15)：</p>
+                      <p>最大値(×15)：</p>
+                    </div>
+                  </div>
+                  <div className="hidden lg:block">
+                    <div className="flex flex-col">
+                      <p className="text-right">
+                        {isConvertPoint
+                          ? `${formatNumber(totalMin * 15)} pt`
+                          : formatNumber(totalMin * 15)}
+                      </p>
+                      <p className="text-right">
+                        {isConvertPoint
+                          ? `${formatNumber(totalExp * 15)} pt`
+                          : formatNumber(totalMin * 15)}
+                      </p>
+                      <p className="text-right">
+                        {isConvertPoint
+                          ? `${formatNumber(totalMax * 15)} pt`
+                          : formatNumber(totalMin * 15)}
                       </p>
                     </div>
                   </div>
                 </>
               )}
+            </div>
+          </div>
+        </div>
+
+        <div className={`${differenceCss} sm:block`}>
+          {currentDataNum !== 0 && isConvertPoint === savedIsConvertPoint && (
+            <div className="flex flex-col">
+              <div>
+                <p>{`[データ${currentDataNum}との差分]`}</p>
+              </div>
+              <div className="flex gap-2 pl-2">
+                <div className="flex flex-col">
+                  <p>最小値：</p>
+                  <p>期待値：</p>
+                  <p>最大値：</p>
+                  {eventId === "clubcup" && <p>声援効果：</p>}
+                </div>
+                <div className="flex flex-col">
+                  <p
+                    className={`text-right ${
+                      totalMin - savedMin < 0 && "text-red-700"
+                    }`}
+                  >
+                    {totalMin - savedMin > 0 && "+"}
+                    {isConvertPoint
+                      ? `${formatNumber(totalMin - savedMin)} pt`
+                      : formatNumber(totalMin - savedMin)}
+                  </p>
+                  <p
+                    className={`text-right ${
+                      totalExp - savedExp < 0 && "text-red-700"
+                    }`}
+                  >
+                    {totalExp - savedExp > 0 && "+"}
+                    {isConvertPoint
+                      ? `${formatNumber(totalExp - savedExp)} pt`
+                      : formatNumber(totalExp - savedExp)}
+                  </p>
+                  <p
+                    className={`text-right ${
+                      totalMax - savedMax < 0 && "text-red-700"
+                    }`}
+                  >
+                    {totalMax - savedMax > 0 && "+"}
+                    {isConvertPoint
+                      ? `${formatNumber(totalMax - savedMax)} pt`
+                      : formatNumber(totalMax - savedMax)}
+                  </p>
+                  {eventId === "clubcup" && <p className="text-right">
+                    {attackSkillEffect - savedSkillEffect > 0 && "+"}
+                    {formatNumber(
+                      attackSkillEffect - savedSkillEffect,
+                      "0.00",
+                      "ja-JP",
+                      {
+                        style: "decimal",
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      }
+                    )}{" "}
+                    %
+                  </p>}
+                </div>
+              </div>
             </div>
           )}
         </div>

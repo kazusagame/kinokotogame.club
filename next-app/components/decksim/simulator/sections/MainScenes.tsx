@@ -111,7 +111,7 @@ export function MainScenes({
     if (result !== null) {
       setValueAtPath({
         path: `mainScenes.${typeIndex}.${sceneCount + 1}`,
-        value: result,
+        value: result as unknown as { [key: string]: unknown },
       });
     }
   };
@@ -126,7 +126,7 @@ export function MainScenes({
     if (result !== null) {
       setValueAtPath({
         path: `mainScenes.${typeIndex}.${key}`,
-        value: result,
+        value: result as unknown as { [key: string]: unknown },
       });
     }
   };

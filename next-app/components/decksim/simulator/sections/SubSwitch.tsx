@@ -106,7 +106,7 @@ export function SubSwitch({
     if (result !== null) {
       setValueAtPath({
         path: `subSwitches.${typeIndex}.${skillCount + 1}`,
-        value: result,
+        value: result as unknown as { [key: string]: unknown },
       });
     }
   };
@@ -121,7 +121,7 @@ export function SubSwitch({
     if (result !== null) {
       setValueAtPath({
         path: `subSwitches.${typeIndex}.${key}`,
-        value: result,
+        value: result as unknown as { [key: string]: unknown },
       });
     }
   };

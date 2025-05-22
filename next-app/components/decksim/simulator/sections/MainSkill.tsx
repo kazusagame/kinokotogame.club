@@ -105,7 +105,7 @@ export function MainSkill({
     if (result !== null) {
       setValueAtPath({
         path: `mainSkills.${typeIndex}.${skillCount + 1}`,
-        value: result,
+        value: result as unknown as { [key: string]: unknown },
       });
     }
   };
@@ -120,7 +120,7 @@ export function MainSkill({
     if (result !== null) {
       setValueAtPath({
         path: `mainSkills.${typeIndex}.${key}`,
-        value: result,
+        value: result as unknown as { [key: string]: unknown },
       });
     }
   };
