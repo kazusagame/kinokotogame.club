@@ -4,6 +4,9 @@ import { sumDeckBonus } from "@/components/decksim/simulator/calculator/sumDeckB
 import { setPreciousSceneParameter } from "@/components/decksim/simulator/calculator/setPreciousSceneParameter";
 
 import { calcPreciousSceneEffects } from "@/components/decksim/simulator/calculator/calcPreciousSceneEffects";
+import { calcSkillEffects } from "@/components/decksim/simulator/calculator/calcSkillEffects";
+
+import { transferIntermediateToSummary } from "@/components/decksim/simulator/calculator/transferIntermediateToSummary";
 
 import {
   DeckSimulatorData,
@@ -38,6 +41,7 @@ export const calcDeckSimulatorResult = ({
   calcPreciousSceneEffects({ inputData, intermediateResults });
 
   // 声援の効果値を算出する
+  calcSkillEffects({ inputData, intermediateResults });
 
   // ボーナス有効率に基づく効果値の2次元マトリックスの作成
 
@@ -48,17 +52,8 @@ export const calcDeckSimulatorResult = ({
   // 計算式のイベント個別の部分、ポイント変換も
 
   // intermediate から summary に 反映
+  transferIntermediateToSummary({ intermediateResults, summary });
 
   console.log(intermediateResults);
-
-  summary.summaries.totalPerformance.isConvertPoint = false;
-  summary.summaries.totalPerformance.attack.minPower = 1234567;
-  summary.summaries.totalPerformance.attack.expPower = 1234567;
-  summary.summaries.totalPerformance.attack.maxPower = 1234567;
-  // summary.summaries.preciousScenes.attack[1] = {}
-  // summary.summaries.preciousScenes.attack[2] = {}
-  // summary.summaries.preciousScenes.attack[1].estimatedCount =
-  //   intermediateResults!.preciousScenes!.attack![1].estimatedCount;
-  // summary.summaries.preciousScenes.attack[2].estimatedCount =
-  //   intermediateResults!.preciousScenes!.attack![2].estimatedCount;
-}
+  console.log(summary);
+};

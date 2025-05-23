@@ -1,3 +1,4 @@
+import { BONUS_DATA_COMMON } from "@/components/decksim/data/bonusData";
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 import {
   DeckSimulatorData,
@@ -9,6 +10,7 @@ import {
 } from "@/components/decksim/simulator/calculator/IntermediateResults";
 
 import { setDeepValue } from "@/lib/setDeepValue";
+import { returnNumber } from "@/lib/returnNumber";
 
 export const calcPreciousSceneEffects = ({
   inputData,
@@ -27,7 +29,7 @@ export const calcPreciousSceneEffects = ({
 
     scenesKeys.forEach((key) => {
       const preciousParameters = data[Number(key)];
-      calcEachPreciousScene({
+      calcEachPreciousSceneEffect({
         inputData,
         intermediateResults,
         attackOrDefense,
@@ -37,9 +39,31 @@ export const calcPreciousSceneEffects = ({
       });
     });
   });
+
+  // 各シーンごとにプレシャスシーンの合計効果値を算出する
+  (["mainScenes", "subScenes"] as const).forEach((mainOrSub) => {
+    (["attack", "defense"] as const).forEach((attackOrDefense) => {
+      const scenesData =
+        intermediateResults[mainOrSub]?.[attackOrDefense] ?? {};
+
+      Object.values(scenesData).forEach((value) => {
+        if (value.preciousSceneEffect) {
+          const keys = Object.keys(value.preciousSceneEffect).filter(
+            (key) => key !== "total"
+          );
+
+          let sum = 0;
+          keys.forEach((key) => {
+            sum += value.preciousSceneEffect![Number(key)];
+          });
+          value.preciousSceneEffect.total = sum;
+        }
+      });
+    });
+  });
 };
 
-const calcEachPreciousScene = ({
+const calcEachPreciousSceneEffect = ({
   inputData,
   intermediateResults,
   attackOrDefense,
@@ -54,10 +78,11 @@ const calcEachPreciousScene = ({
   preciousParameters: SelectPreciousSceneParameters;
   limitBreakCount: { main: number; sub: number };
 }) => {
+  let sum = 0;
   (["mainScenes", "subScenes"] as const).forEach((mainOrSub) => {
     Object.entries(inputData[mainOrSub][attackOrDefense] ?? {}).forEach(
       ([key, sceneParameters]) => {
-        const value = calcEachScene({
+        const effectValue = calcEachScene({
           eventId: inputData.dataType,
           attackOrDefense,
           mainOrSub,
@@ -67,12 +92,25 @@ const calcEachPreciousScene = ({
         });
         setDeepValue(
           intermediateResults,
-          `${mainOrSub}.${attackOrDefense}.${key}.PreciousSceneEffects.${preciousNum}`,
-          value
+          `${mainOrSub}.${attackOrDefense}.${key}.preciousSceneEffect.${preciousNum}`,
+          effectValue
         );
+        sum += effectValue;
+
+        // シーンがデート中の場合は そのボーナス値分も加算する
+        if (sceneParameters.isDate === true) {
+          const bonusValue =
+            BONUS_DATA_COMMON.date[attackOrDefense][sceneParameters.rarity];
+          sum += Math.ceil((effectValue * bonusValue) / 100);
+        }
       }
     );
   });
+
+  // 合計値 を intermediate に反映する
+  intermediateResults.preciousScenes![attackOrDefense]![
+    preciousNum
+  ].estimatedPower = sum;
 };
 
 const calcEachScene = ({
@@ -91,7 +129,7 @@ const calcEachScene = ({
   limitBreakCount: { main: number; sub: number };
 }): number => {
   const { basePower, strap, type, rarity, cost, skillLv } = sceneParameters;
-  const totalPower = Number(basePower) + Number(strap ?? "0");
+  const totalPower = returnNumber(basePower) + returnNumber(strap);
   const rarityNum =
     rarity === "Luv" ? 7 : rarity === "UR" ? 7 : rarity === "SSR" ? 6 : 5;
   const costNum = Number(cost);
@@ -205,6 +243,9 @@ const calcEachScene = ({
       bottom = 1;
       break;
   }
+
+  // 条件超過の場合は1/1とみなす。
+  if (top > bottom) top = bottom;
 
   if (valueFormat === "固定値") {
     result = Math.ceil(value * (top / bottom) ** factor);

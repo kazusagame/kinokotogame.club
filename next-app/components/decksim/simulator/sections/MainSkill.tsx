@@ -26,7 +26,6 @@ import {
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 import {
   INIT_SKILL_LEVEL,
-  SKILL_DATA_PER_EVENT,
   SKILL_RATE_DATA,
 } from "@/components/decksim/data/skillData";
 import { MAX_MAIN_GIRLS_NUM } from "@/components/decksim/simulator/globalConfig";
@@ -256,7 +255,6 @@ function RegisteredMainSkillsBlock({
 
     return baseValue ? baseValue + Number(value.skillLv) - 1 : 0;
   });
-  const skillProbabilities = SKILL_DATA_PER_EVENT[eventId].skillProbabilityMain;
 
   const gridColumnCss =
     eventId !== "clubcup"
@@ -322,7 +320,6 @@ function RegisteredMainSkillsBlock({
               const value = skillData[Number(key)];
               const summary = summaryData[Number(key)];
               const skillRate = skillRates[Number(key) - 1];
-              const skillProbability = skillProbabilities[Number(key) - 1];
               return (
                 <SortableItem
                   key={key}
@@ -373,7 +370,7 @@ function RegisteredMainSkillsBlock({
                     {formatNumber(summary?.estimatedPower ?? 0)}
                   </div>
                   <div className="flex justify-end items-center pr-2">
-                    {formatNumber(skillProbability ?? 0, "0.00", "ja-JP", {
+                    {formatNumber(summary?.estimatedRate ?? 0, "0.00", "ja-JP", {
                       style: "decimal",
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,

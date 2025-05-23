@@ -97,26 +97,26 @@ export default function DivBonusCommon() {
               デートボーナス
             </td>
             <td>ラブリー進展</td>
-            <TdDataCell value={BONUS_DATA_COMMON.date.attack.luv} />
-            <TdDataCell value={BONUS_DATA_COMMON.date.defense.luv} />
+            <TdDataCell value={BONUS_DATA_COMMON.date.attack.Luv} />
+            <TdDataCell value={BONUS_DATA_COMMON.date.defense.Luv} />
             <td></td>
           </tr>
           <tr className="odd:bg-base-200 even:bg-base-300">
             <td>UR</td>
-            <TdDataCell value={BONUS_DATA_COMMON.date.attack.ur} />
-            <TdDataCell value={BONUS_DATA_COMMON.date.defense.ur} />
+            <TdDataCell value={BONUS_DATA_COMMON.date.attack.UR} />
+            <TdDataCell value={BONUS_DATA_COMMON.date.defense.UR} />
             <td></td>
           </tr>
           <tr className="odd:bg-base-200 even:bg-base-300">
             <td>SSR</td>
-            <TdDataCell value={BONUS_DATA_COMMON.date.attack.ssr} />
-            <TdDataCell value={BONUS_DATA_COMMON.date.defense.ssr} />
+            <TdDataCell value={BONUS_DATA_COMMON.date.attack.SSR} />
+            <TdDataCell value={BONUS_DATA_COMMON.date.defense.SSR} />
             <td></td>
           </tr>
           <tr className="odd:bg-base-200 even:bg-base-300">
             <td>SR</td>
-            <TdDataCell value={BONUS_DATA_COMMON.date.attack.sr} />
-            <TdDataCell value={BONUS_DATA_COMMON.date.defense.sr} />
+            <TdDataCell value={BONUS_DATA_COMMON.date.attack.SR} />
+            <TdDataCell value={BONUS_DATA_COMMON.date.defense.SR} />
             <td></td>
           </tr>
           <tr className="odd:bg-base-200 even:bg-base-300">

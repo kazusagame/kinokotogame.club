@@ -38,10 +38,10 @@ export interface RaidwarComboMap {
   [K: number]: number,
 }
 export type ClubcupSkillEffectMap = {
-  [K in "luv" | "ur" | "ssr" | "sr"]: { [K: string]: number };
+  [K in "Luv" | "UR" | "SSR" | "SR"]: { [K: string]: number };
 };
 export type TowerSpecialGirls = {
-  [K in "luv" | "ur" | "ssr" | "sr"]: { [K: string]: number };
+  [K in "Luv" | "UR" | "SSR" | "SR"]: { [K: string]: number };
 }
 
 export interface EventUniqueBonus {
@@ -101,8 +101,8 @@ export const BONUS_DATA_COMMON = {
     }
   },
   date: {
-    attack: { luv: 100, ur: 100, ssr: 80, sr: 70 },
-    defense: { luv: 100, ur: 100, ssr: 80, sr: 70 }
+    attack: { Luv: 100, UR: 100, SSR: 80, SR: 70 },
+    defense: { Luv: 100, UR: 100, SSR: 80, SR: 70 }
   },
   touch: { attack: 20, defense: 20 },
   birthday: { attack: 20, defense: 20 },
@@ -415,25 +415,25 @@ export const BONUS_DATA_PER_EVENT: { [K in DeckSimulatorEventId]: BonusDataPerEv
       },
       skillEffect: {
         value: {
-          luv: {
+          Luv: {
             lv1: 0.0, lv2: 0.0, lv3: 0.0, lv4: 0.0, lv5: 1.0,
             lv6: 1.0, lv7: 1.0, lv8: 1.0, lv9: 1.0, lv10: 2.0,
             lv11: 3.0, lv12: 4.0, lv13: 5.0, lv14: 7.0, lv15: 9.0,
             lv16: 11.0, lv17: 13.0, lv18: 15.0
           },
-          ur: {
+          UR: {
             lv1: 0.0, lv2: 0.0, lv3: 0.0, lv4: 0.0, lv5: 1.0,
             lv6: 1.0, lv7: 1.0, lv8: 1.0, lv9: 1.0, lv10: 2.0,
             lv11: 3.0, lv12: 4.0, lv13: 5.0, lv14: 7.0, lv15: 9.0,
             lv16: 11.0, lv17: 13.0, lv18: 15.0
           },
-          ssr: {
+          SSR: {
             lv1: 0.0, lv2: 0.0, lv3: 0.0, lv4: 0.0, lv5: 0.5,
             lv6: 0.5, lv7: 0.5, lv8: 0.5, lv9: 0.5, lv10: 1.0,
             lv11: 1.5, lv12: 2.0, lv13: 2.5, lv14: 3.5, lv15: 4.5,
             lv16: 5.5, lv17: 6.5, lv18: 7.5
           },
-          sr: {
+          SR: {
             lv1: 0.0, lv2: 0.0, lv3: 0.0, lv4: 0.0, lv5: 0.3,
             lv6: 0.3, lv7: 0.3, lv8: 0.3, lv9: 0.3, lv10: 0.6,
             lv11: 0.6, lv12: 0.6, lv13: 0.6, lv14: 0.6, lv15: 0.6,
@@ -567,19 +567,19 @@ export const BONUS_DATA_PER_EVENT: { [K in DeckSimulatorEventId]: BonusDataPerEv
         subPrecious: 100,
         petitGirls: 0,
         value: {
-          luv: {
+          Luv: {
             lv10: 68, lv11: 68.4, lv12: 68.8, lv13: 69.2, lv14: 69.6,
             lv15: 70, lv16: 72.5, lv17: 75.0, lv18: 77.5
           },
-          ur: {
+          UR: {
             lv10: 68, lv11: 68.4, lv12: 68.8, lv13: 69.2, lv14: 69.6,
             lv15: 70, lv16: 72.5, lv17: 75.0, lv18: 77.5
           },
-          ssr: {
+          SSR: {
             lv10: 58, lv11: 58.4, lv12: 58.8, lv13: 59.2, lv14: 59.6,
             lv15: 60, lv16: 62.5, lv17: 65.0, lv18: 67.5
           },
-          sr: {
+          SR: {
             lv10: 10, lv11: 10, lv12: 10, lv13: 10, lv14: 10,
             lv15: 10, lv16: 10, lv17: 10, lv18: 10
           }

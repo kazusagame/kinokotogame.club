@@ -40,43 +40,43 @@ export default function BonusEventUniqueClubcup() {
                 レアリティ
               </td>
               <td>ラブリー進展</td>
-              <TdDataCell value={skillEffectMap.luv.lv10} />
-              <TdDataCell value={skillEffectMap.luv.lv11} />
-              <TdDataCell value={skillEffectMap.luv.lv12} />
-              <TdDataCell value={skillEffectMap.luv.lv13} />
-              <TdDataCell value={skillEffectMap.luv.lv14} />
-              <TdDataCell value={skillEffectMap.luv.lv15} />
-              <TdDataCell value={skillEffectMap.luv.lv16} />
-              <TdDataCell value={skillEffectMap.luv.lv17} />
-              <TdDataCell value={skillEffectMap.luv.lv18} />
+              <TdDataCell value={skillEffectMap.Luv.lv10} />
+              <TdDataCell value={skillEffectMap.Luv.lv11} />
+              <TdDataCell value={skillEffectMap.Luv.lv12} />
+              <TdDataCell value={skillEffectMap.Luv.lv13} />
+              <TdDataCell value={skillEffectMap.Luv.lv14} />
+              <TdDataCell value={skillEffectMap.Luv.lv15} />
+              <TdDataCell value={skillEffectMap.Luv.lv16} />
+              <TdDataCell value={skillEffectMap.Luv.lv17} />
+              <TdDataCell value={skillEffectMap.Luv.lv18} />
             </tr>
             <tr className="odd:bg-base-200 even:bg-base-300">
               <td>UR</td>
-              <TdDataCell value={skillEffectMap.ur.lv10} />
-              <TdDataCell value={skillEffectMap.ur.lv11} />
-              <TdDataCell value={skillEffectMap.ur.lv12} />
-              <TdDataCell value={skillEffectMap.ur.lv13} />
-              <TdDataCell value={skillEffectMap.ur.lv14} />
-              <TdDataCell value={skillEffectMap.ur.lv15} />
-              <TdDataCell value={skillEffectMap.ur.lv16} />
-              <TdDataCell value={skillEffectMap.ur.lv17} />
-              <TdDataCell value={skillEffectMap.ur.lv18} />
+              <TdDataCell value={skillEffectMap.UR.lv10} />
+              <TdDataCell value={skillEffectMap.UR.lv11} />
+              <TdDataCell value={skillEffectMap.UR.lv12} />
+              <TdDataCell value={skillEffectMap.UR.lv13} />
+              <TdDataCell value={skillEffectMap.UR.lv14} />
+              <TdDataCell value={skillEffectMap.UR.lv15} />
+              <TdDataCell value={skillEffectMap.UR.lv16} />
+              <TdDataCell value={skillEffectMap.UR.lv17} />
+              <TdDataCell value={skillEffectMap.UR.lv18} />
             </tr>
             <tr className="odd:bg-base-200 even:bg-base-300">
               <td>SSR</td>
-              <TdDataCell value={skillEffectMap.ssr.lv10} />
-              <TdDataCell value={skillEffectMap.ssr.lv11} />
-              <TdDataCell value={skillEffectMap.ssr.lv12} />
-              <TdDataCell value={skillEffectMap.ssr.lv13} />
-              <TdDataCell value={skillEffectMap.ssr.lv14} />
-              <TdDataCell value={skillEffectMap.ssr.lv15} />
-              <TdDataCell value={skillEffectMap.ssr.lv16} />
-              <TdDataCell value={skillEffectMap.ssr.lv17} />
-              <TdDataCell value={skillEffectMap.ssr.lv18} />
+              <TdDataCell value={skillEffectMap.SSR.lv10} />
+              <TdDataCell value={skillEffectMap.SSR.lv11} />
+              <TdDataCell value={skillEffectMap.SSR.lv12} />
+              <TdDataCell value={skillEffectMap.SSR.lv13} />
+              <TdDataCell value={skillEffectMap.SSR.lv14} />
+              <TdDataCell value={skillEffectMap.SSR.lv15} />
+              <TdDataCell value={skillEffectMap.SSR.lv16} />
+              <TdDataCell value={skillEffectMap.SSR.lv17} />
+              <TdDataCell value={skillEffectMap.SSR.lv18} />
             </tr>
             <tr className="odd:bg-base-200 even:bg-base-300">
               <td>SR</td>
-              <TdDataCell value={skillEffectMap.sr.lv10} />
+              <TdDataCell value={skillEffectMap.SR.lv10} />
               <td></td>
               <td></td>
               <td></td>

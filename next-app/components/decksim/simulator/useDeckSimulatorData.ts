@@ -338,13 +338,13 @@ export interface DeckSimulatorResult {
   initCondition: boolean;
   summaries: {
     totalPerformance: {
-      attack: {
+      attack?: {
         minPower?: number;
         expPower?: number;
         maxPower?: number;
         skillEffect?: number;
       };
-      defense: {
+      defense?: {
         minPower?: number;
         expPower?: number;
         maxPower?: number;
@@ -376,12 +376,14 @@ export interface DeckSimulatorResult {
       attack: {
         [K: number]: {
           estimatedPower?: number;
+          estimatedRate?: number;
           skillEffect?: number;
         };
       };
       defense: {
         [K: number]: {
           estimatedPower?: number;
+          estimatedRate?: number;
           skillEffect?: number;
         };
       };
@@ -410,12 +412,14 @@ export interface DeckSimulatorResult {
       attack: {
         [K: number]: {
           estimatedPower?: number;
+          estimatedRate?: number;
           skillEffect?: number;
         };
       };
       defense: {
         [K: number]: {
           estimatedPower?: number;
+          estimatedRate?: number;
           skillEffect?: number;
         };
       };

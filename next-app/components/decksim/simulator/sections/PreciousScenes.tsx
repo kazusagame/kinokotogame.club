@@ -199,7 +199,7 @@ export function PreciousScenes({
           }}
           initialSelected={selectedState}
           initialFilterState={
-            modalTitle === "追加"
+            modalTitle === "新規追加"
               ? filterState
               : {
                   initialRarity: null,

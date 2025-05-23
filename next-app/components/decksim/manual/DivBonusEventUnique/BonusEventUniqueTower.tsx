@@ -40,39 +40,39 @@ export default function BonusEventUniqueTower() {
                 レアリティ
               </td>
               <td>ラブリー進展</td>
-              <TdDataCell value={specialGirls.luv.lv10} />
-              <TdDataCell value={specialGirls.luv.lv11} />
-              <TdDataCell value={specialGirls.luv.lv12} />
-              <TdDataCell value={specialGirls.luv.lv13} />
-              <TdDataCell value={specialGirls.luv.lv14} />
-              <TdDataCell value={specialGirls.luv.lv15} />
-              <TdDataCell value={specialGirls.luv.lv16} />
-              <TdDataCell value={specialGirls.luv.lv17} />
-              <TdDataCell value={specialGirls.luv.lv18} />
+              <TdDataCell value={specialGirls.Luv.lv10} />
+              <TdDataCell value={specialGirls.Luv.lv11} />
+              <TdDataCell value={specialGirls.Luv.lv12} />
+              <TdDataCell value={specialGirls.Luv.lv13} />
+              <TdDataCell value={specialGirls.Luv.lv14} />
+              <TdDataCell value={specialGirls.Luv.lv15} />
+              <TdDataCell value={specialGirls.Luv.lv16} />
+              <TdDataCell value={specialGirls.Luv.lv17} />
+              <TdDataCell value={specialGirls.Luv.lv18} />
             </tr>
             <tr className="odd:bg-base-200 even:bg-base-300">
               <td>UR</td>
-              <TdDataCell value={specialGirls.ur.lv10} />
-              <TdDataCell value={specialGirls.ur.lv11} />
-              <TdDataCell value={specialGirls.ur.lv12} />
-              <TdDataCell value={specialGirls.ur.lv13} />
-              <TdDataCell value={specialGirls.ur.lv14} />
-              <TdDataCell value={specialGirls.ur.lv15} />
-              <TdDataCell value={specialGirls.ur.lv16} />
-              <TdDataCell value={specialGirls.ur.lv17} />
-              <TdDataCell value={specialGirls.ur.lv18} />
+              <TdDataCell value={specialGirls.UR.lv10} />
+              <TdDataCell value={specialGirls.UR.lv11} />
+              <TdDataCell value={specialGirls.UR.lv12} />
+              <TdDataCell value={specialGirls.UR.lv13} />
+              <TdDataCell value={specialGirls.UR.lv14} />
+              <TdDataCell value={specialGirls.UR.lv15} />
+              <TdDataCell value={specialGirls.UR.lv16} />
+              <TdDataCell value={specialGirls.UR.lv17} />
+              <TdDataCell value={specialGirls.UR.lv18} />
             </tr>
             <tr className="odd:bg-base-200 even:bg-base-300">
               <td>SSR</td>
-              <TdDataCell value={specialGirls.ssr.lv10} />
-              <TdDataCell value={specialGirls.ssr.lv11} />
-              <TdDataCell value={specialGirls.ssr.lv12} />
-              <TdDataCell value={specialGirls.ssr.lv13} />
-              <TdDataCell value={specialGirls.ssr.lv14} />
-              <TdDataCell value={specialGirls.ssr.lv15} />
-              <TdDataCell value={specialGirls.ssr.lv16} />
-              <TdDataCell value={specialGirls.ssr.lv17} />
-              <TdDataCell value={specialGirls.ssr.lv18} />
+              <TdDataCell value={specialGirls.SSR.lv10} />
+              <TdDataCell value={specialGirls.SSR.lv11} />
+              <TdDataCell value={specialGirls.SSR.lv12} />
+              <TdDataCell value={specialGirls.SSR.lv13} />
+              <TdDataCell value={specialGirls.SSR.lv14} />
+              <TdDataCell value={specialGirls.SSR.lv15} />
+              <TdDataCell value={specialGirls.SSR.lv16} />
+              <TdDataCell value={specialGirls.SSR.lv17} />
+              <TdDataCell value={specialGirls.SSR.lv18} />
             </tr>
             <tr className="odd:bg-base-200 even:bg-base-300">
               <td>SR</td>

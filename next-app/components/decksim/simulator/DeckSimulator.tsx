@@ -96,17 +96,17 @@ export default function DeckSimulator({
 
       const result = resultSummary as DeckSimulatorResult;
       const powerMin =
-        (result.summaries.totalPerformance.attack.minPower ?? 0) +
-        (result.summaries.totalPerformance.defense.minPower ?? 0);
+        (result.summaries.totalPerformance?.attack?.minPower ?? 0) +
+        (result.summaries.totalPerformance?.defense?.minPower ?? 0);
       const powerExp =
-        (result.summaries.totalPerformance.attack.expPower ?? 0) +
-        (result.summaries.totalPerformance.defense.expPower ?? 0);
+        (result.summaries.totalPerformance?.attack?.expPower ?? 0) +
+        (result.summaries.totalPerformance?.defense?.expPower ?? 0);
       const powerMax =
-        (result.summaries.totalPerformance.attack.maxPower ?? 0) +
-        (result.summaries.totalPerformance.defense.maxPower ?? 0);
+        (result.summaries.totalPerformance?.attack?.maxPower ?? 0) +
+        (result.summaries.totalPerformance?.defense?.maxPower ?? 0);
       const skillEffect =
-        (result.summaries.totalPerformance.attack.skillEffect ?? 0) +
-        (result.summaries.totalPerformance.defense.skillEffect ?? 0);
+        (result.summaries.totalPerformance?.attack?.skillEffect ?? 0) +
+        (result.summaries.totalPerformance?.defense?.skillEffect ?? 0);
       const isConvertPoint =
         result.summaries.totalPerformance.isConvertPoint ?? false;
 
@@ -580,13 +580,13 @@ export function DeckSimulatorResultSummaryDiv({
   const differenceCss = displayNum === 1 ? "" : "hidden";
 
   const isConvertPoint = summary.isConvertPoint ?? false;
-  const attackMin = summary.attack.minPower ?? 0;
-  const attackExp = summary.attack.expPower ?? 0;
-  const attackMax = summary.attack.maxPower ?? 0;
-  const attackSkillEffect = summary.attack.skillEffect ?? 0;
-  const defenseMin = summary.defense.minPower ?? 0;
-  const defenseExp = summary.defense.expPower ?? 0;
-  const defenseMax = summary.defense.maxPower ?? 0;
+  const attackMin = summary?.attack?.minPower ?? 0;
+  const attackExp = summary?.attack?.expPower ?? 0;
+  const attackMax = summary?.attack?.maxPower ?? 0;
+  const attackSkillEffect = summary?.attack?.skillEffect ?? 0;
+  const defenseMin = summary?.defense?.minPower ?? 0;
+  const defenseExp = summary?.defense?.expPower ?? 0;
+  const defenseMax = summary?.defense?.maxPower ?? 0;
   // const defenseSkillEffect = summary.defense.skillEffect ?? 0;
 
   let totalMin = 0;

@@ -1,4 +1,19 @@
 export interface IntermediateResults {
+  totalPerformance?: {
+    attack?: {
+      minPower?: number;
+      expPower?: number;
+      maxPower?: number;
+      skillEffect?: number;
+    };
+    defense?: {
+      minPower?: number;
+      expPower?: number;
+      maxPower?: number;
+      skillEffect?: number;
+    };
+    isConvertPoint?: boolean;
+  };
   mainScenes?: {
     attack?: {
       [K: number]: {
@@ -7,8 +22,9 @@ export interface IntermediateResults {
         skillEffect?: number;
         eventGimmickTotalPower?: number;
         eventGimmickTotalAscOrder?: number;
-        PreciousSceneEffects?: {
+        preciousSceneEffect?: {
           [K: number]: number;
+          total?: number;
         };
       };
     };
@@ -19,8 +35,9 @@ export interface IntermediateResults {
         skillEffect?: number;
         eventGimmickTotalPower?: number;
         eventGimmickTotalAscOrder?: number;
-        PreciousSceneEffects?: {
+        preciousSceneEffect?: {
           [K: number]: number;
+          total?: number;
         };
       };
     };
@@ -29,12 +46,14 @@ export interface IntermediateResults {
     attack?: {
       [K: number]: {
         estimatedPower?: number;
+        estimatedRate?: number;
         skillEffect?: number;
       };
     };
     defense?: {
       [K: number]: {
         estimatedPower?: number;
+        estimatedRate?: number;
         skillEffect?: number;
       };
     };
@@ -47,8 +66,9 @@ export interface IntermediateResults {
         skillEffect?: number;
         eventGimmickTotalPower?: number;
         eventGimmickTotalAscOrder?: number;
-        PreciousSceneEffects?: {
+        preciousSceneEffect?: {
           [K: number]: number;
+          total?: number;
         };
       };
     };
@@ -59,8 +79,9 @@ export interface IntermediateResults {
         skillEffect?: number;
         eventGimmickTotalPower?: number;
         eventGimmickTotalAscOrder?: number;
-        PreciousSceneEffects?: {
+        preciousSceneEffect?: {
           [K: number]: number;
+          total?: number;
         };
       };
     };
@@ -69,12 +90,14 @@ export interface IntermediateResults {
     attack?: {
       [K: number]: {
         estimatedPower?: number;
+        estimatedRate?: number;
         skillEffect?: number;
       };
     };
     defense?: {
       [K: number]: {
         estimatedPower?: number;
+        estimatedRate?: number;
         skillEffect?: number;
       };
     };
