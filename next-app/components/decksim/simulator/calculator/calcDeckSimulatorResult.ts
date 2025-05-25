@@ -1,4 +1,4 @@
-import { IntermediateResults } from "@/components/decksim/simulator/calculator/IntermediateResults";
+import { IntermediateResults } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorIntermediateResults";
 import { sumPetitGirlsEffects } from "@/components/decksim/simulator/calculator/sumPetitGirlsEffects";
 import { sumDeckBonus } from "@/components/decksim/simulator/calculator/sumDeckBonus";
 import { setPreciousSceneParameter } from "@/components/decksim/simulator/calculator/setPreciousSceneParameter";
@@ -11,8 +11,8 @@ import { transferIntermediateToSummary } from "@/components/decksim/simulator/ca
 import {
   DeckSimulatorData,
   DeckSimulatorCommonData,
-  DeckSimulatorResult,
-} from "@/components/decksim/simulator/useDeckSimulatorData";
+} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
+import { DeckSimulatorResult } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
 
 export const calcDeckSimulatorResult = ({
   inputData,
@@ -54,6 +54,7 @@ export const calcDeckSimulatorResult = ({
   // intermediate から summary に 反映
   transferIntermediateToSummary({ intermediateResults, summary });
 
+  console.log(commonData);
   console.log(intermediateResults);
   console.log(summary);
 };

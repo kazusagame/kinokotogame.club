@@ -21,8 +21,11 @@ import Tooltip from "@mui/material/Tooltip";
 
 import {
   DeckSimulatorData,
+} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
+
+import {
   DeckSimulatorResult,
-} from "@/components/decksim/simulator/useDeckSimulatorData";
+} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 import {
   INIT_SKILL_LEVEL,

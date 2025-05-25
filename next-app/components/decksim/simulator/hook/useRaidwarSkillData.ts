@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { calcRaidwarSkillResult } from "@/components/decksim/simulator/drawCanvasRaidwarSkill";
+import { calcRaidwarSkillResult } from "@/components/decksim/simulator/calculator/drawCanvasRaidwarSkill";
 
 type AttackPattern =
   | "specialOnly"

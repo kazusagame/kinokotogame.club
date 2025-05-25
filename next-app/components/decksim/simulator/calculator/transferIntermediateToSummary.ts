@@ -1,5 +1,5 @@
-import { IntermediateResults } from "@/components/decksim/simulator/calculator/IntermediateResults";
-import { DeckSimulatorResult } from "@/components/decksim/simulator/useDeckSimulatorData";
+import { IntermediateResults } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorIntermediateResults";
+import { DeckSimulatorResult } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
 
 export const transferIntermediateToSummary = ({
   intermediateResults,

@@ -1,4 +1,6 @@
-import { DeckSimulatorCommonData } from "@/components/decksim/simulator/useDeckSimulatorData";
+import {
+  DeckSimulatorCommonData,
+} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
 

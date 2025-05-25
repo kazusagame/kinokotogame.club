@@ -12,9 +12,9 @@ import {
   RaidwarSkillSavedDataSummary,
   RaidwarSkillLocalStorageData,
   initRaidwarSkillSavedDataSummary,
-} from "@/components/decksim/simulator/useRaidwarSkillData";
-import { useLocalStorageData } from "@/components/decksim/simulator/useLocalStorageData";
-import { drawCanvasRaidwarSkill } from "@/components/decksim/simulator/drawCanvasRaidwarSkill";
+} from "@/components/decksim/simulator/hook/useRaidwarSkillData";
+import { useLocalStorageData } from "@/components/decksim/simulator/hook/useLocalStorageData";
+import { drawCanvasRaidwarSkill } from "@/components/decksim/simulator/calculator/drawCanvasRaidwarSkill";
 
 export default function RaidwarSkillSimulator() {
   const simulatorTabButtonRef = useRef(null);

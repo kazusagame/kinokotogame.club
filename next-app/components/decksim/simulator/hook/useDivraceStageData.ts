@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { calcDivraceStageResult } from "@/components/decksim/simulator/calcDivraceStageResult";
+import { calcDivraceStageResult } from "@/components/decksim/simulator/calculator/calcDivraceStageResult";
 
 type SupportPattern =
   | "useSpecialALot"

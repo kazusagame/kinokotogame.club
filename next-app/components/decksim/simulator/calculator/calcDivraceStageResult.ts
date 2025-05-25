@@ -1,7 +1,7 @@
 import {
   DivraceStageData,
   DivraceStageResult,
-} from "@/components/decksim/simulator/useDivraceStageData";
+} from "@/components/decksim/simulator/hook/useDivraceStageData";
 
 import {
   baseStageData,

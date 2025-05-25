@@ -1,8 +1,8 @@
-import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulatorData";
-import { IntermediateResults } from "@/components/decksim/simulator/calculator/IntermediateResults";
+import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
+import { IntermediateResults } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorIntermediateResults";
 
 import { PRECIOUS_SCENES_DATA } from "@/components/decksim/data/preciousScenesData";
-import { SelectPreciousSceneParameters } from "@/components/decksim/simulator/calculator/IntermediateResults";
+import { SelectPreciousSceneParameters } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorIntermediateResults";
 
 export const setPreciousSceneParameter = ({
   inputData,

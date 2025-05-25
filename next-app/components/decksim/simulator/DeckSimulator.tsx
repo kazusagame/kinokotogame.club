@@ -13,13 +13,19 @@ import { formatNumber } from "@/lib/formatNumber";
 import SimulatorHeader from "@/components/decksim/simulator/SimulatorHeader";
 import {
   useDeckSimulatorData,
-  DeckSimulatorData,
-  DeckSimulatorResult,
-  DeckSimulatorSavedDataSummary,
   DeckSimulatorLocalStorageData,
   initDeckSimulatorSavedDataSummary,
-} from "@/components/decksim/simulator/useDeckSimulatorData";
-import { useLocalStorageData } from "@/components/decksim/simulator/useLocalStorageData";
+} from "@/components/decksim/simulator/hook/useDeckSimulatorData";
+import {
+  DeckSimulatorData,
+} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
+import {
+  DeckSimulatorResult,
+} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
+import {
+  DeckSimulatorSavedDataSummary,
+} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorSavedDataSummary";
+import { useLocalStorageData } from "@/components/decksim/simulator/hook/useLocalStorageData";
 
 import { MainScenes } from "@/components/decksim/simulator/sections/MainScenes";
 import { MainSkill } from "@/components/decksim/simulator/sections/MainSkill";

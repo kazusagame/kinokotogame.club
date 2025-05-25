@@ -5,11 +5,11 @@ import {
 } from "@/components/decksim/data/skillData";
 import { MAX_MAIN_GIRLS_NUM } from "@/components/decksim/simulator/globalConfig";
 
-import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulatorData";
+import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
 import {
   IntermediateResults,
   BasePowerArray,
-} from "@/components/decksim/simulator/calculator/IntermediateResults";
+} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorIntermediateResults";
 
 import { setDeepValue } from "@/lib/setDeepValue";
 import { returnNumber } from "@/lib/returnNumber";

@@ -18,8 +18,10 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 
 import {
   DeckSimulatorData,
+} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
+import {
   DeckSimulatorResult,
-} from "@/components/decksim/simulator/useDeckSimulatorData";
+} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
 import { PRECIOUS_SCENES_DATA } from "@/components/decksim/data/preciousScenesData";
 import { MAX_PRECIOUS_SCENES_NUM } from "@/components/decksim/simulator/globalConfig";
 

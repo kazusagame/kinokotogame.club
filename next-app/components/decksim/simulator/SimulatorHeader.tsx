@@ -8,12 +8,12 @@ import SaveIcon from "@mui/icons-material/Save";
 import {
   OriginSavedDataSummary,
   OriginLocalStorageData,
-} from "@/components/decksim/simulator/useLocalStorageData";
+} from "@/components/decksim/simulator/hook/useLocalStorageData";
 
 import { MAX_SAVE_DATA_NUM } from "@/components/decksim/simulator/globalConfig";
 import { EventId } from "@/components/decksim/data/eventData";
 import { RaidwarSkillResultSummaryDiv } from "@/components/decksim/simulator/RaidwarSkillSimulator";
-import { RaidwarSkillResult } from "@/components/decksim/simulator/useRaidwarSkillData";
+import { RaidwarSkillResult } from "@/components/decksim/simulator/hook/useRaidwarSkillData";
 import {
   DivraceStageResultSummaryDiv,
   DivraceStageSavedDataDiv,
@@ -22,15 +22,13 @@ import {
   DivraceStageData,
   DivraceStageResult,
   DivraceStageSavedDataSummary,
-} from "@/components/decksim/simulator/useDivraceStageData";
+} from "@/components/decksim/simulator/hook/useDivraceStageData";
 import {
   DeckSimulatorResultSummaryDiv,
   DeckSimulatorSavedDataDiv,
 } from "@/components/decksim/simulator/DeckSimulator";
-import {
-  DeckSimulatorResult,
-  DeckSimulatorSavedDataSummary,
-} from "@/components/decksim/simulator/useDeckSimulatorData";
+import { DeckSimulatorResult } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
+import { DeckSimulatorSavedDataSummary } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorSavedDataSummary";
 
 interface HeaderProps<T, U, V> {
   eventId: EventId;
@@ -44,7 +42,7 @@ interface HeaderProps<T, U, V> {
   handleLoadData: (newData: T) => void;
   handleChangeMemo: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   handleClickIndividualSave: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  setCurrentDataNum?:  React.Dispatch<React.SetStateAction<number>>;
+  setCurrentDataNum?: React.Dispatch<React.SetStateAction<number>>;
   headerHeight?: string;
 }
 
@@ -153,7 +151,7 @@ function LoadButton<
   handleLoadData: (newData: T) => void;
   savedDataSummaries: U[];
   handleChangeMemo: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  setCurrentDataNum?:  React.Dispatch<React.SetStateAction<number>>;
+  setCurrentDataNum?: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const modalId = useId();
   const buttonRef = useRef<HTMLButtonElement | null>(null);

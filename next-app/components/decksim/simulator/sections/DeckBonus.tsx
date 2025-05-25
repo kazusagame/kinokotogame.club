@@ -1,4 +1,4 @@
-import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulatorData";
+import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 
 export function DeckBonus({

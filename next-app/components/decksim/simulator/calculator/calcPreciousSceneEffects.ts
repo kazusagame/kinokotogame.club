@@ -3,11 +3,11 @@ import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 import {
   DeckSimulatorData,
   SceneParameters,
-} from "@/components/decksim/simulator/useDeckSimulatorData";
+} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
 import {
   IntermediateResults,
   SelectPreciousSceneParameters,
-} from "@/components/decksim/simulator/calculator/IntermediateResults";
+} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorIntermediateResults";
 
 import { setDeepValue } from "@/lib/setDeepValue";
 import { returnNumber } from "@/lib/returnNumber";

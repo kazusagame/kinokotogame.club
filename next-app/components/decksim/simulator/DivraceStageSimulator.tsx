@@ -14,8 +14,8 @@ import {
   DivraceStageSavedDataSummary,
   DivraceStageLocalStorageData,
   initDivraceStageSavedDataSummary,
-} from "@/components/decksim/simulator/useDivraceStageData";
-import { useLocalStorageData } from "@/components/decksim/simulator/useLocalStorageData";
+} from "@/components/decksim/simulator/hook/useDivraceStageData";
+import { useLocalStorageData } from "@/components/decksim/simulator/hook/useLocalStorageData";
 
 import {
   baseStageData,

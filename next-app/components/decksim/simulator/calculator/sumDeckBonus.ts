@@ -1,5 +1,5 @@
-import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulatorData";
-import { IntermediateResults } from "@/components/decksim/simulator/calculator/IntermediateResults";
+import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
+import { IntermediateResults } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorIntermediateResults";
 
 import { BONUS_DATA_COMMON } from "@/components/decksim/data/bonusData";
 

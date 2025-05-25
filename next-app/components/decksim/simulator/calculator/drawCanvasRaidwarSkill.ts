@@ -1,5 +1,5 @@
 import { roundRect, ngRect } from "@/lib/canvasShapes";
-import { RaidwarSkillData } from "@/components/decksim/simulator/useRaidwarSkillData";
+import { RaidwarSkillData } from "@/components/decksim/simulator/hook/useRaidwarSkillData";
 
 import { notoSansJp } from "@/lib/fonts";
 

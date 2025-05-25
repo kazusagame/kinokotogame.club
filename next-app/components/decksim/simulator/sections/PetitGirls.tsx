@@ -1,6 +1,6 @@
 import { useState, useId } from "react";
 
-import { DeckSimulatorData } from "@/components/decksim/simulator/useDeckSimulatorData";
+import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 import { PETIT_GIRLS_EFFECTS_DATA } from "@/components/decksim/data/petitGirlsEffectData";
 
