@@ -492,6 +492,14 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     factor: 0.75,
     annotation: "現状、減衰係数などに推定値を使用しています。情報募集中です。"
   },
+  102: {
+    name: "[幸せの共有]月隈林子", rarity: 3, valueFormat: "割合(%)",
+    effectTarget: "COOLタイプ", effectRange: "主＋副", effectType: "攻守UP",
+    effectCondition: "声援Lvが高いほど", conditionThreshold: 16,
+    value1: 5.0, value2: 5.0, value3: 5.0, value4: 6.0, value5: 7.0,
+    factor: 0.75,
+    annotation: "現状、減衰係数などに推定値を使用しています。情報募集中です。"
+  },
 
   100: {
     name: "[力の源]桃子&柚子", rarity: 3, valueFormat: "割合(%)",

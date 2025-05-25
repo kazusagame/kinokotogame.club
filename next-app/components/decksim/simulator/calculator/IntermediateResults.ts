@@ -16,90 +16,38 @@ export interface IntermediateResults {
   };
   mainScenes?: {
     attack?: {
-      [K: number]: {
-        estimatedPower?: number;
-        estimatedPowerAscOrder?: number;
-        skillEffect?: number;
-        eventGimmickTotalPower?: number;
-        eventGimmickTotalAscOrder?: number;
-        preciousSceneEffect?: {
-          [K: number]: number;
-          total?: number;
-        };
-      };
+      [K: number]: SceneEstimatedParameters;
+      basePowerArray?: BasePowerArray;
     };
     defense?: {
-      [K: number]: {
-        estimatedPower?: number;
-        estimatedPowerAscOrder?: number;
-        skillEffect?: number;
-        eventGimmickTotalPower?: number;
-        eventGimmickTotalAscOrder?: number;
-        preciousSceneEffect?: {
-          [K: number]: number;
-          total?: number;
-        };
-      };
+      [K: number]: SceneEstimatedParameters;
+      basePowerArray?: BasePowerArray;
     };
   };
   mainSkills?: {
     attack?: {
-      [K: number]: {
-        estimatedPower?: number;
-        estimatedRate?: number;
-        skillEffect?: number;
-      };
+      [K: number]: SkillEstimatedParameters;
     };
     defense?: {
-      [K: number]: {
-        estimatedPower?: number;
-        estimatedRate?: number;
-        skillEffect?: number;
-      };
+      [K: number]: SkillEstimatedParameters;
     };
   };
   subScenes?: {
     attack?: {
-      [K: number]: {
-        estimatedPower?: number;
-        estimatedPowerAscOrder?: number;
-        skillEffect?: number;
-        eventGimmickTotalPower?: number;
-        eventGimmickTotalAscOrder?: number;
-        preciousSceneEffect?: {
-          [K: number]: number;
-          total?: number;
-        };
-      };
+      [K: number]: SceneEstimatedParameters;
+      basePowerArray?: BasePowerArray;
     };
     defense?: {
-      [K: number]: {
-        estimatedPower?: number;
-        estimatedPowerAscOrder?: number;
-        skillEffect?: number;
-        eventGimmickTotalPower?: number;
-        eventGimmickTotalAscOrder?: number;
-        preciousSceneEffect?: {
-          [K: number]: number;
-          total?: number;
-        };
-      };
+      [K: number]: SceneEstimatedParameters;
+      basePowerArray?: BasePowerArray;
     };
   };
   subSwitches?: {
     attack?: {
-      [K: number]: {
-        estimatedPower?: number;
-        estimatedRate?: number;
-        skillEffect?: number;
-      };
+      [K: number]: SkillEstimatedParameters;
     };
     defense?: {
-      [K: number]: {
-        estimatedPower?: number;
-        estimatedRate?: number;
-        skillEffect?: number;
-      };
+      [K: number]: SkillEstimatedParameters;
     };
   };
   preciousScenes?: {
@@ -130,6 +78,48 @@ export interface IntermediateResults {
         | "clubItem"]: targetType;
     };
   };
+}
+
+export interface SceneEstimatedParameters {
+  estimatedPower?: number;
+  estimatedPowerAscOrder?: number;
+  skillEffect?: number;
+  eventGimmickTotalPower?: number;
+  eventGimmickTotalAscOrder?: number;
+  preciousSceneEffect?: {
+    [K: number]: number;
+    total?: number;
+  };
+}
+
+export interface BasePowerArray {
+  全タイプ: {
+    basePower: number;
+    strapEffect: number;
+    preciousEffect: number;
+  }[];
+  SWEETタイプ: {
+    basePower: number;
+    strapEffect: number;
+    preciousEffect: number;
+  }[];
+  COOLタイプ: {
+    basePower: number;
+    strapEffect: number;
+    preciousEffect: number;
+  }[];
+  POPタイプ: {
+    basePower: number;
+    strapEffect: number;
+    preciousEffect: number;
+  }[];
+}
+
+export interface SkillEstimatedParameters {
+  estimatedPower?: number;
+  estimatedEffect?: number;
+  estimatedRate?: number;
+  skillEffect?: number;
 }
 
 export interface SelectPreciousSceneParameters {

@@ -76,7 +76,7 @@ export default function BonusEventUniqueTower() {
             </tr>
             <tr className="odd:bg-base-200 even:bg-base-300">
               <td>SR</td>
-              <TdDataCell value={specialGirls.sr.lv10} />
+              <TdDataCell value={specialGirls.SR.lv10} />
               <td></td>
               <td></td>
               <td></td>

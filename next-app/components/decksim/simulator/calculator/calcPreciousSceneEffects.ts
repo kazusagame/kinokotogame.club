@@ -46,7 +46,10 @@ export const calcPreciousSceneEffects = ({
       const scenesData =
         intermediateResults[mainOrSub]?.[attackOrDefense] ?? {};
 
-      Object.values(scenesData).forEach((value) => {
+      const keys = Object.keys(scenesData).filter((key) => key !== "basePowerArray");
+
+      keys.forEach((key) => {
+        const value = scenesData[Number(key)];
         if (value.preciousSceneEffect) {
           const keys = Object.keys(value.preciousSceneEffect).filter(
             (key) => key !== "total"

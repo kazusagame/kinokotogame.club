@@ -377,7 +377,7 @@ function RegisteredSubScenesBlock({
     eventId === "raidwar"
       ? "xl:grid-cols-[45px_60px_45px_40px_40px_40px_40px_40px_40px_40px_40px_40px_80px_40px_65px_65px]"
       : eventId === "clubcup"
-      ? "xl:grid-cols-[45px_60px_45px_40px_40px_40px_40px_40px_40px_40px_40px_40px_80px_40px_60px_65px_65px]"
+      ? "xl:grid-cols-[45px_60px_45px_40px_40px_40px_40px_40px_40px_40px_40px_80px_40px_60px_65px_65px]"
       : eventId === "tower"
       ? "xl:grid-cols-[45px_60px_45px_40px_40px_40px_40px_40px_40px_40px_40px_40px_80px_40px_65px_65px]"
       : eventId === "divrace"
@@ -499,12 +499,12 @@ function RegisteredSubScenesBlock({
                       <div className="flex justify-end items-center md:pr-2 max-sm:hidden">
                         {formatNumber(
                           summary?.skillEffect ?? 0,
-                          "0.00",
+                          "0.0",
                           "ja-JP",
                           {
                             style: "decimal",
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2,
+                            minimumFractionDigits: 1,
+                            maximumFractionDigits: 1,
                           }
                         )}{" "}
                         %

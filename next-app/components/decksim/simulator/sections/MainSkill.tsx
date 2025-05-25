@@ -26,7 +26,6 @@ import {
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 import {
   INIT_SKILL_LEVEL,
-  SKILL_RATE_DATA,
 } from "@/components/decksim/data/skillData";
 import { MAX_MAIN_GIRLS_NUM } from "@/components/decksim/simulator/globalConfig";
 
@@ -237,25 +236,6 @@ function RegisteredMainSkillsBlock({
     }
   };
 
-  const skillRates = Object.values(skillData).map((value) => {
-    const target = value.target !== "全タイプ" ? "単タイプ" : "全タイプ";
-    const range = value.range ?? "主＋副";
-    const subRange =
-      range === "主のみ"
-        ? "副人数0"
-        : Number(value.subRange) === 0
-        ? "副人数0"
-        : Number(value.subRange) === 1
-        ? "副人数1"
-        : "副人数2";
-    const baseValue =
-      SKILL_RATE_DATA[target]?.[range]?.[subRange]?.[value.type]?.[
-        value.strength
-      ]?.value;
-
-    return baseValue ? baseValue + Number(value.skillLv) - 1 : 0;
-  });
-
   const gridColumnCss =
     eventId !== "clubcup"
       ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_100px_75px_85px_75px_65px_65px]"
@@ -319,7 +299,6 @@ function RegisteredMainSkillsBlock({
             {orderedKeys.map((key) => {
               const value = skillData[Number(key)];
               const summary = summaryData[Number(key)];
-              const skillRate = skillRates[Number(key) - 1];
               return (
                 <SortableItem
                   key={key}
@@ -349,9 +328,9 @@ function RegisteredMainSkillsBlock({
                   <div className="flex justify-center items-center">
                     {value.strength}
                   </div>
-                  {skillRate ? (
+                  {summary?.estimatedEffect ? (
                     <div className="flex justify-end items-center pr-4">
-                      {`${skillRate} %`}
+                      {`${formatNumber(summary?.estimatedEffect ?? 0)} %`}
                     </div>
                   ) : (
                     <Tooltip
@@ -381,12 +360,12 @@ function RegisteredMainSkillsBlock({
                     <div className="flex justify-end items-center pr-2">
                       {formatNumber(
                         summary?.skillEffect ?? 0,
-                        "0.00",
+                        "0.0",
                         "ja-JP",
                         {
                           style: "decimal",
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2,
+                          minimumFractionDigits: 1,
+                          maximumFractionDigits: 1,
                         }
                       )}{" "}
                       %

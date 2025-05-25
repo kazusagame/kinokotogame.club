@@ -650,10 +650,10 @@ export function DeckSimulatorResultSummaryDiv({
                 </p>
                 {eventId === "clubcup" && (
                   <p className="text-right">
-                    {formatNumber(attackSkillEffect, "0.00", "ja-JP", {
+                    {formatNumber(attackSkillEffect, "0.0", "ja-JP", {
                       style: "decimal",
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
+                      minimumFractionDigits: 1,
+                      maximumFractionDigits: 1,
                     })}{" "}
                     %
                   </p>
@@ -767,12 +767,12 @@ export function DeckSimulatorResultSummaryDiv({
                     {attackSkillEffect - savedSkillEffect > 0 && "+"}
                     {formatNumber(
                       attackSkillEffect - savedSkillEffect,
-                      "0.00",
+                      "0.0",
                       "ja-JP",
                       {
                         style: "decimal",
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 1,
+                        maximumFractionDigits: 1,
                       }
                     )}{" "}
                     %

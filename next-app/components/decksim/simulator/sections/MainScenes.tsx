@@ -513,12 +513,12 @@ function RegisteredMainScenesBlock({
                       <div className="flex justify-end items-center md:pr-2 max-sm:hidden">
                         {formatNumber(
                           summary?.skillEffect ?? 0,
-                          "0.00",
+                          "0.0",
                           "ja-JP",
                           {
                             style: "decimal",
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2,
+                            minimumFractionDigits: 1,
+                            maximumFractionDigits: 1,
                           }
                         )}{" "}
                         %

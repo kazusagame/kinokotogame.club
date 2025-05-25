@@ -241,6 +241,11 @@ export default function Page() {
                   [きみが一番]相楽エミ (POPガールの声援Lvが高いほど攻守UP)
                 </span>
               </p>
+              <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
+                <span>
+                  [幸せの共有]月隈林子 (COOLガールの声援Lvが高いほど攻守UP)
+                </span>
+              </p>
               <span>
                 → いくつかのパターンでの実際の効果値。★4の時の最大効果値。
               </span>

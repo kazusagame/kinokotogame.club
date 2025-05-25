@@ -376,6 +376,7 @@ export interface DeckSimulatorResult {
       attack: {
         [K: number]: {
           estimatedPower?: number;
+          estimatedEffect?: number;
           estimatedRate?: number;
           skillEffect?: number;
         };
@@ -383,6 +384,7 @@ export interface DeckSimulatorResult {
       defense: {
         [K: number]: {
           estimatedPower?: number;
+          estimatedEffect?: number;
           estimatedRate?: number;
           skillEffect?: number;
         };
@@ -412,6 +414,7 @@ export interface DeckSimulatorResult {
       attack: {
         [K: number]: {
           estimatedPower?: number;
+          estimatedEffect?: number;
           estimatedRate?: number;
           skillEffect?: number;
         };
@@ -419,6 +422,7 @@ export interface DeckSimulatorResult {
       defense: {
         [K: number]: {
           estimatedPower?: number;
+          estimatedEffect?: number;
           estimatedRate?: number;
           skillEffect?: number;
         };

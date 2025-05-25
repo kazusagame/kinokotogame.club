@@ -1114,6 +1114,11 @@ const PRECIOS_SCENES = {
     range: "both", type: "Pop", effect: "both", format: "percent",
     star1max: 5.0, star2max: 5.0, star3max: 5.0, star4max: 6.0, star5max: 7.0, factor: 0.75
   },
+  102: {
+    name: "[幸せの共有]月隈林子", rarity: "3", condition: "higherskilllv", threshold: 16,
+    range: "both", type: "Cool", effect: "both", format: "percent",
+    star1max: 5.0, star2max: 5.0, star3max: 5.0, star4max: 6.0, star5max: 7.0, factor: 0.75
+  },
 
   100: {
     name: "[力の源]桃子&柚子", rarity: "3", condition: "higherrarity", threshold: 7,
