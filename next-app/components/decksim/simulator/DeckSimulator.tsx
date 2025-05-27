@@ -16,15 +16,9 @@ import {
   DeckSimulatorLocalStorageData,
   initDeckSimulatorSavedDataSummary,
 } from "@/components/decksim/simulator/hook/useDeckSimulatorData";
-import {
-  DeckSimulatorData,
-} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
-import {
-  DeckSimulatorResult,
-} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
-import {
-  DeckSimulatorSavedDataSummary,
-} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorSavedDataSummary";
+import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
+import { DeckSimulatorResult } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
+import { DeckSimulatorSavedDataSummary } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorSavedDataSummary";
 import { useLocalStorageData } from "@/components/decksim/simulator/hook/useLocalStorageData";
 
 import { MainScenes } from "@/components/decksim/simulator/sections/MainScenes";
@@ -49,11 +43,13 @@ export default function DeckSimulator({
     data,
     commonData,
     resultSummary,
+    loadCondition,
     handleChangeParameters,
     handleBlurParameters,
     handleLoadData,
     handleImportRawData,
     setValueAtPath,
+    handleLoadCondition,
   } = useDeckSimulatorData({
     simulatorTabButtonRef: simulatorTabButtonRef,
     eventId: eventId,
@@ -200,7 +196,9 @@ export default function DeckSimulator({
                       data={data}
                       summary={resultSummary}
                       eventId={eventId}
-                      type="攻援"
+                      type={
+                        eventId !== "championship-defense" ? "攻援" : "守援"
+                      }
                       setValueAtPath={setValueAtPath}
                     />
                     <hr className="mx-4 h-px bg-base-300 border-0" />
@@ -208,7 +206,9 @@ export default function DeckSimulator({
                       data={data}
                       summary={resultSummary}
                       eventId={eventId}
-                      type="攻援"
+                      type={
+                        eventId !== "championship-defense" ? "攻援" : "守援"
+                      }
                       setValueAtPath={setValueAtPath}
                     />
                   </div>
@@ -229,7 +229,9 @@ export default function DeckSimulator({
                       data={data}
                       summary={resultSummary}
                       eventId={eventId}
-                      type="攻援"
+                      type={
+                        eventId !== "championship-defense" ? "攻援" : "守援"
+                      }
                       setValueAtPath={setValueAtPath}
                     />
                     {eventId !== "raid-mega" && (
@@ -239,7 +241,9 @@ export default function DeckSimulator({
                       data={data}
                       summary={resultSummary}
                       eventId={eventId}
-                      type="攻援"
+                      type={
+                        eventId !== "championship-defense" ? "攻援" : "守援"
+                      }
                       setValueAtPath={setValueAtPath}
                     />
                     {eventId !== "raid-mega" && (
@@ -248,7 +252,9 @@ export default function DeckSimulator({
                     <PreciousScenes
                       data={data}
                       summary={resultSummary}
-                      type="攻援"
+                      type={
+                        eventId !== "championship-defense" ? "攻援" : "守援"
+                      }
                       onChange={handleChangeParameters}
                       onBlur={handleBlurParameters}
                       setValueAtPath={setValueAtPath}
@@ -458,6 +464,9 @@ export default function DeckSimulator({
             handleExportData={handleExportData}
             handleImportData={handleImportData}
             handleImportRawData={handleImportRawData}
+            eventId={eventId}
+            loadCondition={loadCondition}
+            handleLoadCondition={handleLoadCondition}
           />
         </div>
       </div>
@@ -470,11 +479,23 @@ function DataExportAndImport({
   handleExportData,
   handleImportData,
   handleImportRawData,
+  eventId,
+  loadCondition,
+  handleLoadCondition,
 }: {
   savedDataSummaries: DeckSimulatorSavedDataSummary[];
   handleExportData: (e: React.MouseEvent<HTMLButtonElement>) => void;
   handleImportData: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleImportRawData: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  eventId: DeckSimulatorEventId;
+  loadCondition: {
+    clubType: string;
+    specialGirlName1: string;
+    specialGirlName2: string;
+  };
+  handleLoadCondition: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
 }) {
   return (
     <>
@@ -539,7 +560,73 @@ function DataExportAndImport({
           <h2 className="mb-4">
             JSONファイルからのインポート (ローカルファイル → ブラウザ)
           </h2>
-          <div className="px-4">
+          <div className="flex flex-wrap gap-6">
+            {eventId !== "tower" &&
+              eventId !== "divrace" &&
+              eventId !== "board" && (
+                <div>
+                  <label className="label">
+                    <span className="label-text">プレイヤーの部活タイプ</span>
+                  </label>
+                  <select
+                    name="playerClubType"
+                    className="select select-sm select-bordered"
+                    value={loadCondition.clubType}
+                    onChange={handleLoadCondition}
+                    data-property="clubType"
+                  >
+                    <option value="未所属">未所属</option>
+                    <option value="委員会＆団体">委員会＆団体</option>
+                    <option value="運動部">運動部</option>
+                    <option value="運動部(個人競技)">運動部(個人競技)</option>
+                    <option value="帰宅部">帰宅部</option>
+                    <option value="研究会">研究会</option>
+                    <option value="文化部">文化部</option>
+                    <option value="文化部(音楽系)">文化部(音楽系)</option>
+                    <option value="文化部(日本)">文化部(日本)</option>
+                  </select>
+                </div>
+              )}
+            {eventId === "tower" && (
+              <div className="flex flex-col">
+                <label className="label">
+                  <span className="label-text">有利なガール</span>
+                </label>
+                <input
+                  type="text"
+                  name="specialGirlName1"
+                  className="input input-sm input-bordered max-w-48 md:w-48"
+                  data-property="specialGirlName1"
+                  value={loadCondition.specialGirlName1}
+                  onChange={handleLoadCondition}
+                />
+                <input
+                  type="text"
+                  name="specialGirlName2"
+                  className="input input-sm input-bordered max-w-48 md:w-48 mt-4"
+                  data-property="specialGirlName2"
+                  value={loadCondition.specialGirlName2}
+                  onChange={handleLoadCondition}
+                />
+              </div>
+            )}
+            {eventId === "divrace" && (
+              <div className="flex flex-col">
+                <label className="label">
+                  <span className="label-text">予選グループガール</span>
+                </label>
+                <input
+                  type="text"
+                  name="specialGirlName1"
+                  className="input input-sm input-bordered max-w-48 md:w-48"
+                  data-property="specialGirlName1"
+                  value={loadCondition.specialGirlName1}
+                  onChange={handleLoadCondition}
+                />
+              </div>
+            )}
+          </div>
+          <div className="mt-6 px-4">
             <label>
               <div role="button" className="btn btn-sm btn-primary">
                 ファイルを選択
@@ -769,20 +856,22 @@ export function DeckSimulatorResultSummaryDiv({
                       ? `${formatNumber(totalMax - savedMax)} pt`
                       : formatNumber(totalMax - savedMax)}
                   </p>
-                  {eventId === "clubcup" && <p className="text-right">
-                    {attackSkillEffect - savedSkillEffect > 0 && "+"}
-                    {formatNumber(
-                      attackSkillEffect - savedSkillEffect,
-                      "0.0",
-                      "ja-JP",
-                      {
-                        style: "decimal",
-                        minimumFractionDigits: 1,
-                        maximumFractionDigits: 1,
-                      }
-                    )}{" "}
-                    %
-                  </p>}
+                  {eventId === "clubcup" && (
+                    <p className="text-right">
+                      {attackSkillEffect - savedSkillEffect > 0 && "+"}
+                      {formatNumber(
+                        attackSkillEffect - savedSkillEffect,
+                        "0.0",
+                        "ja-JP",
+                        {
+                          style: "decimal",
+                          minimumFractionDigits: 1,
+                          maximumFractionDigits: 1,
+                        }
+                      )}{" "}
+                      %
+                    </p>
+                  )}
                 </div>
               </div>
             </div>

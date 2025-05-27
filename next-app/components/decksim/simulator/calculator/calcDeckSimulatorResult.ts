@@ -24,7 +24,16 @@ export const calcDeckSimulatorResult = ({
   summary: DeckSimulatorResult;
 }) => {
   // 計算の途中結果を格納するオブジェクト
-  const intermediateResults: IntermediateResults = {};
+  const intermediateResults: IntermediateResults = {
+    totalPerformance: { attack: {}, defense: {} },
+    mainScenes: { attack: {}, defense: {} },
+    mainSkills: { attack: {}, defense: {} },
+    subScenes: { attack: {}, defense: {} },
+    subSwitches: { attack: {}, defense: {} },
+    preciousScenes: { attack: {}, defense: {} },
+    deckBonus: {},
+    petitGirls: {},
+  };
 
   /* 準備フェイズ */
   // 応援力効果を合計する

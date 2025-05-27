@@ -1,64 +1,56 @@
-export interface IntermediateResults {
-  totalPerformance?: {
-    attack?: {
-      minPower?: number;
-      expPower?: number;
-      maxPower?: number;
-      skillEffect?: number;
-    };
-    defense?: {
-      minPower?: number;
-      expPower?: number;
-      maxPower?: number;
-      skillEffect?: number;
-    };
-    isConvertPoint?: boolean;
-  };
-  mainScenes?: {
-    attack?: {
-      [K: number]: SceneEstimatedParameters;
+import { DeckSimulatorSummaries } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
+
+// DeckSimulatorSummaries からの追加分を定義
+export type IntermediateResults = DeckSimulatorSummaries & {
+  mainScenes: {
+    attack: {
+      [K: number]: {
+        preciousSceneEffect?: {
+          [K: number]: number;
+          total?: number;
+        };
+      };
       basePowerArray?: BasePowerArray;
     };
-    defense?: {
-      [K: number]: SceneEstimatedParameters;
-      basePowerArray?: BasePowerArray;
-    };
-  };
-  mainSkills?: {
-    attack?: {
-      [K: number]: SkillEstimatedParameters;
-    };
-    defense?: {
-      [K: number]: SkillEstimatedParameters;
-    };
-  };
-  subScenes?: {
-    attack?: {
-      [K: number]: SceneEstimatedParameters;
-      basePowerArray?: BasePowerArray;
-    };
-    defense?: {
-      [K: number]: SceneEstimatedParameters;
+    defense: {
+      [K: number]: {
+        preciousSceneEffect?: {
+          [K: number]: number;
+          total?: number;
+        };
+      };
       basePowerArray?: BasePowerArray;
     };
   };
-  subSwitches?: {
-    attack?: {
-      [K: number]: SkillEstimatedParameters;
+  subScenes: {
+    attack: {
+      [K: number]: {
+        preciousSceneEffect?: {
+          [K: number]: number;
+          total?: number;
+        };
+      };
+      basePowerArray?: BasePowerArray;
     };
-    defense?: {
-      [K: number]: SkillEstimatedParameters;
+    defense: {
+      [K: number]: {
+        preciousSceneEffect?: {
+          [K: number]: number;
+          total?: number;
+        };
+      };
+      basePowerArray?: BasePowerArray;
     };
   };
-  preciousScenes?: {
-    attack?: {
+  preciousScenes: {
+    attack: {
       [K: number]: SelectPreciousSceneParameters;
       limitBreakCount?: {
         main: number;
         sub: number;
       };
     };
-    defense?: {
+    defense: {
       [K: number]: SelectPreciousSceneParameters;
       limitBreakCount?: {
         main: number;
@@ -66,8 +58,8 @@ export interface IntermediateResults {
       };
     };
   };
-  deckBonus?: effectType;
-  petitGirls?: {
+  deckBonus: effectType;
+  petitGirls: {
     effects?: {
       [K in
         | "type"
@@ -78,19 +70,7 @@ export interface IntermediateResults {
         | "clubItem"]: targetType;
     };
   };
-}
-
-export interface SceneEstimatedParameters {
-  estimatedPower?: number;
-  estimatedPowerAscOrder?: number;
-  skillEffect?: number;
-  eventGimmickTotalPower?: number;
-  eventGimmickTotalAscOrder?: number;
-  preciousSceneEffect?: {
-    [K: number]: number;
-    total?: number;
-  };
-}
+};
 
 export interface BasePowerArray {
   全タイプ: {
@@ -115,34 +95,26 @@ export interface BasePowerArray {
   }[];
 }
 
-export interface SkillEstimatedParameters {
-  estimatedPower?: number;
-  estimatedEffect?: number;
-  estimatedRate?: number;
-  skillEffect?: number;
-}
-
-export interface SelectPreciousSceneParameters {
-  estimatedPower?: number;
-  estimatedCount?: number;
-  effectCondition:
-    | "コストが高いほど"
-    | "レアリティが高いほど"
-    | "声援Lvが高いほど"
-    | "Ex進展ガールが多いほど"
-    | "特定のガールで編成するほど"
-    | "様々なガールで編成するほど"
-    | "---";
-  conditionThreshold?: number | string;
-  additionalCondition?: "たすけて！マイヒーロー限定";
-  effectTarget: "全タイプ" | "SWEETタイプ" | "COOLタイプ" | "POPタイプ";
-  effectType: "攻援UP" | "守援UP" | "攻守UP";
-  effectRange: "主＋副" | "主のみ" | "副のみ";
-  valueFormat: "割合(%)" | "固定値";
-  value: number;
-  factor: number;
-  headcount?: number | string;
-}
+export type SelectPreciousSceneParameters =
+  DeckSimulatorSummaries["preciousScenes"]["attack" | "defense"][number] & {
+    effectCondition:
+      | "コストが高いほど"
+      | "レアリティが高いほど"
+      | "声援Lvが高いほど"
+      | "Ex進展ガールが多いほど"
+      | "特定のガールで編成するほど"
+      | "様々なガールで編成するほど"
+      | "---";
+    conditionThreshold?: number | string;
+    additionalCondition?: "たすけて！マイヒーロー限定";
+    effectTarget: "全タイプ" | "SWEETタイプ" | "COOLタイプ" | "POPタイプ";
+    effectType: "攻援UP" | "守援UP" | "攻守UP";
+    effectRange: "主＋副" | "主のみ" | "副のみ";
+    valueFormat: "割合(%)" | "固定値";
+    value: number;
+    factor: number;
+    headcount?: number | string;
+  };
 
 interface targetType {
   all?: effectType;

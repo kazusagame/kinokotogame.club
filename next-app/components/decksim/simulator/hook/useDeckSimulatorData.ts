@@ -1,12 +1,17 @@
 import { useState, useEffect, useCallback } from "react";
+
+import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
+
 import {
   DeckSimulatorData,
   DeckSimulatorCommonData,
 } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
 import { DeckSimulatorResult } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
 import { DeckSimulatorSavedDataSummary } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorSavedDataSummary";
-import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
+import { RawDataDeckSimulator } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorRawData";
+
 import { calcDeckSimulatorResult } from "@/components/decksim/simulator/calculator/calcDeckSimulatorResult";
+import { importDeckSimulatorRawData } from "@/components/decksim/simulator/calculator/importDeckSimulatorRawData";
 
 import { setDeepValue } from "@/lib/setDeepValue";
 
@@ -130,6 +135,12 @@ export function useDeckSimulatorData({
     baseData.dataType = eventId;
     return baseData;
   });
+  // 生データロード時の動作モード用
+  const [loadCondition, setLoadCondition] = useState({
+    clubType: "未所属",
+    specialGirlName1: "",
+    specialGirlName2: "",
+  });
 
   // 初回のロード時のみplayerDataをローカルストレージ内の共通データで上書きする
   useEffect(() => {
@@ -231,44 +242,27 @@ export function useDeckSimulatorData({
     (importData: unknown) => {
       if (typeof importData === "object" && typeof importData !== null) {
         const nextData = structuredClone(initData);
-        // const rawData = importData as RawDataDeckSimulator;
+        const rawData = importData as RawDataDeckSimulator;
 
-        // const leaderType = rawData?.data?.leaderCardBean?.skillBean?.type;
-        // const leaderDamage = rawData?.data?.leaderCardBean?.skillBean?.value;
-        // const leaderHeart =
-        //   rawData?.data?.leaderCardBean?.skillBean?.needHeartCount;
-        // if (leaderType === "DAMAGE" && leaderDamage !== undefined) {
-        //   nextData.leader[1] = { damage: leaderDamage, heartNum: leaderHeart };
-        // } else {
-        //   nextData.leader[1] = { damage: 0, heartNum: leaderHeart };
-        // }
+        // 期待したデータのようなら更新処理へ
+        if (
+          (rawData as unknown as { [K: string]: unknown })?.resultStatus ===
+            "success" ||
+          (rawData as unknown as { [K: string]: { [K: string]: unknown } })
+            ?.data?.success === true
+        ) {
+          importDeckSimulatorRawData({ nextData, rawData, loadCondition });
+          setData(nextData);
+          calcResultSummaries({ data: nextData, commonData: commonData });
 
-        // const memberLength = rawData?.data?.memberCardBeans?.length;
-        // if (memberLength) {
-        //   rawData?.data?.memberCardBeans.forEach((v, i) => {
-        //     const memberType = v.skillBean.type;
-        //     const memberDamage = v.skillBean.value;
-        //     const memberHeart = v.skillBean.needHeartCount;
-        //     if (memberType === "DAMAGE" && memberDamage !== undefined) {
-        //       nextData.member[i + 1] = {
-        //         damage: memberDamage,
-        //         heartNum: memberHeart,
-        //       };
-        //     } else {
-        //       nextData.member[i + 1] = { damage: 0, heartNum: memberHeart };
-        //     }
-        //   });
-        // }
-
-        setData(nextData);
-        calcResultSummaries({ data: nextData, commonData: commonData });
-        // データの抽出に成功したらシミュレーター本体のタブを有効にする。
-        if (simulatorTabButtonRef.current) {
-          simulatorTabButtonRef.current.checked = true;
+          // データの抽出に成功したらシミュレーター本体のタブを有効にする。
+          if (simulatorTabButtonRef.current) {
+            simulatorTabButtonRef.current.checked = true;
+          }
         }
       }
     },
-    [simulatorTabButtonRef, calcResultSummaries, commonData]
+    [simulatorTabButtonRef, calcResultSummaries, commonData, loadCondition]
   );
 
   const handleImportRawData = useCallback(
@@ -332,15 +326,33 @@ export function useDeckSimulatorData({
     [data, commonData, calcResultSummaries]
   );
 
+  const handleLoadCondition = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      const nextData = structuredClone(loadCondition);
+
+      const target = e.currentTarget;
+      if (!target.dataset["property"]) return;
+
+      const property = target.dataset["property"] as "clubType" | "specialGirlName1" | "specialGirlName2";
+      const value = target.value;
+
+      nextData[property] = value;
+      setLoadCondition(nextData);
+    },
+    [loadCondition]
+  );
+
   return {
     data,
     commonData,
     resultSummary,
+    loadCondition,
     handleChangeParameters,
     handleBlurParameters,
     handleLoadData,
     handleImportRawData,
     setValueAtPath,
+    handleLoadCondition,
   };
 }
 

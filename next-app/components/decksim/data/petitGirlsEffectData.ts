@@ -80,3 +80,76 @@ export const PETIT_GIRLS_EFFECTS_DATA: {
   202: { name: "ﾛｯｶｰの効果UP", effectCondition: "部活設備", conditionDetail: "SWEETタイプ", effectType: "攻守UP", markerType: "ブルー", levelMaxValue: 120, levelMaxValueUr: 128 },
   206: { name: "ﾎﾜｲﾄﾎﾞｰﾄﾞの効果UP", effectCondition: "部活設備", conditionDetail: "COOLタイプ", effectType: "攻守UP", markerType: "ブルー", levelMaxValue: 120, levelMaxValueUr: 128 },
 } as const;
+
+export const PETIT_GIRLS_EFFECTS_NAME_TO_ID: {
+  [K: (typeof PETIT_GIRLS_EFFECTS_DATA)[number]["name"]]: keyof typeof PETIT_GIRLS_EFFECTS_DATA
+} = {
+  "全ﾀｲﾌﾟの攻援UP": 0,
+  "POPﾀｲﾌﾟの攻援UP": 4,
+  "SWEETﾀｲﾌﾟの攻援UP": 8,
+  "COOLﾀｲﾌﾟの攻援UP": 12,
+
+  "全ﾀｲﾌﾟの守援UP": 1,
+  "POPﾀｲﾌﾟの守援UP": 5,
+  "SWEETﾀｲﾌﾟの守援UP": 9,
+  "COOLﾀｲﾌﾟの守援UP": 13,
+
+  "全ﾀｲﾌﾟの攻守UP": 2,
+  "POPﾀｲﾌﾟの攻守UP": 6,
+  "SWEETﾀｲﾌﾟの攻守UP": 10,
+  "COOLﾀｲﾌﾟの攻守UP": 14,
+
+  "全ﾀｲﾌﾟの攻援大UP": 16,
+  "POPﾀｲﾌﾟの攻援大UP": 20,
+  "SWEETﾀｲﾌﾟの攻援大UP": 24,
+  "COOLﾀｲﾌﾟの攻援大UP": 28,
+
+  "全ﾀｲﾌﾟの守援大UP": 17,
+  "POPﾀｲﾌﾟの守援大UP": 21,
+  "SWEETﾀｲﾌﾟの守援大UP": 25,
+  "COOLﾀｲﾌﾟの守援大UP": 29,
+
+  "全ﾀｲﾌﾟの攻守大UP": 18,
+  "POPﾀｲﾌﾟの攻守大UP": 22,
+  "SWEETﾀｲﾌﾟの攻守大UP": 26,
+  "COOLﾀｲﾌﾟの攻守大UP": 30,
+
+  "全ﾀｲﾌﾟの攻援特大UP": 32,
+  "POPﾀｲﾌﾟの攻援特大UP": 36,
+  "SWEETﾀｲﾌﾟの攻援特大UP": 40,
+  "COOLﾀｲﾌﾟの攻援特大UP": 44,
+
+  "全ﾀｲﾌﾟの守援特大UP": 33,
+  "POPﾀｲﾌﾟの守援特大UP": 37,
+  "SWEETﾀｲﾌﾟの守援特大UP": 41,
+  "COOLﾀｲﾌﾟの守援特大UP": 45,
+
+  "全ﾀｲﾌﾟの攻守特大UP": 34,
+  "POPﾀｲﾌﾟの攻守特大UP": 38,
+  "SWEETﾀｲﾌﾟの攻守特大UP": 42,
+  "COOLﾀｲﾌﾟの攻守特大UP": 46,
+
+  "全ﾀｲﾌﾟの攻援小UP": 64,
+  "POPﾀｲﾌﾟの攻援小UP": 68,
+  "SWEETﾀｲﾌﾟの攻援小UP": 72,
+  "COOLﾀｲﾌﾟの攻援小UP": 76,
+
+  "全ﾀｲﾌﾟの守援小UP": 65,
+  "POPﾀｲﾌﾟの守援小UP": 69,
+  "SWEETﾀｲﾌﾟの守援小UP": 73,
+  "COOLﾀｲﾌﾟの守援小UP": 77,
+
+  "全ﾀｲﾌﾟの攻守小UP": 66,
+  "POPﾀｲﾌﾟの攻守小UP": 70,
+  "SWEETﾀｲﾌﾟの攻守小UP": 74,
+  "COOLﾀｲﾌﾟの攻守小UP": 78,
+
+  "本命ｶﾞｰﾙの攻守UP": 130,
+  "ﾃﾞｰﾄ中のｶﾞｰﾙの攻守UP": 146,
+  "ﾀｯﾁﾎﾞｰﾅｽの効果UP": 162,
+  "誕生日のｶﾞｰﾙの攻守UP": 178,
+
+  "ﾃﾚﾋﾞの効果UP": 198,
+  "ﾛｯｶｰの効果UP": 202,
+  "ﾎﾜｲﾄﾎﾞｰﾄﾞの効果UP": 206,
+} as const;
