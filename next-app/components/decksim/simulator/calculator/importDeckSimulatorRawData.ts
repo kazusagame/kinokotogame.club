@@ -1,7 +1,4 @@
-import {
-  DeckSimulatorData,
-  DeckSimulatorCommonData,
-} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
+import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
 import {
   RawDataDeckSimulator,
   RawDataNormalDeck,
@@ -15,6 +12,8 @@ import {
   RawDataDeckBonus,
 } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorRawData";
 
+import { NAME_TO_PROFILE_CONVERT } from "@/lib/girlsProfile";
+import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 import { PETIT_GIRLS_EFFECTS_NAME_TO_ID } from "@/components/decksim/data/petitGirlsEffectData";
 
 import { setDeepValue } from "@/lib/setDeepValue";
@@ -85,7 +84,7 @@ const handleRawData = ({
   };
 }) => {
   Promise.all([
-    // handleMainScene({nextData, rawData, loadCondition}),
+    handleMainScene({ nextData, rawData, loadCondition }),
     handleMainSkill({ nextData, rawData }),
     handleSubScene({ nextData, rawData, loadCondition }),
     handleSubSwitch({ nextData, rawData }),
@@ -103,6 +102,137 @@ const handleRawData = ({
     });
 };
 
+const handleMainScene = async ({
+  nextData,
+  rawData,
+  loadCondition,
+}: {
+  nextData: DeckSimulatorData;
+  rawData:
+    | RawDataNormalDeck
+    | RawDataRaidSecond
+    | RawDataChampionship
+    | RawDataDivrace;
+  loadCondition: {
+    clubType: string;
+    specialGirlName1: string;
+    specialGirlName2: string;
+  };
+}) => {
+  const eventId = nextData.dataType;
+
+  // イベントごとの副センバツリストを取得する
+  let attackDeckList: RawDataMainScene[] | undefined = undefined;
+  let defenseDeckList: RawDataMainScene[] | undefined = undefined;
+  if (eventId === "raid-second") {
+    attackDeckList = (rawData as RawDataRaidSecond)?.data?.attackDeckMap
+      ?.frontDeckList;
+    defenseDeckList = (rawData as RawDataRaidSecond)?.data?.defenceDeckMap
+      ?.frontDeckList;
+  } else if (eventId === "championship") {
+    attackDeckList = (rawData as RawDataChampionship)?.data?.frontCards;
+  } else if (eventId === "championship-defense") {
+    defenseDeckList = (rawData as RawDataChampionship)?.data?.frontCards;
+  } else if (eventId === "divrace") {
+    attackDeckList = (rawData as RawDataDivrace)?.data?.defaultDeck
+      ?.divraceDeckBean?.frontDeckList;
+  } else {
+    attackDeckList = (rawData as RawDataNormalDeck)?.data?.frontDeckList;
+  }
+
+  // 攻援
+  let sceneIndex = 1;
+  if (Array.isArray(attackDeckList) && attackDeckList.length > 0) {
+    attackDeckList.forEach((element) => {
+      const {
+        basePower,
+        strap,
+        type,
+        rarity,
+        cost,
+        skillLv,
+        grade,
+        isClubMatch,
+        isDate,
+        isTouch,
+        isBirthday,
+        isLimitBreak,
+        isBestFriend,
+        isSpecial,
+      } = parseSceneParameter({
+        element,
+        loadCondition,
+        eventId,
+        deckType: "攻援",
+      });
+
+      setDeepValue(nextData, `mainScenes.attack.${sceneIndex}`, {
+        basePower,
+        strap,
+        type,
+        rarity,
+        cost,
+        skillLv,
+        grade,
+        isClubMatch,
+        isDate,
+        isTouch,
+        isBirthday,
+        isLimitBreak,
+        isBestFriend,
+        isSpecial,
+      });
+      sceneIndex++;
+    });
+  }
+
+  // 守援
+  sceneIndex = 1;
+  if (Array.isArray(defenseDeckList) && defenseDeckList.length > 0) {
+    defenseDeckList.forEach((element) => {
+      const {
+        basePower,
+        strap,
+        type,
+        rarity,
+        cost,
+        skillLv,
+        grade,
+        isClubMatch,
+        isDate,
+        isTouch,
+        isBirthday,
+        isLimitBreak,
+        isBestFriend,
+        isSpecial,
+      } = parseSceneParameter({
+        element,
+        loadCondition,
+        eventId,
+        deckType: "守援",
+      });
+
+      setDeepValue(nextData, `mainScenes.defense.${sceneIndex}`, {
+        basePower,
+        strap,
+        type,
+        rarity,
+        cost,
+        skillLv,
+        grade,
+        isClubMatch,
+        isDate,
+        isTouch,
+        isBirthday,
+        isLimitBreak,
+        isBestFriend,
+        isSpecial,
+      });
+      sceneIndex++;
+    });
+  }
+};
+
 const handleMainSkill = async ({
   nextData,
   rawData,
@@ -117,28 +247,28 @@ const handleMainSkill = async ({
   const eventId = nextData.dataType;
 
   // イベントごとの主センバツリストを取得する
-  let attackFrontDeckList: RawDataMainScene[] | undefined = undefined;
-  let defenceFrontDeckList: RawDataMainScene[] | undefined = undefined;
+  let attackDeckList: RawDataMainScene[] | undefined = undefined;
+  let defenseDeckList: RawDataMainScene[] | undefined = undefined;
   if (eventId === "raid-second") {
-    attackFrontDeckList = (rawData as RawDataRaidSecond)?.data?.attackDeckMap
+    attackDeckList = (rawData as RawDataRaidSecond)?.data?.attackDeckMap
       ?.frontDeckList;
-    defenceFrontDeckList = (rawData as RawDataRaidSecond)?.data?.defenceDeckMap
+    defenseDeckList = (rawData as RawDataRaidSecond)?.data?.defenceDeckMap
       ?.frontDeckList;
   } else if (eventId === "championship") {
-    attackFrontDeckList = (rawData as RawDataChampionship)?.data?.frontCards;
+    attackDeckList = (rawData as RawDataChampionship)?.data?.frontCards;
   } else if (eventId === "championship-defense") {
-    defenceFrontDeckList = (rawData as RawDataChampionship)?.data?.frontCards;
+    defenseDeckList = (rawData as RawDataChampionship)?.data?.frontCards;
   } else if (eventId === "divrace") {
-    attackFrontDeckList = (rawData as RawDataDivrace)?.data?.defaultDeck
+    attackDeckList = (rawData as RawDataDivrace)?.data?.defaultDeck
       ?.divraceDeckBean?.frontDeckList;
   } else {
-    attackFrontDeckList = (rawData as RawDataNormalDeck)?.data?.frontDeckList;
+    attackDeckList = (rawData as RawDataNormalDeck)?.data?.frontDeckList;
   }
 
   // 攻援
   let skillIndex = 1;
-  if (Array.isArray(attackFrontDeckList) && attackFrontDeckList.length > 0) {
-    attackFrontDeckList.forEach((element) => {
+  if (Array.isArray(attackDeckList) && attackDeckList.length > 0) {
+    attackDeckList.forEach((element) => {
       let description = "";
       if (eventId === "divrace") {
         description =
@@ -151,81 +281,17 @@ const handleMainSkill = async ({
 
       // 声援効果名から各パラメータを読み取る
       if (description && !description.includes("DOWN")) {
-        const target = description.includes("POP")
-          ? "POPタイプ"
-          : description.includes("COOL")
-          ? "COOLタイプ"
-          : description.includes("SWEET")
-          ? "SWEETタイプ"
-          : "全タイプ";
-
-        const isIncludeMain = description.includes("主ｾﾝﾊﾞﾂ");
-        const isIncludeSub = description.includes("副ｾﾝﾊﾞﾂ");
-        const range =
-          !isIncludeMain && !isIncludeSub
-            ? "主のみ"
-            : !isIncludeMain && isIncludeSub
-            ? "副のみ"
-            : isIncludeMain && !isIncludeSub
-            ? "主のみ"
-            : "主＋副";
-
-        const regexArray = description.match(/副ｾﾝﾊﾞﾂ(上位)?[0-9]+人/);
-        const subRange = !regexArray
-          ? "0"
-          : regexArray[0].replace(/(副ｾﾝﾊﾞﾂ|上位|人)/g, "");
-
-        const isIncludeAttack = description.includes("攻援");
-        const isIncludeDefence = description.includes("守援");
-        const type = isIncludeAttack ? "攻" : isIncludeDefence ? "守" : "攻守";
-
-        const strength = description.includes("ｽｰﾊﾟｰ特大～")
-          ? "スーパー特大++"
-          : description.includes("特大～")
-          ? "スーパー特大"
-          : description.includes("大～")
-          ? "特大"
-          : description.includes("中～")
-          ? "大"
-          : description.includes("超ｽｰﾊﾟｰ特大")
-          ? "超スーパー特大"
-          : description.includes("超スーパー特大")
-          ? "超スーパー特大"
-          : description.includes("ｽｰﾊﾟｰ特大++")
-          ? "スーパー特大++"
-          : description.includes("スーパー特大++")
-          ? "スーパー特大++"
-          : description.includes("ｽｰﾊﾟｰ特大+")
-          ? "スーパー特大+"
-          : description.includes("スーパー特大+")
-          ? "スーパー特大+"
-          : description.includes("ｽｰﾊﾟｰ特大")
-          ? "スーパー特大"
-          : description.includes("スーパー特大")
-          ? "スーパー特大"
-          : description.includes("特大++")
-          ? "特大++"
-          : description.includes("特大+")
-          ? "特大+"
-          : description.includes("特大")
-          ? "特大"
-          : description.includes("大")
-          ? "大"
-          : description.includes("中++")
-          ? "中++"
-          : description.includes("中+")
-          ? "中+"
-          : description.includes("中")
-          ? "中"
-          : "中";
+        const { target, range, subRange, type, strength } = parseSkillParameter(
+          { description }
+        );
 
         setDeepValue(nextData, `mainSkills.attack.${skillIndex}`, {
           skillLv: String(element["skillLevel"] ?? 1),
-          target: target,
-          range: range,
-          subRange: subRange,
-          type: type,
-          strength: strength,
+          target,
+          range,
+          subRange,
+          type,
+          strength,
         });
         skillIndex++;
       }
@@ -234,8 +300,8 @@ const handleMainSkill = async ({
 
   // 守援
   skillIndex = 1;
-  if (Array.isArray(defenceFrontDeckList) && defenceFrontDeckList.length > 0) {
-    defenceFrontDeckList.forEach((element) => {
+  if (Array.isArray(defenseDeckList) && defenseDeckList.length > 0) {
+    defenseDeckList.forEach((element) => {
       let description = "";
       if (eventId === "divrace") {
         description =
@@ -248,81 +314,17 @@ const handleMainSkill = async ({
 
       // 声援効果名から各パラメータを読み取る
       if (description && !description.includes("DOWN")) {
-        const target = description.includes("POP")
-          ? "POPタイプ"
-          : description.includes("COOL")
-          ? "COOLタイプ"
-          : description.includes("SWEET")
-          ? "SWEETタイプ"
-          : "全タイプ";
-
-        const isIncludeMain = description.includes("主ｾﾝﾊﾞﾂ");
-        const isIncludeSub = description.includes("副ｾﾝﾊﾞﾂ");
-        const range =
-          !isIncludeMain && !isIncludeSub
-            ? "主のみ"
-            : !isIncludeMain && isIncludeSub
-            ? "副のみ"
-            : isIncludeMain && !isIncludeSub
-            ? "主のみ"
-            : "主＋副";
-
-        const regexArray = description.match(/副ｾﾝﾊﾞﾂ(上位)?[0-9]+人/);
-        const subRange = !regexArray
-          ? "0"
-          : regexArray[0].replace(/(副ｾﾝﾊﾞﾂ|上位|人)/g, "");
-
-        const isIncludeAttack = description.includes("攻援");
-        const isIncludeDefence = description.includes("守援");
-        const type = isIncludeAttack ? "攻" : isIncludeDefence ? "守" : "攻守";
-
-        const strength = description.includes("ｽｰﾊﾟｰ特大～")
-          ? "スーパー特大++"
-          : description.includes("特大～")
-          ? "スーパー特大"
-          : description.includes("大～")
-          ? "特大"
-          : description.includes("中～")
-          ? "大"
-          : description.includes("超ｽｰﾊﾟｰ特大")
-          ? "超スーパー特大"
-          : description.includes("超スーパー特大")
-          ? "超スーパー特大"
-          : description.includes("ｽｰﾊﾟｰ特大++")
-          ? "スーパー特大++"
-          : description.includes("スーパー特大++")
-          ? "スーパー特大++"
-          : description.includes("ｽｰﾊﾟｰ特大+")
-          ? "スーパー特大+"
-          : description.includes("スーパー特大+")
-          ? "スーパー特大+"
-          : description.includes("ｽｰﾊﾟｰ特大")
-          ? "スーパー特大"
-          : description.includes("スーパー特大")
-          ? "スーパー特大"
-          : description.includes("特大++")
-          ? "特大++"
-          : description.includes("特大+")
-          ? "特大+"
-          : description.includes("特大")
-          ? "特大"
-          : description.includes("大")
-          ? "大"
-          : description.includes("中++")
-          ? "中++"
-          : description.includes("中+")
-          ? "中+"
-          : description.includes("中")
-          ? "中"
-          : "中";
+        const { target, range, subRange, type, strength } = parseSkillParameter(
+          { description }
+        );
 
         setDeepValue(nextData, `mainSkills.defense.${skillIndex}`, {
           skillLv: String(element["skillLevel"] ?? 1),
-          target: target,
-          range: range,
-          subRange: subRange,
-          type: type,
-          strength: strength,
+          target,
+          range,
+          subRange,
+          type,
+          strength,
         });
         skillIndex++;
       }
@@ -350,57 +352,65 @@ const handleSubScene = async ({
   const eventId = nextData.dataType;
 
   // イベントごとの副センバツリストを取得する
-  let attackSubDeckList: RawDataSubScene[] | undefined = undefined;
-  let defenceSubDeckList: RawDataSubScene[] | undefined = undefined;
+  let attackDeckList: RawDataSubScene[] | undefined = undefined;
+  let defenceDeckList: RawDataSubScene[] | undefined = undefined;
   if (eventId === "raid-second") {
-    attackSubDeckList = (rawData as RawDataRaidSecond)?.data?.attackDeckMap
+    attackDeckList = (rawData as RawDataRaidSecond)?.data?.attackDeckMap
       ?.subDeckList;
-    defenceSubDeckList = (rawData as RawDataRaidSecond)?.data?.defenceDeckMap
+    defenceDeckList = (rawData as RawDataRaidSecond)?.data?.defenceDeckMap
       ?.subDeckList;
   } else if (eventId === "championship") {
-    attackSubDeckList = (rawData as RawDataChampionship)?.data?.subCards;
+    attackDeckList = (rawData as RawDataChampionship)?.data?.subCards;
   } else if (eventId === "championship-defense") {
-    defenceSubDeckList = (rawData as RawDataChampionship)?.data?.subCards;
+    defenceDeckList = (rawData as RawDataChampionship)?.data?.subCards;
   } else if (eventId === "divrace") {
-    attackSubDeckList = (rawData as RawDataDivrace)?.data?.defaultDeck
+    attackDeckList = (rawData as RawDataDivrace)?.data?.defaultDeck
       ?.divraceDeckBean?.subDeckList;
   } else {
-    attackSubDeckList = (rawData as RawDataNormalDeck)?.data?.subDeckList;
+    attackDeckList = (rawData as RawDataNormalDeck)?.data?.subDeckList;
   }
 
   // 攻援
   let sceneIndex = 1;
-  if (Array.isArray(attackSubDeckList) && attackSubDeckList.length > 0) {
-    attackSubDeckList.forEach((element) => {
-      const cardName = element["cardName"].replace(/\[.*\]/g, "");
-
-  // type: "SWEETタイプ" | "COOLタイプ" | "POPタイプ";
-  // rarity: "Luv" | "UR" | "SSR" | "SR";
-  // cost: string;
-  // skillLv: string;
-  // grade: "1年" | "2年" | "3年" | "その他";
-  // isClubMatch: boolean;
-  // isDate: boolean;
-  // isTouch: boolean;
-  // isBirthday: boolean;
-  // isLimitBreak: boolean;
-  // isBestFriend: boolean;
-  // isSpecial: boolean;
+  if (Array.isArray(attackDeckList) && attackDeckList.length > 0) {
+    attackDeckList.forEach((element) => {
+      const {
+        basePower,
+        strap,
+        type,
+        rarity,
+        cost,
+        skillLv,
+        grade,
+        isClubMatch,
+        isDate,
+        isTouch,
+        isBirthday,
+        isLimitBreak,
+        isBestFriend,
+        isSpecial,
+      } = parseSceneParameter({
+        element,
+        loadCondition,
+        eventId,
+        deckType: "攻援",
+      });
 
       setDeepValue(nextData, `subScenes.attack.${sceneIndex}`, {
-        basePower: String(element["baseAttackRating"]) ?? "0",
-        type: type,
-        rarity: rarity,
-        cost: cost,
-        skillLv: String(element["skillLevel"] ?? 1),
-        grade: grade,
-        isClubMatch: isClubMatch,
-        isDate: isDate,
-        isTouch: isTouch,
-        isBirthday: isBirthday,
-        isLimitBreak: isLimitBreak,
-        isBestFriend: isBestFriend,
-        isSpecial: isSpecial,
+        basePower,
+        strap,
+        type,
+        rarity,
+        cost,
+        skillLv,
+        grade,
+        isClubMatch,
+        isDate,
+        isTouch,
+        isBirthday,
+        isLimitBreak,
+        isBestFriend,
+        isSpecial,
       });
       sceneIndex++;
     });
@@ -408,59 +418,47 @@ const handleSubScene = async ({
 
   // 守援
   sceneIndex = 1;
-  if (Array.isArray(defenceSubDeckList) && defenceSubDeckList.length > 0) {
-    defenceSubDeckList.forEach((element) => {
-      // 声援効果名から各パラメータを読み取る
-      const description = element?.["skillList"]?.[0]?.["description"] ?? "";
-      if (description && !description.includes("DOWN")) {
-        const target = description.includes("POP")
-          ? "POPタイプ"
-          : description.includes("COOL")
-          ? "COOLタイプ"
-          : description.includes("SWEET")
-          ? "SWEETタイプ"
-          : "全タイプ";
+  if (Array.isArray(defenceDeckList) && defenceDeckList.length > 0) {
+    defenceDeckList.forEach((element) => {
+      const {
+        basePower,
+        strap,
+        type,
+        rarity,
+        cost,
+        skillLv,
+        grade,
+        isClubMatch,
+        isDate,
+        isTouch,
+        isBirthday,
+        isLimitBreak,
+        isBestFriend,
+        isSpecial,
+      } = parseSceneParameter({
+        element,
+        loadCondition,
+        eventId,
+        deckType: "守援",
+      });
 
-        const isIncludeMain = description.includes("主ｾﾝﾊﾞﾂ");
-        const isIncludeSub = description.includes("副ｾﾝﾊﾞﾂ");
-        const range =
-          !isIncludeMain && !isIncludeSub
-            ? "主のみ"
-            : !isIncludeMain && isIncludeSub
-            ? "副のみ"
-            : isIncludeMain && !isIncludeSub
-            ? "主のみ"
-            : "主＋副";
-
-        const regexArray = description.match(/副ｾﾝﾊﾞﾂ(上位)?[0-9]+人/);
-        const subRange = !regexArray
-          ? "0"
-          : regexArray[0].replace(/(副ｾﾝﾊﾞﾂ|上位|人)/g, "");
-
-        const isIncludeAttack = description.includes("攻援");
-        const isIncludeDefence = description.includes("守援");
-        const type = isIncludeAttack ? "攻" : isIncludeDefence ? "守" : "攻守";
-
-        const strength = description.includes("中～")
-          ? "大"
-          : description.includes("特大")
-          ? "特大"
-          : description.includes("大")
-          ? "大"
-          : description.includes("中")
-          ? "中"
-          : "中";
-
-        setDeepValue(nextData, `subScenes.defense.${sceneIndex}`, {
-          skillLv: String(element["skillLevel"] ?? 1),
-          target: target,
-          range: range,
-          subRange: subRange,
-          type: type,
-          strength: strength,
-        });
-        sceneIndex++;
-      }
+      setDeepValue(nextData, `subScenes.defense.${sceneIndex}`, {
+        basePower,
+        strap,
+        type,
+        rarity,
+        cost,
+        skillLv,
+        grade,
+        isClubMatch,
+        isDate,
+        isTouch,
+        isBirthday,
+        isLimitBreak,
+        isBestFriend,
+        isSpecial,
+      });
+      sceneIndex++;
     });
   }
 };
@@ -479,28 +477,28 @@ const handleSubSwitch = async ({
   const eventId = nextData.dataType;
 
   // イベントごとの副センバツリストを取得する
-  let attackSubDeckList: RawDataSubScene[] | undefined = undefined;
-  let defenceSubDeckList: RawDataSubScene[] | undefined = undefined;
+  let attackDeckList: RawDataSubScene[] | undefined = undefined;
+  let defenceDeckList: RawDataSubScene[] | undefined = undefined;
   if (eventId === "raid-second") {
-    attackSubDeckList = (rawData as RawDataRaidSecond)?.data?.attackDeckMap
+    attackDeckList = (rawData as RawDataRaidSecond)?.data?.attackDeckMap
       ?.subDeckList;
-    defenceSubDeckList = (rawData as RawDataRaidSecond)?.data?.defenceDeckMap
+    defenceDeckList = (rawData as RawDataRaidSecond)?.data?.defenceDeckMap
       ?.subDeckList;
   } else if (eventId === "championship") {
-    attackSubDeckList = (rawData as RawDataChampionship)?.data?.subCards;
+    attackDeckList = (rawData as RawDataChampionship)?.data?.subCards;
   } else if (eventId === "championship-defense") {
-    defenceSubDeckList = (rawData as RawDataChampionship)?.data?.subCards;
+    defenceDeckList = (rawData as RawDataChampionship)?.data?.subCards;
   } else if (eventId === "divrace") {
-    attackSubDeckList = (rawData as RawDataDivrace)?.data?.defaultDeck
+    attackDeckList = (rawData as RawDataDivrace)?.data?.defaultDeck
       ?.divraceDeckBean?.subDeckList;
   } else {
-    attackSubDeckList = (rawData as RawDataNormalDeck)?.data?.subDeckList;
+    attackDeckList = (rawData as RawDataNormalDeck)?.data?.subDeckList;
   }
 
   // 攻援
   let switchOffIndex = 1;
-  if (Array.isArray(attackSubDeckList) && attackSubDeckList.length > 0) {
-    attackSubDeckList.forEach((element) => {
+  if (Array.isArray(attackDeckList) && attackDeckList.length > 0) {
+    attackDeckList.forEach((element) => {
       let isSwitchBack: boolean = false;
       if (eventId === "championship" || eventId === "championship-defense") {
         isSwitchBack = element["cardType"] === "EFFECTIVE_MIRROR_BACK";
@@ -518,51 +516,17 @@ const handleSubSwitch = async ({
       // 声援効果名から各パラメータを読み取る
       const description = element?.["skillList"]?.[0]?.["description"] ?? "";
       if (description && !description.includes("DOWN")) {
-        const target = description.includes("POP")
-          ? "POPタイプ"
-          : description.includes("COOL")
-          ? "COOLタイプ"
-          : description.includes("SWEET")
-          ? "SWEETタイプ"
-          : "全タイプ";
-
-        const isIncludeMain = description.includes("主ｾﾝﾊﾞﾂ");
-        const isIncludeSub = description.includes("副ｾﾝﾊﾞﾂ");
-        const range =
-          !isIncludeMain && !isIncludeSub
-            ? "主のみ"
-            : !isIncludeMain && isIncludeSub
-            ? "副のみ"
-            : isIncludeMain && !isIncludeSub
-            ? "主のみ"
-            : "主＋副";
-
-        const regexArray = description.match(/副ｾﾝﾊﾞﾂ(上位)?[0-9]+人/);
-        const subRange = !regexArray
-          ? "0"
-          : regexArray[0].replace(/(副ｾﾝﾊﾞﾂ|上位|人)/g, "");
-
-        const isIncludeAttack = description.includes("攻援");
-        const isIncludeDefence = description.includes("守援");
-        const type = isIncludeAttack ? "攻" : isIncludeDefence ? "守" : "攻守";
-
-        const strength = description.includes("中～")
-          ? "大"
-          : description.includes("特大")
-          ? "特大"
-          : description.includes("大")
-          ? "大"
-          : description.includes("中")
-          ? "中"
-          : "中";
+        const { target, range, subRange, type, strength } = parseSkillParameter(
+          { description }
+        );
 
         setDeepValue(nextData, `subSwitches.attack.${switchOffIndex}`, {
           skillLv: String(element["skillLevel"] ?? 1),
-          target: target,
-          range: range,
-          subRange: subRange,
-          type: type,
-          strength: strength,
+          target,
+          range,
+          subRange,
+          type,
+          strength,
         });
         switchOffIndex++;
       }
@@ -571,8 +535,8 @@ const handleSubSwitch = async ({
 
   // 守援
   switchOffIndex = 1;
-  if (Array.isArray(defenceSubDeckList) && defenceSubDeckList.length > 0) {
-    defenceSubDeckList.forEach((element) => {
+  if (Array.isArray(defenceDeckList) && defenceDeckList.length > 0) {
+    defenceDeckList.forEach((element) => {
       let isSwitchBack: boolean = false;
       if (eventId === "championship" || eventId === "championship-defense") {
         isSwitchBack = element["cardType"] === "EFFECTIVE_MIRROR_BACK";
@@ -590,56 +554,253 @@ const handleSubSwitch = async ({
       // 声援効果名から各パラメータを読み取る
       const description = element?.["skillList"]?.[0]?.["description"] ?? "";
       if (description && !description.includes("DOWN")) {
-        const target = description.includes("POP")
-          ? "POPタイプ"
-          : description.includes("COOL")
-          ? "COOLタイプ"
-          : description.includes("SWEET")
-          ? "SWEETタイプ"
-          : "全タイプ";
-
-        const isIncludeMain = description.includes("主ｾﾝﾊﾞﾂ");
-        const isIncludeSub = description.includes("副ｾﾝﾊﾞﾂ");
-        const range =
-          !isIncludeMain && !isIncludeSub
-            ? "主のみ"
-            : !isIncludeMain && isIncludeSub
-            ? "副のみ"
-            : isIncludeMain && !isIncludeSub
-            ? "主のみ"
-            : "主＋副";
-
-        const regexArray = description.match(/副ｾﾝﾊﾞﾂ(上位)?[0-9]+人/);
-        const subRange = !regexArray
-          ? "0"
-          : regexArray[0].replace(/(副ｾﾝﾊﾞﾂ|上位|人)/g, "");
-
-        const isIncludeAttack = description.includes("攻援");
-        const isIncludeDefence = description.includes("守援");
-        const type = isIncludeAttack ? "攻" : isIncludeDefence ? "守" : "攻守";
-
-        const strength = description.includes("中～")
-          ? "大"
-          : description.includes("特大")
-          ? "特大"
-          : description.includes("大")
-          ? "大"
-          : description.includes("中")
-          ? "中"
-          : "中";
+        const { target, range, subRange, type, strength } = parseSkillParameter(
+          { description }
+        );
 
         setDeepValue(nextData, `subSwitches.defense.${switchOffIndex}`, {
           skillLv: String(element["skillLevel"] ?? 1),
-          target: target,
-          range: range,
-          subRange: subRange,
-          type: type,
-          strength: strength,
+          target,
+          range,
+          subRange,
+          type,
+          strength,
         });
         switchOffIndex++;
       }
     });
   }
+};
+
+const parseSceneParameter = ({
+  element,
+  loadCondition,
+  eventId,
+  deckType,
+}: {
+  element: RawDataMainScene | RawDataSubScene;
+  loadCondition: {
+    clubType: string;
+    specialGirlName1: string;
+    specialGirlName2: string;
+  };
+  eventId: DeckSimulatorEventId;
+  deckType: "攻援" | "守援";
+}): {
+  basePower: string;
+  strap?: string;
+  type: "SWEETタイプ" | "COOLタイプ" | "POPタイプ";
+  rarity: "Luv" | "UR" | "SSR" | "SR";
+  cost: string;
+  skillLv: string;
+  grade?: "1年" | "2年" | "3年" | "その他";
+  isClubMatch: boolean;
+  isDate: boolean;
+  isTouch: boolean;
+  isBirthday: boolean;
+  isLimitBreak: boolean;
+  isBestFriend: boolean;
+  isSpecial: boolean;
+} => {
+  // シーン名からキャラクター名を取得する
+  // テーマ部分を除去して、アネットはフルネームに変更。
+  const characterName = element["cardName"].replace(/\[.*\]/g, "").replace("アネット・O・唐澤", "アネット・オルガ・唐澤");
+
+  const basePowerNum =
+    eventId === "raid-second" && deckType === "守援"
+      ? element["baseDefenceRating"] ?? 0
+      : eventId === "championship-defense"
+      ? element["baseDefenseRating"] ?? 0
+      : element["baseAttackRating"] ?? 0;
+  const basePower = String(basePowerNum);
+
+  const strapNum =
+    eventId === "raid-second" && deckType === "守援"
+      ? element["wearDeckCardBean"]?.["defenceEffectValue"] ?? 0
+      : eventId === "championship-defense"
+      ? element["wearDeckCardBean"]?.["defenceEffectValue"] ?? 0
+      : element["wearDeckCardBean"]?.["attackEffectValue"] ?? 0;
+  const strap = String(strapNum);
+
+  const type =
+    element["sphereName"] === "SWEET" || element["sphereId"] === 2
+      ? "SWEETタイプ"
+      : element["sphereName"] === "COOL" || element["sphereId"] === 1
+      ? "COOLタイプ"
+      : "POPタイプ";
+
+  const rarity =
+    element["limitbreakCount"] > 100
+      ? "Luv"
+      : element["rarityShortName"] === "UR"
+      ? "UR"
+      : element["rarityShortName"] === "SSR"
+      ? "SSR"
+      : "SR";
+
+  const costNum =
+    eventId === "championship" || eventId === "championship-defense"
+      ? 30
+      : element["power"] ?? 30;
+  const cost = String(costNum);
+
+  const skillLvNum = element["skillLevel"] ?? 1;
+  const skillLv = String(skillLvNum);
+
+  const gradeStr = NAME_TO_PROFILE_CONVERT?.[characterName]?.grade ?? "---";
+  const grade = gradeStr !== "---" ? gradeStr : "その他";
+
+  const clubType = NAME_TO_PROFILE_CONVERT?.[characterName]?.clubType ?? "設定なし";
+  const isClubMatch = clubType === loadCondition.clubType ? true : false;
+
+  const isDate =
+    eventId === "championship" || eventId === "championship-defense"
+      ? element["dateFlg"] ?? false
+      : element["dateBonus"] ?? false;
+
+  const isTouch =
+    eventId === "championship" || eventId === "championship-defense"
+      ? element["touchFlg"] ?? false
+      : element["touchBonusRating"] && element["touchBonusRating"] > 0
+      ? true
+      : false;
+
+  const isBirthday =
+    eventId === "championship" || eventId === "championship-defense"
+      ? element["birthdayFlg"] ?? false
+      : element["birthdayBonus"] ?? false;
+
+  const isLimitBreak = element["limitbreakCount"] > 0 ? true : false;
+
+  const isBestFriend =
+    eventId === "championship" || eventId === "championship-defense"
+      ? false
+      : element["leader"] ?? false;
+
+  const isSpecial =
+    loadCondition.specialGirlName1 &&
+    characterName.includes(loadCondition.specialGirlName1)
+      ? true
+      : loadCondition.specialGirlName2 &&
+        characterName.includes(loadCondition.specialGirlName2)
+      ? true
+      : false;
+
+  return {
+    basePower,
+    strap,
+    type,
+    rarity,
+    cost,
+    skillLv,
+    grade,
+    isClubMatch,
+    isDate,
+    isTouch,
+    isBirthday,
+    isLimitBreak,
+    isBestFriend,
+    isSpecial,
+  };
+};
+
+const parseSkillParameter = ({
+  description,
+}: {
+  description: string;
+}): {
+  target: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
+  range: "主＋副" | "主のみ" | "副のみ";
+  subRange: string;
+  type: "攻" | "守" | "攻守";
+  strength:
+    | "中"
+    | "中+"
+    | "中++"
+    | "大"
+    | "特大"
+    | "特大+"
+    | "特大++"
+    | "スーパー特大"
+    | "スーパー特大+"
+    | "スーパー特大++"
+    | "超スーパー特大";
+} => {
+  const target = description.includes("POP")
+    ? "POPタイプ"
+    : description.includes("COOL")
+    ? "COOLタイプ"
+    : description.includes("SWEET")
+    ? "SWEETタイプ"
+    : "全タイプ";
+
+  const isIncludeMain = description.includes("主ｾﾝﾊﾞﾂ");
+  const isIncludeSub = description.includes("副ｾﾝﾊﾞﾂ");
+  const range =
+    !isIncludeMain && !isIncludeSub
+      ? "主のみ"
+      : !isIncludeMain && isIncludeSub
+      ? "副のみ"
+      : isIncludeMain && !isIncludeSub
+      ? "主のみ"
+      : "主＋副";
+
+  const regexArray = description.match(/副ｾﾝﾊﾞﾂ(上位)?[0-9]+人/);
+  const subRange = !regexArray
+    ? "0"
+    : regexArray[0].replace(/(副ｾﾝﾊﾞﾂ|上位|人)/g, "");
+
+  const isIncludeAttack = description.includes("攻援");
+  const isIncludeDefence = description.includes("守援");
+  const type = isIncludeAttack ? "攻" : isIncludeDefence ? "守" : "攻守";
+
+  const strength = description.includes("ｽｰﾊﾟｰ特大～")
+    ? "スーパー特大++"
+    : description.includes("特大～")
+    ? "スーパー特大"
+    : description.includes("大～")
+    ? "特大"
+    : description.includes("中～")
+    ? "大"
+    : description.includes("超ｽｰﾊﾟｰ特大")
+    ? "超スーパー特大"
+    : description.includes("超スーパー特大")
+    ? "超スーパー特大"
+    : description.includes("ｽｰﾊﾟｰ特大++")
+    ? "スーパー特大++"
+    : description.includes("スーパー特大++")
+    ? "スーパー特大++"
+    : description.includes("ｽｰﾊﾟｰ特大+")
+    ? "スーパー特大+"
+    : description.includes("スーパー特大+")
+    ? "スーパー特大+"
+    : description.includes("ｽｰﾊﾟｰ特大")
+    ? "スーパー特大"
+    : description.includes("スーパー特大")
+    ? "スーパー特大"
+    : description.includes("特大++")
+    ? "特大++"
+    : description.includes("特大+")
+    ? "特大+"
+    : description.includes("特大")
+    ? "特大"
+    : description.includes("大")
+    ? "大"
+    : description.includes("中++")
+    ? "中++"
+    : description.includes("中+")
+    ? "中+"
+    : description.includes("中")
+    ? "中"
+    : "中";
+
+  return {
+    target,
+    range,
+    subRange,
+    type,
+    strength,
+  };
 };
 
 const handlePreciousScene = async ({
@@ -656,35 +817,28 @@ const handlePreciousScene = async ({
   const eventId = nextData.dataType;
 
   // イベントごとのプレシャスシーンリストを取得する
-  let attackDeckPreciousBeanList: RawDataPreciousScene[] | undefined =
-    undefined;
-  let defenceDeckPreciousBeanList: RawDataPreciousScene[] | undefined =
-    undefined;
+  let attackDeckList: RawDataPreciousScene[] | undefined = undefined;
+  let defenceDeckList: RawDataPreciousScene[] | undefined = undefined;
   if (eventId === "raid-second") {
-    attackDeckPreciousBeanList = (rawData as RawDataRaidSecond)?.data
-      ?.attackDeckMap?.precious?.deckPreciousBeanList;
-    defenceDeckPreciousBeanList = (rawData as RawDataRaidSecond)?.data
-      ?.defenceDeckMap?.precious?.deckPreciousBeanList;
+    attackDeckList = (rawData as RawDataRaidSecond)?.data?.attackDeckMap
+      ?.precious?.deckPreciousBeanList;
+    defenceDeckList = (rawData as RawDataRaidSecond)?.data?.defenceDeckMap
+      ?.precious?.deckPreciousBeanList;
   } else if (eventId === "championship") {
-    attackDeckPreciousBeanList = (rawData as RawDataChampionship)?.data
-      ?.preciousList;
+    attackDeckList = (rawData as RawDataChampionship)?.data?.preciousList;
   } else if (eventId === "championship-defense") {
-    defenceDeckPreciousBeanList = (rawData as RawDataChampionship)?.data
-      ?.preciousList;
+    defenceDeckList = (rawData as RawDataChampionship)?.data?.preciousList;
   } else if (eventId === "divrace") {
-    attackDeckPreciousBeanList = (rawData as RawDataDivrace)?.data?.defaultDeck
+    attackDeckList = (rawData as RawDataDivrace)?.data?.defaultDeck
       ?.divraceDeckBean?.precious?.deckPreciousBeanList;
   } else {
-    attackDeckPreciousBeanList = (rawData as RawDataNormalDeck)?.data?.precious
+    attackDeckList = (rawData as RawDataNormalDeck)?.data?.precious
       ?.deckPreciousBeanList;
   }
 
   // 攻援
-  if (
-    Array.isArray(attackDeckPreciousBeanList) &&
-    attackDeckPreciousBeanList.length > 0
-  ) {
-    attackDeckPreciousBeanList.forEach((element, index) => {
+  if (Array.isArray(attackDeckList) && attackDeckList.length > 0) {
+    attackDeckList.forEach((element, index) => {
       const preciousId = element["preciousId"];
       const rarity = element["level"];
 
@@ -696,11 +850,8 @@ const handlePreciousScene = async ({
   }
 
   // 守援
-  if (
-    Array.isArray(defenceDeckPreciousBeanList) &&
-    defenceDeckPreciousBeanList.length > 0
-  ) {
-    defenceDeckPreciousBeanList.forEach((element, index) => {
+  if (Array.isArray(defenceDeckList) && defenceDeckList.length > 0) {
+    defenceDeckList.forEach((element, index) => {
       const preciousId = element["preciousId"];
       const rarity = element["level"];
 

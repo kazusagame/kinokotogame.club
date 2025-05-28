@@ -134,7 +134,7 @@ export interface RawDataSubScene {
   skillLevel: number;
   dateBonus?: boolean /* championship 以外 */;
   dateFlg?: boolean /* championship */;
-  // touchBonusRating?: number; /* championship 以外 */
+  touchBonusRating?: number; /* championship 以外 */
   touchFlg?: boolean /* championship */;
   birthdayBonus?: boolean /* championship 以外 */;
   birthdayFlg?: boolean /* championship */;

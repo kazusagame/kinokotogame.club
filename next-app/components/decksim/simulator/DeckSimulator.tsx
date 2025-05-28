@@ -564,7 +564,7 @@ function DataExportAndImport({
             {eventId !== "tower" &&
               eventId !== "divrace" &&
               eventId !== "board" && (
-                <div>
+                <div className="mb-6">
                   <label className="label">
                     <span className="label-text">プレイヤーの部活タイプ</span>
                   </label>
@@ -588,7 +588,7 @@ function DataExportAndImport({
                 </div>
               )}
             {eventId === "tower" && (
-              <div className="flex flex-col">
+              <div className="flex flex-col mb-6">
                 <label className="label">
                   <span className="label-text">有利なガール</span>
                 </label>
@@ -611,7 +611,7 @@ function DataExportAndImport({
               </div>
             )}
             {eventId === "divrace" && (
-              <div className="flex flex-col">
+              <div className="flex flex-col mb-6">
                 <label className="label">
                   <span className="label-text">予選グループガール</span>
                 </label>
@@ -626,7 +626,7 @@ function DataExportAndImport({
               </div>
             )}
           </div>
-          <div className="mt-6 px-4">
+          <div className="px-4">
             <label>
               <div role="button" className="btn btn-sm btn-primary">
                 ファイルを選択

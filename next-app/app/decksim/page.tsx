@@ -296,16 +296,30 @@ export default function Page() {
               新旧でデータの互換性はありません。
               テスト中の新バージョンで保存したデータを現行バージョンで読み出そうとするとエラーになります。
             </p>
+            <p className="md:px-4 mt-4">
+              URフレンドぷちガールちゃん周りの設定はすべて暫定値が入っています。信用しないでください。
+            </p>
             <p className="md:px-4 mt-4 mb-2">
               基本的な作りは同じですが、使い勝手が若干変わっている部分があります。
             </p>
             <ul className="md:px-4 space-y-2">
               <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
-                プレイヤーのタイプや部活役職、メンズコロンLvなどのプレイヤーデータが共通設定となり、1つのページでの変更がすべてのページに反映されるようになります。
+                プレイヤーのタイプや部活役職、メンズコロンLvなどのプレイヤーデータが共通設定となり、1つのページでの変更がすべてのページに反映されるようになりました。
                 <br />
                 今までは役職が変わったりメンズコロンのLvが上がるたびに各々のページで変更が必要だったのですが、この手間が省けるようになります。
                 <br />
                 ただし、この変更により複数のアカウントのデータを1つのブラウザで保管するのは難しくなりますので、アカウントごとにブラウザを変えたりブラウザのプロフィール機能を使用するなどでデータの分割をお願いします。
+              </li>
+              <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
+                声援の設定において、旧バージョンのシミュレーターにあった昔のURシーンの声援変更機能の回数(+1～+5)を入力する欄は除外しています。
+                <br />
+                +1につき声援Lv1つ分の効果になるため、もし該当するシーンを設定したい場合は声援Lvに上乗せして入力することで代用してください。
+                <br />
+                （例：声援Lv18の「SWEETの主ｾﾝﾊﾞﾂ全員&副ｾﾝﾊﾞﾂ1人の攻守特大UP+4」を設定したい場合は、声援Lv18
+                + 4 の 声援Lv22として登録する。）
+              </li>
+              <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
+                「[成果発表会]心実&エミ」などのEx進展ガール数を効果条件に持つプレシャスシーンについて、カウント人数が自動算出になりました。「特定のガール」や「様々なガール」の効果については引き続き手動での入力が必要です。
               </li>
             </ul>
           </div>
