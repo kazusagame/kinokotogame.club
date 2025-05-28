@@ -242,6 +242,7 @@ export function useDeckSimulatorData({
     (importData: unknown) => {
       if (typeof importData === "object" && typeof importData !== null) {
         const nextData = structuredClone(initData);
+        nextData.dataType = eventId;
         const rawData = importData as RawDataDeckSimulator;
 
         // 期待したデータのようなら更新処理へ
@@ -262,7 +263,13 @@ export function useDeckSimulatorData({
         }
       }
     },
-    [simulatorTabButtonRef, calcResultSummaries, commonData, loadCondition]
+    [
+      simulatorTabButtonRef,
+      eventId,
+      calcResultSummaries,
+      commonData,
+      loadCondition,
+    ]
   );
 
   const handleImportRawData = useCallback(
@@ -333,7 +340,10 @@ export function useDeckSimulatorData({
       const target = e.currentTarget;
       if (!target.dataset["property"]) return;
 
-      const property = target.dataset["property"] as "clubType" | "specialGirlName1" | "specialGirlName2";
+      const property = target.dataset["property"] as
+        | "clubType"
+        | "specialGirlName1"
+        | "specialGirlName2";
       const value = target.value;
 
       nextData[property] = value;

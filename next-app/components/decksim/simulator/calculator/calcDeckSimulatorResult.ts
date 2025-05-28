@@ -6,6 +6,7 @@ import { setPreciousSceneParameter } from "@/components/decksim/simulator/calcul
 import { calcPreciousSceneEffects } from "@/components/decksim/simulator/calculator/calcPreciousSceneEffects";
 import { calcSkillEffects } from "@/components/decksim/simulator/calculator/calcSkillEffects";
 import { createEffectMatrix } from "@/components/decksim/simulator/calculator/createEffectMatrix";
+import { sumEffectMatrix } from "@/components/decksim/simulator/calculator/sumEffectMatrix";
 
 import { transferIntermediateToSummary } from "@/components/decksim/simulator/calculator/transferIntermediateToSummary";
 
@@ -54,10 +55,14 @@ export const calcDeckSimulatorResult = ({
   calcSkillEffects({ inputData, intermediateResults });
 
   // ボーナス有効率に基づく効果値の2次元マトリックスの作成
+  // ついでに対抗戦用のシーンごとの声援効果値もセットする
   createEffectMatrix({ inputData, commonData, intermediateResults });
 
+  // ボーナス効果値の2次元マトリックスを各シーンごとに合計します
+  sumEffectMatrix({ intermediateResults });
+
   /* 合計計算フェイズ */
-  // 2次元マトリックスの合計
+  // すべてのシーン、声援、ぷちセンバツの効果を合算してtotalPerformanceを算出します
 
   /* イベント個別計算フェイズ  */
   // 計算式のイベント個別の部分、ポイント変換も

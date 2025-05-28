@@ -13,6 +13,7 @@ import {
 import {
   BONUS_DATA_COMMON,
   BONUS_DATA_PER_EVENT,
+  ClubcupSkillEffectMap,
 } from "@/components/decksim/data/bonusData";
 
 import { setDeepValue } from "@/lib/setDeepValue";
@@ -173,6 +174,20 @@ export const createEffectMatrix = ({
           `${mainOrSub}.${attackOrDefense}.${key}.effectMatrix`,
           effectMatrix
         );
+
+        //対抗戦用 声援効果値設定処理
+        if (eventId === "clubcup") {
+          const skillEffectDict = BONUS_DATA_PER_EVENT.clubcup.eventUniqueBonus!
+            .skillEffect.value as ClubcupSkillEffectMap;
+          const skillEffectValue =
+            skillEffectDict[sceneData.rarity][`lv${sceneData.skillLv}`] ?? 0;
+
+          setDeepValue(
+            intermediateResults,
+            `${mainOrSub}.${attackOrDefense}.${key}.skillEffect`,
+            skillEffectValue
+          );
+        }
       });
     });
   });

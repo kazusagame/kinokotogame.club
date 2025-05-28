@@ -10,6 +10,11 @@ export type IntermediateResults = DeckSimulatorSummaries & {
           total?: number;
         };
         effectMatrix?: EffectMatrix;
+        effectTotal?: {
+          min: number;
+          expDif: number;
+          maxDif: number;
+        };
       };
       basePowerArray?: BasePowerArray;
     };
@@ -20,6 +25,11 @@ export type IntermediateResults = DeckSimulatorSummaries & {
           total?: number;
         };
         effectMatrix?: EffectMatrix;
+        effectTotal?: {
+          min: number;
+          expDif: number;
+          maxDif: number;
+        };
       };
       basePowerArray?: BasePowerArray;
     };
@@ -32,6 +42,11 @@ export type IntermediateResults = DeckSimulatorSummaries & {
           total?: number;
         };
         effectMatrix?: EffectMatrix;
+        effectTotal?: {
+          min: number;
+          expDif: number;
+          maxDif: number;
+        };
       };
       basePowerArray?: BasePowerArray;
     };
@@ -42,6 +57,11 @@ export type IntermediateResults = DeckSimulatorSummaries & {
           total?: number;
         };
         effectMatrix?: EffectMatrix;
+        effectTotal?: {
+          min: number;
+          expDif: number;
+          maxDif: number;
+        };
       };
       basePowerArray?: BasePowerArray;
     };
@@ -77,9 +97,9 @@ export type IntermediateResults = DeckSimulatorSummaries & {
 };
 
 export interface PowerDict {
-    scenePower: number;
-    strapEffect: number;
-    preciousEffect: number;
+  scenePower: number;
+  strapEffect: number;
+  preciousEffect: number;
 }
 
 export interface BasePowerArray {
@@ -90,18 +110,18 @@ export interface BasePowerArray {
 }
 
 export interface EffectMatrix {
-  base: PowerDict,
-  typeMatch: PowerDict,
-  clubMatch: PowerDict,
-  clubItem: PowerDict,
-  clubPosition: PowerDict,
-  deck: PowerDict,
-  date: PowerDict,
-  touch: PowerDict,
-  birthday: PowerDict,
-  mensCologne: PowerDict,
-  petitEffects: PowerDict,
-  limitBreak: PowerDict,
+  base: PowerDict;
+  typeMatch: PowerDict;
+  clubMatch: PowerDict;
+  clubItem: PowerDict;
+  clubPosition: PowerDict;
+  deck: PowerDict;
+  date: PowerDict;
+  touch: PowerDict;
+  birthday: PowerDict;
+  mensCologne: PowerDict;
+  petitEffects: PowerDict;
+  limitBreak: PowerDict;
 }
 
 export type SelectPreciousSceneParameters =
