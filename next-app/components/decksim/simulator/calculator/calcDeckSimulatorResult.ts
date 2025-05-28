@@ -5,6 +5,7 @@ import { setPreciousSceneParameter } from "@/components/decksim/simulator/calcul
 
 import { calcPreciousSceneEffects } from "@/components/decksim/simulator/calculator/calcPreciousSceneEffects";
 import { calcSkillEffects } from "@/components/decksim/simulator/calculator/calcSkillEffects";
+import { createEffectMatrix } from "@/components/decksim/simulator/calculator/createEffectMatrix";
 
 import { transferIntermediateToSummary } from "@/components/decksim/simulator/calculator/transferIntermediateToSummary";
 
@@ -53,6 +54,7 @@ export const calcDeckSimulatorResult = ({
   calcSkillEffects({ inputData, intermediateResults });
 
   // ボーナス有効率に基づく効果値の2次元マトリックスの作成
+  createEffectMatrix({ inputData, commonData, intermediateResults });
 
   /* 合計計算フェイズ */
   // 2次元マトリックスの合計

@@ -1,15 +1,15 @@
+import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
+import {
+  IntermediateResults,
+  BasePowerArray,
+} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorIntermediateResults";
+
 import { BONUS_DATA_PER_EVENT } from "@/components/decksim/data/bonusData";
 import {
   SKILL_DATA_PER_EVENT,
   SKILL_RATE_DATA,
 } from "@/components/decksim/data/skillData";
 import { MAX_MAIN_GIRLS_NUM } from "@/components/decksim/simulator/globalConfig";
-
-import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
-import {
-  IntermediateResults,
-  BasePowerArray,
-} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorIntermediateResults";
 
 import { setDeepValue } from "@/lib/setDeepValue";
 import { returnNumber } from "@/lib/returnNumber";
@@ -56,13 +56,13 @@ const createBasePowerArray = ({
 
       Object.entries(scenesData).forEach(([key, sceneData]) => {
         const sceneType = sceneData.type;
-        const basePower = returnNumber(sceneData.basePower ?? 0);
+        const scenePower = returnNumber(sceneData.basePower ?? 0);
         const strapEffect = returnNumber(sceneData.strap ?? 0);
         const preciousEffect =
           intermediateResults[mainOrSub]?.[attackOrDefense]?.[Number(key)]
             ?.preciousSceneEffect?.total ?? 0;
         const powerDict = {
-          basePower,
+          scenePower,
           strapEffect,
           preciousEffect,
         };
@@ -217,7 +217,7 @@ const sumSkillArrayMultiplication = ({
   skillEffectiveRate,
 }: {
   powerArray: {
-    basePower: number;
+    scenePower: number;
     strapEffect: number;
     preciousEffect: number;
   }[];
@@ -235,9 +235,9 @@ const sumSkillArrayMultiplication = ({
     // 設定した人数に到達した場合は break
     if (index >= limitNum) break;
 
-    const { basePower, strapEffect, preciousEffect } = powerArray[index];
+    const { scenePower, strapEffect, preciousEffect } = powerArray[index];
     sum += Math.ceil(
-      (((basePower * skillEffectValue) / 100) * skillEffectiveRate.scene) / 100
+      (((scenePower * skillEffectValue) / 100) * skillEffectiveRate.scene) / 100
     );
     sum += Math.ceil(
       (((strapEffect * skillEffectValue) / 100) * skillEffectiveRate.strap) /

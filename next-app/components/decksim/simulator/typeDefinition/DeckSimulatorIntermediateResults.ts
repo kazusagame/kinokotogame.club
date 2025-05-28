@@ -9,6 +9,7 @@ export type IntermediateResults = DeckSimulatorSummaries & {
           [K: number]: number;
           total?: number;
         };
+        effectMatrix?: EffectMatrix;
       };
       basePowerArray?: BasePowerArray;
     };
@@ -18,6 +19,7 @@ export type IntermediateResults = DeckSimulatorSummaries & {
           [K: number]: number;
           total?: number;
         };
+        effectMatrix?: EffectMatrix;
       };
       basePowerArray?: BasePowerArray;
     };
@@ -29,6 +31,7 @@ export type IntermediateResults = DeckSimulatorSummaries & {
           [K: number]: number;
           total?: number;
         };
+        effectMatrix?: EffectMatrix;
       };
       basePowerArray?: BasePowerArray;
     };
@@ -38,6 +41,7 @@ export type IntermediateResults = DeckSimulatorSummaries & {
           [K: number]: number;
           total?: number;
         };
+        effectMatrix?: EffectMatrix;
       };
       basePowerArray?: BasePowerArray;
     };
@@ -58,7 +62,7 @@ export type IntermediateResults = DeckSimulatorSummaries & {
       };
     };
   };
-  deckBonus: effectType;
+  deckBonus: EffectType;
   petitGirls: {
     effects?: {
       [K in
@@ -67,32 +71,37 @@ export type IntermediateResults = DeckSimulatorSummaries & {
         | "date"
         | "touch"
         | "birthday"
-        | "clubItem"]: targetType;
+        | "clubItem"]: TargetType;
     };
   };
 };
 
+export interface PowerDict {
+    scenePower: number;
+    strapEffect: number;
+    preciousEffect: number;
+}
+
 export interface BasePowerArray {
-  全タイプ: {
-    basePower: number;
-    strapEffect: number;
-    preciousEffect: number;
-  }[];
-  SWEETタイプ: {
-    basePower: number;
-    strapEffect: number;
-    preciousEffect: number;
-  }[];
-  COOLタイプ: {
-    basePower: number;
-    strapEffect: number;
-    preciousEffect: number;
-  }[];
-  POPタイプ: {
-    basePower: number;
-    strapEffect: number;
-    preciousEffect: number;
-  }[];
+  全タイプ: PowerDict[];
+  SWEETタイプ: PowerDict[];
+  COOLタイプ: PowerDict[];
+  POPタイプ: PowerDict[];
+}
+
+export interface EffectMatrix {
+  base: PowerDict,
+  typeMatch: PowerDict,
+  clubMatch: PowerDict,
+  clubItem: PowerDict,
+  clubPosition: PowerDict,
+  deck: PowerDict,
+  date: PowerDict,
+  touch: PowerDict,
+  birthday: PowerDict,
+  mensCologne: PowerDict,
+  petitEffects: PowerDict,
+  limitBreak: PowerDict,
 }
 
 export type SelectPreciousSceneParameters =
@@ -116,13 +125,13 @@ export type SelectPreciousSceneParameters =
     headcount?: number | string;
   };
 
-interface targetType {
-  all?: effectType;
-  sweet?: effectType;
-  cool?: effectType;
-  pop?: effectType;
+export interface TargetType {
+  all?: EffectType;
+  sweet?: EffectType;
+  cool?: EffectType;
+  pop?: EffectType;
 }
-interface effectType {
+interface EffectType {
   attack?: number;
   defense?: number;
   both?: number;
