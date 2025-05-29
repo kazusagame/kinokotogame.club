@@ -10,6 +10,8 @@ import { createEffectMatrix } from "@/components/decksim/simulator/calculator/cr
 import { sumEffectMatrix } from "@/components/decksim/simulator/calculator/sumEffectMatrix";
 import { calcTotalPerformance } from "@/components/decksim/simulator/calculator/calcTotalPerformance";
 
+import { calcEventSpecialPerformance } from "@/components/decksim/simulator/calculator/calcEventSpecialPerformance";
+
 import { transferIntermediateToSummary } from "@/components/decksim/simulator/calculator/transferIntermediateToSummary";
 
 import {
@@ -69,13 +71,8 @@ export const calcDeckSimulatorResult = ({
 
   /* イベント個別計算フェイズ  */
   // 計算式のイベント個別の部分、ポイント変換も
-
+  calcEventSpecialPerformance({ inputData, commonData, intermediateResults });
 
   // intermediate から summary に 反映
   transferIntermediateToSummary({ intermediateResults, summary });
-
-  console.log(inputData);
-  console.log(commonData);
-  console.log(intermediateResults);
-  console.log(summary);
 };

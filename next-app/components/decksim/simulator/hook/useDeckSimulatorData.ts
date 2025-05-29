@@ -243,6 +243,10 @@ export function useDeckSimulatorData({
       if (typeof importData === "object" && typeof importData !== null) {
         const nextData = structuredClone(initData);
         nextData.dataType = eventId;
+
+        // イベント固有系の設定は書き戻す
+        nextData.eventSpecial = structuredClone(data.eventSpecial);
+
         const rawData = importData as RawDataDeckSimulator;
 
         // 期待したデータのようなら更新処理へ
@@ -264,11 +268,12 @@ export function useDeckSimulatorData({
       }
     },
     [
-      simulatorTabButtonRef,
-      eventId,
-      calcResultSummaries,
+      data,
       commonData,
+      eventId,
       loadCondition,
+      calcResultSummaries,
+      simulatorTabButtonRef,
     ]
   );
 
@@ -446,12 +451,16 @@ const isPlayerData = (
     o.clubPosition === "defenseCaptain" ||
     o.clubPosition === "member";
 
-  const isMaxAttackCost = typeof o.maxAttackCost === "number";
+  const isMaxAttackCost =
+    typeof o.maxAttackCost === "number" || typeof o.maxAttackCost === "string";
 
   const isMensCologne =
-    typeof o.mensCologne?.sweet?.level === "number" &&
-    typeof o.mensCologne?.cool?.level === "number" &&
-    typeof o.mensCologne?.pop?.level === "number";
+    (typeof o.mensCologne?.sweet?.level === "number" ||
+      typeof o.mensCologne?.sweet?.level === "string") &&
+    (typeof o.mensCologne?.cool?.level === "number" ||
+      typeof o.mensCologne?.cool?.level === "string") &&
+    (typeof o.mensCologne?.pop?.level === "number" ||
+      typeof o.mensCologne?.pop?.level === "string");
 
   const isClubItem =
     typeof o.clubItem?.sweet?.isValid === "boolean" &&
