@@ -97,18 +97,31 @@ export default function DeckSimulator({
         String(currentDate.getSeconds()).padStart(2, "0");
 
       const result = resultSummary as DeckSimulatorResult;
-      const powerMin =
-        (result.summaries.totalPerformance?.attack?.minPower ?? 0) +
-        (result.summaries.totalPerformance?.defense?.minPower ?? 0);
-      const powerExp =
-        (result.summaries.totalPerformance?.attack?.expPower ?? 0) +
-        (result.summaries.totalPerformance?.defense?.expPower ?? 0);
-      const powerMax =
-        (result.summaries.totalPerformance?.attack?.maxPower ?? 0) +
-        (result.summaries.totalPerformance?.defense?.maxPower ?? 0);
-      const skillEffect =
-        (result.summaries.totalPerformance?.attack?.skillEffect ?? 0) +
-        (result.summaries.totalPerformance?.defense?.skillEffect ?? 0);
+      const attackMin = result.summaries.totalPerformance?.attack?.minPower ?? 0;
+      const attackExp = result.summaries.totalPerformance?.attack?.expPower ?? 0;
+      const attackMax = result.summaries.totalPerformance?.attack?.maxPower ?? 0;
+      const attackSkillEffect = result.summaries.totalPerformance?.attack?.skillEffect ?? 0;
+      const defenseMin = result.summaries.totalPerformance?.defense?.minPower ?? 0;
+      const defenseExp = result.summaries.totalPerformance?.defense?.expPower ?? 0;
+      const defenseMax = result.summaries.totalPerformance?.defense?.maxPower ?? 0;
+      // const defenseSkillEffect = result.summaries.totalPerformance.defense.skillEffect ?? 0;
+
+      let totalMin = 0;
+      let totalExp = 0;
+      let totalMax = 0;
+      if (eventId === "raid-second") {
+        totalMin = attackMin + defenseMin;
+        totalExp = attackExp + defenseExp;
+        totalMax = attackMax + defenseMax;
+      } else if (eventId === "championship-defense") {
+        totalMin = defenseMin;
+        totalExp = defenseExp;
+        totalMax = defenseMax;
+      } else {
+        totalMin = attackMin;
+        totalExp = attackExp;
+        totalMax = attackMax;
+      }
       const isConvertPoint =
         result.summaries.totalPerformance.isConvertPoint ?? false;
 
@@ -117,19 +130,19 @@ export default function DeckSimulator({
         memo: savedDataSummaries[Number(num) - 1].memo,
         version: 2,
         data: data,
-        powerMin: powerMin,
-        powerExp: powerExp,
-        powerMax: powerMax,
-        skillEffect: skillEffect,
+        powerMin: totalMin,
+        powerExp: totalExp,
+        powerMax: totalMax,
+        skillEffect: attackSkillEffect,
         isConvertPoint: isConvertPoint,
       };
       const convertData = JSON.stringify(tempData);
       localStorage.setItem(key, convertData);
       handleSaveDataSummaries(Number(num) - 1, "lastUpdate", dateStr);
-      handleSaveDataSummaries(Number(num) - 1, "powerMin", powerMin);
-      handleSaveDataSummaries(Number(num) - 1, "powerExp", powerExp);
-      handleSaveDataSummaries(Number(num) - 1, "powerMax", powerMax);
-      handleSaveDataSummaries(Number(num) - 1, "skillEffect", skillEffect);
+      handleSaveDataSummaries(Number(num) - 1, "powerMin", totalMin);
+      handleSaveDataSummaries(Number(num) - 1, "powerExp", totalExp);
+      handleSaveDataSummaries(Number(num) - 1, "powerMax", totalMax);
+      handleSaveDataSummaries(Number(num) - 1, "skillEffect", attackSkillEffect);
       handleSaveDataSummaries(
         Number(num) - 1,
         "isConvertPoint",
@@ -734,12 +747,12 @@ export function DeckSimulatorResultSummaryDiv({
                 <p className="text-right">
                   {isConvertPoint
                     ? `${formatNumber(totalExp)} pt`
-                    : formatNumber(totalMin)}
+                    : formatNumber(totalExp)}
                 </p>
                 <p className="text-right">
                   {isConvertPoint
                     ? `${formatNumber(totalMax)} pt`
-                    : formatNumber(totalMin)}
+                    : formatNumber(totalMax)}
                 </p>
                 {eventId === "clubcup" && (
                   <p className="text-right">
@@ -771,12 +784,12 @@ export function DeckSimulatorResultSummaryDiv({
                       <p className="text-right">
                         {isConvertPoint
                           ? `${formatNumber(totalExp * 6)} pt`
-                          : formatNumber(totalMin * 6)}
+                          : formatNumber(totalExp * 6)}
                       </p>
                       <p className="text-right">
                         {isConvertPoint
                           ? `${formatNumber(totalMax * 6)} pt`
-                          : formatNumber(totalMin * 6)}
+                          : formatNumber(totalMax * 6)}
                       </p>
                     </div>
                   </div>
@@ -797,12 +810,12 @@ export function DeckSimulatorResultSummaryDiv({
                       <p className="text-right">
                         {isConvertPoint
                           ? `${formatNumber(totalExp * 15)} pt`
-                          : formatNumber(totalMin * 15)}
+                          : formatNumber(totalExp * 15)}
                       </p>
                       <p className="text-right">
                         {isConvertPoint
                           ? `${formatNumber(totalMax * 15)} pt`
-                          : formatNumber(totalMin * 15)}
+                          : formatNumber(totalMax * 15)}
                       </p>
                     </div>
                   </div>
