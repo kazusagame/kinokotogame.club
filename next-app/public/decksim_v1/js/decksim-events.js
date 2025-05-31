@@ -171,7 +171,12 @@ function setLoadEvents() {
     if (window.localStorage && result) {
       let loaddata = localStorage.getItem($(this)[0].dataset.deckid);
       if (loaddata) {
-        DATA_ARRAY = JSON.parse(loaddata).data;
+        const parsedData = JSON.parse(loaddata);
+
+        // バージョンプロパティが存在する場合、新版のデータのため読み込みをスキップする
+        if (parsedData && parsedData.version) return;
+
+        DATA_ARRAY = parsedData.data;
         restoreFormData();
       }
     }
@@ -210,6 +215,9 @@ function setMemoUpdateEvents() {
       let loaddata = localStorage.getItem($(this)[0].dataset.deckid);
       if (loaddata) {
         let parsedata = JSON.parse(loaddata);
+
+        // バージョンプロパティが存在する場合、新版のデータのため読み込みをスキップする
+        if (parsedata && parsedata.version) return;
 
         // memoオブジェクトが未登録の場合は予め作っておく
         if (parsedata["data"]?.["calc-result"]?.["memo"] === undefined) {
@@ -284,6 +292,10 @@ function preloadSavedata() {
         continue;
       }
       let afterconvert = JSON.parse(loaddata);
+
+      // バージョンプロパティが存在する場合、新版のデータのため読み込みをスキップする
+      if (afterconvert && afterconvert.version) return;
+
       if (afterconvert.lastUpdate) {
         $(`#date-history-${index + 1}`).text(afterconvert.lastUpdate);
       }
