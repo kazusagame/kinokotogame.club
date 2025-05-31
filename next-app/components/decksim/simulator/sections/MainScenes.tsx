@@ -18,12 +18,8 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import CheckIcon from "@mui/icons-material/Check";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
-import {
-  DeckSimulatorData,
-} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
-import {
-  DeckSimulatorResult,
-} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
+import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
+import { DeckSimulatorResult } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 import { MAX_MAIN_GIRLS_NUM } from "@/components/decksim/simulator/globalConfig";
 import { INIT_SKILL_LEVEL } from "@/components/decksim/data/skillData";
@@ -80,7 +76,7 @@ export function MainScenes({
     rarity: "SSR",
     cost: "30",
     skillLv: String(INIT_SKILL_LEVEL),
-    grade: "1年",
+    grade: "1年生",
     isClubMatch: false,
     isDate: false,
     isTouch: false,
@@ -199,14 +195,12 @@ function MainScenesHeader({
   eventId,
   type,
   classStrings,
-  isGradeValid,
   isClubMatchValid,
   isSpecialValid,
 }: {
   eventId: DeckSimulatorEventId;
   type: "攻援" | "守援";
   classStrings: string;
-  isGradeValid: boolean;
   isClubMatchValid: boolean;
   isSpecialValid: boolean;
 }) {
@@ -219,7 +213,7 @@ function MainScenesHeader({
       <div>レアリティ</div>
       <div>コスト</div>
       <div>声援Lv</div>
-      {isGradeValid && <div className="max-sm:hidden">学年</div>}
+      <div className="max-sm:hidden">学年</div>
       {isClubMatchValid && (
         <div className="flex flex-col justify-center items-center max-sm:hidden">
           <span>部活</span>
@@ -383,17 +377,16 @@ function RegisteredMainScenesBlock({
     eventId === "championship" ||
     eventId === "championship-defense" ||
     eventId === "normal-battle"
-      ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_40px_40px_40px_40px_40px_40px_80px_40px_65px_65px]"
+      ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_40px_80px_40px_65px_65px]"
       : eventId === "clubcup"
-      ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_40px_40px_40px_40px_40px_40px_80px_40px_60px_65px_65px]"
+      ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_40px_80px_40px_60px_65px_65px]"
       : eventId === "tower"
-      ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_40px_40px_40px_40px_40px_40px_80px_40px_65px_65px]"
+      ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_40px_80px_40px_65px_65px]"
       : eventId === "divrace"
-      ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_40px_40px_40px_40px_40px_40px_80px_40px_80px_40px_65px_65px]"
+      ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_40px_80px_40px_80px_40px_65px_65px]"
       : eventId === "board"
       ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_80px_40px_80px_40px_65px_65px]"
-      : "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_40px_40px_40px_40px_40px_40px_80px_40px_65px_65px]";
-  const isGradeValid = eventId === "board";
+      : "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_40px_80px_40px_65px_65px]";
   const isClubMatchValid =
     eventId === "raid-first" ||
     eventId === "raid-second" ||
@@ -411,7 +404,6 @@ function RegisteredMainScenesBlock({
         eventId={eventId}
         type={type}
         classStrings={`grid grid-cols-6 sm:grid-cols-9 ${gridColumnCss} gap-2 md:gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl`}
-        isGradeValid={isGradeValid}
         isClubMatchValid={isClubMatchValid}
         isSpecialValid={isSpecialValid}
       />
@@ -463,11 +455,9 @@ function RegisteredMainScenesBlock({
                     <div className="flex justify-center items-center">
                       {value.skillLv}
                     </div>
-                    {isGradeValid && (
-                      <div className="flex justify-center items-center max-sm:hidden">
-                        {value.grade}
-                      </div>
-                    )}
+                    <div className="flex justify-center items-center max-sm:hidden">
+                      {value.grade}
+                    </div>
                     {isClubMatchValid && (
                       <div className="flex justify-center items-center max-sm:hidden">
                         {value.isClubMatch && <CheckIcon fontSize="small" />}
@@ -550,7 +540,6 @@ function RegisteredMainScenesBlock({
                       eventId={eventId}
                       type={type}
                       classStrings={`grid grid-cols-6 sm:grid-cols-9 ${gridColumnCss} gap-2 md:gap-3 bg-base-300 text-center text-xs font-bold py-1`}
-                      isGradeValid={isGradeValid}
                       isClubMatchValid={isClubMatchValid}
                       isSpecialValid={isSpecialValid}
                     />
@@ -598,7 +587,6 @@ function SceneSelectModal({
   const modalId = useId();
   const [selected, setSelected] = useState<SelectState>(initialSelected);
 
-  const isGradeValid = eventId === "board";
   const isClubMatchValid =
     eventId === "raid-first" ||
     eventId === "raid-second" ||
@@ -769,34 +757,32 @@ function SceneSelectModal({
               </div>
 
               {/* 学年 */}
-              {isGradeValid && (
-                <div className="flex flex-col">
-                  <label className="label">
-                    <span className="label-text">
-                      <TextWithTooltip
-                        displayText="学年"
-                        tipText="ガールの学年を選択します。ここでの選択はマス効果の数値算出に使用されます。ゲームの仕様では他校生と一ノ瀬友恵は「その他」の扱いになります。"
-                      />
-                    </span>
-                  </label>
-                  <select
-                    name="grade"
-                    className="select select-md select-bordered"
-                    value={selected.grade}
-                    onChange={(e) =>
-                      setSelected({
-                        ...selected,
-                        grade: e.target.value as SelectState["grade"],
-                      })
-                    }
-                  >
-                    <option value="1年">1年</option>
-                    <option value="2年">2年</option>
-                    <option value="3年">3年</option>
-                    <option value="その他">その他</option>
-                  </select>
-                </div>
-              )}
+              <div className="flex flex-col">
+                <label className="label">
+                  <span className="label-text">
+                    <TextWithTooltip
+                      displayText="学年"
+                      tipText="ガールの学年を選択します。ここでの選択はぷちガールちゃんの応援力効果と散策♪聖櫻ワールドでのマス効果の数値算出に使用されます。"
+                    />
+                  </span>
+                </label>
+                <select
+                  name="grade"
+                  className="select select-md select-bordered"
+                  value={selected.grade}
+                  onChange={(e) =>
+                    setSelected({
+                      ...selected,
+                      grade: e.target.value as SelectState["grade"],
+                    })
+                  }
+                >
+                  <option value="1年生">1年生</option>
+                  <option value="2年生">2年生</option>
+                  <option value="3年生">3年生</option>
+                  <option value="その他">その他</option>
+                </select>
+              </div>
             </div>
             <div className="flex flex-wrap gap-x-6 gap-y-4">
               {/* 部活一致 */}

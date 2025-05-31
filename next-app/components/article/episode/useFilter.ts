@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export type GirlType = "All" | "SWEET" | "COOL" | "POP" | "---";
-export type GirlGrade = "All" | "1年" | "2年" | "3年" | "---";
+export type GirlGrade = "All" | "1年生" | "2年生" | "3年生" | "---";
 export type GirlSchool = "All" | "Seio" | "Others";
 export interface FilterRules {
   girlType: GirlType;

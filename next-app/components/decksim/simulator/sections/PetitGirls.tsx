@@ -353,6 +353,9 @@ function EffectSelectModal({
                   "SWEETタイプ",
                   "COOLタイプ",
                   "POPタイプ",
+                  "1年生",
+                  "2年生",
+                  "3年生",
                 ].map((detail) => (
                   <label key={detail} className="label cursor-pointer flex items-center gap-2">
                     <input

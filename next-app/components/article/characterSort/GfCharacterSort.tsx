@@ -207,7 +207,7 @@ function CharacterSelect({
               alt={leftGirlName}
               className="object-cover object-[center_bottom]"
               fill
-              sizes="100vw"
+              sizes="50vw"
             />
           </div>
         </div>
@@ -239,7 +239,7 @@ function CharacterSelect({
               alt={rightGirName}
               className="object-cover object-[center_bottom]"
               fill
-              sizes="100vw"
+              sizes="50vw"
             />
           </div>
         </div>
@@ -341,11 +341,11 @@ function ResultTable({
                     {sortTargetNameList[history[2]]}
                   </td>
                   {history[1] === -1 ? (
-                    <td className="text-left px-2 py-1">Like!</td>
+                    <td className="text-left px-1 py-1">Like!</td>
                   ) : history[1] === 0 ? (
                     <td className="text-center px-2 py-1">引き分け</td>
                   ) : history[1] === 1 ? (
-                    <td className="text-right px-2 py-1">Like!</td>
+                    <td className="text-right px-1 py-1">Like!</td>
                   ) : (
                     <td className="text-center px-2 py-1">除外</td>
                   )}

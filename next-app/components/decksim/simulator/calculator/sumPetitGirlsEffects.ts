@@ -5,16 +5,25 @@ import { PETIT_GIRLS_EFFECTS_DATA } from "@/components/decksim/data/petitGirlsEf
 
 type EffectConditionKey =
   | "type"
+  | "grade"
   | "bestFriend"
   | "date"
   | "touch"
   | "birthday"
   | "clubItem";
-type ConditionDetailKey = "all" | "sweet" | "cool" | "pop";
+type ConditionDetailKey =
+  | "all"
+  | "sweet"
+  | "cool"
+  | "pop"
+  | "1年生"
+  | "2年生"
+  | "3年生";
 type EffectTypeKey = "attack" | "defense" | "both";
 
 const effectConditionMap: Record<string, EffectConditionKey> = {
   タイプ: "type",
+  学年: "grade",
   本命ガール: "bestFriend",
   デート中: "date",
   タッチ: "touch",
@@ -27,6 +36,9 @@ const conditionDetailMap: Record<string, ConditionDetailKey> = {
   SWEETタイプ: "sweet",
   COOLタイプ: "cool",
   POPタイプ: "pop",
+  "1年生": "1年生",
+  "2年生": "2年生",
+  "3年生": "3年生",
 };
 
 const effectTypeMap: Record<string, EffectTypeKey> = {
@@ -60,6 +72,23 @@ export const sumPetitGirlsEffects = ({
         both: 0,
       },
       pop: {
+        attack: 0,
+        defense: 0,
+        both: 0,
+      },
+    },
+    grade: {
+      "1年生": {
+        attack: 0,
+        defense: 0,
+        both: 0,
+      },
+      "2年生": {
+        attack: 0,
+        defense: 0,
+        both: 0,
+      },
+      "3年生": {
         attack: 0,
         defense: 0,
         both: 0,
@@ -117,14 +146,28 @@ export const sumPetitGirlsEffects = ({
       const effectTypeKey = effectTypeMap[effectType] ?? null;
       const value = isRarityUr === true ? levelMaxValueUr : levelMaxValue;
 
-      if (
-        effectConditionKey &&
-        conditionDetailKey &&
-        effectTypeKey &&
-        newData[effectConditionKey]?.[conditionDetailKey]?.[effectTypeKey] !==
-          undefined
-      ) {
-        newData[effectConditionKey][conditionDetailKey][effectTypeKey] += value;
+      if (effectConditionKey && conditionDetailKey && effectTypeKey) {
+        if (effectConditionKey !== "grade") {
+          if (
+            newData[effectConditionKey]?.[
+              conditionDetailKey as "all" | "sweet" | "cool" | "pop"
+            ]?.[effectTypeKey] !== undefined
+          ) {
+            newData[effectConditionKey][
+              conditionDetailKey as "all" | "sweet" | "cool" | "pop"
+            ]![effectTypeKey]! += value;
+          }
+        } else {
+          if (
+            newData[effectConditionKey]?.[
+              conditionDetailKey as "1年生" | "2年生" | "3年生"
+            ]?.[effectTypeKey] !== undefined
+          ) {
+            newData[effectConditionKey][
+              conditionDetailKey as "1年生" | "2年生" | "3年生"
+            ]![effectTypeKey]! += value;
+          }
+        }
       }
     });
   });

@@ -19,7 +19,7 @@ export default function useGameModeStatusData(
 ) {
   const [gameMode, setGameMode] = useState<GameMode>({
     girlType: { SWEET: true, COOL: true, POP: true, "---": true },
-    girlGrade: { "1年": true, "2年": true, "3年": true, "---": true },
+    girlGrade: { "1年生": true, "2年生": true, "3年生": true, "---": true },
     girlSchool: {
       Seio: true,
       Others: true,

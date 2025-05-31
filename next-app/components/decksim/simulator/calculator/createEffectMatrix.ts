@@ -866,6 +866,22 @@ const calcPetitEffectsPowerDict = ({
     (petitGirlsEffects?.type?.all?.[attackOrDefense] ?? 0) +
     (petitGirlsEffects?.type?.all?.both ?? 0);
 
+  // 学年系の効果値を加算する
+  const sceneGrade = sceneData.grade;
+  if (sceneGrade === "1年生") {
+    bonusValue +=
+      (petitGirlsEffects?.grade?.["1年生"]?.[attackOrDefense] ?? 0) +
+      (petitGirlsEffects?.grade?.["1年生"]?.both ?? 0);
+  } else if (sceneGrade === "2年生") {
+    bonusValue +=
+      (petitGirlsEffects?.grade?.["2年生"]?.[attackOrDefense] ?? 0) +
+      (petitGirlsEffects?.grade?.["2年生"]?.both ?? 0);
+  } else if (sceneGrade === "3年生") {
+    bonusValue +=
+      (petitGirlsEffects?.grade?.["3年生"]?.[attackOrDefense] ?? 0) +
+      (petitGirlsEffects?.grade?.["3年生"]?.both ?? 0);
+  }
+
   // デート、タッチ、誕生日、本命の効果値を加算する
   if (sceneData.isDate) {
     bonusValue +=

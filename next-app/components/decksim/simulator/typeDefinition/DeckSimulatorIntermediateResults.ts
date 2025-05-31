@@ -92,6 +92,8 @@ export type IntermediateResults = DeckSimulatorSummaries & {
         | "touch"
         | "birthday"
         | "clubItem"]: TargetType;
+    } & {
+      "grade"?: TargetGrade;
     };
   };
 };
@@ -155,4 +157,10 @@ interface EffectType {
   attack?: number;
   defense?: number;
   both?: number;
+}
+
+export interface TargetGrade {
+  "1年生"?: EffectType;
+  "2年生"?: EffectType;
+  "3年生"?: EffectType;
 }

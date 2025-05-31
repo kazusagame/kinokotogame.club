@@ -9,7 +9,7 @@ export interface BoardSpace {
     rarityNum?: number;
     cost?: number;
     skillLv?: number;
-    grade?: "1年" | "2年" | "3年" | "その他";
+    grade?: "1年生" | "2年生" | "3年生" | "その他";
   };
 };
 
@@ -17,9 +17,9 @@ export const DIVRACE_SPACE_DATA: { [K: number]: BoardSpace } = {
   1: { name: "SWEETガールの攻援力", effectType: "ガール", condition: { type: "SWEETタイプ" } },
   2: { name: "COOLガールの攻援力", effectType: "ガール", condition: { type: "COOLタイプ" } },
   3: { name: "POPガールの攻援力", effectType: "ガール", condition: { type: "POPタイプ" } },
-  4: { name: "1年生の攻援力", effectType: "ガール", condition: { grade: "1年" } },
-  5: { name: "2年生の攻援力", effectType: "ガール", condition: { grade: "2年" } },
-  6: { name: "3年生の攻援力", effectType: "ガール", condition: { grade: "3年" } },
+  4: { name: "1年生の攻援力", effectType: "ガール", condition: { grade: "1年生" } },
+  5: { name: "2年生の攻援力", effectType: "ガール", condition: { grade: "2年生" } },
+  6: { name: "3年生の攻援力", effectType: "ガール", condition: { grade: "3年生" } },
   7: { name: "声援Lv.13以上かつコスト24以上ガールの攻援力", effectType: "ガール", condition: { cost: 24, skillLv: 13 } },
   8: { name: "コスト26以上ガールの攻援力", effectType: "ガール", condition: { cost: 26 } },
   9: { name: "声援Lv.16以上ガールの攻援力", effectType: "ガール", condition: { skillLv: 16 } },

@@ -86,9 +86,9 @@ export default function TypeGradeSchoolFilter({
             type="radio"
             name="girlGrade"
             className="radio"
-            value="1年"
+            value="1年生"
             onChange={onChangeFilter}
-            checked={filter.girlGrade === "1年"}
+            checked={filter.girlGrade === "1年生"}
           />
           <span className="label-text ml-2">1年生</span>
         </label>
@@ -97,9 +97,9 @@ export default function TypeGradeSchoolFilter({
             type="radio"
             name="girlGrade"
             className="radio"
-            value="2年"
+            value="2年生"
             onChange={onChangeFilter}
-            checked={filter.girlGrade === "2年"}
+            checked={filter.girlGrade === "2年生"}
           />
           <span className="label-text ml-2">2年生</span>
         </label>
@@ -108,9 +108,9 @@ export default function TypeGradeSchoolFilter({
             type="radio"
             name="girlGrade"
             className="radio"
-            value="3年"
+            value="3年生"
             onChange={onChangeFilter}
-            checked={filter.girlGrade === "3年"}
+            checked={filter.girlGrade === "3年生"}
           />
           <span className="label-text ml-2">3年生</span>
         </label>

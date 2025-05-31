@@ -1,5 +1,5 @@
 export type GirlType = "SWEET" | "COOL" | "POP" | "---";
-export type GirlGrade = "1年" | "2年" | "3年" | "---";
+export type GirlGrade = "1年生" | "2年生" | "3年生" | "---";
 export type GirlSchool =
   | "Seio"
   | "Others"
@@ -80,9 +80,9 @@ export default function GameModeSelector({
             type="checkbox"
             name="girlGrade"
             className="checkbox"
-            value="1年"
+            value="1年生"
             onChange={onChangeGameMode}
-            checked={gameMode.girlGrade["1年"]}
+            checked={gameMode.girlGrade["1年生"]}
           />
           <span className="label-text ml-2">1年生</span>
         </label>
@@ -91,9 +91,9 @@ export default function GameModeSelector({
             type="checkbox"
             name="girlGrade"
             className="checkbox"
-            value="2年"
+            value="2年生"
             onChange={onChangeGameMode}
-            checked={gameMode.girlGrade["2年"]}
+            checked={gameMode.girlGrade["2年生"]}
           />
           <span className="label-text ml-2">2年生</span>
         </label>
@@ -102,9 +102,9 @@ export default function GameModeSelector({
             type="checkbox"
             name="girlGrade"
             className="checkbox"
-            value="3年"
+            value="3年生"
             onChange={onChangeGameMode}
-            checked={gameMode.girlGrade["3年"]}
+            checked={gameMode.girlGrade["3年生"]}
           />
           <span className="label-text ml-2">3年生</span>
         </label>

@@ -593,7 +593,7 @@ const parseSceneParameter = ({
   rarity: "Luv" | "UR" | "SSR" | "SR";
   cost: string;
   skillLv: string;
-  grade?: "1年" | "2年" | "3年" | "その他";
+  grade: "1年生" | "2年生" | "3年生" | "その他";
   isClubMatch: boolean;
   isDate: boolean;
   isTouch: boolean;

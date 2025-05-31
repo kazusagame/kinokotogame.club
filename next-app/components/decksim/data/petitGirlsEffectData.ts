@@ -1,7 +1,7 @@
 export interface PetitGirlsEffects {
   name: string,
-  effectCondition: "タイプ" | "本命ガール" | "デート中" | "タッチ" | "誕生日" | "部活設備",
-  conditionDetail: "全タイプ" | "SWEETタイプ" | "COOLタイプ" | "POPタイプ",
+  effectCondition: "タイプ" | "学年" | "本命ガール" | "デート中" | "タッチ" | "誕生日" | "部活設備",
+  conditionDetail: "全タイプ" | "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "1年生" | "2年生" | "3年生",
   effectType: "攻援UP" | "守援UP" | "攻守UP",
   markerType: "ピンク" | "イエロー" | "ブルー",
   levelMaxValue: number,
@@ -79,6 +79,54 @@ export const PETIT_GIRLS_EFFECTS_DATA: {
   198: { name: "ﾃﾚﾋﾞの効果UP", effectCondition: "部活設備", conditionDetail: "POPタイプ", effectType: "攻守UP", markerType: "ブルー", levelMaxValue: 120, levelMaxValueUr: 128 },
   202: { name: "ﾛｯｶｰの効果UP", effectCondition: "部活設備", conditionDetail: "SWEETタイプ", effectType: "攻守UP", markerType: "ブルー", levelMaxValue: 120, levelMaxValueUr: 128 },
   206: { name: "ﾎﾜｲﾄﾎﾞｰﾄﾞの効果UP", effectCondition: "部活設備", conditionDetail: "COOLタイプ", effectType: "攻守UP", markerType: "ブルー", levelMaxValue: 120, levelMaxValueUr: 128 },
+
+  256: { name: "1年生の攻援UP", effectCondition: "学年", conditionDetail: "1年生", effectType: "攻援UP", markerType: "ピンク", levelMaxValue: 9.5, levelMaxValueUr: 10.5 },
+  260: { name: "2年生の攻援UP", effectCondition: "学年", conditionDetail: "2年生", effectType: "攻援UP", markerType: "ピンク", levelMaxValue: 9.5, levelMaxValueUr: 10.5 },
+  264: { name: "3年生の攻援UP", effectCondition: "学年", conditionDetail: "3年生", effectType: "攻援UP", markerType: "ピンク", levelMaxValue: 9.5, levelMaxValueUr: 10.5 },
+
+  257: { name: "1年生の守援UP", effectCondition: "学年", conditionDetail: "1年生", effectType: "守援UP", markerType: "ピンク", levelMaxValue: 9.5, levelMaxValueUr: 10.5 },
+  261: { name: "2年生の守援UP", effectCondition: "学年", conditionDetail: "2年生", effectType: "守援UP", markerType: "ピンク", levelMaxValue: 9.5, levelMaxValueUr: 10.5 },
+  265: { name: "3年生の守援UP", effectCondition: "学年", conditionDetail: "3年生", effectType: "守援UP", markerType: "ピンク", levelMaxValue: 9.5, levelMaxValueUr: 10.5 },
+
+  258: { name: "1年生の攻守UP", effectCondition: "学年", conditionDetail: "1年生", effectType: "攻守UP", markerType: "ピンク", levelMaxValue: 8.5, levelMaxValueUr: 9.5 },
+  262: { name: "2年生の攻守UP", effectCondition: "学年", conditionDetail: "2年生", effectType: "攻守UP", markerType: "ピンク", levelMaxValue: 8.5, levelMaxValueUr: 9.5 },
+  266: { name: "3年生の攻守UP", effectCondition: "学年", conditionDetail: "3年生", effectType: "攻守UP", markerType: "ピンク", levelMaxValue: 8.5, levelMaxValueUr: 9.5 },
+
+  268: { name: "1年生の攻援大UP", effectCondition: "学年", conditionDetail: "1年生", effectType: "攻援UP", markerType: "ピンク", levelMaxValue: 12, levelMaxValueUr: 13 },
+  272: { name: "2年生の攻援大UP", effectCondition: "学年", conditionDetail: "2年生", effectType: "攻援UP", markerType: "ピンク", levelMaxValue: 12, levelMaxValueUr: 13 },
+  276: { name: "3年生の攻援大UP", effectCondition: "学年", conditionDetail: "3年生", effectType: "攻援UP", markerType: "ピンク", levelMaxValue: 12, levelMaxValueUr: 13 },
+
+  269: { name: "1年生の守援大UP", effectCondition: "学年", conditionDetail: "1年生", effectType: "守援UP", markerType: "ピンク", levelMaxValue: 12, levelMaxValueUr: 13 },
+  273: { name: "2年生の守援大UP", effectCondition: "学年", conditionDetail: "2年生", effectType: "守援UP", markerType: "ピンク", levelMaxValue: 12, levelMaxValueUr: 13 },
+  277: { name: "3年生の守援大UP", effectCondition: "学年", conditionDetail: "3年生", effectType: "守援UP", markerType: "ピンク", levelMaxValue: 12, levelMaxValueUr: 13 },
+
+  270: { name: "1年生の攻守大UP", effectCondition: "学年", conditionDetail: "1年生", effectType: "攻守UP", markerType: "ピンク", levelMaxValue: 12, levelMaxValueUr: 13 },
+  274: { name: "2年生の攻守大UP", effectCondition: "学年", conditionDetail: "2年生", effectType: "攻守UP", markerType: "ピンク", levelMaxValue: 12, levelMaxValueUr: 13 },
+  278: { name: "3年生の攻守大UP", effectCondition: "学年", conditionDetail: "3年生", effectType: "攻守UP", markerType: "ピンク", levelMaxValue: 12, levelMaxValueUr: 13 },
+
+  280: { name: "1年生の攻援特大UP", effectCondition: "学年", conditionDetail: "1年生", effectType: "攻援UP", markerType: "ピンク", levelMaxValue: 14, levelMaxValueUr: 15 },
+  284: { name: "2年生の攻援特大UP", effectCondition: "学年", conditionDetail: "2年生", effectType: "攻援UP", markerType: "ピンク", levelMaxValue: 14, levelMaxValueUr: 15 },
+  288: { name: "3年生の攻援特大UP", effectCondition: "学年", conditionDetail: "3年生", effectType: "攻援UP", markerType: "ピンク", levelMaxValue: 14, levelMaxValueUr: 15 },
+
+  281: { name: "1年生の守援特大UP", effectCondition: "学年", conditionDetail: "1年生", effectType: "守援UP", markerType: "ピンク", levelMaxValue: 14, levelMaxValueUr: 15 },
+  285: { name: "2年生の守援特大UP", effectCondition: "学年", conditionDetail: "2年生", effectType: "守援UP", markerType: "ピンク", levelMaxValue: 14, levelMaxValueUr: 15 },
+  289: { name: "3年生の守援特大UP", effectCondition: "学年", conditionDetail: "3年生", effectType: "守援UP", markerType: "ピンク", levelMaxValue: 14, levelMaxValueUr: 15 },
+
+  282: { name: "1年生の攻守特大UP", effectCondition: "学年", conditionDetail: "1年生", effectType: "攻守UP", markerType: "ピンク", levelMaxValue: 14, levelMaxValueUr: 15 },
+  286: { name: "2年生の攻守特大UP", effectCondition: "学年", conditionDetail: "2年生", effectType: "攻守UP", markerType: "ピンク", levelMaxValue: 14, levelMaxValueUr: 15 },
+  290: { name: "3年生の攻守特大UP", effectCondition: "学年", conditionDetail: "3年生", effectType: "攻守UP", markerType: "ピンク", levelMaxValue: 14, levelMaxValueUr: 15 },
+
+  292: { name: "1年生の攻援小UP", effectCondition: "学年", conditionDetail: "1年生", effectType: "攻援UP", markerType: "イエロー", levelMaxValue: 3, levelMaxValueUr: 3.3 },
+  296: { name: "2年生の攻援小UP", effectCondition: "学年", conditionDetail: "2年生", effectType: "攻援UP", markerType: "イエロー", levelMaxValue: 3, levelMaxValueUr: 3.3 },
+  300: { name: "3年生の攻援小UP", effectCondition: "学年", conditionDetail: "3年生", effectType: "攻援UP", markerType: "イエロー", levelMaxValue: 3, levelMaxValueUr: 3.3 },
+
+  293: { name: "1年生の守援小UP", effectCondition: "学年", conditionDetail: "1年生", effectType: "守援UP", markerType: "イエロー", levelMaxValue: 3, levelMaxValueUr: 3.3 },
+  297: { name: "2年生の守援小UP", effectCondition: "学年", conditionDetail: "2年生", effectType: "守援UP", markerType: "イエロー", levelMaxValue: 3, levelMaxValueUr: 3.3 },
+  301: { name: "3年生の守援小UP", effectCondition: "学年", conditionDetail: "3年生", effectType: "守援UP", markerType: "イエロー", levelMaxValue: 3, levelMaxValueUr: 3.3 },
+
+  294: { name: "1年生の攻守小UP", effectCondition: "学年", conditionDetail: "1年生", effectType: "攻守UP", markerType: "イエロー", levelMaxValue: 3, levelMaxValueUr: 3.3 },
+  298: { name: "2年生の攻守小UP", effectCondition: "学年", conditionDetail: "2年生", effectType: "攻守UP", markerType: "イエロー", levelMaxValue: 3, levelMaxValueUr: 3.3 },
+  302: { name: "3年生の攻守小UP", effectCondition: "学年", conditionDetail: "3年生", effectType: "攻守UP", markerType: "イエロー", levelMaxValue: 3, levelMaxValueUr: 3.3 },
 } as const;
 
 export const PETIT_GIRLS_EFFECTS_NAME_TO_ID: {
@@ -152,4 +200,52 @@ export const PETIT_GIRLS_EFFECTS_NAME_TO_ID: {
   "ﾃﾚﾋﾞの効果UP": 198,
   "ﾛｯｶｰの効果UP": 202,
   "ﾎﾜｲﾄﾎﾞｰﾄﾞの効果UP": 206,
+
+  "1年生の攻援UP": 256,
+  "2年生の攻援UP": 260,
+  "3年生の攻援UP": 264,
+
+  "1年生の守援UP": 257,
+  "2年生の守援UP": 261,
+  "3年生の守援UP": 265,
+
+  "1年生の攻守UP": 258,
+  "2年生の攻守UP": 262,
+  "3年生の攻守UP": 266,
+
+  "1年生の攻援大UP": 268,
+  "2年生の攻援大UP": 272,
+  "3年生の攻援大UP": 276,
+
+  "1年生の守援大UP": 269,
+  "2年生の守援大UP": 273,
+  "3年生の守援大UP": 277,
+
+  "1年生の攻守大UP": 270,
+  "2年生の攻守大UP": 274,
+  "3年生の攻守大UP": 278,
+
+  "1年生の攻援特大UP": 280,
+  "2年生の攻援特大UP": 284,
+  "3年生の攻援特大UP": 288,
+
+  "1年生の守援特大UP": 281,
+  "2年生の守援特大UP": 285,
+  "3年生の守援特大UP": 289,
+
+  "1年生の攻守特大UP": 282,
+  "2年生の攻守特大UP": 286,
+  "3年生の攻守特大UP": 290,
+
+  "1年生の攻援小UP": 292,
+  "2年生の攻援小UP": 296,
+  "3年生の攻援小UP": 300,
+
+  "1年生の守援小UP": 293,
+  "2年生の守援小UP": 297,
+  "3年生の守援小UP": 301,
+
+  "1年生の攻守小UP": 294,
+  "2年生の攻守小UP": 298,
+  "3年生の攻守小UP": 302,
 } as const;
