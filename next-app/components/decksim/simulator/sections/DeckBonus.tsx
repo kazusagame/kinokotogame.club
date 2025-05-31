@@ -57,8 +57,8 @@ export function DeckBonus({
                       data-path={`deckBonus.normal.${i + 1}.type`}
                     >
                       <option value="攻守">攻守</option>
-                      <option value="攻">攻</option>
-                      <option value="守">守</option>
+                      <option value="攻援">攻援</option>
+                      <option value="守援">守援</option>
                     </select>
                   </div>
                 ))}

@@ -20,7 +20,7 @@ export const sumDeckBonus = ({
   Object.values(inputData.deckBonus.normal).forEach(
     ({ level = "0", type = "攻守" }) => {
       const typeKey =
-        type === "攻守" ? "both" : type === "攻" ? "attack" : "defense";
+        type === "攻守" ? "both" : type === "攻援" ? "attack" : "defense";
       const levelKey = ("lv" + level) as
         | "lv0"
         | "lv1"

@@ -78,7 +78,7 @@ export function MainSkill({
     target: "SWEETタイプ",
     range: "主のみ",
     subRange: String(0),
-    type: "攻",
+    type: "攻援",
     strength: "特大",
   });
 
@@ -240,8 +240,8 @@ function RegisteredMainSkillsBlock({
 
   const gridColumnCss =
     eventId !== "clubcup"
-      ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_100px_75px_85px_75px_65px_65px]"
-      : "lg:grid-cols-[45px_40px_90px_55px_60px_60px_100px_75px_85px_75px_75px_65px_65px]";
+      ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_75px_65px_65px]"
+      : "lg:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_75px_75px_65px_65px]";
 
   return (
     <div className="text-base border border-base-300 rounded-xl">
@@ -328,7 +328,7 @@ function RegisteredMainSkillsBlock({
                     {value.type}
                   </div>
                   <div className="flex justify-center items-center">
-                    {value.strength}
+                    {`${value.strength}UP`}
                   </div>
                   {summary?.estimatedEffect ? (
                     <div className="flex justify-end items-center pr-4">
@@ -583,16 +583,16 @@ function SkillSelectModal({
                     })
                   }
                 >
-                  <option value="攻">攻</option>
-                  <option value="守">守</option>
+                  <option value="攻援">攻援</option>
+                  <option value="守援">守援</option>
                   <option value="攻守">攻守</option>
                 </select>
               </div>
 
-              {/* 強度 */}
+              {/* 効果強度 */}
               <div className="flex flex-col">
                 <label className="label">
-                  <span className="label-text">強度</span>
+                  <span className="label-text">効果強度</span>
                 </label>
                 <select
                   name="range"

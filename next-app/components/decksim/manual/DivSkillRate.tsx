@@ -122,7 +122,7 @@ function SkillRateTable({
     ["スーパー特大++", "ｽｰﾊﾟｰ特大++"],
     ["超スーパー特大", "超ｽｰﾊﾟｰ特大"],
   ];
-  const skillEffectList: ("攻" | "守" | "攻守")[] = ["攻", "守", "攻守"];
+  const skillEffectList: ("攻援" | "守援" | "攻守")[] = ["攻援", "守援", "攻守"];
 
   return (
     <>

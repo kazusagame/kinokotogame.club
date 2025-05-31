@@ -22,7 +22,7 @@ export interface SkillParameters {
   target: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
   range: "主＋副" | "主のみ" | "副のみ";
   subRange: string;
-  type: "攻" | "守" | "攻守";
+  type: "攻援" | "守援" | "攻守";
   strength:
     | "中"
     | "中+"
@@ -116,7 +116,7 @@ export interface DeckSimulatorData {
     normal: {
       [K: number]: {
         level?: string;
-        type?: "攻" | "守" | "攻守";
+        type?: "攻援" | "守援" | "攻守";
       };
     };
     shine: {

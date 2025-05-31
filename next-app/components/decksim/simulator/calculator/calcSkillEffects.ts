@@ -145,8 +145,8 @@ const calcSkillPerformanceValues = ({
 
         // センバツタイプと声援タイプが不一致なら発揮値は 0 なので早期終了
         if (
-          (attackOrDefense === "attack" && type === "守") ||
-          (attackOrDefense === "defense" && type === "攻")
+          (attackOrDefense === "attack" && type === "守援") ||
+          (attackOrDefense === "defense" && type === "攻援")
         ) {
           setDeepValue(
             intermediateResults,

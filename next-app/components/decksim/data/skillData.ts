@@ -92,7 +92,7 @@ type SkillRateData = {
   [K in "単タイプ" | "全タイプ"]?: {
     [K in "主＋副" | "主のみ" | "副のみ"]?: {
       [K in "副人数0" | "副人数1" | "副人数2"]?: {
-        [K in "攻" | "守" | "攻守"]?: {
+        [K in "攻援" | "守援" | "攻守"]?: {
           [K in SkillStrength]?: {
             value: number,
             isTemp?: boolean
@@ -107,12 +107,12 @@ export const SKILL_RATE_DATA: SkillRateData = {
   "単タイプ": {
     "主＋副": {
       "副人数1" : {
-        "攻": {
+        "攻援": {
           "特大": { value: 20 },
           "スーパー特大": { value: 30 },
           "超スーパー特大": { value: 41 },
         },
-        "守": {
+        "守援": {
           "特大": { value: 20 },
           "スーパー特大": { value: 30 },
           "超スーパー特大": { value: 41 },
@@ -126,11 +126,11 @@ export const SKILL_RATE_DATA: SkillRateData = {
         },
       },
       "副人数2" : {
-        "攻": {
+        "攻援": {
           "大": { value: 16 },
           "特大+": { value: 21 },
         },
-        "守": {
+        "守援": {
           "大": { value: 16 },
           "特大+": { value: 21 },
         },
@@ -143,14 +143,14 @@ export const SKILL_RATE_DATA: SkillRateData = {
     },
     "主のみ": {
       "副人数0" : {
-        "攻": {
+        "攻援": {
           "中": { value: 10 },
           "大": { value: 13 },
           "特大": { value: 20 },
           "スーパー特大": { value: 30 },
           "超スーパー特大": { value: 41, isTemp: true },
         },
-        "守": {
+        "守援": {
           "中": { value: 10 },
           "大": { value: 13 },
           "特大": { value: 20 },
@@ -169,12 +169,12 @@ export const SKILL_RATE_DATA: SkillRateData = {
     },
     "副のみ": {
       "副人数2" : {
-        "攻": {
+        "攻援": {
           "中+": { value: 11 },
           "大": { value: 16 },
           "特大": { value: 21 },
         },
-        "守": {
+        "守援": {
           "中+": { value: 11 },
           "大": { value: 16 },
           "特大": { value: 21 },
@@ -194,13 +194,13 @@ export const SKILL_RATE_DATA: SkillRateData = {
   "全タイプ": {
     "主＋副": {
       "副人数1": {
-        "攻": {
+        "攻援": {
           "中": { value: 8 },
           "大": { value: 15 },
           "特大": { value: 22 },
           "超スーパー特大": { value: 41 },
         },
-        "守": {
+        "守援": {
           "中": { value: 8 },
           "大": { value: 15 },
           "特大": { value: 22 },
@@ -210,12 +210,12 @@ export const SKILL_RATE_DATA: SkillRateData = {
     },
     "主のみ": {
       "副人数0": {
-        "攻": {
+        "攻援": {
           "中": { value: 8 },
           "大": { value: 15 },
           "特大": { value: 22 },
         },
-        "守": {
+        "守援": {
           "中": { value: 8 },
           "大": { value: 15 },
           "特大": { value: 22 },
@@ -228,11 +228,11 @@ export const SKILL_RATE_DATA: SkillRateData = {
     },
     "副のみ": {
       "副人数2": {
-        "攻": {
+        "攻援": {
           "中": { value: 9 },
           "特大": { value: 21 },
         },
-        "守": {
+        "守援": {
           "中": { value: 9 },
           "特大": { value: 21 },
         },

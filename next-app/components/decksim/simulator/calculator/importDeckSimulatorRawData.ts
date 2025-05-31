@@ -712,7 +712,7 @@ const parseSkillParameter = ({
   target: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
   range: "主＋副" | "主のみ" | "副のみ";
   subRange: string;
-  type: "攻" | "守" | "攻守";
+  type: "攻援" | "守援" | "攻守";
   strength:
     | "中"
     | "中+"
@@ -752,7 +752,7 @@ const parseSkillParameter = ({
 
   const isIncludeAttack = description.includes("攻援");
   const isIncludeDefence = description.includes("守援");
-  const type = isIncludeAttack ? "攻" : isIncludeDefence ? "守" : "攻守";
+  const type = isIncludeAttack ? "攻援" : isIncludeDefence ? "守援" : "攻守";
 
   const strength = description.includes("ｽｰﾊﾟｰ特大～")
     ? "スーパー特大++"
@@ -983,11 +983,11 @@ const handleDeckBonus = async ({
         lv = element["mDeckBonusLv"];
       }
 
-      let effect: "攻" | "守" | "攻守" = "攻守";
+      let effect: "攻援" | "守援" | "攻守" = "攻守";
       if (desc.includes("攻援")) {
-        effect = "攻";
+        effect = "攻援";
       } else if (desc.includes("守援")) {
-        effect = "守";
+        effect = "守援";
       }
 
       if (name === "シャイニング★スプラッシュ") {
