@@ -192,7 +192,7 @@ function LoadButton<
       <div
         role="button"
         onClick={handleClickLoadButton}
-        className="flex flex-col justify-center items-center ml-2 md:ml-6"
+        className="flex flex-col justify-center items-center ml-4 md:ml-6"
       >
         <FileOpenIcon />
         <p className="text-xs whitespace-nowrap">開く</p>
@@ -279,7 +279,7 @@ function SaveButton<T extends OriginSavedDataSummary>({
       <div
         role="button"
         onClick={handleClickSaveButton}
-        className="flex flex-col justify-center items-center ml-3 md:ml-6"
+        className="flex flex-col justify-center items-center ml-4 md:ml-6"
       >
         <SaveIcon />
         <p className="text-xs whitespace-nowrap">保存</p>
@@ -358,7 +358,7 @@ function ResultSummaryDiv<T, U extends ResultSummary, V>({
   return (
     <>
       {resultSummary.initCondition ? (
-        <div className="ml-2 md:ml-8 mr-2 flex flex-col justify-start">
+        <div className="ml-4 md:ml-8 mr-2 flex flex-col justify-start">
           <p className="text-xs">{title}</p>
         </div>
       ) : eventId === "raidwar-skill" ? (

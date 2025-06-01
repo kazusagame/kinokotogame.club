@@ -968,7 +968,7 @@ const handleDeckBonus = async ({
   }
 
   if (Array.isArray(deckBonusList) && deckBonusList.length > 0) {
-    let deckBonusIndex = 0;
+    let deckBonusIndex = 1;
     deckBonusList.forEach((element) => {
       let name;
       let desc;

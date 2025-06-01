@@ -275,7 +275,7 @@ function RegisteredPreciousScenesBlock({
     }
   };
 
-  const gridColumnCss = "md:grid-cols-[40px_200px_30px_80px_90px_65px_65px]";
+  const gridColumnCss = "md:grid-cols-[40px_200px_60px_80px_90px_65px_65px]";
 
   return (
     <div className="text-base border border-base-300 rounded-xl">
@@ -284,11 +284,11 @@ function RegisteredPreciousScenesBlock({
       >
         <div>No.</div>
         <div>名称</div>
-        <div>レア</div>
+        <div>レアリティ</div>
         <div className="flex justify-center items-center">
           <TextWithTooltip
             displayText="人数"
-            tipText="最大効果発揮条件に「特定の～ガール」や「様々な～ガール」の文があるシーンにおいて、そのガールのカウント数値を入力します。その他のシーンでは入力欄は表示されません。未入力のままの場合は最大効果発揮条件を満たしているものと見なして最大効果値を計算に使用します。"
+            tipText="最大効果発揮条件に「特定の～ガール」や「様々な～ガール」の文があるシーンにおいて、そのカウント人数を入力します。その他のシーンでは入力欄は表示されません。未入力のままの場合は最大効果発揮条件を満たしているものと見なして最大効果値を計算に使用します。"
           />
         </div>
         <div className="flex justify-center items-center">

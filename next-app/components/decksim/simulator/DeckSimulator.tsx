@@ -459,7 +459,9 @@ export default function DeckSimulator({
           role="tabpanel"
           className="tab-content bg-base-100 border-base-300 rounded-box px-1 py-2"
         >
-          <DeckSimulatorHowToUse />
+          <DeckSimulatorHowToUse
+            eventId={eventId}
+          />
         </div>
         <input
           type="radio"
