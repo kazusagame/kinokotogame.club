@@ -294,7 +294,7 @@ function preloadSavedata() {
       let afterconvert = JSON.parse(loaddata);
 
       // バージョンプロパティが存在する場合、新版のデータのため読み込みをスキップする
-      if (afterconvert && afterconvert.version) return;
+      if (afterconvert && afterconvert.version) continue;
 
       if (afterconvert.lastUpdate) {
         $(`#date-history-${index + 1}`).text(afterconvert.lastUpdate);

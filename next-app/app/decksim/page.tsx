@@ -279,7 +279,7 @@ export default function Page() {
           </div>
 
           <h2 className="text-xl mt-6 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
-            動作テスト中のシミュレーター
+            動作テスト中のリニューアル版
           </h2>
           <div className="leading-7">
             <p className="md:pl-4">
@@ -288,13 +288,13 @@ export default function Page() {
               </Link>
             </p>
             <p className="md:px-4 mt-4">
-              現在、動作テスト中の新バージョンのシミュレーターへのリンクです。
+              現在、動作テスト中のリニューアル版シミュレーターへのリンクです。
               <br />
               動作確認が完了したタイミングで現行バージョンからこちらに切り替わります。
             </p>
             <p className="md:px-4 mt-4">
               新旧でデータの互換性はありません。
-              テスト中の新バージョンで保存したデータは現行バージョンでは存在していない扱いになります。
+              テスト中のリニューアル版で保存したデータは現行バージョンでは存在していない扱いになります。
             </p>
             <p className="md:px-4 mt-4">
               URフレンドぷちガールちゃん周りの設定はすべて暫定値が入っています。信用しないでください。

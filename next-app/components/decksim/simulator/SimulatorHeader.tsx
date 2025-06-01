@@ -1,4 +1,4 @@
-import { useId, useRef } from "react";
+import { useId, useRef, useState } from "react";
 import Link from "next/link";
 import ThemeControllerMenu from "@/components/common/ThemeControllerMenu";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -29,6 +29,8 @@ import {
 } from "@/components/decksim/simulator/DeckSimulator";
 import { DeckSimulatorResult } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
 import { DeckSimulatorSavedDataSummary } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorSavedDataSummary";
+
+import { UpdateHistory } from "@/components/decksim/simulator/UpdateHistory";
 
 interface HeaderProps<T, U, V> {
   eventId: EventId;
@@ -72,11 +74,15 @@ export default function SimulatorHeader<
   setCurrentDataNum,
   headerHeight = "h-[52px]",
 }: HeaderProps<T, U, V>) {
+  const [modalOpen, setModalOpen] = useState(false);
   const position = isFixHeader ? "sticky top-0" : "static";
 
   const handleClickThemeMenu = () => {
     const nextData = structuredClone(data);
     setTimeout(() => handleLoadData(nextData), 100);
+  };
+  const handleCloseModal = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -127,11 +133,15 @@ export default function SimulatorHeader<
           <li onClick={handleClickThemeMenu}>
             <ThemeControllerMenu />
           </li>
+          <li onClick={() => setModalOpen(true)}>
+            <p>更新履歴を表示する</p>
+          </li>
           <li>
             <Link href="/decksim/">1つ前のページに戻る</Link>
           </li>
         </ul>
       </div>
+      {modalOpen && <UpdateHistory handleCloseModal={handleCloseModal} />}
     </header>
   );
 }
