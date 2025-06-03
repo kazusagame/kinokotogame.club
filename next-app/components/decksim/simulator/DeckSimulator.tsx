@@ -437,7 +437,7 @@ export default function DeckSimulator({
                 />
               </div>
             </div>
-            {eventId !== "tower" && (
+            {(eventId !== "championship-defense" && eventId !== "tower") && (
               <>
                 <input
                   type="radio"

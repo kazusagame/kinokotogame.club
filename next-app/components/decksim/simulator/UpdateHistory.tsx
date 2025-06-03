@@ -28,7 +28,7 @@ export function UpdateHistory({
               <tbody>
                 <tr>
                   <td className="p-1 md:p-2">2025/06/03</td>
-                  <td className="p-1 md:p-2 min-w-20">リニューアル版での部活対抗！勧誘★グランプリと聖櫻学園メモリアルストーリーと通常バトル用のページを追加。</td>
+                  <td className="p-1 md:p-2 min-w-20">リニューアル版での部活対抗！勧誘★グランプリと聖櫻学園★カリスマ決定戦 守援、聖櫻学園メモリアルストーリー、通常バトル用のページを追加。</td>
                 </tr>
                 <tr>
                   <td className="p-1 md:p-2">2025/06/01</td>

@@ -296,6 +296,11 @@ export default function Page() {
                 </Link>
               </p>
               <p className="md:pl-4">
+                <Link href="/decksim_v2/championship-defense/" className="link">
+                  聖櫻学園★カリスマ決定戦 守援
+                </Link>
+              </p>
+              <p className="md:pl-4">
                 <Link href="/decksim_v2/tower/" className="link">
                   聖櫻学園メモリアルストーリー
                 </Link>
