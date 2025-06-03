@@ -6,6 +6,7 @@ import { IntermediateResults } from "@/components/decksim/simulator/typeDefiniti
 
 import { calcEventSpecialRaidwar } from "@/components/decksim/simulator/calculator/eventSpecial/raidwar";
 import { calcEventSpecialClubcup } from "@/components/decksim/simulator/calculator/eventSpecial/clubcup";
+import { calcEventSpecialNormalBattle } from "@/components/decksim/simulator/calculator/eventSpecial/normal-battle";
 
 export const calcEventSpecialPerformance = ({
   inputData,
@@ -22,5 +23,7 @@ export const calcEventSpecialPerformance = ({
     calcEventSpecialRaidwar({ inputData, commonData, intermediateResults });
   } else if (eventId === "clubcup") {
     calcEventSpecialClubcup({ inputData, commonData, intermediateResults });
+  } else if (eventId === "normal-battle") {
+    calcEventSpecialNormalBattle({ inputData, intermediateResults });
   }
 };
