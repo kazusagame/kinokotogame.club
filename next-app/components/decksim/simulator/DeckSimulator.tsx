@@ -437,26 +437,30 @@ export default function DeckSimulator({
                 />
               </div>
             </div>
-            <input
-              type="radio"
-              name="sub_menu"
-              role="tab"
-              className="tab whitespace-nowrap max-md:!ps-2 max-md:!pe-2 max-md:checked:!ps-[6px] max-md:checked:!pe-[6px]"
-              aria-label="イベント固有"
-            />
-            <div
-              role="tabpanel"
-              className="tab-content bg-base-100 border-base-300 rounded-box px-1 md:px-2 py-4 max-w-screen"
-            >
-              <div className="flex flex-col gap-6">
-                <EventSpecial
-                  data={data}
-                  eventId={eventId}
-                  onChange={handleChangeParameters}
-                  onBlur={handleBlurParameters}
+            {eventId !== "tower" && (
+              <>
+                <input
+                  type="radio"
+                  name="sub_menu"
+                  role="tab"
+                  className="tab whitespace-nowrap max-md:!ps-2 max-md:!pe-2 max-md:checked:!ps-[6px] max-md:checked:!pe-[6px]"
+                  aria-label="イベント固有"
                 />
-              </div>
-            </div>
+                <div
+                  role="tabpanel"
+                  className="tab-content bg-base-100 border-base-300 rounded-box px-1 md:px-2 py-4 max-w-screen"
+                >
+                  <div className="flex flex-col gap-6">
+                    <EventSpecial
+                      data={data}
+                      eventId={eventId}
+                      onChange={handleChangeParameters}
+                      onBlur={handleBlurParameters}
+                    />
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
         <input
@@ -614,39 +618,48 @@ function DataExportAndImport({
             {eventId === "tower" && (
               <div className="flex flex-col mb-6">
                 <label className="label">
-                  <span className="label-text">有利なガール</span>
+                  <span className="label-text">有利なガールの名前</span>
                 </label>
-                <input
-                  type="text"
-                  name="specialGirlName1"
-                  className="input input-sm input-bordered max-w-48 md:w-48"
-                  data-property="specialGirlName1"
-                  value={loadCondition.specialGirlName1}
-                  onChange={handleLoadCondition}
-                />
-                <input
-                  type="text"
-                  name="specialGirlName2"
-                  className="input input-sm input-bordered max-w-48 md:w-48 mt-4"
-                  data-property="specialGirlName2"
-                  value={loadCondition.specialGirlName2}
-                  onChange={handleLoadCondition}
-                />
+                <div className="flex flex-wrap items-center gap-2">
+                  <label className="label">1.</label>
+                  <input
+                    type="text"
+                    name="specialGirlName1"
+                    className="input input-sm input-bordered max-w-48 md:w-48"
+                    data-property="specialGirlName1"
+                    value={loadCondition.specialGirlName1}
+                    onChange={handleLoadCondition}
+                  />
+                </div>
+                <div className="flex flex-wrap items-center gap-2 mt-2">
+                  <label className="label">2.</label>
+                  <input
+                    type="text"
+                    name="specialGirlName2"
+                    className="input input-sm input-bordered max-w-48 md:w-48"
+                    data-property="specialGirlName2"
+                    value={loadCondition.specialGirlName2}
+                    onChange={handleLoadCondition}
+                  />
+                </div>
               </div>
             )}
             {eventId === "divrace" && (
               <div className="flex flex-col mb-6">
                 <label className="label">
-                  <span className="label-text">予選グループガール</span>
+                  <span className="label-text">予選グループのガールの名前</span>
                 </label>
-                <input
-                  type="text"
-                  name="specialGirlName1"
-                  className="input input-sm input-bordered max-w-48 md:w-48"
-                  data-property="specialGirlName1"
-                  value={loadCondition.specialGirlName1}
-                  onChange={handleLoadCondition}
-                />
+                <div className="flex flex-wrap items-center gap-2">
+                  <label className="label">1.</label>
+                  <input
+                    type="text"
+                    name="specialGirlName1"
+                    className="input input-sm input-bordered max-w-48 md:w-48"
+                    data-property="specialGirlName1"
+                    value={loadCondition.specialGirlName1}
+                    onChange={handleLoadCondition}
+                  />
+                </div>
               </div>
             )}
           </div>

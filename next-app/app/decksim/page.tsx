@@ -295,6 +295,11 @@ export default function Page() {
                   部活対抗！勧誘★グランプリ
                 </Link>
               </p>
+              <p className="md:pl-4">
+                <Link href="/decksim_v2/tower/" className="link">
+                  聖櫻学園メモリアルストーリー
+                </Link>
+              </p>
             </div>
             <p className="md:px-4">
               現在、動作テスト中のリニューアル版シミュレーターへのリンクです。

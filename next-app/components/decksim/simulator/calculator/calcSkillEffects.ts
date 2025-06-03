@@ -4,8 +4,12 @@ import {
   BasePowerArray,
 } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorIntermediateResults";
 
-import { BONUS_DATA_PER_EVENT } from "@/components/decksim/data/bonusData";
 import {
+  BONUS_DATA_PER_EVENT,
+  TowerSpecialGirls,
+} from "@/components/decksim/data/bonusData";
+import {
+  MAX_SKILL_LEVEL,
   SKILL_DATA_PER_EVENT,
   SKILL_RATE_DATA,
 } from "@/components/decksim/data/skillData";
@@ -70,6 +74,24 @@ const createBasePowerArray = ({
         // TBD:
         // レイド、メモストではここにタイプ有利不利バフ、有利ガール補正バフの加算処理が必要。
         // 声援の受け手によって声援にバフが乗る乗らないが発生するためここに入れた方が楽そう
+        const eventId = inputData.dataType;
+        if (eventId === "tower") {
+          // 声援の受け手が有利なガールの場合はボーナスを加算する
+          if (sceneData.isSpecial === true) {
+            const sceneRarity = sceneData.rarity;
+            let sceneSkillLv = returnNumber(sceneData.skillLv);
+            if (sceneSkillLv < 10) sceneSkillLv = 10;
+            if (sceneSkillLv > MAX_SKILL_LEVEL) sceneSkillLv = MAX_SKILL_LEVEL;
+            const effectMap = BONUS_DATA_PER_EVENT.tower.eventUniqueBonus!
+              .specialGirls.value as TowerSpecialGirls;
+            const effectValue =
+              effectMap[sceneRarity][`lv${sceneSkillLv}`] ?? 0;
+
+            powerDict.scenePower *= 1 + effectValue / 100;
+            powerDict.strapEffect *= 1 + effectValue / 100;
+            powerDict.preciousEffect *= 1 + effectValue / 100;
+          }
+        }
 
         newData["全タイプ"].push(powerDict);
         newData[sceneType].push(powerDict);

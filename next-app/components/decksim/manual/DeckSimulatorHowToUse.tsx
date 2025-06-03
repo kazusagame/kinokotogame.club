@@ -225,12 +225,6 @@ export function DeckSimulatorHowToUse({
                   【声援を除いて】各種ボーナスや各種効果による補正後の応援力を自動で表示します。基本的にはこの数値が大きいガールほど効果が高いです。
                 </td>
               </tr>
-              <tr>
-                <td className="whitespace-nowrap">補正後個人</td>
-                <td>
-                  【声援を除いて】各種ボーナスや各種効果による補正後の応援力を自動で表示します。基本的にはこの数値が大きいガールほど効果が高いです。
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>

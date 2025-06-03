@@ -895,7 +895,7 @@ function SceneSelectModal({
                     {eventId === "tower" ? (
                       <TextWithTooltip
                         displayText="有利ガール"
-                        tipText="聖櫻メモリアルストーリーにおいて有利なガールの場合はチェックを入れます。"
+                        tipText="聖櫻メモリアルストーリーにおいてそのステージの有利なガールの場合はチェックを入れます。"
                       />
                     ) : (
                       <TextWithTooltip

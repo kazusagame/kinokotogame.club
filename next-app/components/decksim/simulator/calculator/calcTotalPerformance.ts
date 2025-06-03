@@ -1,8 +1,14 @@
 import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
 import { IntermediateResults } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorIntermediateResults";
 
-import { BONUS_DATA_PER_EVENT } from "@/components/decksim/data/bonusData";
-import { SKILL_DATA_PER_EVENT } from "@/components/decksim/data/skillData";
+import {
+  BONUS_DATA_PER_EVENT,
+  TowerSpecialGirls,
+} from "@/components/decksim/data/bonusData";
+import {
+  SKILL_DATA_PER_EVENT,
+  MAX_SKILL_LEVEL,
+} from "@/components/decksim/data/skillData";
 
 import { returnNumber } from "@/lib/returnNumber";
 
@@ -41,12 +47,36 @@ export const calcTotalPerformance = ({
         // effectMatrixがない場合はreturn (通常ありえない)
         if (!effectTotal) return;
 
+        // TBD:
+        // レイドやメモストではここで有利不利タイプ補正や有利ガール補正の加算が必要になる。
+        if (eventId === "tower") {
+          // 声援の受け手が有利なガールの場合はボーナスを加算する
+          const sceneData = inputData[mainOrSub][attackOrDefense]![Number(key)];
+          if (sceneData?.isSpecial === true) {
+            const sceneRarity = sceneData.rarity;
+            let sceneSkillLv = returnNumber(sceneData.skillLv);
+            if (sceneSkillLv < 10) sceneSkillLv = 10;
+            if (sceneSkillLv > MAX_SKILL_LEVEL) sceneSkillLv = MAX_SKILL_LEVEL;
+            const effectMap = BONUS_DATA_PER_EVENT.tower.eventUniqueBonus!
+              .specialGirls.value as TowerSpecialGirls;
+            const effectValue =
+              effectMap[sceneRarity][`lv${sceneSkillLv}`] ?? 0;
+
+            effectTotal.min = Math.ceil(
+              effectTotal.min * (1 + effectValue / 100)
+            );
+            effectTotal.expDif = Math.ceil(
+              effectTotal.expDif * (1 + effectValue / 100)
+            );
+            effectTotal.maxDif = Math.ceil(
+              effectTotal.maxDif * (1 + effectValue / 100)
+            );
+          }
+        }
+
         totalPerformance.minPower! += effectTotal.min;
         totalPerformance.expPower! += effectTotal.min + effectTotal.expDif;
         totalPerformance.maxPower! += effectTotal.min + effectTotal.maxDif;
-
-        // TBD:
-        // レイドやメモストではここで有利不利タイプ補正や有利ガール補正の加算が必要になる。
 
         // 表示用と並べ替え用に補正後効果値の保管
         keyPowerArray.push([Number(key), effectTotal.min + effectTotal.expDif]);
@@ -122,8 +152,9 @@ export const calcTotalPerformance = ({
 
     // ぷちガールちゃんの総攻援、総守援を加算。有効率も考慮。
     const petitGirlsTotalPower = Math.ceil(
-      returnNumber(inputData.petitGirls.totalPower[attackOrDefense]) *
-        BONUS_DATA_PER_EVENT[eventId].petitGirls.base / 100
+      (returnNumber(inputData.petitGirls.totalPower[attackOrDefense]) *
+        BONUS_DATA_PER_EVENT[eventId].petitGirls.base) /
+        100
     );
     totalPerformance.minPower! += petitGirlsTotalPower;
     totalPerformance.expPower! += petitGirlsTotalPower;

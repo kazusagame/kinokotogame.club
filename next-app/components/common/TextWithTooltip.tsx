@@ -22,6 +22,7 @@ export default function TextWithTooltip({
       <Tooltip
         title={tipText}
         arrow
+        enterDelay={250}
         enterTouchDelay={250}
         leaveTouchDelay={5000}
       >
