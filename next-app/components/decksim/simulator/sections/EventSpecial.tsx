@@ -2,6 +2,7 @@ import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 
 import { RaidwarSpecialSection } from "@/components/decksim/simulator/sections/eventSpecial/raidwar";
+import { ClubcupSpecialSection } from "@/components/decksim/simulator/sections/eventSpecial/clubcup";
 
 export function EventSpecial({
   data,
@@ -20,6 +21,13 @@ export function EventSpecial({
     <>
       {eventId === "raidwar" && (
         <RaidwarSpecialSection
+          data={data}
+          onChange={onChange}
+          onBlur={onBlur}
+        />
+      )}
+      {eventId === "clubcup" && (
+        <ClubcupSpecialSection
           data={data}
           onChange={onChange}
           onBlur={onBlur}

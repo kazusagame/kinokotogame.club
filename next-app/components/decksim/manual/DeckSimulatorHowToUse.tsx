@@ -3,6 +3,7 @@ import Image from "next-export-optimize-images/image";
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 
 import { RaidwarSpecialManual } from "@/components/decksim/manual/eventSpecial/raidwar";
+import { ClubcupSpecialManual } from "@/components/decksim/manual/eventSpecial/clubcup";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
@@ -451,6 +452,7 @@ export function DeckSimulatorHowToUse({
 
       {/* イベント固有用のマニュアル読み出し */}
       {eventId === "raidwar" && <RaidwarSpecialManual />}
+      {eventId === "clubcup" && <ClubcupSpecialManual />}
     </div>
   );
 }

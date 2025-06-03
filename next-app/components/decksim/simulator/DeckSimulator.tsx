@@ -97,13 +97,20 @@ export default function DeckSimulator({
         String(currentDate.getSeconds()).padStart(2, "0");
 
       const result = resultSummary as DeckSimulatorResult;
-      const attackMin = result.summaries.totalPerformance?.attack?.minPower ?? 0;
-      const attackExp = result.summaries.totalPerformance?.attack?.expPower ?? 0;
-      const attackMax = result.summaries.totalPerformance?.attack?.maxPower ?? 0;
-      const attackSkillEffect = result.summaries.totalPerformance?.attack?.skillEffect ?? 0;
-      const defenseMin = result.summaries.totalPerformance?.defense?.minPower ?? 0;
-      const defenseExp = result.summaries.totalPerformance?.defense?.expPower ?? 0;
-      const defenseMax = result.summaries.totalPerformance?.defense?.maxPower ?? 0;
+      const attackMin =
+        result.summaries.totalPerformance?.attack?.minPower ?? 0;
+      const attackExp =
+        result.summaries.totalPerformance?.attack?.expPower ?? 0;
+      const attackMax =
+        result.summaries.totalPerformance?.attack?.maxPower ?? 0;
+      const attackSkillEffect =
+        result.summaries.totalPerformance?.attack?.skillEffect ?? 0;
+      const defenseMin =
+        result.summaries.totalPerformance?.defense?.minPower ?? 0;
+      const defenseExp =
+        result.summaries.totalPerformance?.defense?.expPower ?? 0;
+      const defenseMax =
+        result.summaries.totalPerformance?.defense?.maxPower ?? 0;
       // const defenseSkillEffect = result.summaries.totalPerformance.defense.skillEffect ?? 0;
 
       let totalMin = 0;
@@ -142,7 +149,11 @@ export default function DeckSimulator({
       handleSaveDataSummaries(Number(num) - 1, "powerMin", totalMin);
       handleSaveDataSummaries(Number(num) - 1, "powerExp", totalExp);
       handleSaveDataSummaries(Number(num) - 1, "powerMax", totalMax);
-      handleSaveDataSummaries(Number(num) - 1, "skillEffect", attackSkillEffect);
+      handleSaveDataSummaries(
+        Number(num) - 1,
+        "skillEffect",
+        attackSkillEffect
+      );
       handleSaveDataSummaries(
         Number(num) - 1,
         "isConvertPoint",
@@ -459,9 +470,7 @@ export default function DeckSimulator({
           role="tabpanel"
           className="tab-content bg-base-100 border-base-300 rounded-box px-1 py-2"
         >
-          <DeckSimulatorHowToUse
-            eventId={eventId}
-          />
+          <DeckSimulatorHowToUse eventId={eventId} />
         </div>
         <input
           type="radio"
@@ -933,7 +942,16 @@ export function DeckSimulatorSavedDataDiv({
         {eventId === "clubcup" && (
           <p>
             声援効果：
-            <span className="ml-2">{`${savedDataSummary?.skillEffect} %`}</span>
+            <span className="ml-2">{`${formatNumber(
+              savedDataSummary?.skillEffect,
+              "0.0",
+              "ja-JP",
+              {
+                style: "decimal",
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1,
+              }
+            )} %`}</span>
           </p>
         )}
       </div>

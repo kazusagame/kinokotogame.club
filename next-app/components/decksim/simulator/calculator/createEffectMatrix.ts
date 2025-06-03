@@ -19,6 +19,8 @@ import {
 import { setDeepValue } from "@/lib/setDeepValue";
 import { returnNumber } from "@/lib/returnNumber";
 
+import { MAX_SKILL_LEVEL } from "@/components/decksim/data/skillData";
+
 const initEffectMatrix: EffectMatrix = {
   base: { scenePower: 0, strapEffect: 0, preciousEffect: 0 },
   typeMatch: { scenePower: 0, strapEffect: 0, preciousEffect: 0 },
@@ -179,8 +181,12 @@ export const createEffectMatrix = ({
         if (eventId === "clubcup") {
           const skillEffectDict = BONUS_DATA_PER_EVENT.clubcup.eventUniqueBonus!
             .skillEffect.value as ClubcupSkillEffectMap;
+          let skillLv = returnNumber(sceneData.skillLv);
+          if (skillLv < 1) skillLv = 1;
+          if (skillLv > MAX_SKILL_LEVEL) skillLv = MAX_SKILL_LEVEL;
+
           const skillEffectValue =
-            skillEffectDict[sceneData.rarity][`lv${sceneData.skillLv}`] ?? 0;
+            skillEffectDict[sceneData.rarity][`lv${skillLv}`] ?? 0;
 
           setDeepValue(
             intermediateResults,

@@ -178,15 +178,15 @@ export interface DeckSimulatorData {
       totalSkillDamage?: number | string;
     };
     clubcup?: {
-      pointUpBonus?: number | string;
       attackUpBonus?: number | string;
       isWinBonus?: boolean;
       isConvertPoint?: boolean;
+      pointUpBonus?: number | string;
       attackType?: "全力勧誘" | "全力勧誘×3";
       specialGirlsEffectPercent?: number | string;
       specialGirlsEffectFix?: number | string;
-      rivalSkillEffectDown?: number | string;
       isRivalLeader?: boolean;
+      rivalSkillEffectDown?: number | string;
     };
     championship?: {
       appealType?: "アピール対決" | "アピールタイム" | "レアアピールタイム";

@@ -157,7 +157,7 @@ export function RaidwarSpecialSection({
           </div>
         </div>
         <div className="flex items-center">
-          <label className="label cursor-pointer pl-0">
+          <label className="label cursor-pointer pl-0 pt-1 pb-1">
             <p className="text-base mr-2 md:mr-4">
               <TextWithTooltip
                 displayText="結果を獲得ポイントで表示する"

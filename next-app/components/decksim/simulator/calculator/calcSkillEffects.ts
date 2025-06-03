@@ -320,9 +320,8 @@ const setSkillEffect = ({
   (["mainSkills", "subSwitches"] as const).forEach((mainOrSub) => {
     const skillsData = intermediateResults[mainOrSub]?.["attack"] ?? {};
     Object.values(skillsData).forEach((skillData) => {
-      // 発揮値を5000で割って、小数点第二位を四捨五入
-      const value =
-        Math.round(((skillData?.estimatedPower ?? 0) / 5000) * 10) / 10;
+      // 発揮値を5000で割った数値をここでは丸め込みをせずに加算。
+      const value = (skillData?.estimatedPower ?? 0) / 5000;
       skillData.skillEffect = value;
     });
   });

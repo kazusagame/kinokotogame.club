@@ -255,22 +255,24 @@ export default function Page() {
           <h2 className="text-xl mt-6 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
             旧版のシミュレーターへのリンク
           </h2>
-          <div className="leading-7">
-            <p className="md:pl-4">
-              <Link
-                href="/decksim_v1/raidwar-skill/index.html"
-                className="link"
-              >
-                おねがい★ハンターズ ハンター声援センバツ
-              </Link>
-            </p>
-            <p className="md:px-4 mt-4">
+          <div className="space-y-4 leading-7">
+            <div className="space-y-2">
+              <p className="md:pl-4">
+                <Link
+                  href="/decksim_v1/raidwar-skill/index.html"
+                  className="link"
+                >
+                  おねがい★ハンターズ ハンター声援センバツ
+                </Link>
+              </p>
+            </div>
+            <p className="md:px-4">
               2024年の年末から少しずつサイトのリニューアルを行っております。
               <br />
               使い慣れた方を使い続けたい人もおられるかと思いますので、
               こちらに旧版へのリンクを設置しています。
             </p>
-            <p className="md:px-4 mt-4">
+            <p className="md:px-4">
               旧版はデータ更新やバグ修正を終了しておりますのでご了承ください。
               <br />
               また、新旧でデータの互換性はありません。
@@ -281,28 +283,35 @@ export default function Page() {
           <h2 className="text-xl mt-6 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
             動作テスト中のリニューアル版
           </h2>
-          <div className="leading-7">
-            <p className="md:pl-4">
-              <Link href="/decksim_v2/raidwar/" className="link">
-                おねがい★ハンターズ
-              </Link>
-            </p>
-            <p className="md:px-4 mt-4">
+          <div className="space-y-4 leading-7">
+            <div className="space-y-2">
+              <p className="md:pl-4">
+                <Link href="/decksim_v2/raidwar/" className="link">
+                  おねがい★ハンターズ
+                </Link>
+              </p>
+              <p className="md:pl-4">
+                <Link href="/decksim_v2/clubcup/" className="link">
+                  部活対抗！勧誘★グランプリ
+                </Link>
+              </p>
+            </div>
+            <p className="md:px-4">
               現在、動作テスト中のリニューアル版シミュレーターへのリンクです。
               <br />
               動作確認が完了したタイミングで現行バージョンからこちらに切り替わります。
             </p>
-            <p className="md:px-4 mt-4">
+            <p className="md:px-4">
               新旧でデータの互換性はありません。
               テスト中のリニューアル版で保存したデータは現行バージョンでは存在していない扱いになります。
             </p>
-            <p className="md:px-4 mt-4">
+            <p className="md:px-4">
               URフレンドぷちガールちゃん周りの設定はすべて暫定値が入っています。信用しないでください。
             </p>
-            <p className="md:px-4 mt-4 mb-2">
+            <p className="md:px-4">
               基本的な作りは同じですが、使い勝手が若干変わっている部分があります。
             </p>
-            <ul className="md:px-4 space-y-2">
+            <ul className="md:px-4 space-y-4">
               <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
                 プレイヤーのタイプや部活役職、メンズコロンLvなどのプレイヤーデータが共通設定となり、1つのページでの変更がすべてのページに反映されるようになりました。
                 <br />
@@ -320,6 +329,9 @@ export default function Page() {
               </li>
               <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
                 「[成果発表会]心実&エミ」などのEx進展ガール数を効果条件に持つプレシャスシーンについて、カウント人数が自動算出になりました。「特定のガール」や「様々なガール」の効果については引き続き手動での入力が必要です。
+              </li>
+              <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
+                ぷちセンバツの設定において学年条件の応援力効果を選択肢に追加しました。
               </li>
             </ul>
           </div>
