@@ -202,6 +202,83 @@ export default function Page() {
       <div className="container mx-auto mb-6 px-2 md:px-6 lg:max-w-screen-lg">
         <h2 className="text-2xl mt-4">お知らせ</h2>
         <div className="my-4 md:pl-4 max-w-screen-sm">
+
+          <h2 className="text-xl mt-6 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
+            動作テスト中のリニューアル版
+          </h2>
+          <div className="space-y-4 leading-7">
+            <div className="space-y-2">
+              <p className="md:pl-4">
+                <Link href="/decksim_v2/raidwar/" className="link">
+                  おねがい★ハンターズ
+                </Link>
+              </p>
+              <p className="md:pl-4">
+                <Link href="/decksim_v2/clubcup/" className="link">
+                  部活対抗！勧誘★グランプリ
+                </Link>
+              </p>
+              <p className="md:pl-4">
+                <Link href="/decksim_v2/championship/" className="link">
+                  聖櫻学園★カリスマ決定戦 攻援
+                </Link>
+              </p>
+              <p className="md:pl-4">
+                <Link href="/decksim_v2/championship-defense/" className="link">
+                  聖櫻学園★カリスマ決定戦 守援
+                </Link>
+              </p>
+              <p className="md:pl-4">
+                <Link href="/decksim_v2/tower/" className="link">
+                  聖櫻学園メモリアルストーリー
+                </Link>
+              </p>
+              <p className="md:pl-4">
+                <Link href="/decksim_v2/normal-battle/" className="link">
+                  通常バトル
+                </Link>
+              </p>
+            </div>
+            <p className="md:px-4">
+              現在、動作テスト中のリニューアル版シミュレーターへのリンクです。
+              <br />
+              動作確認が完了したタイミングで現行バージョンからこちらに切り替わります。
+            </p>
+            <p className="md:px-4">
+              新旧でデータの互換性はありません。
+              テスト中のリニューアル版で保存したデータは現行バージョンでは存在していない扱いになります。
+            </p>
+            <p className="md:px-4">
+              URフレンドぷちガールちゃん周りの設定はすべて暫定値が入っています。信用しないでください。
+            </p>
+            <p className="md:px-4">
+              基本的な作りは同じですが、使い勝手が若干変わっている部分があります。
+            </p>
+            <ul className="md:px-4 space-y-4">
+              <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
+                プレイヤーのタイプや部活役職、メンズコロンLvなどのプレイヤーデータが共通設定となり、1つのページでの変更がすべてのページに反映されるようになりました。
+                <br />
+                今までは役職が変わったりメンズコロンのLvが上がるたびに各々のページで変更が必要だったのですが、この手間が省けるようになります。
+                <br />
+                ただし、この変更により複数のアカウントのデータを1つのブラウザで保管するのは難しくなりますので、アカウントごとにブラウザを変えたりブラウザのプロフィール機能を使用するなどでデータの分割をお願いします。
+              </li>
+              <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
+                声援の設定において、旧バージョンのシミュレーターにあった昔のURシーンの声援変更機能の回数(+1～+5)を入力する欄は、そろそろ使用されている方も少なそうかなと思い今回除外しています。
+                <br />
+                +1につき声援Lv1つ分の効果になるため、もし該当するシーンを設定したい場合は声援Lvに上乗せして入力することで代用してください。
+                <br />
+                （例：声援Lv18の「SWEETの主ｾﾝﾊﾞﾂ全員&副ｾﾝﾊﾞﾂ1人の攻守特大UP+4」を設定したい場合は、声援Lv18
+                + 4 の 声援Lv22として登録する。）
+              </li>
+              <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
+                「[成果発表会]心実&エミ」などのEx進展ガール数を効果条件に持つプレシャスシーンについて、カウント人数が自動算出になりました。「特定のガール」や「様々なガール」の効果については引き続き手動での入力が必要です。
+              </li>
+              <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
+                ぷちセンバツの設定において学年条件の応援力効果を選択肢に追加しました。
+              </li>
+            </ul>
+          </div>
+
           <h2 className="text-xl mt-4 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
             情報募集中
           </h2>
@@ -280,76 +357,6 @@ export default function Page() {
             </p>
           </div>
 
-          <h2 className="text-xl mt-6 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
-            動作テスト中のリニューアル版
-          </h2>
-          <div className="space-y-4 leading-7">
-            <div className="space-y-2">
-              <p className="md:pl-4">
-                <Link href="/decksim_v2/raidwar/" className="link">
-                  おねがい★ハンターズ
-                </Link>
-              </p>
-              <p className="md:pl-4">
-                <Link href="/decksim_v2/clubcup/" className="link">
-                  部活対抗！勧誘★グランプリ
-                </Link>
-              </p>
-              <p className="md:pl-4">
-                <Link href="/decksim_v2/championship-defense/" className="link">
-                  聖櫻学園★カリスマ決定戦 守援
-                </Link>
-              </p>
-              <p className="md:pl-4">
-                <Link href="/decksim_v2/tower/" className="link">
-                  聖櫻学園メモリアルストーリー
-                </Link>
-              </p>
-              <p className="md:pl-4">
-                <Link href="/decksim_v2/normal-battle/" className="link">
-                  通常バトル
-                </Link>
-              </p>
-            </div>
-            <p className="md:px-4">
-              現在、動作テスト中のリニューアル版シミュレーターへのリンクです。
-              <br />
-              動作確認が完了したタイミングで現行バージョンからこちらに切り替わります。
-            </p>
-            <p className="md:px-4">
-              新旧でデータの互換性はありません。
-              テスト中のリニューアル版で保存したデータは現行バージョンでは存在していない扱いになります。
-            </p>
-            <p className="md:px-4">
-              URフレンドぷちガールちゃん周りの設定はすべて暫定値が入っています。信用しないでください。
-            </p>
-            <p className="md:px-4">
-              基本的な作りは同じですが、使い勝手が若干変わっている部分があります。
-            </p>
-            <ul className="md:px-4 space-y-4">
-              <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
-                プレイヤーのタイプや部活役職、メンズコロンLvなどのプレイヤーデータが共通設定となり、1つのページでの変更がすべてのページに反映されるようになりました。
-                <br />
-                今までは役職が変わったりメンズコロンのLvが上がるたびに各々のページで変更が必要だったのですが、この手間が省けるようになります。
-                <br />
-                ただし、この変更により複数のアカウントのデータを1つのブラウザで保管するのは難しくなりますので、アカウントごとにブラウザを変えたりブラウザのプロフィール機能を使用するなどでデータの分割をお願いします。
-              </li>
-              <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
-                声援の設定において、旧バージョンのシミュレーターにあった昔のURシーンの声援変更機能の回数(+1～+5)を入力する欄は、そろそろ使用されている方も少なそうかなと思い今回除外しています。
-                <br />
-                +1につき声援Lv1つ分の効果になるため、もし該当するシーンを設定したい場合は声援Lvに上乗せして入力することで代用してください。
-                <br />
-                （例：声援Lv18の「SWEETの主ｾﾝﾊﾞﾂ全員&副ｾﾝﾊﾞﾂ1人の攻守特大UP+4」を設定したい場合は、声援Lv18
-                + 4 の 声援Lv22として登録する。）
-              </li>
-              <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
-                「[成果発表会]心実&エミ」などのEx進展ガール数を効果条件に持つプレシャスシーンについて、カウント人数が自動算出になりました。「特定のガール」や「様々なガール」の効果については引き続き手動での入力が必要です。
-              </li>
-              <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
-                ぷちセンバツの設定において学年条件の応援力効果を選択肢に追加しました。
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
       <ArticleFooter />

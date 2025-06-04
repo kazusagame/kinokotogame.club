@@ -190,9 +190,9 @@ export interface DeckSimulatorData {
     };
     championship?: {
       appealType?: "アピール対決" | "アピールタイム" | "レアアピールタイム";
-      heartNum?: number | string;
+      heartNum?: string;
       isTensionMax?: boolean;
-      TurnNum?: number | string;
+      TurnNum?: string;
       specialGirlsEffect?: number | string;
       isConvertPoint?: boolean;
     };

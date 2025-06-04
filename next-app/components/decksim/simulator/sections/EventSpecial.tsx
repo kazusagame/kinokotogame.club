@@ -3,6 +3,7 @@ import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 
 import { RaidwarSpecialSection } from "@/components/decksim/simulator/sections/eventSpecial/raidwar";
 import { ClubcupSpecialSection } from "@/components/decksim/simulator/sections/eventSpecial/clubcup";
+import { ChampionshipSpecialSection } from "@/components/decksim/simulator/sections/eventSpecial/championship";
 import { NormalBattleSpecialSection } from "@/components/decksim/simulator/sections/eventSpecial/normal-battle";
 
 export function EventSpecial({
@@ -29,6 +30,13 @@ export function EventSpecial({
       )}
       {eventId === "clubcup" && (
         <ClubcupSpecialSection
+          data={data}
+          onChange={onChange}
+          onBlur={onBlur}
+        />
+      )}
+      {eventId === "championship" && (
+        <ChampionshipSpecialSection
           data={data}
           onChange={onChange}
           onBlur={onBlur}
