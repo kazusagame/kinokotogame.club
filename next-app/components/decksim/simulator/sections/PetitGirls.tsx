@@ -639,7 +639,7 @@ function RowBoardPetitDetail({
               min={0}
               className="input input-sm input-bordered max-w-20 md:w-20 text-right mr-6"
               value={
-                data.petitGirls.details?.[groupNum]?.[girlNum]?.SkillValue ?? 0
+                data.petitGirls.details?.[groupNum]?.[girlNum]?.skillValue ?? 0
               }
               onChange={onChange}
               onBlur={onBlur}

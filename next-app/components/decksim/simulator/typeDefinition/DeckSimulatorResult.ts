@@ -68,6 +68,19 @@ export interface DeckSimulatorSummaries {
       };
     };
   };
+  boardSpecial?: {
+    weatherEffect?: {
+      [K: number]: number;
+    };
+    spaceEffect?: {
+      [K: number]: number;
+    };
+    totalEffect?: {
+      minPower: number;
+      expPower: number;
+      maxPower: number;
+    };
+  };
 }
 
 interface SceneEstimatedParameters {
@@ -83,4 +96,5 @@ interface SkillEstimatedParameters {
   estimatedEffect?: number;
   estimatedRate?: number;
   skillEffect?: number;
+  eventGimmickTotalPower?: number;
 }

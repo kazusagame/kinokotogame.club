@@ -21,6 +21,20 @@ export const calcTotalPerformance = ({
 }) => {
   const eventId = inputData.dataType;
 
+  // 課外活動コンテスト、聖櫻ワールド用に声援の合計加算値をまとめておく
+  const skillPerformance: IntermediateResults["skillPerformance"] = {
+    attack: {
+      minPower: 0,
+      expPower: 0,
+      maxPower: 0,
+    },
+    defense: {
+      minPower: 0,
+      expPower: 0,
+      maxPower: 0,
+    },
+  };
+
   // 攻援/守援 ごとに すべてのシーン、声援、ぷちセンバツの効果を合算してtotalPerformanceを算出する
   (["attack", "defense"] as const).forEach((attackOrDefense) => {
     const totalPerformance: IntermediateResults["totalPerformance"][
@@ -128,12 +142,12 @@ export const calcTotalPerformance = ({
       // それ以外のときは 確率を掛けてまずはexpのみに加算。
       powerRateArray.forEach(([power, rate]) => {
         if (rate === 100) {
-          totalPerformance.minPower! += power;
-          totalPerformance.expPower! += power;
-          totalPerformance.maxPower! += power;
+          skillPerformance[attackOrDefense].minPower += power;
+          skillPerformance[attackOrDefense].expPower += power;
+          skillPerformance[attackOrDefense].maxPower += power;
           skillMaxNum -= 1;
         } else {
-          totalPerformance.expPower! += Math.ceil((power * rate) / 100);
+          skillPerformance[attackOrDefense].expPower += Math.ceil((power * rate) / 100);
         }
       });
 
@@ -145,10 +159,13 @@ export const calcTotalPerformance = ({
       // skillMaxNum が残っている限り、効果値順でmaxに加算する。
       for (let i = 0; i < filteredArray.length; i++) {
         if (skillMaxNum <= 0) break;
-        totalPerformance.maxPower! += filteredArray[i][0];
+          skillPerformance[attackOrDefense].maxPower += filteredArray[i][0];
         skillMaxNum -= 1;
       }
     });
+    totalPerformance.minPower! += skillPerformance[attackOrDefense].minPower;
+    totalPerformance.expPower! += skillPerformance[attackOrDefense].expPower;
+    totalPerformance.maxPower! += skillPerformance[attackOrDefense].maxPower;
 
     // ぷちガールちゃんの総攻援、総守援を加算。有効率も考慮。
     const petitGirlsTotalPower = Math.ceil(
@@ -163,4 +180,7 @@ export const calcTotalPerformance = ({
     // 合算後のtotalPerformanceを反映する
     intermediateResults.totalPerformance[attackOrDefense] = totalPerformance;
   });
+
+  // 課外活動コンテスト、聖櫻ワールド用に声援の合計加算値を保存
+  intermediateResults.skillPerformance = skillPerformance;
 };

@@ -16,6 +16,10 @@ export function formatNumber(
   let parsed: number;
 
   if (typeof value === "string") {
+    // "" (空白)、"-" (マイナス) 一文字の場合は例外として何もしない
+    // こうしないと0未満の数字を入れる際にマイナス記号から始められなくなるため
+    if (value === "" || value === "-") return value;
+
     const cleaned = value.replace(/,/g, "").trim();
     parsed = Number(cleaned);
   } else {

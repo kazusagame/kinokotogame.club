@@ -7,7 +7,7 @@ export interface DivraceItem {
   effectValue: number;
   condition: {
     isPreSelect?: boolean;
-    type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ";
+    type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
     rarityNum?: number;
     cost?: number;
     skillLv?: number;
@@ -67,7 +67,7 @@ export const DIVRACE_ITEMS_DATA: { [K: number]: DivraceItem } = {
   },
   11: {
     name: "アルバム", description: "Ex進展ボーナスの効果が25倍に",
-    effectType: "Ex進展ボーナス", effectValue: 2500,
+    effectType: "Ex進展ボーナス", effectValue: 2500, /* ゲーム動作に合わせて "効果が26倍 (2500％UP)" に設定 */
     condition: {},
   },
   12: {

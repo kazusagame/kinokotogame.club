@@ -52,6 +52,7 @@ export const transferIntermediateToSummary = ({
           "estimatedEffect",
           "estimatedRate",
           "skillEffect",
+          "eventGimmickTotalPower",
         ] as const
       ).forEach((prop) => {
         if (from.hasOwnProperty(prop)) destination[prop] = from[prop];
@@ -99,6 +100,7 @@ export const transferIntermediateToSummary = ({
           "estimatedEffect",
           "estimatedRate",
           "skillEffect",
+          "eventGimmickTotalPower",
         ] as const
       ).forEach((prop) => {
         if (from.hasOwnProperty(prop)) destination[prop] = from[prop];
@@ -122,4 +124,7 @@ export const transferIntermediateToSummary = ({
       });
     });
   });
+
+  // boardSpecial
+  summary.summaries.boardSpecial = intermediateResults["boardSpecial"];
 };

@@ -107,7 +107,7 @@ export interface DeckSimulatorData {
           defense?: number | string;
           type?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ";
           skillTarget?: "SWEETタイプ" | "COOLタイプ" | "POPタイプ" | "全タイプ";
-          SkillValue?: number | string;
+          skillValue?: number | string;
         };
       };
     };
@@ -209,7 +209,7 @@ export interface DeckSimulatorData {
     };
     board?: {
       specialGirlsEffect?: number | string;
-      weatherNum?: number | string;
+      weatherNum?: string;
       spaceEffects?: {
         [K: number]: {
           value: number | string;

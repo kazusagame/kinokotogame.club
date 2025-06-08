@@ -17,18 +17,13 @@ import {
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 
 import WarningIcon from "@mui/icons-material/Warning";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Tooltip from "@mui/material/Tooltip";
 
-import {
-  DeckSimulatorData,
-} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
-import {
-  DeckSimulatorResult,
-} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
+import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
+import { DeckSimulatorResult } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
-import {
-  INIT_SKILL_LEVEL,
-} from "@/components/decksim/data/skillData";
+import { INIT_SKILL_LEVEL } from "@/components/decksim/data/skillData";
 import { MAX_MAIN_GIRLS_NUM } from "@/components/decksim/simulator/globalConfig";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
@@ -239,9 +234,11 @@ function RegisteredMainSkillsBlock({
   };
 
   const gridColumnCss =
-    eventId !== "clubcup"
-      ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_75px_65px_65px]"
-      : "lg:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_75px_75px_65px_65px]";
+    eventId === "clubcup"
+      ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_75px_75px_65px_65px]"
+      : eventId === "divrace" || eventId === "board"
+      ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_85px_75px_65px_65px]"
+      : "lg:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_75px_65px_65px]"
 
   return (
     <div className="text-base border border-base-300 rounded-xl">
@@ -267,6 +264,42 @@ function RegisteredMainSkillsBlock({
             tipText="声援が発動したときの効果合計値を自動で表示します。声援が掛かる対象の応援力 × 効果値 × 対象人数 × 補正。基本的にはこの数値が大きい声援ほど効果が高いです。"
           />
         </div>
+        {eventId === "divrace" && (
+          <div>
+            <Tooltip
+              title="選択した風向きアイテムの効果を加算した後の効果合計値を自動で表示します。"
+              arrow
+              enterTouchDelay={250}
+              leaveTouchDelay={5000}
+            >
+              <div className="flex justify-center items-center gap-1">
+                <div className="flex flex-col justify-center items-center">
+                  <span>風向き</span>
+                  <span>加算後</span>
+                </div>
+                <HelpOutlineIcon fontSize="small" />
+              </div>
+            </Tooltip>
+          </div>
+        )}
+        {eventId === "board" && (
+          <div>
+            <Tooltip
+              title="天気効果やマス効果を加算した後の効果合計値を自動で表示します。"
+              arrow
+              enterTouchDelay={250}
+              leaveTouchDelay={5000}
+            >
+              <div className="flex justify-center items-center gap-1">
+                <div className="flex flex-col justify-center items-center">
+                  <span>マス/天気</span>
+                  <span>加算後</span>
+                </div>
+                <HelpOutlineIcon fontSize="small" />
+              </div>
+            </Tooltip>
+          </div>
+        )}
         <div className="flex justify-center items-center">
           <TextWithTooltip
             displayText="発動率"
@@ -350,26 +383,31 @@ function RegisteredMainSkillsBlock({
                   <div className="flex justify-end items-center pr-2">
                     {formatNumber(summary?.estimatedPower ?? 0)}
                   </div>
+                  {(eventId === "divrace" || eventId === "board") && (
+                    <div className="flex justify-end items-center pr-2">
+                      {formatNumber(summary?.eventGimmickTotalPower ?? 0)}
+                    </div>
+                  )}
                   <div className="flex justify-end items-center pr-2">
-                    {formatNumber(summary?.estimatedRate ?? 0, "0.00", "ja-JP", {
-                      style: "decimal",
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}{" "}
+                    {formatNumber(
+                      summary?.estimatedRate ?? 0,
+                      "0.00",
+                      "ja-JP",
+                      {
+                        style: "decimal",
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      }
+                    )}{" "}
                     %
                   </div>
                   {eventId === "clubcup" && (
                     <div className="flex justify-end items-center pr-2">
-                      {formatNumber(
-                        summary?.skillEffect ?? 0,
-                        "0.0",
-                        "ja-JP",
-                        {
-                          style: "decimal",
-                          minimumFractionDigits: 1,
-                          maximumFractionDigits: 1,
-                        }
-                      )}{" "}
+                      {formatNumber(summary?.skillEffect ?? 0, "0.0", "ja-JP", {
+                        style: "decimal",
+                        minimumFractionDigits: 1,
+                        maximumFractionDigits: 1,
+                      })}{" "}
                       %
                     </div>
                   )}

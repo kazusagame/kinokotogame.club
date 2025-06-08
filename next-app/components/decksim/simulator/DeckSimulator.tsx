@@ -453,9 +453,11 @@ export default function DeckSimulator({
                   <div className="flex flex-col gap-6">
                     <EventSpecial
                       data={data}
+                      summary={resultSummary}
                       eventId={eventId}
                       onChange={handleChangeParameters}
                       onBlur={handleBlurParameters}
+                      setValueAtPath={setValueAtPath}
                     />
                   </div>
                 </div>
@@ -791,7 +793,7 @@ export function DeckSimulatorResultSummaryDiv({
               </div>
               {(eventId === "divrace" || eventId === "board") && (
                 <>
-                  <div className="hidden lg:block">
+                  <div className="hidden lg:block ml-6">
                     <div className="flex flex-col">
                       <p>最小値(×6)：</p>
                       <p>期待値(×6)：</p>
@@ -817,7 +819,7 @@ export function DeckSimulatorResultSummaryDiv({
                       </p>
                     </div>
                   </div>
-                  <div className="hidden lg:block">
+                  <div className="hidden lg:block ml-6">
                     <div className="flex flex-col">
                       <p>最小値(×15)：</p>
                       <p>期待値(×15)：</p>

@@ -2,6 +2,18 @@ import { DeckSimulatorSummaries } from "@/components/decksim/simulator/typeDefin
 
 // DeckSimulatorSummaries からの追加分を定義
 export type IntermediateResults = DeckSimulatorSummaries & {
+  skillPerformance?: {
+    attack: {
+      minPower: number;
+      expPower: number;
+      maxPower: number;
+    };
+    defense: {
+      minPower: number;
+      expPower: number;
+      maxPower: number;
+    };
+  };
   mainScenes: {
     attack: {
       [K: number]: {
@@ -14,6 +26,12 @@ export type IntermediateResults = DeckSimulatorSummaries & {
           min: number;
           expDif: number;
           maxDif: number;
+        };
+        eventGimmickDiff?: {
+          base: number;
+          deck: number;
+          petitEffects: number;
+          limitBreak: number;
         };
       };
       basePowerArray?: BasePowerArray;
@@ -34,6 +52,13 @@ export type IntermediateResults = DeckSimulatorSummaries & {
       basePowerArray?: BasePowerArray;
     };
   };
+  mainSkills: {
+    attack: {
+      [K: number]: {
+        eventGimmickDiff?: number;
+      };
+    };
+  };
   subScenes: {
     attack: {
       [K: number]: {
@@ -46,6 +71,12 @@ export type IntermediateResults = DeckSimulatorSummaries & {
           min: number;
           expDif: number;
           maxDif: number;
+        };
+        eventGimmickDiff?: {
+          base: number;
+          deck: number;
+          petitEffects: number;
+          limitBreak: number;
         };
       };
       basePowerArray?: BasePowerArray;
@@ -64,6 +95,13 @@ export type IntermediateResults = DeckSimulatorSummaries & {
         };
       };
       basePowerArray?: BasePowerArray;
+    };
+  };
+  subSwitches: {
+    attack: {
+      [K: number]: {
+        eventGimmickDiff?: number;
+      };
     };
   };
   preciousScenes: {
@@ -93,7 +131,26 @@ export type IntermediateResults = DeckSimulatorSummaries & {
         | "birthday"
         | "clubItem"]: TargetType;
     } & {
-      "grade"?: TargetGrade;
+      grade?: TargetGrade;
+    };
+    details?: {
+      [K in number]: {
+        attackTotal: {
+          SWEETタイプ: number;
+          COOLタイプ: number;
+          POPタイプ: number;
+        };
+        skillTotal: {
+          全タイプ: number;
+          SWEETタイプ: number;
+          COOLタイプ: number;
+          POPタイプ: number;
+        }
+      };
+    };
+    eventGimmickDiff?: {
+      base: number;
+      skill: number;
     };
   };
 };

@@ -1,4 +1,4 @@
-interface Effect {
+export interface BoardWeatherEffect {
   name: string,
   effectType:
     | "ガール" | "ぷちセンバツ" | "応援力効果" | "声援効果" | "Ex進展ボーナス"
@@ -15,12 +15,12 @@ interface Effect {
 
 export interface BoardWeather {
   name: string;
-  effectList: Effect[];
+  effectList: BoardWeatherEffect[];
 };
 
-export const DIVRACE_ITEMS_DATA: { [K: number]: BoardWeather } = {
+export const BOARD_WEATHER_DATA: { [K: number]: BoardWeather } = {
   0: {
-    name: "なし",
+    name: "無効",
     effectList: [
       { name: "―", effectType: "なし", effectValue: 0, condition: {} },
       { name: "―", effectType: "なし", effectValue: 0, condition: {} },
