@@ -7,68 +7,74 @@ export function BoardSpecialManual() {
         イベント固有（散策♪聖櫻ワールド）
       </h2>
       <Image
-        src="/image/decksim/deckSimulator/52_clubcup_special.png"
-        alt="イベント固有（散策♪聖櫻ワールド）の登録画面"
-        width={518}
-        height={489}
+        src="/image/decksim/deckSimulator/54_board_special_1.png"
+        alt="イベント固有（散策♪聖櫻ワールド）の登録画面 その1"
+        width={504}
+        height={395}
         className="mt-4 mb-2 ml-4 w-1/2"
       />
       <div className="my-2 md:pl-4">
         <table className="table table-xs md:table-md w-auto my-4 text-base bg-base-200">
           <tbody>
             <tr>
-              <td className="whitespace-nowrap">攻援力UP</td>
-              <td>
-                コンボや、マイク、部長の喝の効果による攻援力UPボーナスの数値を入力します。
-                上限は 50 ％ です。
-              </td>
-            </tr>
-            <tr>
-              <td className="whitespace-nowrap">勝利後ボーナス</td>
-              <td>
-                誰かとのバトル勝利後に10分間、発生する攻援力ボーナス（10%）を加算する場合はチェックを入れます。
-              </td>
-            </tr>
-            <tr>
-              <td className="whitespace-nowrap">結果を獲得ポイントで表示する</td>
-              <td>
-                チェックを入れると計算結果が発揮値表示から獲得ポイント表示に変わります。
-                以降の選択は獲得ポイント表示のときにだけ使用されます。
-              </td>
-            </tr>
-            <tr>
-              <td className="whitespace-nowrap">勧誘ptUP</td>
-              <td>
-                コンボや、看板、部長の喝、ハッスルの効果による勧誘ptUPボーナスの数値を入力します。
-                上限は 200 ％ です。
-              </td>
-            </tr>
-            <tr>
-              <td className="whitespace-nowrap">炭酸本数</td>
-              <td>
-                1本での全力勧誘か3本での全力勧誘×3かを選択します。
-              </td>
-            </tr>
-            <tr>
               <td className="whitespace-nowrap">SP応援効果</td>
+              <td>SP応援効果の合計値を入力します。</td>
+            </tr>
+            <tr>
+              <td className="whitespace-nowrap">現在の天気</td>
               <td>
-                SP応援効果の合計値について割合部分と固定値部分をそれぞれ入力します。
+                聖櫻ワールド内での現在の天気を選択します。
+                <br />
+                選択された天気に応じて下の表中にその天気が持つ効果名や、効果の数値、
+                センバツの設定に基づいて計算された実際の効果期待値が表示されます。
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <Image
+        src="/image/decksim/deckSimulator/55_board_special_2.png"
+        alt="イベント固有（散策♪聖櫻ワールド）の登録画面 その2"
+        width={488}
+        height={744}
+        className="mt-4 mb-2 ml-4 w-1/2"
+      />
+      <div className="my-2 md:pl-4">
+        <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
+          マス効果の一覧が表形式で表示されています。
+          <br />
+          現在のマス効果に合わせて数値欄を設定すると、センバツの設定に基づいて
+          計算された実際の効果期待値が表示されます。
+        </p>
+      </div>
+      <Image
+        src="/image/decksim/deckSimulator/56_board_special_3.png"
+        alt="イベント固有（散策♪聖櫻ワールド）の登録画面 その3"
+        width={433}
+        height={509}
+        className="mt-4 mb-2 ml-4 w-1/2"
+      />
+      <div className="my-2 md:pl-4">
+        <table className="table table-xs md:table-md w-auto my-4 text-base bg-base-200">
+          <tbody>
+            <tr>
+              <td className="whitespace-nowrap">合計ボーナス効果</td>
+              <td>
+                天気効果とマス効果を合算した♡1あたりのボーナス効果を自動で表示します。
+                <br />
+                ゲーム中で実際にアタックを行った際に表示されるボーナス効果の数値が
+                この範囲に入っていればこのシミュレーターは機能しています。
               </td>
             </tr>
             <tr>
-              <td className="whitespace-nowrap">対戦相手が部長or副部長</td>
+              <td className="whitespace-nowrap">マス効果を一覧から取得</td>
               <td>
-                対戦相手に部長もしくは副部長を想定する場合はチェックを入れます。
-                獲得ptに少しだけボーナスが入ります。
-                プレイヤー自身の役職を選択したい場合は、その他タブにある
-                【プレイヤーデータ・部活データ】から変更してください。
-              </td>
-            </tr>
-            <tr>
-              <td className="whitespace-nowrap">対戦相手の声援効果 Down率</td>
-              <td>
-                対戦相手の声援効果 Down率を入力します。数値が大きいほど獲得ptが下がります。
-                何か想定したいDown率がある場合は入力してください。
+                こちらはマス効果の数値を手動で入力する手間を省くための機能です。
+                ただし、まだテスト前のため期待した動作にならないかもしれません。
+                <br />
+                ゲーム中のステージ効果 → マス効果で表示されているマス効果の一覧を
+                コピーして貼り付けます。その次に取得ボタンを押すと解析が行われて、
+                上のマス効果の表に各効果値が自動で入力された状態になります。
               </td>
             </tr>
           </tbody>

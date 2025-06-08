@@ -75,10 +75,5 @@ export const calcDeckSimulatorResult = ({
 
   // intermediate から summary に 反映
   transferIntermediateToSummary({ intermediateResults, summary });
-
-  // console.log(inputData);
-  // console.log(commonData);
-  // console.log(intermediateResults);
-  // console.log(summary);
 };
 

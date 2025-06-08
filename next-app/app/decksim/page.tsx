@@ -204,7 +204,7 @@ export default function Page() {
         <div className="my-4 md:pl-4 max-w-screen-sm">
 
           <h2 className="text-xl mt-6 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
-            動作テスト中のリニューアル版
+            動作テスト中のリニューアル版について
           </h2>
           <div className="space-y-4 leading-7">
             <div className="space-y-2">
@@ -245,7 +245,7 @@ export default function Page() {
               </p>
             </div>
             <p className="md:px-4">
-              現在、動作テスト中のリニューアル版シミュレーターへのリンクです。
+              上記は現在、動作テスト中のリニューアル版シミュレーターへのリンクです。
               <br />
               動作確認が完了したタイミングで現行バージョンからこちらに切り替わります。
               順調にいけば6月中にリンクなどの差し替えを行う予定です。
