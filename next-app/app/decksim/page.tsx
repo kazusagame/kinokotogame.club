@@ -304,6 +304,9 @@ export default function Page() {
               <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
                 ぷちセンバツの設定において学年条件の応援力効果を選択肢に追加しました。
               </li>
+              <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
+                たすけて！マイヒーロー 後半用のセンバツは1つのページ内で攻援センバツと守援センバツの両方を設定する形式に変わりました。
+              </li>
             </ul>
           </div>
 

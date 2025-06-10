@@ -36,12 +36,12 @@ export const sumEffectMatrix = ({
           ([outerKey, outerObject]: [string, PowerDict]) => {
             Object.values(outerObject).forEach((value: number) => {
               if (outerKey !== "limitBreak") {
-                effectTotal.min += value;
+                effectTotal.min += Math.ceil(value);
               } else {
                 effectTotal.expDif += Math.ceil(
                   (value * BONUS_DATA_COMMON.limitBreak.probability) / 100
                 );
-                effectTotal.maxDif += value;
+                effectTotal.maxDif += Math.ceil(value);
               }
             });
           }

@@ -28,7 +28,7 @@ export function UpdateHistory({
               <tbody>
                 <tr>
                   <td className="p-1 md:p-2">2025/06/15</td>
-                  <td className="p-1 md:p-2 min-w-20">リニューアル版での全国高校生課外活動コンテスト用のページを追加。</td>
+                  <td className="p-1 md:p-2 min-w-20">リニューアル版でのたすけて！マイヒーロー、全国高校生課外活動コンテスト用のページを追加。</td>
                 </tr>
                 <tr>
                   <td className="p-1 md:p-2">2025/06/08</td>

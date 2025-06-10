@@ -220,32 +220,27 @@ const calcBasePowerDict = ({
   const bonusValue = 100;
 
   if (mainOrSub === "mainScenes") {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.mainScenes[keyName]) /
-        100
-    );
-    powerDict.strapEffect = Math.ceil(
+      100;
+    powerDict.strapEffect =
       (((returnNumber(sceneData.strap) * bonusValue) / 100) *
         effectiveRate.mainStrap[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.mainPrecious[keyName]) /
-        100
-    );
+      100;
   } else {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.subScenes[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.subPrecious[keyName]) /
-        100
-    );
+      100;
   }
 
   return powerDict;
@@ -281,32 +276,27 @@ const calcTypeMatchPowerDict = ({
   }
 
   if (mainOrSub === "mainScenes") {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.mainScenes[keyName]) /
-        100
-    );
-    powerDict.strapEffect = Math.ceil(
+      100;
+    powerDict.strapEffect =
       (((returnNumber(sceneData.strap) * bonusValue) / 100) *
         effectiveRate.mainStrap[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.mainPrecious[keyName]) /
-        100
-    );
+      100;
   } else {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.subScenes[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.subPrecious[keyName]) /
-        100
-    );
+      100;
   }
 
   return powerDict;
@@ -340,32 +330,27 @@ const calcClubMatchPowerDict = ({
   }
 
   if (mainOrSub === "mainScenes") {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.mainScenes[keyName]) /
-        100
-    );
-    powerDict.strapEffect = Math.ceil(
+      100;
+    powerDict.strapEffect =
       (((returnNumber(sceneData.strap) * bonusValue) / 100) *
         effectiveRate.mainStrap[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.mainPrecious[keyName]) /
-        100
-    );
+      100;
   } else {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.subScenes[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.subPrecious[keyName]) /
-        100
-    );
+      100;
   }
 
   return powerDict;
@@ -438,32 +423,27 @@ const calcClubItemPowerDict = ({
   }
 
   if (mainOrSub === "mainScenes") {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.mainScenes[keyName]) /
-        100
-    );
-    powerDict.strapEffect = Math.ceil(
+      100;
+    powerDict.strapEffect =
       (((returnNumber(sceneData.strap) * bonusValue) / 100) *
         effectiveRate.mainStrap[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.mainPrecious[keyName]) /
-        100
-    );
+      100;
   } else {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.subScenes[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.subPrecious[keyName]) /
-        100
-    );
+      100;
   }
 
   return powerDict;
@@ -496,32 +476,27 @@ const calcClubPositionPowerDict = ({
   const bonusValue = BONUS_DATA_COMMON.clubPosition[attackOrDefense][position];
 
   if (mainOrSub === "mainScenes") {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.mainScenes[keyName]) /
-        100
-    );
-    powerDict.strapEffect = Math.ceil(
+      100;
+    powerDict.strapEffect =
       (((returnNumber(sceneData.strap) * bonusValue) / 100) *
         effectiveRate.mainStrap[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.mainPrecious[keyName]) /
-        100
-    );
+      100;
   } else {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.subScenes[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.subPrecious[keyName]) /
-        100
-    );
+      100;
   }
 
   return powerDict;
@@ -558,32 +533,27 @@ export const calcDeckBonusPowerDict = ({
       : ((deckBonus.defense ?? 0) + (deckBonus.both ?? 0)) * bonusRate;
 
   if (mainOrSub === "mainScenes") {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.mainScenes[keyName]) /
-        100
-    );
-    powerDict.strapEffect = Math.ceil(
+      100;
+    powerDict.strapEffect =
       (((returnNumber(sceneData.strap) * bonusValue) / 100) *
         effectiveRate.mainStrap[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.mainPrecious[keyName]) /
-        100
-    );
+      100;
   } else {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.subScenes[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.subPrecious[keyName]) /
-        100
-    );
+      100;
   }
 
   return powerDict;
@@ -617,32 +587,27 @@ const calcDatePowerDict = ({
   }
 
   if (mainOrSub === "mainScenes") {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.mainScenes[keyName]) /
-        100
-    );
-    powerDict.strapEffect = Math.ceil(
+      100;
+    powerDict.strapEffect =
       (((returnNumber(sceneData.strap) * bonusValue) / 100) *
         effectiveRate.mainStrap[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.mainPrecious[keyName]) /
-        100
-    );
+      100;
   } else {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.subScenes[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.subPrecious[keyName]) /
-        100
-    );
+      100;
   }
 
   return powerDict;
@@ -676,32 +641,27 @@ const calcTouchPowerDict = ({
   }
 
   if (mainOrSub === "mainScenes") {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.mainScenes[keyName]) /
-        100
-    );
-    powerDict.strapEffect = Math.ceil(
+      100;
+    powerDict.strapEffect =
       (((returnNumber(sceneData.strap) * bonusValue) / 100) *
         effectiveRate.mainStrap[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.mainPrecious[keyName]) /
-        100
-    );
+      100;
   } else {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.subScenes[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.subPrecious[keyName]) /
-        100
-    );
+      100;
   }
 
   return powerDict;
@@ -735,32 +695,27 @@ const calcBirthdayPowerDict = ({
   }
 
   if (mainOrSub === "mainScenes") {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.mainScenes[keyName]) /
-        100
-    );
-    powerDict.strapEffect = Math.ceil(
+      100;
+    powerDict.strapEffect =
       (((returnNumber(sceneData.strap) * bonusValue) / 100) *
         effectiveRate.mainStrap[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.mainPrecious[keyName]) /
-        100
-    );
+      100;
   } else {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.subScenes[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.subPrecious[keyName]) /
-        100
-    );
+      100;
   }
 
   return powerDict;
@@ -800,32 +755,27 @@ const calcMensColognePowerDict = ({
   }
 
   if (mainOrSub === "mainScenes") {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.mainScenes[keyName]) /
-        100
-    );
-    powerDict.strapEffect = Math.ceil(
+      100;
+    powerDict.strapEffect =
       (((returnNumber(sceneData.strap) * bonusValue) / 100) *
         effectiveRate.mainStrap[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.mainPrecious[keyName]) /
-        100
-    );
+      100;
   } else {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.subScenes[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.subPrecious[keyName]) /
-        100
-    );
+      100;
   }
 
   return powerDict;
@@ -918,32 +868,27 @@ export const calcPetitEffectsPowerDict = ({
   bonusValue *= bonusRate;
 
   if (mainOrSub === "mainScenes") {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.mainScenes[keyName]) /
-        100
-    );
-    powerDict.strapEffect = Math.ceil(
+      100;
+    powerDict.strapEffect =
       (((returnNumber(sceneData.strap) * bonusValue) / 100) *
         effectiveRate.mainStrap[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.mainPrecious[keyName]) /
-        100
-    );
+      100;
   } else {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.subScenes[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.subPrecious[keyName]) /
-        100
-    );
+      100;
   }
 
   return powerDict;
@@ -979,32 +924,27 @@ export const calcLimitBreakPowerDict = ({
   }
 
   if (mainOrSub === "mainScenes") {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.mainScenes[keyName]) /
-        100
-    );
-    powerDict.strapEffect = Math.ceil(
+      100;
+    powerDict.strapEffect =
       (((returnNumber(sceneData.strap) * bonusValue) / 100) *
         effectiveRate.mainStrap[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.mainPrecious[keyName]) /
-        100
-    );
+      100;
   } else {
-    powerDict.scenePower = Math.ceil(
+    powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
         effectiveRate.subScenes[keyName]) /
-        100
-    );
-    powerDict.preciousEffect = Math.ceil(
+      100;
+    powerDict.preciousEffect =
       (((preciousTotal * bonusValue) / 100) *
         effectiveRate.subPrecious[keyName]) /
-        100
-    );
+      100;
   }
 
   return powerDict;

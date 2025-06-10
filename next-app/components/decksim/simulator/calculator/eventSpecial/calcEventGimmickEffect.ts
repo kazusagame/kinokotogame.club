@@ -223,9 +223,9 @@ const calcSceneEffect = ({
         preciousEffect: 0,
       };
       const beforeTotalPower =
-        beforePowerDict.scenePower +
-        beforePowerDict.strapEffect +
-        beforePowerDict.preciousEffect;
+        Math.ceil(beforePowerDict.scenePower) +
+        Math.ceil(beforePowerDict.strapEffect) +
+        Math.ceil(beforePowerDict.preciousEffect);
 
       // 効果加算後でPowerDictを再算出
       const afterPowerDict = {
@@ -269,9 +269,9 @@ const calcSceneEffect = ({
         );
       }
       const afterTotalPower =
-        afterPowerDict.scenePower +
-        afterPowerDict.strapEffect +
-        afterPowerDict.preciousEffect;
+        Math.ceil(afterPowerDict.scenePower) +
+        Math.ceil(afterPowerDict.strapEffect) +
+        Math.ceil(afterPowerDict.preciousEffect);
 
       // 差を取って発動時の効果値を確定
       const diffPower = afterTotalPower - beforeTotalPower;
@@ -427,9 +427,9 @@ const calcPetitEffectEffect = ({
         preciousEffect: 0,
       };
       const beforeTotalPower =
-        beforePowerDict.scenePower +
-        beforePowerDict.strapEffect +
-        beforePowerDict.preciousEffect;
+        Math.ceil(beforePowerDict.scenePower) +
+        Math.ceil(beforePowerDict.strapEffect) +
+        Math.ceil(beforePowerDict.preciousEffect);
 
       // 効果加算後でPowerDictを再算出
       const afterPowerDict = calcPetitEffectsPowerDict({
@@ -442,9 +442,9 @@ const calcPetitEffectEffect = ({
         bonusRate: 1 + rate / 100,
       });
       const afterTotalPower =
-        afterPowerDict.scenePower +
-        afterPowerDict.strapEffect +
-        afterPowerDict.preciousEffect;
+        Math.ceil(afterPowerDict.scenePower) +
+        Math.ceil(afterPowerDict.strapEffect) +
+        Math.ceil(afterPowerDict.preciousEffect);
 
       // 差を取って発動時の効果値を確定
       const diffPower = afterTotalPower - beforeTotalPower;
@@ -569,9 +569,9 @@ const calcLimitBreakEffect = ({
         preciousEffect: 0,
       };
       const beforeTotalPower =
-        beforePowerDict.scenePower +
-        beforePowerDict.strapEffect +
-        beforePowerDict.preciousEffect;
+        Math.ceil(beforePowerDict.scenePower) +
+        Math.ceil(beforePowerDict.strapEffect) +
+        Math.ceil(beforePowerDict.preciousEffect);
 
       // 効果加算後でPowerDictを再算出
       const afterPowerDict = calcLimitBreakPowerDict({
@@ -583,9 +583,9 @@ const calcLimitBreakEffect = ({
         bonusRate: 1 + rate / 100,
       });
       const afterTotalPower =
-        afterPowerDict.scenePower +
-        afterPowerDict.strapEffect +
-        afterPowerDict.preciousEffect;
+        Math.ceil(afterPowerDict.scenePower) +
+        Math.ceil(afterPowerDict.strapEffect) +
+        Math.ceil(afterPowerDict.preciousEffect);
 
       // 差を取って発動時の効果値を確定
       const diffPower = afterTotalPower - beforeTotalPower;
@@ -660,9 +660,9 @@ const calcDeckBonusEffect = ({
         preciousEffect: 0,
       };
       const beforeTotalPower =
-        beforePowerDict.scenePower +
-        beforePowerDict.strapEffect +
-        beforePowerDict.preciousEffect;
+        Math.ceil(beforePowerDict.scenePower) +
+        Math.ceil(beforePowerDict.strapEffect) +
+        Math.ceil(beforePowerDict.preciousEffect);
 
       // 効果加算後でPowerDictを再算出
       const afterPowerDict = calcDeckBonusPowerDict({
@@ -675,9 +675,9 @@ const calcDeckBonusEffect = ({
         bonusRate: 1 + rate / 100,
       });
       const afterTotalPower =
-        afterPowerDict.scenePower +
-        afterPowerDict.strapEffect +
-        afterPowerDict.preciousEffect;
+        Math.ceil(afterPowerDict.scenePower) +
+        Math.ceil(afterPowerDict.strapEffect) +
+        Math.ceil(afterPowerDict.preciousEffect);
 
       // 差を取って発動時の効果値を確定
       const diffPower = afterTotalPower - beforeTotalPower;

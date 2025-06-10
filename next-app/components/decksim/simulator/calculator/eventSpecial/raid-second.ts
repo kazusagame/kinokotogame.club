@@ -6,7 +6,7 @@ import { IntermediateResults } from "@/components/decksim/simulator/typeDefiniti
 
 import {
   BONUS_DATA_PER_EVENT,
-  RaidwarComboMap,
+  RaidComboMap,
   HeartRate,
 } from "@/components/decksim/data/bonusData";
 
@@ -21,93 +21,114 @@ export const calcEventSpecialRaidSecond = ({
   commonData: DeckSimulatorCommonData;
   intermediateResults: IntermediateResults;
 }) => {
-  const comboMap = BONUS_DATA_PER_EVENT.raidwar.eventUniqueBonus!.combo
-    .value as RaidwarComboMap;
-  const comboNum = returnNumber(inputData.eventSpecial.raidwar?.comboNum ?? 50);
+  const comboMap = BONUS_DATA_PER_EVENT["raid-second"].eventUniqueBonus!.combo
+    .value as RaidComboMap;
+  const comboNum = returnNumber(
+    inputData.eventSpecial["raid-second"]?.comboNum ?? 0
+  );
 
-  const heartRate = BONUS_DATA_PER_EVENT.raidwar.eventUniqueBonus!.heartRate
-    .value as HeartRate;
+  const heartRate = BONUS_DATA_PER_EVENT["raid-second"].eventUniqueBonus!
+    .heartRate.value as HeartRate;
   const attackType =
-    inputData.eventSpecial.raidwar?.attackType === "元気炭酸アメ"
+    inputData.eventSpecial["raid-second"]?.attackType === "元気炭酸アメ"
       ? "candy"
-      : inputData.eventSpecial.raidwar?.attackType === "元気炭酸"
+      : inputData.eventSpecial["raid-second"]?.attackType === "元気炭酸"
       ? "normalItem"
-      : inputData.eventSpecial.raidwar?.attackType === "本気炭酸"
+      : inputData.eventSpecial["raid-second"]?.attackType === "勇気炭酸"
       ? "specialItem"
       : "candy";
 
-  const enemyType = inputData.eventSpecial.raidwar?.enemyType ?? "夜行性激レア";
-  const attackNum = returnNumber(
-    inputData.eventSpecial.raidwar?.attackNum ?? 1
-  );
-
-  let totalSkillDamage = returnNumber(
-    inputData.eventSpecial.raidwar?.totalSkillDamage ?? 0
-  );
-  if (enemyType !== "夜行性激レア") totalSkillDamage = 0;
-
   const isConvertPoint =
-    inputData.eventSpecial.raidwar?.isConvertPoint ?? false;
+    inputData.eventSpecial["raid-second"]?.isConvertPoint ?? false;
+  const isAssistMembers =
+    inputData.eventSpecial["raid-second"]?.isAssistMembers ?? false;
 
-  const attackCostMultiplier =
-    returnNumber(commonData.playerData.maxAttackCost ?? 1000) / 100;
   const specialGirlsEffect = returnNumber(
-    inputData.eventSpecial.raidwar?.specialGirlsEffect ?? 0
+    inputData.eventSpecial["raid-second"]?.specialGirlsEffect ?? 0
   );
+  const attackCostMultiplier =
+    returnNumber(commonData.playerData.maxAttackCost ?? 1000) / 200;
   const comboMultiplier = (comboMap[comboNum] ?? 0) / 100;
-
-  let attackUpBuff = returnNumber(
-    inputData.eventSpecial.raidwar?.attackUpBuff ?? 150
-  );
-  if (attackUpBuff < 0) attackUpBuff = 0;
-  if (attackUpBuff > 150) attackUpBuff = 150;
-  if (enemyType !== "夜行性激レア") attackUpBuff = 0;
-
   const heartMultiplier = heartRate[attackType] ?? 1;
 
-  let { minPower, expPower, maxPower } =
-    intermediateResults.totalPerformance.attack;
-  minPower = Math.ceil(
-    ((minPower ?? 0) * attackCostMultiplier + specialGirlsEffect) *
-      (1 + comboMultiplier) *
-      (1 + attackUpBuff / 100) *
-      (heartMultiplier * attackNum + totalSkillDamage / 100)
+  let {
+    minPower: attackMinPower,
+    expPower: attackExpPower,
+    maxPower: attackMaxPower,
+  } = intermediateResults.totalPerformance.attack;
+  let {
+    minPower: defenseMinPower,
+    expPower: defenseExpPower,
+    maxPower: defenseMaxPower,
+  } = intermediateResults.totalPerformance.defense;
+  attackMinPower = Math.ceil(
+    ((attackMinPower ?? 0) * attackCostMultiplier * (1 + comboMultiplier) +
+      specialGirlsEffect) *
+      heartMultiplier
   );
-  expPower = Math.ceil(
-    ((expPower ?? 0) * attackCostMultiplier + specialGirlsEffect) *
-      (1 + comboMultiplier) *
-      (1 + attackUpBuff / 100) *
-      (heartMultiplier * attackNum + totalSkillDamage / 100)
+  attackExpPower = Math.ceil(
+    ((attackExpPower ?? 0) * attackCostMultiplier * (1 + comboMultiplier) +
+      specialGirlsEffect) *
+      heartMultiplier
   );
-  maxPower = Math.ceil(
-    ((maxPower ?? 0) * attackCostMultiplier + specialGirlsEffect) *
+  attackMaxPower = Math.ceil(
+    ((attackMaxPower ?? 0) * attackCostMultiplier * (1 + comboMultiplier) +
+      specialGirlsEffect) *
+      heartMultiplier
+  );
+  defenseMinPower = Math.ceil(
+    (defenseMinPower ?? 0) *
+      attackCostMultiplier *
       (1 + comboMultiplier) *
-      (1 + attackUpBuff / 100) *
-      (heartMultiplier * attackNum + totalSkillDamage / 100)
+      heartMultiplier
+  );
+  defenseExpPower = Math.ceil(
+    (defenseExpPower ?? 0) *
+      attackCostMultiplier *
+      (1 + comboMultiplier) *
+      heartMultiplier
+  );
+  defenseMaxPower = Math.ceil(
+    (defenseMaxPower ?? 0) *
+      attackCostMultiplier *
+      (1 + comboMultiplier) *
+      heartMultiplier
   );
 
   // ポイント変換を行う場合
   if (isConvertPoint) {
     intermediateResults.totalPerformance.isConvertPoint = true;
-    const pointMultiplier =
-      enemyType === "夜行性激レア"
-        ? 1.0
-        : enemyType === "超レアLv50"
-        ? 2.0
-        : enemyType === "超レアLv59"
-        ? 2.5
-        : enemyType === "超レアLv64"
-        ? 3.0
-        : 1.0;
-    minPower = Math.ceil(minPower * pointMultiplier / 1000);
-    expPower = Math.ceil(expPower * pointMultiplier / 1000);
-    maxPower = Math.ceil(maxPower * pointMultiplier / 1000);
+    const pointMultiplier = 3.5;
+    const helpMultiplier = isAssistMembers ? 1.2 : 1.0;
+    attackMinPower = Math.ceil(
+      (attackMinPower * pointMultiplier * helpMultiplier) / 1000
+    );
+    attackExpPower = Math.ceil(
+      (attackExpPower * pointMultiplier * helpMultiplier) / 1000
+    );
+    attackMaxPower = Math.ceil(
+      (attackMaxPower * pointMultiplier * helpMultiplier) / 1000
+    );
+    defenseMinPower = Math.ceil(
+      (defenseMinPower * pointMultiplier * helpMultiplier) / 1000
+    );
+    defenseExpPower = Math.ceil(
+      (defenseExpPower * pointMultiplier * helpMultiplier) / 1000
+    );
+    defenseMaxPower = Math.ceil(
+      (defenseMaxPower * pointMultiplier * helpMultiplier) / 1000
+    );
   }
 
   // イベント固有補正後の数値を反映しなおす
   intermediateResults.totalPerformance.attack = {
-    minPower,
-    expPower,
-    maxPower,
+    minPower: attackMinPower,
+    expPower: attackExpPower,
+    maxPower: attackMaxPower,
+  };
+  intermediateResults.totalPerformance.defense = {
+    minPower: defenseMinPower,
+    expPower: defenseExpPower,
+    maxPower: defenseMaxPower,
   };
 };

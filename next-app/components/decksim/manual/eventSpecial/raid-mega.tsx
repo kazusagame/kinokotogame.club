@@ -7,10 +7,10 @@ export function RaidMegaSpecialManual() {
         イベント固有（たすけて！マイヒーロー メガ悪男）
       </h2>
       <Image
-        src="/image/decksim/deckSimulator/51_raidwar_special.png"
+        src="/image/decksim/deckSimulator/59_raid-mega_special.png"
         alt="イベント固有（たすけて！マイヒーロー メガ悪男）の登録画面"
-        width={604}
-        height={443}
+        width={371}
+        height={377}
         className="mt-4 mb-2 ml-4 w-1/2"
       />
       <div className="my-2 md:pl-4">
@@ -23,39 +23,28 @@ export function RaidMegaSpecialManual() {
               </td>
             </tr>
             <tr>
-              <td className="whitespace-nowrap">捕獲相手</td>
+              <td className="whitespace-nowrap">悪男のタイプ</td>
               <td>
-                捕獲相手が夜行性激レアか通常の超レアかを選択します。
-                夜行性激レアではハンター声援センバツが使用されるため、
-                攻援力UPとダメージ声援の効果が可算されます。
+                悪男のタイプを選択します。
+                選択した悪男のタイプに応じて各タイプのガールに有利/不利タイプ補正が加算されます。
               </td>
             </tr>
             <tr>
-              <td className="whitespace-nowrap">アタック種別 / アタック回数</td>
+              <td className="whitespace-nowrap">アタック種別</td>
               <td>
-                どのアイテムで何回アタックを行った場合の発揮値を計算するのかを選択します。
-              </td>
-            </tr>
-            <tr>
-              <td className="whitespace-nowrap">コンボ数</td>
-              <td>
-                アタック時のコンボ数を選択します。
-                炭酸を使用する場合はアタックの前にコンボ数に加算されます。
+                どのアイテムでアタックを行った場合の発揮値を計算するのかを選択します。
               </td>
             </tr>
             <tr>
               <td className="whitespace-nowrap">攻援力UP</td>
               <td>
-                夜行性激レア捕獲時の攻援力UPバフの数値を入力します。上限は 150 ％ です。
+                ヒーロー声援によるガールの攻援力UP合計値を指定します。上限は 100 % です。
               </td>
             </tr>
             <tr>
-              <td className="whitespace-nowrap">声援ダメージ合計</td>
+              <td className="whitespace-nowrap">守備力DOWN</td>
               <td>
-                夜行性激レア捕獲時に、選択したアタック種別と回数で発揮する
-                ハンター声援センバツ内の声援ダメージの合計値を入力します。
-                手動で計算するのが面倒な場合は、ハンター声援センバツシミュレーターの
-                ページも参考にしてみてください。
+                ヒーロー声援によるメガ悪男の守備力DOWN合計値を指定します。上限は 50 % です。
               </td>
             </tr>
             <tr>

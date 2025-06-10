@@ -18,12 +18,8 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import CheckIcon from "@mui/icons-material/Check";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
-import {
-  DeckSimulatorData,
-} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
-import {
-  DeckSimulatorResult,
-} from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
+import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
+import { DeckSimulatorResult } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 import { MAX_SUB_GIRLS_NUM } from "@/components/decksim/simulator/globalConfig";
 import { INIT_SKILL_LEVEL } from "@/components/decksim/data/skillData";
@@ -154,43 +150,49 @@ export function SubScenes({
     });
   };
 
+  const isValidEvent = eventId === "raid-mega" ? false : true;
+
   return (
-    <section className="pl-1">
-      <h2 className="text-lg font-bold">副センバツ</h2>
-      <div className="flex flex-col gap-6 mt-4 pl-0 sm:pl-2 md:pl-4">
-        <RegisteredSubScenesBlock
-          eventId={eventId}
-          type={type}
-          sceneData={sceneData}
-          sceneCount={sceneCount}
-          summaryData={summaryData}
-          handleEditButton={handleEditButton}
-          handleDeleteButton={handleDeleteButton}
-          handleReorder={handleReorder}
-        />
-        <AddSubScenesBlock
-          sceneCount={sceneCount}
-          handleAddButton={handleAddButton}
-        />
-      </div>
-      {modalOpen && (
-        <SceneSelectModal
-          eventId={eventId}
-          type={type}
-          title={modalTitle}
-          onSubmit={handleGirlSelect}
-          onClose={(selected) => {
-            if (resolveModal) {
-              resolveModal(null);
-              setResolveModal(null);
-            }
-            setSelectedState(selected);
-            setModalOpen(false);
-          }}
-          initialSelected={selectedState}
-        />
+    <>
+      {isValidEvent && (
+        <section className="pl-1">
+          <h2 className="text-lg font-bold">副センバツ</h2>
+          <div className="flex flex-col gap-6 mt-4 pl-0 sm:pl-2 md:pl-4">
+            <RegisteredSubScenesBlock
+              eventId={eventId}
+              type={type}
+              sceneData={sceneData}
+              sceneCount={sceneCount}
+              summaryData={summaryData}
+              handleEditButton={handleEditButton}
+              handleDeleteButton={handleDeleteButton}
+              handleReorder={handleReorder}
+            />
+            <AddSubScenesBlock
+              sceneCount={sceneCount}
+              handleAddButton={handleAddButton}
+            />
+          </div>
+          {modalOpen && (
+            <SceneSelectModal
+              eventId={eventId}
+              type={type}
+              title={modalTitle}
+              onSubmit={handleGirlSelect}
+              onClose={(selected) => {
+                if (resolveModal) {
+                  resolveModal(null);
+                  setResolveModal(null);
+                }
+                setSelectedState(selected);
+                setModalOpen(false);
+              }}
+              initialSelected={selectedState}
+            />
+          )}
+        </section>
       )}
-    </section>
+    </>
   );
 }
 
@@ -446,8 +448,8 @@ function RegisteredSubScenesBlock({
                       {value.skillLv}
                     </div>
                     <div className="flex justify-center items-center max-sm:hidden">
-                        {value.grade}
-                      </div>
+                      {value.grade}
+                    </div>
                     {isClubMatchValid && (
                       <div className="flex justify-center items-center max-sm:hidden">
                         {value.isClubMatch && <CheckIcon fontSize="small" />}
@@ -717,31 +719,31 @@ function SceneSelectModal({
 
               {/* 学年 */}
               <div className="flex flex-col">
-                  <label className="label">
-                    <span className="label-text">
-                      <TextWithTooltip
-                        displayText="学年"
-                        tipText="ガールの学年を選択します。ここでの選択はぷちガールちゃんの応援力効果と散策♪聖櫻ワールドでのマス効果の数値算出に使用されます。F"
-                      />
-                    </span>
-                  </label>
-                  <select
-                    name="grade"
-                    className="select select-md select-bordered"
-                    value={selected.grade}
-                    onChange={(e) =>
-                      setSelected({
-                        ...selected,
-                        grade: e.target.value as SelectState["grade"],
-                      })
-                    }
-                  >
-                    <option value="1年生">1年生</option>
-                    <option value="2年生">2年生</option>
-                    <option value="3年生">3年生</option>
-                    <option value="その他">その他</option>
-                  </select>
-                </div>
+                <label className="label">
+                  <span className="label-text">
+                    <TextWithTooltip
+                      displayText="学年"
+                      tipText="ガールの学年を選択します。ここでの選択はぷちガールちゃんの応援力効果と散策♪聖櫻ワールドでのマス効果の数値算出に使用されます。F"
+                    />
+                  </span>
+                </label>
+                <select
+                  name="grade"
+                  className="select select-md select-bordered"
+                  value={selected.grade}
+                  onChange={(e) =>
+                    setSelected({
+                      ...selected,
+                      grade: e.target.value as SelectState["grade"],
+                    })
+                  }
+                >
+                  <option value="1年生">1年生</option>
+                  <option value="2年生">2年生</option>
+                  <option value="3年生">3年生</option>
+                  <option value="その他">その他</option>
+                </select>
+              </div>
             </div>
             <div className="flex flex-wrap gap-x-6 gap-y-4">
               {/* 部活一致 */}

@@ -14,12 +14,14 @@ export function RaidMegaSpecialSection({
   ) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }) {
-  const isSsrEnemy =
-    data?.eventSpecial?.raidwar?.enemyType === undefined
-      ? true
-      : data.eventSpecial.raidwar.enemyType === "夜行性激レア"
-      ? true
-      : false;
+  const getBgClass = (type?: string | undefined) =>
+    type === "SWEETタイプ"
+      ? "bg-sweet"
+      : type === "COOLタイプ"
+      ? "bg-cool"
+      : type === "POPタイプ"
+      ? "bg-pop"
+      : "bg-sweet";
 
   return (
     <section className="pl-1">
@@ -33,85 +35,58 @@ export function RaidMegaSpecialSection({
             name="specialGirlsEffect"
             className="input input-sm input-bordered max-w-28 md:w-28 text-right"
             value={formatNumber(
-              data?.eventSpecial?.raidwar?.specialGirlsEffect
+              data?.eventSpecial?.["raid-mega"]?.specialGirlsEffect
             )}
             onChange={onChange}
             onBlur={onBlur}
-            data-path="eventSpecial.raidwar.specialGirlsEffect"
+            data-path="eventSpecial.raid-mega.specialGirlsEffect"
           />
         </div>
         <div className="flex items-center gap-2 md:gap-4">
-          <p className="text-base">捕獲相手</p>
+          <p className="text-base">悪男のタイプ</p>
           <select
             name="enemyType"
-            className="select select-sm select-bordered"
-            value={data?.eventSpecial?.raidwar?.enemyType ?? "夜行性激レア"}
+            className={`select select-sm select-bordered ${getBgClass(
+              data?.eventSpecial?.["raid-mega"]?.enemyType
+            )}`}
+            value={
+              data?.eventSpecial?.["raid-mega"]?.enemyType ?? "SWEETタイプ"
+            }
             onChange={onChange}
-            data-path="eventSpecial.raidwar.enemyType"
+            data-path="eventSpecial.raid-mega.enemyType"
           >
-            <option value="夜行性激レア">夜行性激レア</option>
-            <option value="超レアLv50">超レア Lv50以下 (Pt×2.0)</option>
-            <option value="超レアLv59">超レア Lv59 (Pt×2.5)</option>
-            <option value="超レアLv64">超レア Lv64 (Pt×3.0)</option>
+            <option value="SWEETタイプ" className="bg-sweet">
+              SWEETタイプ
+            </option>
+            <option value="COOLタイプ" className="bg-cool">
+              COOLタイプ
+            </option>
+            <option value="POPタイプ" className="bg-pop">
+              POPタイプ
+            </option>
           </select>
         </div>
-        <div className="flex flex-wrap items-center gap-2 md:gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
           <p className="text-base">アタック種別</p>
           <select
             name="attackType"
             className="select select-sm select-bordered"
-            value={data?.eventSpecial?.raidwar?.attackType ?? "元気炭酸アメ"}
+            value={
+              data?.eventSpecial?.["raid-mega"]?.attackType ?? "元気炭酸アメ"
+            }
             onChange={onChange}
-            data-path="eventSpecial.raidwar.attackType"
+            data-path="eventSpecial.raid-mega.attackType"
           >
             <option value="元気炭酸アメ">ハート1個 (元気炭酸アメ)</option>
             <option value="元気炭酸">ハート6個 (元気炭酸)</option>
-            <option value="本気炭酸">ハート12個 (本気炭酸)</option>
+            <option value="勇気炭酸">ハート12個 (勇気炭酸)</option>
           </select>
-          <p className="text-base">/</p>
-          <p className="text-base">アタック回数</p>
-          <input
-            type="number"
-            inputMode="numeric"
-            name="attackNum"
-            min={1}
-            className="input input-sm input-bordered max-w-20 md:w-20 text-right"
-            value={data?.eventSpecial?.raidwar?.attackNum ?? 1}
-            onChange={onChange}
-            onBlur={onBlur}
-            data-path="eventSpecial.raidwar.attackNum"
-          />
         </div>
         <div className="flex items-center gap-2 md:gap-4">
-          <p className="text-base">コンボ数</p>
-          <select
-            name="comboNum"
-            className="select select-sm select-bordered"
-            value={data?.eventSpecial?.raidwar?.comboNum ?? "50"}
-            onChange={onChange}
-            data-path="eventSpecial.raidwar.comboNum"
-          >
-            <option value="0">0</option>
-            <option value="6">6 (×1.3)</option>
-            <option value="12">12 (×1.6)</option>
-            <option value="18">18 (×1.9)</option>
-            <option value="24">24 (×2.2)</option>
-            <option value="30">30 (×2.4)</option>
-            <option value="36">36 (×2.58)</option>
-            <option value="42">42 (×2.76)</option>
-            <option value="48">48 (×2.94)</option>
-            <option value="50">50 ～ (×3.0)</option>
-          </select>
-        </div>
-        <div
-          className={`flex items-center gap-2 md:gap-4 ${
-            isSsrEnemy ? "" : "opacity-10"
-          }`}
-        >
           <p className="text-base">
             <TextWithTooltip
               displayText="攻援力UP"
-              tipText="夜行性激レア捕獲時の攻援力UPバフの数値を入力します。上限は 150 ％ です。"
+              tipText="ヒーロー声援によるガールの攻援力UP合計値を指定します。上限は 100 % です。"
             />
           </p>
           <div className="relative w-fit">
@@ -119,39 +94,36 @@ export function RaidMegaSpecialSection({
               type="number"
               inputMode="numeric"
               name="attackUpBuff"
-              min={0}
-              max={150}
+              min={-100}
+              max={100}
               className="input input-sm input-bordered max-w-20 md:w-20 text-right mr-7"
-              value={data?.eventSpecial?.raidwar?.attackUpBuff ?? 150}
+              value={data?.eventSpecial?.["raid-mega"]?.attackUpBuff ?? 100}
               onChange={onChange}
               onBlur={onBlur}
-              data-path="eventSpecial.raidwar.attackUpBuff"
+              data-path="eventSpecial.raid-mega.attackUpBuff"
             />
             <span className="absolute right-1 top-1/2 -translate-y-1/2">%</span>
           </div>
         </div>
-        <div
-          className={`flex items-center gap-2 md:gap-4 ${
-            isSsrEnemy ? "" : "opacity-10"
-          }`}
-        >
+        <div className="flex items-center gap-2 md:gap-4">
           <p className="text-base">
             <TextWithTooltip
-              displayText="声援ダメージ合計"
-              tipText="夜行性激レア捕獲時に、選択したアタック種別と回数で発揮するハンター声援センバツ内の声援ダメージの合計値を入力します。"
+              displayText="守備力DOWN"
+              tipText="ヒーロー声援によるメガ悪男の守備力DOWN合計値を指定します。上限は 50 % です。"
             />
           </p>
           <div className="relative w-fit">
             <input
               type="number"
               inputMode="numeric"
-              name="totalSkillDamage"
-              min={0}
-              className="input input-sm input-bordered max-w-24 md:w-24 text-right mr-7"
-              value={data?.eventSpecial?.raidwar?.totalSkillDamage ?? 0}
+              name="defenseDownDeBuff"
+              min={-50}
+              max={50}
+              className="input input-sm input-bordered max-w-20 md:w-20 text-right mr-7"
+              value={data?.eventSpecial?.["raid-mega"]?.defenseDownDeBuff ?? 50}
               onChange={onChange}
               onBlur={onBlur}
-              data-path="eventSpecial.raidwar.totalSkillDamage"
+              data-path="eventSpecial.raid-mega.defenseDownDeBuff"
             />
             <span className="absolute right-1 top-1/2 -translate-y-1/2">%</span>
           </div>
@@ -168,9 +140,11 @@ export function RaidMegaSpecialSection({
               type="checkbox"
               name="isConvertPoint"
               className="checkbox checkbox-md"
-              checked={data?.eventSpecial?.raidwar?.isConvertPoint === true}
+              checked={
+                data?.eventSpecial?.["raid-mega"]?.isConvertPoint === true
+              }
               onChange={onChange}
-              data-path="eventSpecial.raidwar.isConvertPoint"
+              data-path="eventSpecial.raid-mega.isConvertPoint"
             />
           </label>
         </div>

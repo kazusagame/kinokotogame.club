@@ -437,7 +437,7 @@ export default function DeckSimulator({
                 />
               </div>
             </div>
-            {(eventId !== "championship-defense" && eventId !== "tower") && (
+            {eventId !== "championship-defense" && eventId !== "tower" && (
               <>
                 <input
                   type="radio"
@@ -791,6 +791,62 @@ export function DeckSimulatorResultSummaryDiv({
                   </p>
                 )}
               </div>
+              {eventId === "raid-second" && (
+                <>
+                  <div className="hidden lg:block ml-6">
+                    <div className="flex flex-col">
+                      <p>最小値(攻援 + SP)：</p>
+                      <p>期待値(攻援 + SP)：</p>
+                      <p>最大値(攻援 + SP)：</p>
+                    </div>
+                  </div>
+                  <div className="hidden lg:block">
+                    <div className="flex flex-col">
+                      <p className="text-right">
+                        {isConvertPoint
+                          ? `${formatNumber(attackMin)} pt`
+                          : formatNumber(attackMin)}
+                      </p>
+                      <p className="text-right">
+                        {isConvertPoint
+                          ? `${formatNumber(attackExp)} pt`
+                          : formatNumber(attackExp)}
+                      </p>
+                      <p className="text-right">
+                        {isConvertPoint
+                          ? `${formatNumber(attackMax)} pt`
+                          : formatNumber(attackMax)}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="hidden lg:block ml-6">
+                    <div className="flex flex-col">
+                      <p>最小値(守援)：</p>
+                      <p>期待値(守援)：</p>
+                      <p>最大値(守援)：</p>
+                    </div>
+                  </div>
+                  <div className="hidden lg:block">
+                    <div className="flex flex-col">
+                      <p className="text-right">
+                        {isConvertPoint
+                          ? `${formatNumber(defenseMin)} pt`
+                          : formatNumber(defenseMin)}
+                      </p>
+                      <p className="text-right">
+                        {isConvertPoint
+                          ? `${formatNumber(defenseExp)} pt`
+                          : formatNumber(defenseExp)}
+                      </p>
+                      <p className="text-right">
+                        {isConvertPoint
+                          ? `${formatNumber(defenseMax)} pt`
+                          : formatNumber(defenseMax)}
+                      </p>
+                    </div>
+                  </div>
+                </>
+              )}
               {(eventId === "divrace" || eventId === "board") && (
                 <>
                   <div className="hidden lg:block ml-6">

@@ -6,6 +6,8 @@ import {
 
 import {
   BONUS_DATA_PER_EVENT,
+  RaidTypeAdvantageSuperRareBonusMap,
+  RaidTypeAdvantageMegaBonusMap,
   TowerSpecialGirls,
 } from "@/components/decksim/data/bonusData";
 import {
@@ -71,11 +73,82 @@ const createBasePowerArray = ({
           preciousEffect,
         };
 
-        // TBD:
         // レイド、メモストではここにタイプ有利不利バフ、有利ガール補正バフの加算処理が必要。
         // 声援の受け手によって声援にバフが乗る乗らないが発生するためここに入れた方が楽そう
         const eventId = inputData.dataType;
-        if (eventId === "tower") {
+        if (eventId === "raid-first" || eventId === "raid-second") {
+          const sceneType = sceneData.type;
+          const sceneTypeKey =
+            sceneType === "SWEETタイプ"
+              ? "sweet"
+              : sceneType === "COOLタイプ"
+              ? "cool"
+              : sceneType === "POPタイプ"
+              ? "pop"
+              : "sweet";
+          const enemyType =
+            inputData.eventSpecial[eventId]?.enemyType ?? "通常タイプ";
+          const enemyTypeKey =
+            enemyType === "通常タイプ"
+              ? "normal"
+              : enemyType === "SWEETタイプ"
+              ? "sweet"
+              : enemyType === "COOLタイプ"
+              ? "cool"
+              : enemyType === "POPタイプ"
+              ? "pop"
+              : "normal";
+          const effectMap = BONUS_DATA_PER_EVENT[eventId].eventUniqueBonus!
+            .typeAdvantage.value as RaidTypeAdvantageSuperRareBonusMap;
+          const effectValue = effectMap[enemyTypeKey][sceneTypeKey] ?? 0;
+
+          powerDict.scenePower *= 1 + effectValue / 100;
+          powerDict.strapEffect *= 1 + effectValue / 100;
+          powerDict.preciousEffect *= 1 + effectValue / 100;
+        } else if (eventId === "raid-mega") {
+          const sceneType = sceneData.type;
+          const sceneTypeKey =
+            sceneType === "SWEETタイプ"
+              ? "sweet"
+              : sceneType === "COOLタイプ"
+              ? "cool"
+              : sceneType === "POPタイプ"
+              ? "pop"
+              : "sweet";
+          const enemyType =
+            inputData.eventSpecial[eventId]?.enemyType ?? "通常タイプ";
+          const enemyTypeKey =
+            enemyType === "通常タイプ"
+              ? "normal"
+              : enemyType === "SWEETタイプ"
+              ? "sweet"
+              : enemyType === "COOLタイプ"
+              ? "cool"
+              : enemyType === "POPタイプ"
+              ? "pop"
+              : "normal";
+          const effectMap = BONUS_DATA_PER_EVENT[eventId].eventUniqueBonus!
+            .typeAdvantage.value as RaidTypeAdvantageMegaBonusMap;
+          const effectValue = effectMap[enemyTypeKey][sceneTypeKey] ?? {
+            scenes: 0,
+            strap: 0,
+            precious: 0,
+          };
+
+          // 攻援力UPバフはシーンとストラップ効果分にのみ掛かり、
+          // プレシャスシーン効果分には掛からないためここで加算する。
+          let attackUpBuff = returnNumber(
+            inputData.eventSpecial["raid-mega"]?.attackUpBuff ?? 100
+          );
+          if (attackUpBuff < -100) attackUpBuff = -100;
+          if (attackUpBuff > 100) attackUpBuff = 100;
+
+          powerDict.scenePower *=
+            (1 + effectValue.scenes / 100) * (1 + attackUpBuff / 100);
+          powerDict.strapEffect *=
+            (1 + effectValue.strap / 100) * (1 + attackUpBuff / 100);
+          powerDict.preciousEffect *= 1 + effectValue.precious / 100;
+        } else if (eventId === "tower") {
           // 声援の受け手が有利なガールの場合はボーナスを加算する
           if (sceneData.isSpecial === true) {
             const sceneRarity = sceneData.rarity;

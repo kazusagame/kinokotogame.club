@@ -164,6 +164,11 @@ export const BONUS_DATA_PER_EVENT: { [K in DeckSimulatorEventId]: BonusDataPerEv
           0: 0, 1: 10, 5: 20, 10: 40, 50: 80, 100: 100,
         }
       },
+      heartRate: {
+        value: {
+          candy: 1, normalItem: 6, specialItem: 12,
+        },
+      },
     },
     annotations: ["センバツボーナスはこのイベントでは 無効 (0 %) なので無視してOKです。"],
   },
