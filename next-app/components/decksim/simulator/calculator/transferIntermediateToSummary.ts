@@ -125,6 +125,8 @@ export const transferIntermediateToSummary = ({
     });
   });
 
+  // divraceSpecial
+  summary.summaries.divraceSpecial = intermediateResults["divraceSpecial"];
   // boardSpecial
   summary.summaries.boardSpecial = intermediateResults["boardSpecial"];
 };

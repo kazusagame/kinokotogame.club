@@ -288,10 +288,8 @@ export function useDeckSimulatorData({
             if (typeof reader.result === "string") {
               try {
                 const importData = JSON.parse(reader.result);
-                if (importData.resultStatus === "success" && importData.data) {
-                  // 期待したテキストっぽい感じなら更新処理へ
-                  importRawDataDeckSimulator(importData);
-                }
+                // 中身のチェックはimportRawDataDeckSimulator側で実施
+                importRawDataDeckSimulator(importData);
               } catch (error) {
                 console.error(`読出に失敗しました エラー理由：${error}`);
               }

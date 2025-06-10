@@ -123,7 +123,7 @@ export function BoardSpecialSection({
         </div>
 
         <div className="flex flex-col gap-4">
-          <div className="space-y-3">
+          <div className="space-y-4">
             <h3 className="text-md font-bold">天気効果</h3>
             <div className="flex flex-wrap items-center gap-2 md:gap-4 pl-2 md:pl-4">
               <p className="text-base">現在の天気</p>
@@ -199,7 +199,7 @@ export function BoardSpecialSection({
         </div>
 
         <div className="flex flex-col gap-4">
-          <div className="space-y-3">
+          <div className="space-y-4">
             <h3 className="text-md font-bold">マス効果</h3>
             <div className="w-auto sm:w-fit text-base border border-base-300 rounded-xl ml-2 md:ml-4">
               <div className="grid grid-cols-3 sm:grid-cols-[200px_120px_100px] bg-base-300 text-center text-xs font-bold px-2 py-1 rounded-t-xl">
@@ -273,7 +273,7 @@ export function BoardSpecialSection({
         </div>
 
         <div className="flex flex-col gap-4">
-          <div className="space-y-3">
+          <div className="space-y-4">
             <h3 className="text-md font-bold">
               <TextWithTooltip
                 displayText="合計ボーナス効果"
@@ -306,7 +306,7 @@ export function BoardSpecialSection({
         </div>
 
         <div className="flex flex-col gap-4">
-          <div className="space-y-3">
+          <div className="space-y-4">
             <h3 className="text-md font-bold">
               <TextWithTooltip
                 displayText="マス効果を一覧から取得"

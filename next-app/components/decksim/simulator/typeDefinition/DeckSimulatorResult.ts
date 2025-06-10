@@ -68,6 +68,15 @@ export interface DeckSimulatorSummaries {
       };
     };
   };
+  divraceSpecial?: {
+    itemEffect?: {
+      [K: number]: {
+        baseStage: number;
+        challengeStage: number;
+        descOrder: number;
+      },
+    }
+  }
   boardSpecial?: {
     weatherEffect?: {
       [K: number]: number;

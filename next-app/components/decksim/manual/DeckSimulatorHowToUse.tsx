@@ -5,6 +5,7 @@ import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 import { RaidwarSpecialManual } from "@/components/decksim/manual/eventSpecial/raidwar";
 import { ClubcupSpecialManual } from "@/components/decksim/manual/eventSpecial/clubcup";
 import { ChampionshipSpecialManual } from "@/components/decksim/manual/eventSpecial/championship";
+import { DivraceSpecialManual } from "@/components/decksim/manual/eventSpecial/divrace";
 import { BoardSpecialManual } from "@/components/decksim/manual/eventSpecial/board";
 import { NormalBattleSpecialManual } from "@/components/decksim/manual/eventSpecial/normal-battle";
 
@@ -451,6 +452,7 @@ export function DeckSimulatorHowToUse({
       {eventId === "raidwar" && <RaidwarSpecialManual />}
       {eventId === "clubcup" && <ClubcupSpecialManual />}
       {eventId === "championship" && <ChampionshipSpecialManual />}
+      {eventId === "divrace" && <DivraceSpecialManual />}
       {eventId === "board" && <BoardSpecialManual />}
       {eventId === "normal-battle" && <NormalBattleSpecialManual />}
     </div>

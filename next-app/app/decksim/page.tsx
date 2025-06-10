@@ -234,6 +234,11 @@ export default function Page() {
                 </Link>
               </p>
               <p className="md:pl-4">
+                <Link href="/decksim_v2/divrace/" className="link">
+                  全国高校生課外活動コンテスト
+                </Link>
+              </p>
+              <p className="md:pl-4">
                 <Link href="/decksim_v2/board/" className="link">
                   散策♪聖櫻ワールド
                 </Link>

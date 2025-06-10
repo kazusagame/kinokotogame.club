@@ -105,6 +105,7 @@ export const calcEventGimmickEffect = ({
       const girlSkillValue = calcGirlSkillEffect({
         rate,
         intermediateResults,
+        isGimmickDiffAdd,
       });
       effectResult.minPower = girlSkillValue.minPower;
       effectResult.expPower = girlSkillValue.expPower;
