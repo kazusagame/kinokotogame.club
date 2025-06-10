@@ -2,6 +2,9 @@ import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition
 import { DeckSimulatorResult } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 
+import { RaidFirstSpecialSection } from "@/components/decksim/simulator/sections/eventSpecial/raid-first";
+import { RaidSecondSpecialSection } from "@/components/decksim/simulator/sections/eventSpecial/raid-second";
+import { RaidMegaSpecialSection } from "@/components/decksim/simulator/sections/eventSpecial/raid-mega";
 import { RaidwarSpecialSection } from "@/components/decksim/simulator/sections/eventSpecial/raidwar";
 import { ClubcupSpecialSection } from "@/components/decksim/simulator/sections/eventSpecial/clubcup";
 import { ChampionshipSpecialSection } from "@/components/decksim/simulator/sections/eventSpecial/championship";
@@ -31,6 +34,27 @@ export function EventSpecial({
 }) {
   return (
     <>
+      {eventId === "raid-first" && (
+        <RaidFirstSpecialSection
+          data={data}
+          onChange={onChange}
+          onBlur={onBlur}
+        />
+      )}
+      {eventId === "raid-second" && (
+        <RaidSecondSpecialSection
+          data={data}
+          onChange={onChange}
+          onBlur={onBlur}
+        />
+      )}
+      {eventId === "raid-mega" && (
+        <RaidMegaSpecialSection
+          data={data}
+          onChange={onChange}
+          onBlur={onBlur}
+        />
+      )}
       {eventId === "raidwar" && (
         <RaidwarSpecialSection
           data={data}
@@ -70,10 +94,7 @@ export function EventSpecial({
         />
       )}
       {eventId === "normal-battle" && (
-        <NormalBattleSpecialSection
-          data={data}
-          onChange={onChange}
-        />
+        <NormalBattleSpecialSection data={data} onChange={onChange} />
       )}
     </>
   );

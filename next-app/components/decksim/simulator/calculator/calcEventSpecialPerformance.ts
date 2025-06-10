@@ -4,6 +4,9 @@ import {
 } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
 import { IntermediateResults } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorIntermediateResults";
 
+import { calcEventSpecialRaidFirst } from "@/components/decksim/simulator/calculator/eventSpecial/raid-first";
+import { calcEventSpecialRaidSecond } from "@/components/decksim/simulator/calculator/eventSpecial/raid-second";
+import { calcEventSpecialRaidMega } from "@/components/decksim/simulator/calculator/eventSpecial/raid-mega";
 import { calcEventSpecialRaidwar } from "@/components/decksim/simulator/calculator/eventSpecial/raidwar";
 import { calcEventSpecialClubcup } from "@/components/decksim/simulator/calculator/eventSpecial/clubcup";
 import { calcEventSpecialNormalBattle } from "@/components/decksim/simulator/calculator/eventSpecial/normal-battle";
@@ -22,7 +25,13 @@ export const calcEventSpecialPerformance = ({
 }) => {
   const eventId = inputData.dataType;
 
-  if (eventId === "raidwar") {
+  if (eventId === "raid-first") {
+    calcEventSpecialRaidFirst({ inputData, commonData, intermediateResults });
+  } else if (eventId === "raid-second") {
+    calcEventSpecialRaidSecond({ inputData, commonData, intermediateResults });
+  } else if (eventId === "raid-mega") {
+    calcEventSpecialRaidMega({ inputData, commonData, intermediateResults });
+  } else if (eventId === "raidwar") {
     calcEventSpecialRaidwar({ inputData, commonData, intermediateResults });
   } else if (eventId === "clubcup") {
     calcEventSpecialClubcup({ inputData, commonData, intermediateResults });

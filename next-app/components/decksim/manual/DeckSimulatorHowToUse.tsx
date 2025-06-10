@@ -2,6 +2,9 @@ import Image from "next-export-optimize-images/image";
 
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 
+import { RaidFirstSpecialManual } from "@/components/decksim/manual/eventSpecial/raid-first";
+import { RaidSecondSpecialManual } from "@/components/decksim/manual/eventSpecial/raid-second";
+import { RaidMegaSpecialManual } from "@/components/decksim/manual/eventSpecial/raid-mega";
 import { RaidwarSpecialManual } from "@/components/decksim/manual/eventSpecial/raidwar";
 import { ClubcupSpecialManual } from "@/components/decksim/manual/eventSpecial/clubcup";
 import { ChampionshipSpecialManual } from "@/components/decksim/manual/eventSpecial/championship";
@@ -449,6 +452,9 @@ export function DeckSimulatorHowToUse({
       </section>
 
       {/* イベント固有用のマニュアル読み出し */}
+      {eventId === "raid-first" && <RaidFirstSpecialManual />}
+      {eventId === "raid-second" && <RaidSecondSpecialManual />}
+      {eventId === "raid-mega" && <RaidMegaSpecialManual />}
       {eventId === "raidwar" && <RaidwarSpecialManual />}
       {eventId === "clubcup" && <ClubcupSpecialManual />}
       {eventId === "championship" && <ChampionshipSpecialManual />}

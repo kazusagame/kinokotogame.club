@@ -209,6 +209,21 @@ export default function Page() {
           <div className="space-y-4 leading-7">
             <div className="space-y-2">
               <p className="md:pl-4">
+                <Link href="/decksim_v2/raid-first/" className="link">
+                  たすけて！マイヒーロー 前半
+                </Link>
+              </p>
+              <p className="md:pl-4">
+                <Link href="/decksim_v2/raid-second/" className="link">
+                  たすけて！マイヒーロー 後半
+                </Link>
+              </p>
+              <p className="md:pl-4">
+                <Link href="/decksim_v2/raid-mega/" className="link">
+                  たすけて！マイヒーロー メガ悪男
+                </Link>
+              </p>
+              <p className="md:pl-4">
                 <Link href="/decksim_v2/raidwar/" className="link">
                   おねがい★ハンターズ
                 </Link>
