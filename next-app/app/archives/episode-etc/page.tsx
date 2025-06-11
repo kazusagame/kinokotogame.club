@@ -4,6 +4,8 @@ import ArticleFooter from "@/components/ArticleFooter";
 
 import EpisodeTable from "@/features/archives/episode/components/EpisodeTable";
 
+import withBasePath from "@/lib/withBasePath";
+
 export const metadata: Metadata = {
   title: "その他 エピソード - アーカイブス - きのことゲーム部",
   description: "ガールフレンド(仮)の思い出の記録 - その他エピソード",
@@ -33,7 +35,7 @@ export default function Page() {
           </h2>
           <EpisodeTable
             title="開く / 閉じる"
-            jsonFileName="/json/episode-etc/election-1.json"
+            jsonFileName={withBasePath("/json/episode-etc/election-1.json")}
             tableType="general"
             tableSize="xs"
           />
@@ -45,7 +47,7 @@ export default function Page() {
           </h2>
           <EpisodeTable
             title="開く / 閉じる"
-            jsonFileName="/json/episode-etc/election-2.json"
+            jsonFileName={withBasePath("/json/episode-etc/election-2.json")}
             tableType="general"
             tableSize="xs"
           />
@@ -57,7 +59,7 @@ export default function Page() {
           </h2>
           <EpisodeTable
             title="開く / 閉じる"
-            jsonFileName="/json/episode-etc/collabo.json"
+            jsonFileName={withBasePath("/json/episode-etc/collabo.json")}
             tableType="collabo"
             tableSize="xs"
           />
@@ -69,7 +71,7 @@ export default function Page() {
           </h2>
           <EpisodeTable
             title="開く / 閉じる"
-            jsonFileName="/json/episode-etc/tactics.json"
+            jsonFileName={withBasePath("/json/episode-etc/tactics.json")}
             tableType="general"
             tableSize="xs"
           />
@@ -81,7 +83,7 @@ export default function Page() {
           </h2>
           <EpisodeTable
             title="開く / 閉じる"
-            jsonFileName="/json/episode-etc/study.json"
+            jsonFileName={withBasePath("/json/episode-etc/study.json")}
             tableType="general"
             tableSize="xs"
             pageSize={11}
@@ -95,7 +97,7 @@ export default function Page() {
           </h2>
           <EpisodeTable
             title="開く / 閉じる"
-            jsonFileName="/json/episode-etc/ichinose-episode.json"
+            jsonFileName={withBasePath("/json/episode-etc/ichinose-episode.json")}
             tableType="ichinose"
             tableSize="xs"
             disablePagination
@@ -108,7 +110,7 @@ export default function Page() {
           </h2>
           <EpisodeTable
             title="開く / 閉じる"
-            jsonFileName="/json/episode-etc/april2019.json"
+            jsonFileName={withBasePath("/json/episode-etc/april2019.json")}
             tableType="general"
             tableSize="xs"
             disablePagination
@@ -121,7 +123,7 @@ export default function Page() {
           </h2>
           <EpisodeTable
             title="開く / 閉じる"
-            jsonFileName="/json/episode-etc/april2018.json"
+            jsonFileName={withBasePath("/json/episode-etc/april2018.json")}
             tableType="general"
             tableSize="xs"
             disablePagination
@@ -134,7 +136,7 @@ export default function Page() {
           </h2>
           <EpisodeTable
             title="開く / 閉じる"
-            jsonFileName="/json/episode-etc/xmas.json"
+            jsonFileName={withBasePath("/json/episode-etc/xmas.json")}
             tableType="general"
             tableSize="xs"
             disablePagination
@@ -147,7 +149,7 @@ export default function Page() {
           </h2>
           <EpisodeTable
             title="開く / 閉じる"
-            jsonFileName="/json/episode-etc/anime-side-story.json"
+            jsonFileName={withBasePath("/json/episode-etc/anime-side-story.json")}
             tableType="animeSideStory"
             tableSize="xs"
           />

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import ArticleHeader from "@/components/ArticleHeader";
 import ArticleFooter from "@/components/ArticleFooter";
-
 import EpisodeTable from "@/features/archives/episode/components/EpisodeTable";
+
+import withBasePath from "@/lib/withBasePath";
 
 export const metadata: Metadata = {
   title: "聖櫻ストーリー - アーカイブス - きのことゲーム部",
@@ -35,7 +36,7 @@ export default function Page() {
           </h2>
           <EpisodeTable
             title="開く / 閉じる"
-            jsonFileName="/json/seio-story/scenario.json"
+            jsonFileName={withBasePath("/json/seio-story/scenario.json")}
             tableType="seioStoryScenario"
             tableSize="xs"
             initialColumnVisibility={{ Summary: false }}
@@ -48,7 +49,7 @@ export default function Page() {
           </h2>
           <EpisodeTable
             title="開く / 閉じる"
-            jsonFileName="/json/seio-story/stage.json"
+            jsonFileName={withBasePath("/json/seio-story/stage.json")}
             tableType="seioStoryStage"
             tableSize="xs"
           />

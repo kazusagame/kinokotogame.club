@@ -207,7 +207,7 @@ function CharacterSelect({
         >
           <div className="flex items-center h-12">{leftGirlName}</div>
           <div className="w-full h-[500px] relative">
-            {` bathPathが存在する場合は本番環境から直リンする`}
+            {/* bathPathが存在する場合は本番環境から直リンする */}
             {process.env.NEXT_PUBLIC_BASE_PATH ? (
               <ImageRemote
                 src={`https://kinokotogame.club${leftDirPath}${leftGirlProfileId}.png`}
@@ -251,7 +251,7 @@ function CharacterSelect({
         >
           <div className="flex items-center h-12">{rightGirName}</div>
           <div className="w-full h-[500px] relative">
-            {` bathPathが存在する場合は本番環境から直リンする`}
+            {/* bathPathが存在する場合は本番環境から直リンする */}
             {process.env.NEXT_PUBLIC_BASE_PATH ? (
               <ImageRemote
                 src={`https://kinokotogame.club${rightDirPath}${rightGirlProfileId}.png`}

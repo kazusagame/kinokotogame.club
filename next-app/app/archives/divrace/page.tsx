@@ -3,6 +3,8 @@ import ArticleHeader from "@/components/ArticleHeader";
 import ArticleFooter from "@/components/ArticleFooter";
 import DivraceTable from "@/features/archives/divrace/components/DivraceTable";
 
+import withBasePath from "@/lib/withBasePath";
+
 export const metadata: Metadata = {
   title: "全国高校生課外活動コンテスト - アーカイブス - きのことゲーム部",
   description:
@@ -31,35 +33,35 @@ export default function Page() {
           </h2>
           <DivraceTable
             title="第5回 (2025/03)"
-            jsonFileName="/json/divrace/reward_005.json"
+            jsonFileName={withBasePath("/json/divrace/reward_005.json")}
             tableType="divraceReward005"
             tableSize="xs"
             initialColumnPinning={{ left: ["class", "grade", "rank"] }}
           />
           <DivraceTable
             title="第4回 (2024/09)"
-            jsonFileName="/json/divrace/reward_004.json"
+            jsonFileName={withBasePath("/json/divrace/reward_004.json")}
             tableType="divraceReward004"
             tableSize="xs"
             initialColumnPinning={{ left: ["class", "grade", "rank"] }}
           />
           <DivraceTable
             title="第3回 (2024/03)"
-            jsonFileName="/json/divrace/reward_003.json"
+            jsonFileName={withBasePath("/json/divrace/reward_003.json")}
             tableType="divraceReward003"
             tableSize="xs"
             initialColumnPinning={{ left: ["class", "grade", "rank"] }}
           />
           <DivraceTable
             title="第2回 (2023/09)"
-            jsonFileName="/json/divrace/reward_002.json"
+            jsonFileName={withBasePath("/json/divrace/reward_002.json")}
             tableType="divraceReward002"
             tableSize="xs"
             initialColumnPinning={{ left: ["class", "grade", "rank"] }}
           />
           <DivraceTable
             title="第1回 (2023/03)"
-            jsonFileName="/json/divrace/reward_001.json"
+            jsonFileName={withBasePath("/json/divrace/reward_001.json")}
             tableType="divraceReward001"
             tableSize="xs"
             initialColumnPinning={{ left: ["class", "grade", "rank"] }}
@@ -72,35 +74,35 @@ export default function Page() {
           </h2>
           <DivraceTable
             title="第5回 (2025/03)"
-            jsonFileName="/json/divrace/point_005.json"
+            jsonFileName={withBasePath("/json/divrace/point_005.json")}
             tableType="divracePoint"
             tableSize="xs"
             disableColumnFilter
           />
           <DivraceTable
             title="第4回 (2024/09)"
-            jsonFileName="/json/divrace/point_004.json"
+            jsonFileName={withBasePath("/json/divrace/point_004.json")}
             tableType="divracePoint"
             tableSize="xs"
             disableColumnFilter
           />
           <DivraceTable
             title="第3回 (2024/03)"
-            jsonFileName="/json/divrace/point_003.json"
+            jsonFileName={withBasePath("/json/divrace/point_003.json")}
             tableType="divracePoint"
             tableSize="xs"
             disableColumnFilter
           />
           <DivraceTable
             title="第2回 (2023/09)"
-            jsonFileName="/json/divrace/point_002.json"
+            jsonFileName={withBasePath("/json/divrace/point_002.json")}
             tableType="divracePoint"
             tableSize="xs"
             disableColumnFilter
           />
           <DivraceTable
             title="第1回 (2023/03)"
-            jsonFileName="/json/divrace/point_001.json"
+            jsonFileName={withBasePath("/json/divrace/point_001.json")}
             tableType="divracePoint"
             tableSize="xs"
             disableColumnFilter
@@ -113,7 +115,7 @@ export default function Page() {
           </h2>
           <DivraceTable
             title="第1～5回"
-            jsonFileName="/json/divrace/stage_base_001.json"
+            jsonFileName={withBasePath("/json/divrace/stage_base_001.json")}
             tableType="divraceStageBase"
             tableSize="xs"
             initialColumnPinning={{ left: ["lv"] }}
@@ -126,14 +128,14 @@ export default function Page() {
           </h2>
           <DivraceTable
             title="第2～5回"
-            jsonFileName="/json/divrace/stage_challenge_002.json"
+            jsonFileName={withBasePath("/json/divrace/stage_challenge_002.json")}
             tableType="divraceStageChallenge"
             tableSize="xs"
             initialColumnPinning={{ left: ["lv"] }}
           />
           <DivraceTable
             title="第1回 (2023/03)"
-            jsonFileName="/json/divrace/stage_challenge_001.json"
+            jsonFileName={withBasePath("/json/divrace/stage_challenge_001.json")}
             tableType="divraceStageChallenge"
             tableSize="xs"
             initialColumnPinning={{ left: ["lv"] }}

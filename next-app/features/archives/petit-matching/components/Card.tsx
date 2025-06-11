@@ -1,6 +1,5 @@
 import Image from "next-export-optimize-images/image";
 import ImageRemote from "next/image";
-import withBasePath from "@/lib/withBasePath";
 import { useRef, CSSProperties } from "react";
 
 const imageLoader = ({ src }: { src: string }) => {
@@ -127,7 +126,7 @@ const FrontImage = ({
       {loading ? (
         <Image
           className="object-contain p-2 rounded-lg"
-          src={withBasePath("/image/petitMatching/06_NowLoading.png")}
+          src="/image/petitMatching/06_NowLoading.png"
           alt={imageUrl}
           fill
           sizes="33vw"
@@ -136,7 +135,7 @@ const FrontImage = ({
       ) : isLocal ? (
         <Image
           className="object-contain p-2 rounded-lg"
-          src={withBasePath(imageUrl)}
+          src={imageUrl}
           alt={imageUrl}
           fill
           sizes="33vw"
@@ -145,7 +144,7 @@ const FrontImage = ({
       ) : cardZoom ? (
         <ImageRemote
           className="object-cover rounded-md"
-          src={withBasePath(imageUrl)}
+          src={imageUrl}
           alt={imageUrl}
           fill
           sizes="33vw"
@@ -155,7 +154,7 @@ const FrontImage = ({
       ) : (
         <ImageRemote
           className="object-contain rounded-md"
-          src={withBasePath(imageUrl)}
+          src={imageUrl}
           alt={imageUrl}
           fill
           sizes="33vw"

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next-export-optimize-images/image";
-import withBasePath from "@/lib/withBasePath";
 
 export interface MenuCardProps {
   id: number;
@@ -32,7 +31,7 @@ export default function MenuCard({
       <div className="relative border-2 border-base-content rounded-2xl">
         <div className="absolute w-full h-full z-10 bg-[repeating-linear-gradient(0deg,transparent,transparent_1px,oklch(var(--b1))_1px,oklch(var(--b1))_4px)] rounded-2xl"></div>
         <Image
-          src={withBasePath(img)}
+          src={img}
           width={width}
           height={height}
           alt={imgAlt}

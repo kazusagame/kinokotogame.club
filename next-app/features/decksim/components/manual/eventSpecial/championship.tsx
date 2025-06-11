@@ -1,5 +1,4 @@
 import Image from "next-export-optimize-images/image";
-import withBasePath from "@/lib/withBasePath";
 
 export function ChampionshipSpecialManual() {
   return (
@@ -8,7 +7,7 @@ export function ChampionshipSpecialManual() {
         イベント固有（聖櫻学園★カリスマ決定戦 攻援）
       </h2>
       <Image
-        src={withBasePath("/image/decksim/deckSimulator/53_championship_special.png")}
+        src="/image/decksim/deckSimulator/53_championship_special.png"
         alt="イベント固有（聖櫻学園★カリスマ決定戦 攻援）の登録画面"
         width={423}
         height={383}

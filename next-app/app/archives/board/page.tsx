@@ -5,6 +5,8 @@ import ArticleFooter from "@/components/ArticleFooter";
 import BoardTable from "@/features/archives/board/components/BoardTable";
 import BoardMap from "@/features/archives/board/components/BoardMap";
 
+import withBasePath from "@/lib/withBasePath";
+
 export const metadata: Metadata = {
   title: "散策♪聖櫻ワールド - アーカイブス - きのことゲーム部",
   description: "ガールフレンド(仮)の思い出の記録 - 散策♪聖櫻ワールド",
@@ -38,7 +40,7 @@ export default function Page() {
             </h3>
             <BoardTable
               title="2024/11 開催時"
-              jsonFileName="/json/board/reward_total_202411.json"
+              jsonFileName={withBasePath("/json/board/reward_total_202411.json")}
               tableType="boardRewardTotal202411"
               tableSize="xs"
               pageSize={8}
@@ -46,7 +48,7 @@ export default function Page() {
             />
             <BoardTable
               title="2024/05 開催時"
-              jsonFileName="/json/board/reward_total_202405.json"
+              jsonFileName={withBasePath("/json/board/reward_total_202405.json")}
               tableType="boardRewardTotal202405"
               tableSize="xs"
               pageSize={8}
@@ -60,7 +62,7 @@ export default function Page() {
             </h3>
             <BoardTable
               title="2024/11 開催時"
-              jsonFileName="/json/board/reward_round_202411.json"
+              jsonFileName={withBasePath("/json/board/reward_round_202411.json")}
               tableType="boardRewardRound202411"
               tableSize="xs"
               pageSize={8}
@@ -68,7 +70,7 @@ export default function Page() {
             />
             <BoardTable
               title="2024/05 開催時"
-              jsonFileName="/json/board/reward_round_202405.json"
+              jsonFileName={withBasePath("/json/board/reward_round_202405.json")}
               tableType="boardRewardRound202405"
               tableSize="xs"
               pageSize={8}
@@ -82,7 +84,7 @@ export default function Page() {
             </h3>
             <BoardTable
               title="2024/11 開催時"
-              jsonFileName="/json/board/reward_count_202411.json"
+              jsonFileName={withBasePath("/json/board/reward_count_202411.json")}
               tableType="boardRewardCount202411"
               tableSize="xs"
               pageSize={8}
@@ -90,7 +92,7 @@ export default function Page() {
             />
             <BoardTable
               title="2024/05 開催時"
-              jsonFileName="/json/board/reward_count_202405.json"
+              jsonFileName={withBasePath("/json/board/reward_count_202405.json")}
               tableType="boardRewardCount202405"
               tableSize="xs"
               pageSize={8}
@@ -105,14 +107,14 @@ export default function Page() {
           </h2>
           <BoardTable
             title="2024/11 開催時"
-            jsonFileName="/json/board/point_202411.json"
+            jsonFileName={withBasePath("/json/board/point_202411.json")}
             tableType="boardPoint"
             tableSize="xs"
             disableColumnFilter
           />
           <BoardTable
             title="2024/05 開催時"
-            jsonFileName="/json/board/point_202405.json"
+            jsonFileName={withBasePath("/json/board/point_202405.json")}
             tableType="boardPoint"
             tableSize="xs"
             disableColumnFilter
@@ -125,7 +127,7 @@ export default function Page() {
           </h2>
           <BoardTable
             title="2024/11 開催時"
-            jsonFileName="/json/board/stage_202411.json"
+            jsonFileName={withBasePath("/json/board/stage_202411.json")}
             tableType="boardStage"
             tableSize="xs"
             disableColumnFilter
@@ -134,7 +136,7 @@ export default function Page() {
           />
           <BoardTable
             title="2024/05 開催時"
-            jsonFileName="/json/board/stage_202405.json"
+            jsonFileName={withBasePath("/json/board/stage_202405.json")}
             tableType="boardStage"
             tableSize="xs"
             disableColumnFilter
@@ -153,19 +155,19 @@ export default function Page() {
             <div className="collapse-content overflow-x-auto">
               <BoardMap
                 title="Lv.1 教室"
-                jsonFileName="/json/board/map_Lv1_202411.json"
+                jsonFileName={withBasePath("/json/board/map_Lv1_202411.json")}
               />
               <BoardMap
                 title="Lv.2 中庭"
-                jsonFileName="/json/board/map_Lv2_202411.json"
+                jsonFileName={withBasePath("/json/board/map_Lv2_202411.json")}
               />
               <BoardMap
                 title="Lv.3 体育館"
-                jsonFileName="/json/board/map_Lv3_202411.json"
+                jsonFileName={withBasePath("/json/board/map_Lv3_202411.json")}
               />
               <BoardMap
                 title="Lv.4 グラウンド"
-                jsonFileName="/json/board/map_Lv4_202411.json"
+                jsonFileName={withBasePath("/json/board/map_Lv4_202411.json")}
               />
             </div>
           </div>
@@ -175,15 +177,15 @@ export default function Page() {
             <div className="collapse-content overflow-x-auto">
               <BoardMap
                 title="Lv.1 校門"
-                jsonFileName="/json/board/map_Lv1_202405.json"
+                jsonFileName={withBasePath("/json/board/map_Lv1_202405.json")}
               />
               <BoardMap
                 title="Lv.2 教室"
-                jsonFileName="/json/board/map_Lv2_202405.json"
+                jsonFileName={withBasePath("/json/board/map_Lv2_202405.json")}
               />
               <BoardMap
                 title="Lv.3 中庭"
-                jsonFileName="/json/board/map_Lv3_202405.json"
+                jsonFileName={withBasePath("/json/board/map_Lv3_202405.json")}
               />
             </div>
           </div>
@@ -195,7 +197,7 @@ export default function Page() {
           </h2>
           <BoardTable
             title="2024/05 および 2024/11 開催時"
-            jsonFileName="/json/board/effect_202405.json"
+            jsonFileName={withBasePath("/json/board/effect_202405.json")}
             tableType="boardEffect"
             tableSize="xs"
             pageSize={8}
@@ -210,7 +212,7 @@ export default function Page() {
           </h2>
           <BoardTable
             title="2024/11 開催時"
-            jsonFileName="/json/board/cupid_202411.json"
+            jsonFileName={withBasePath("/json/board/cupid_202411.json")}
             tableType="boardCupid"
             tableSize="xs"
             disableColumnFilter
@@ -218,7 +220,7 @@ export default function Page() {
           />
           <BoardTable
             title="2024/05 開催時"
-            jsonFileName="/json/board/cupid_202405.json"
+            jsonFileName={withBasePath("/json/board/cupid_202405.json")}
             tableType="boardCupid"
             tableSize="xs"
             disableColumnFilter
@@ -232,7 +234,7 @@ export default function Page() {
           </h2>
           <BoardTable
             title="2024/11 開催時"
-            jsonFileName="/json/board/item_202411.json"
+            jsonFileName={withBasePath("/json/board/item_202411.json")}
             tableType="boardItem"
             tableSize="xs"
             pageSize={11}
@@ -241,7 +243,7 @@ export default function Page() {
           />
           <BoardTable
             title="2024/05 開催時"
-            jsonFileName="/json/board/item_202405.json"
+            jsonFileName={withBasePath("/json/board/item_202405.json")}
             tableType="boardItem"
             tableSize="xs"
             disableColumnFilter

@@ -1,5 +1,4 @@
 import Image from "next-export-optimize-images/image";
-import withBasePath from "@/lib/withBasePath";
 
 export function RaidwarSpecialManual() {
   return (
@@ -8,7 +7,7 @@ export function RaidwarSpecialManual() {
         イベント固有（おねがい★ハンターズ）
       </h2>
       <Image
-        src={withBasePath("/image/decksim/deckSimulator/51_raidwar_special.png")}
+        src="/image/decksim/deckSimulator/51_raidwar_special.png"
         alt="イベント固有（おねがい★ハンターズ）の登録画面"
         width={604}
         height={443}

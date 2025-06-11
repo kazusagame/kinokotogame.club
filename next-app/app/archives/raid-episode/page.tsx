@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import ArticleHeader from "@/components/ArticleHeader";
 import ArticleFooter from "@/components/ArticleFooter";
-
 import EpisodeTable from "@/features/archives/episode/components/EpisodeTable";
+
+import withBasePath from "@/lib/withBasePath";
 
 export const metadata: Metadata = {
   title: "たすけて！マイヒーロー エピソード - アーカイブス - きのことゲーム部",
@@ -34,7 +35,7 @@ export default function Page() {
           </h2>
           <EpisodeTable
             title="開く / 閉じる"
-            jsonFileName="/json/raid-episode/scenario.json"
+            jsonFileName={withBasePath("/json/raid-episode/scenario.json")}
             tableType="general"
             tableSize="xs"
           />
