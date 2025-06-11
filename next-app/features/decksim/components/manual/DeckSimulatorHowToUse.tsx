@@ -1,4 +1,5 @@
 import Image from "next-export-optimize-images/image";
+import withBasePath from "@/lib/withBasePath";
 
 import { DeckSimulatorEventId } from "@/features/decksim/data/eventData";
 
@@ -50,7 +51,7 @@ export function DeckSimulatorHowToUse({
           ヘッダー部
         </h2>
         <Image
-          src="/image/decksim/deckSimulator/01_header.png"
+          src={withBasePath("/image/decksim/deckSimulator/01_header.png")}
           alt="ヘッダー部の画像"
           width={1041}
           height={79}
@@ -93,7 +94,7 @@ export function DeckSimulatorHowToUse({
             </tbody>
           </table>
           <Image
-            src="/image/decksim/deckSimulator/02_save_data.png"
+            src={withBasePath("/image/decksim/deckSimulator/02_save_data.png")}
             alt="データ保存画面"
             width={736}
             height={502}
@@ -114,7 +115,7 @@ export function DeckSimulatorHowToUse({
           シミュレーター本体タブ
         </h2>
         <Image
-          src="/image/decksim/deckSimulator/03_input_data.png"
+          src={withBasePath("/image/decksim/deckSimulator/03_input_data.png")}
           alt="シミュレーター本体タブの画像"
           width={1291}
           height={336}
@@ -135,7 +136,7 @@ export function DeckSimulatorHowToUse({
           主センバツ/副センバツ ガール
         </h2>
         <Image
-          src="/image/decksim/deckSimulator/04_scene_parameter.png"
+          src={withBasePath("/image/decksim/deckSimulator/04_scene_parameter.png")}
           alt="主センバツ/副センバツ ガール"
           width={522}
           height={574}
@@ -211,7 +212,7 @@ export function DeckSimulatorHowToUse({
         </div>
 
         <Image
-          src="/image/decksim/deckSimulator/05_scene_list.png"
+          src={withBasePath("/image/decksim/deckSimulator/05_scene_list.png")}
           alt="ガール一覧の画像"
           width={1058}
           height={369}
@@ -241,14 +242,14 @@ export function DeckSimulatorHowToUse({
           主センバツ/副センバツ 声援
         </h2>
         <Image
-          src="/image/decksim/deckSimulator/06_skill_parameter.png"
+          src={withBasePath("/image/decksim/deckSimulator/06_skill_parameter.png")}
           alt="主センバツ/副センバツ 声援"
           width={527}
           height={406}
           className="mt-4 mb-2 ml-4 w-1/3"
         />
         <Image
-          src="/image/decksim/deckSimulator/07_skill_list.png"
+          src={withBasePath("/image/decksim/deckSimulator/07_skill_list.png")}
           alt="主センバツ/副センバツ 声援一覧の画像"
           width={991}
           height={357}
@@ -326,14 +327,14 @@ export function DeckSimulatorHowToUse({
           プレシャスシーン
         </h2>
         <Image
-          src="/image/decksim/deckSimulator/08_precious_parameter.png"
+          src={withBasePath("/image/decksim/deckSimulator/08_precious_parameter.png")}
           alt="プレシャスシーン"
           width={522}
           height={645}
           className="mt-4 mb-2 ml-4 w-1/3"
         />
         <Image
-          src="/image/decksim/deckSimulator/09_precious_list.png"
+          src={withBasePath("/image/decksim/deckSimulator/09_precious_list.png")}
           alt="プレシャスシーン一覧の画像"
           width={734}
           height={287}
@@ -370,7 +371,7 @@ export function DeckSimulatorHowToUse({
           センバツボーナス
         </h2>
         <Image
-          src="/image/decksim/deckSimulator/10_deck_bonus.png"
+          src={withBasePath("/image/decksim/deckSimulator/10_deck_bonus.png")}
           alt="センバツボーナスのデータ登録画面"
           width={387}
           height={487}
@@ -388,7 +389,7 @@ export function DeckSimulatorHowToUse({
           ぷちセンバツ
         </h2>
         <Image
-          src="/image/decksim/deckSimulator/11_petit_girls.png"
+          src={withBasePath("/image/decksim/deckSimulator/11_petit_girls.png")}
           alt="ぷちセンバツのデータ登録画面"
           width={1210}
           height={442}
@@ -409,7 +410,7 @@ export function DeckSimulatorHowToUse({
           プレイヤーデータ・部活データ
         </h2>
         <Image
-          src="/image/decksim/deckSimulator/12_player_data.png"
+          src={withBasePath("/image/decksim/deckSimulator/12_player_data.png")}
           alt="プレイヤーデータ・部活データの登録画面"
           width={493}
           height={480}
@@ -428,7 +429,7 @@ export function DeckSimulatorHowToUse({
           外部入出力タブ
         </h2>
         <Image
-          src="/image/decksim/deckSimulator/13_backup.png"
+          src={withBasePath("/image/decksim/deckSimulator/13_backup.png")}
           alt="外部入出力タブの登録画面"
           width={529}
           height={264}

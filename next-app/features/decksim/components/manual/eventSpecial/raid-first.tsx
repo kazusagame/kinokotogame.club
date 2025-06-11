@@ -1,4 +1,5 @@
 import Image from "next-export-optimize-images/image";
+import withBasePath from "@/lib/withBasePath";
 
 export function RaidFirstSpecialManual() {
   return (
@@ -7,7 +8,7 @@ export function RaidFirstSpecialManual() {
         イベント固有（たすけて！マイヒーロー 前半）
       </h2>
       <Image
-        src="/image/decksim/deckSimulator/58_raid-first-second_special.png"
+        src={withBasePath("/image/decksim/deckSimulator/58_raid-first-second_special.png")}
         alt="イベント固有（たすけて！マイヒーロー 前半）の登録画面"
         width={373}
         height={376}

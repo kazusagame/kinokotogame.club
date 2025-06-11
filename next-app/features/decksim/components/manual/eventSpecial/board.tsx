@@ -1,4 +1,5 @@
 import Image from "next-export-optimize-images/image";
+import withBasePath from "@/lib/withBasePath";
 
 export function BoardSpecialManual() {
   return (
@@ -7,7 +8,7 @@ export function BoardSpecialManual() {
         イベント固有（散策♪聖櫻ワールド）
       </h2>
       <Image
-        src="/image/decksim/deckSimulator/54_board_special_1.png"
+        src={withBasePath("/image/decksim/deckSimulator/54_board_special_1.png")}
         alt="イベント固有（散策♪聖櫻ワールド）の登録画面 その1"
         width={504}
         height={395}
@@ -33,7 +34,7 @@ export function BoardSpecialManual() {
         </table>
       </div>
       <Image
-        src="/image/decksim/deckSimulator/55_board_special_2.png"
+        src={withBasePath("/image/decksim/deckSimulator/55_board_special_2.png")}
         alt="イベント固有（散策♪聖櫻ワールド）の登録画面 その2"
         width={488}
         height={744}
@@ -48,7 +49,7 @@ export function BoardSpecialManual() {
         </p>
       </div>
       <Image
-        src="/image/decksim/deckSimulator/56_board_special_3.png"
+        src={withBasePath("/image/decksim/deckSimulator/56_board_special_3.png")}
         alt="イベント固有（散策♪聖櫻ワールド）の登録画面 その3"
         width={433}
         height={509}

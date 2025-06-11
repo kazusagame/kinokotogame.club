@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next-export-optimize-images/image";
+import withBasePath from "@/lib/withBasePath";
 
 import TextWithTooltip from "@/components/TextWithTooltip";
 import SimulatorHeader from "@/features/decksim/components/SimulatorHeader";
@@ -397,7 +398,7 @@ function HowToUse() {
       </p>
       <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
         <Image
-          src="/image/decksim/raidwarSkill/01_attackPattern.png"
+          src={withBasePath("/image/decksim/raidwarSkill/01_attackPattern.png")}
           alt="アタックパターン選択の画像"
           width={362}
           height={330}
@@ -409,7 +410,7 @@ function HowToUse() {
       </div>
       <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
         <Image
-          src="/image/decksim/raidwarSkill/02_deck.png"
+          src={withBasePath("/image/decksim/raidwarSkill/02_deck.png")}
           alt="ハンター声援センバツの画像"
           width={756}
           height={257}
@@ -428,7 +429,7 @@ function HowToUse() {
       </div>
       <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
         <Image
-          src="/image/decksim/raidwarSkill/03_timeline.png"
+          src={withBasePath("/image/decksim/raidwarSkill/03_timeline.png")}
           alt="タイムラインの画像"
           width={750}
           height={357}
@@ -453,7 +454,7 @@ function HowToUse() {
       </div>
       <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
         <Image
-          src="/image/decksim/raidwarSkill/04_ngPattern.png"
+          src={withBasePath("/image/decksim/raidwarSkill/04_ngPattern.png")}
           alt="NGパターンの画像"
           width={270}
           height={157}

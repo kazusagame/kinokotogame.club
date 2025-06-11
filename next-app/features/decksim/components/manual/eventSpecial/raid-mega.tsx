@@ -1,4 +1,5 @@
 import Image from "next-export-optimize-images/image";
+import withBasePath from "@/lib/withBasePath";
 
 export function RaidMegaSpecialManual() {
   return (
@@ -7,7 +8,7 @@ export function RaidMegaSpecialManual() {
         イベント固有（たすけて！マイヒーロー メガ悪男）
       </h2>
       <Image
-        src="/image/decksim/deckSimulator/59_raid-mega_special.png"
+        src={withBasePath("/image/decksim/deckSimulator/59_raid-mega_special.png")}
         alt="イベント固有（たすけて！マイヒーロー メガ悪男）の登録画面"
         width={371}
         height={377}

@@ -1,4 +1,5 @@
 import Image from "next-export-optimize-images/image";
+import withBasePath from "@/lib/withBasePath";
 
 export function DivraceSpecialManual() {
   return (
@@ -7,7 +8,7 @@ export function DivraceSpecialManual() {
         イベント固有（全国高校生課外活動コンテスト）
       </h2>
       <Image
-        src="/image/decksim/deckSimulator/57_divrace_special.png"
+        src={withBasePath("/image/decksim/deckSimulator/57_divrace_special.png")}
         alt="イベント固有（全国高校生課外活動コンテスト）の登録画面"
         width={867}
         height={772}

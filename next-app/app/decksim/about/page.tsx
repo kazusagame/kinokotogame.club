@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next-export-optimize-images/image";
+import withBasePath from "@/lib/withBasePath";
 import ArticleHeader from "@/components/ArticleHeader";
 import ArticleFooter from "@/components/ArticleFooter";
 
@@ -42,7 +43,7 @@ export default function Page() {
             ツール部
           </h2>
           <Image
-            src="/image/decksim/71_tools.png"
+            src={withBasePath("/image/decksim/71_tools.png")}
             alt="ツール部の画像"
             width={1559}
             height={156}
@@ -93,7 +94,7 @@ export default function Page() {
             主センバツ / 副センバツ
           </h2>
           <Image
-            src="/image/decksim/72_girls.png"
+            src={withBasePath("/image/decksim/72_girls.png")}
             alt="主センバツ/副センバツの画像"
             width={1551}
             height={211}
@@ -164,7 +165,7 @@ export default function Page() {
             声援
           </h2>
           <Image
-            src="/image/decksim/73_skill.png"
+            src={withBasePath("/image/decksim/73_skill.png")}
             alt="声援の画像"
             width={1570}
             height={188}
@@ -241,7 +242,7 @@ export default function Page() {
             プレシャスシーン
           </h2>
           <Image
-            src="/image/decksim/74_precious.png"
+            src={withBasePath("/image/decksim/74_precious.png")}
             alt="プレシャスシーンの画像"
             width={968}
             height={160}
@@ -300,7 +301,7 @@ export default function Page() {
             ぷちセンバツ
           </h2>
           <Image
-            src="/image/decksim/75_petit.png"
+            src={withBasePath("/image/decksim/75_petit.png")}
             alt="ぷちセンバツの画像"
             width={1140}
             height={212}
@@ -332,7 +333,7 @@ export default function Page() {
             センバツボーナス
           </h2>
           <Image
-            src="/image/decksim/76_deck.png"
+            src={withBasePath("/image/decksim/76_deck.png")}
             alt="センバツボーナスの画像"
             width={1154}
             height={95}
@@ -350,7 +351,7 @@ export default function Page() {
             プレイヤーデータ・その他
           </h2>
           <Image
-            src="/image/decksim/77_player.png"
+            src={withBasePath("/image/decksim/77_player.png")}
             alt="プレイヤーデータ・その他の画像"
             width={389}
             height={301}
@@ -367,7 +368,7 @@ export default function Page() {
             保存データのバックアップ方法
           </h2>
           <Image
-            src="/image/decksim/78_directToJson.png"
+            src={withBasePath("/image/decksim/78_directToJson.png")}
             alt="保存データのバックアップ方法の画像"
             width={1292}
             height={209}

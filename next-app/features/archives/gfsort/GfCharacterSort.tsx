@@ -2,6 +2,11 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import Image from "next-export-optimize-images/image";
+import ImageRemote from "next/image";
+
+const imageLoader = ({ src }: { src: string }) => {
+  return src;
+};
 
 import useGameModeStatusData from "./useGameModeStatusData";
 import useConditionalKeyPress from "@/lib/hooks/useConditionalKeyPress";
@@ -202,13 +207,25 @@ function CharacterSelect({
         >
           <div className="flex items-center h-12">{leftGirlName}</div>
           <div className="w-full h-[500px] relative">
-            <Image
-              src={`${leftDirPath}${leftGirlProfileId}.png`}
-              alt={leftGirlName}
-              className="object-cover object-[center_bottom]"
-              fill
-              sizes="50vw"
-            />
+            {` bathPathが存在する場合は本番環境から直リンする`}
+            {process.env.NEXT_PUBLIC_BASE_PATH ? (
+              <ImageRemote
+                src={`https://kinokotogame.club${leftDirPath}${leftGirlProfileId}.png`}
+                alt={leftGirlName}
+                className="object-cover object-[center_bottom]"
+                fill
+                sizes="50vw"
+                loader={imageLoader}
+              />
+            ) : (
+              <Image
+                src={`${leftDirPath}${leftGirlProfileId}.png`}
+                alt={leftGirlName}
+                className="object-cover object-[center_bottom]"
+                fill
+                sizes="50vw"
+              />
+            )}
           </div>
         </div>
         <div className="flex flex-col justify-start w-1/6 h-auto">
@@ -234,13 +251,25 @@ function CharacterSelect({
         >
           <div className="flex items-center h-12">{rightGirName}</div>
           <div className="w-full h-[500px] relative">
-            <Image
-              src={`${rightDirPath}${rightGirlProfileId}.png`}
-              alt={rightGirName}
-              className="object-cover object-[center_bottom]"
-              fill
-              sizes="50vw"
-            />
+            {` bathPathが存在する場合は本番環境から直リンする`}
+            {process.env.NEXT_PUBLIC_BASE_PATH ? (
+              <ImageRemote
+                src={`https://kinokotogame.club${rightDirPath}${rightGirlProfileId}.png`}
+                alt={leftGirlName}
+                className="object-cover object-[center_bottom]"
+                fill
+                sizes="50vw"
+                loader={imageLoader}
+              />
+            ) : (
+              <Image
+                src={`${rightDirPath}${rightGirlProfileId}.png`}
+                alt={leftGirlName}
+                className="object-cover object-[center_bottom]"
+                fill
+                sizes="50vw"
+              />
+            )}
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import Image from "next-export-optimize-images/image";
+import withBasePath from "@/lib/withBasePath";
 
 import WarningIcon from "@mui/icons-material/Warning";
 
@@ -626,7 +627,7 @@ function HowToUse() {
       </p>
       <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
         <Image
-          src="/image/decksim/divraceStage/01_candyDamage.png"
+          src={withBasePath("/image/decksim/divraceStage/01_candyDamage.png")}
           alt="ハート1個分のダメージ量の画像"
           width={276}
           height={100}
@@ -640,7 +641,7 @@ function HowToUse() {
       </div>
       <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
         <Image
-          src="/image/decksim/divraceStage/02_supportPattern.png"
+          src={withBasePath("/image/decksim/divraceStage/02_supportPattern.png")}
           alt="サポートパターン選択の画像"
           width={316}
           height={165}
@@ -676,7 +677,7 @@ function HowToUse() {
       </div>
       <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
         <Image
-          src="/image/decksim/divraceStage/03_stageTable.png"
+          src={withBasePath("/image/decksim/divraceStage/03_stageTable.png")}
           alt="ステージ表の画像"
           width={1305}
           height={343}
@@ -692,7 +693,7 @@ function HowToUse() {
       </div>
       <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
         <Image
-          src="/image/decksim/divraceStage/04_countNG.png"
+          src={withBasePath("/image/decksim/divraceStage/04_countNG.png")}
           alt="回数ごぼうびNG時の画像"
           width={1303}
           height={221}
@@ -710,7 +711,7 @@ function HowToUse() {
       </div>
       <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-primary before:inline-block before:absolute before:left-0 before:top-[12px]">
         <Image
-          src="/image/decksim/divraceStage/05_resultSummary.png"
+          src={withBasePath("/image/decksim/divraceStage/05_resultSummary.png")}
           alt="リザルトサマリーの画像"
           width={1293}
           height={64}

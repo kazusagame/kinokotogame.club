@@ -35,7 +35,7 @@
 
 ## ディレクトリ構成
 
-- `/app/` - 公開ディレクトリ構成
+- `/app` - 公開ディレクトリ構成
 - `/components` - 共通的なUI部品
 - `/features` - 各セクション用のUI部品やデータなど
 - `/features/decksim/data` - シミュレーターが使用する各種定数データはこちらにあります
@@ -46,6 +46,11 @@
 
 - 本サイトは非公式のファンサイトです。ゲーム運営会社とは関係ありません。
 - データや画像の著作権は各権利者に帰属します。
+
+## 公開先
+
+- GitHub Pages：https://kazusagame.github.io/kinokotogame.club/
+- 本番環境：https://kinokotogame.club/
 
 ## ライセンス
 

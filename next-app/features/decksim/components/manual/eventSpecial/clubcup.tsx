@@ -1,4 +1,5 @@
 import Image from "next-export-optimize-images/image";
+import withBasePath from "@/lib/withBasePath";
 
 export function ClubcupSpecialManual() {
   return (
@@ -7,7 +8,7 @@ export function ClubcupSpecialManual() {
         イベント固有（部活対抗！勧誘★グランプリ）
       </h2>
       <Image
-        src="/image/decksim/deckSimulator/52_clubcup_special.png"
+        src={withBasePath("/image/decksim/deckSimulator/52_clubcup_special.png")}
         alt="イベント固有（部活対抗！勧誘★グランプリ）の登録画面"
         width={518}
         height={489}
