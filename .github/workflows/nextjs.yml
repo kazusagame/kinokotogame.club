@@ -32,10 +32,8 @@ jobs:
         run: npm ci
         working-directory: next-app
 
-      - name: Build and Export
-        run: |
-          npx next build
-          npx next export
+      - name: Build with Next.js
+        run: npx next build
         working-directory: next-app
 
       - name: Upload artifact
