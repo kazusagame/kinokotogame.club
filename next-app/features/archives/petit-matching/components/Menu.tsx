@@ -77,8 +77,7 @@ export default function Menu(props: menuProps) {
           </datalist>
 
           <ul
-            className="flex flex-col justify-between w-4/5 mx-auto mt-1 px-1"
-            style={{ writingMode: "vertical-lr" }}
+            className="flex justify-between w-4/5 mx-auto mt-1 px-1"
           >
             <li>通常</li>
             <li>挑戦</li>
@@ -112,10 +111,9 @@ export default function Menu(props: menuProps) {
           </datalist>
 
           <ul
-            className="flex flex-col justify-between w-4/5 mx-auto mt-1 px-1"
-            style={{ writingMode: "vertical-lr" }}
+            className="flex justify-between w-4/5 mx-auto mt-1 px-1"
           >
-            <li>オリジン</li>
+            <li>素</li>
             <li>猫</li>
             <li>犬</li>
           </ul>
@@ -148,12 +146,11 @@ export default function Menu(props: menuProps) {
           </datalist>
 
           <ul
-            className="flex flex-col justify-between w-4/5 mx-auto mt-1 px-1"
-            style={{ writingMode: "vertical-lr" }}
+            className="flex justify-between w-4/5 mx-auto mt-1 px-1"
           >
-            <li>３×３</li>
-            <li>４×４</li>
-            <li>５×５</li>
+            <li>３</li>
+            <li>４</li>
+            <li>５</li>
           </ul>
         </div>
 
