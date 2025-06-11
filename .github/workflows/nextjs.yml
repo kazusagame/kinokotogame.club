@@ -33,7 +33,7 @@ jobs:
         working-directory: next-app
 
       - name: Build with Next.js
-        run: npx next build && next-export-optimize-images
+        run: npx next build
         working-directory: next-app
         env:
           NEXT_PUBLIC_DEPLOY_TARGET: github
