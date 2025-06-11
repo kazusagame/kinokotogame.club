@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import ArticleHeader from "@/components/common/ArticleHeader";
-import ArticleFooter from "@/components/common/ArticleFooter";
+import ArticleHeader from "@/components/ArticleHeader";
+import ArticleFooter from "@/components/ArticleFooter";
 
-import EpisodeSearch from "@/components/article/episode/EpisodeSearch";
+import EpisodeSearch from "@/features/archives/episode/components/EpisodeSearch";
 
 export const metadata: Metadata = {
   title: "エピソード検索 - アーカイブス - きのことゲーム部",

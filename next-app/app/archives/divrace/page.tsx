@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import ArticleHeader from "@/components/common/ArticleHeader";
-import ArticleFooter from "@/components/common/ArticleFooter";
-import DivraceTable from "@/components/article/DivraceTable";
+import ArticleHeader from "@/components/ArticleHeader";
+import ArticleFooter from "@/components/ArticleFooter";
+import DivraceTable from "@/features/archives/divrace/components/DivraceTable";
 
 export const metadata: Metadata = {
   title: "全国高校生課外活動コンテスト - アーカイブス - きのことゲーム部",

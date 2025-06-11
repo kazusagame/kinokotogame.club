@@ -2,11 +2,11 @@ import { ReactNode } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import ArticleHeader from "@/components/common/ArticleHeader";
-import ArticleFooter from "@/components/common/ArticleFooter";
-import SkillProbabilityTable from "@/components/decksim/manual/SkillProbabilityTable";
-import BonusEffectiveRateTable from "@/components/decksim/manual/BonusEffectiveRateTable";
-import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
+import ArticleHeader from "@/components/ArticleHeader";
+import ArticleFooter from "@/components/ArticleFooter";
+import SkillProbabilityTable from "@/features/decksim/components/manual/SkillProbabilityTable";
+import BonusEffectiveRateTable from "@/features/decksim/components/manual/BonusEffectiveRateTable";
+import { DeckSimulatorEventId } from "@/features/decksim/data/eventData";
 
 export const metadata: Metadata = {
   title: "計算式 - センバツシミュレーター - きのことゲーム部",

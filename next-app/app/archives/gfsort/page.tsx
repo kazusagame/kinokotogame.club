@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import ArticleHeader from "@/components/common/ArticleHeader";
-import ArticleFooter from "@/components/common/ArticleFooter";
-import GfCharacterSort from "@/components/article/characterSort/GfCharacterSort";
+import ArticleHeader from "@/components/ArticleHeader";
+import ArticleFooter from "@/components/ArticleFooter";
+import GfCharacterSort from "@/features/archives/gfsort/GfCharacterSort";
 
 export const metadata: Metadata = {
   title: "ガールフレンド(仮) キャラソート - アーカイブス - きのことゲーム部",

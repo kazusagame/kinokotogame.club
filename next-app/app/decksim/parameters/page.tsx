@@ -2,14 +2,14 @@ import { ReactNode } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import ArticleHeader from "@/components/common/ArticleHeader";
-import ArticleFooter from "@/components/common/ArticleFooter";
-import DivBonusCommon from "@/components/decksim/manual/DivBonusCommon";
-import DivBonusEventUnique from "@/components/decksim/manual/DivBonusEventUnique";
-import BonusEffectiveRateTable from "@/components/decksim/manual/BonusEffectiveRateTable";
-import DivSkillRate from "@/components/decksim/manual/DivSkillRate";
-import DivPetitGirlsEffects from "@/components/decksim/manual/DivPetitGirlsEffects";
-import DivPreciousScenes from "@/components/decksim/manual/DivPreciousScenes";
+import ArticleHeader from "@/components/ArticleHeader";
+import ArticleFooter from "@/components/ArticleFooter";
+import DivBonusCommon from "@/features/decksim/components/manual/DivBonusCommon";
+import DivBonusEventUnique from "@/features/decksim/components/manual/DivBonusEventUnique";
+import BonusEffectiveRateTable from "@/features/decksim/components/manual/BonusEffectiveRateTable";
+import DivSkillRate from "@/features/decksim/components/manual/DivSkillRate";
+import DivPetitGirlsEffects from "@/features/decksim/components/manual/DivPetitGirlsEffects";
+import DivPreciousScenes from "@/features/decksim/components/manual/DivPreciousScenes";
 
 export const metadata: Metadata = {
   title: "設定値 - センバツシミュレーター - きのことゲーム部",

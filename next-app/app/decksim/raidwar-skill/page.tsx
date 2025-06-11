@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import ArticleFooter from "@/components/common/ArticleFooter";
-import RaidwarSkillSimulator from "@/components/decksim/simulator/RaidwarSkillSimulator";
+import ArticleFooter from "@/components/ArticleFooter";
+import RaidwarSkillSimulator from "@/features/decksim/components/RaidwarSkillSimulator";
 
 export const metadata: Metadata = {
   title:

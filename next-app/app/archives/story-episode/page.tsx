@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import ArticleHeader from "@/components/common/ArticleHeader";
-import ArticleFooter from "@/components/common/ArticleFooter";
+import ArticleHeader from "@/components/ArticleHeader";
+import ArticleFooter from "@/components/ArticleFooter";
 
-import EpisodeTable from "@/components/article/episode/EpisodeTable";
+import EpisodeTable from "@/features/archives/episode/components/EpisodeTable";
 
 export const metadata: Metadata = {
   title: "聖櫻学園物語 エピソード - アーカイブス - きのことゲーム部",

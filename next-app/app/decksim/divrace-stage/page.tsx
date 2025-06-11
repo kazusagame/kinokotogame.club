@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import ArticleFooter from "@/components/common/ArticleFooter";
-import DivraceStageSimulator from "@/components/decksim/simulator/DivraceStageSimulator";
+import ArticleFooter from "@/components/ArticleFooter";
+import DivraceStageSimulator from "@/features/decksim/components/DivraceStageSimulator";
 
 export const metadata: Metadata = {
   title:

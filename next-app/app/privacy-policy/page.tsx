@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ArticleHeader from "@/components/common/ArticleHeader";
-import ArticleFooter from "@/components/common/ArticleFooter";
+import ArticleHeader from "@/components/ArticleHeader";
+import ArticleFooter from "@/components/ArticleFooter";
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー - きのことゲーム部",

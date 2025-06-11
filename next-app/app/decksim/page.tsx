@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ArticleHeader from "@/components/common/ArticleHeader";
-import ArticleFooter from "@/components/common/ArticleFooter";
-import MenuGrid from "@/components/common/MenuGrid";
-import MenuCard, { MenuCardProps } from "@/components/common/MenuCard";
+import ArticleHeader from "@/components/ArticleHeader";
+import ArticleFooter from "@/components/ArticleFooter";
+import MenuGrid from "@/components/MenuGrid";
+import MenuCard, { MenuCardProps } from "@/components/MenuCard";
 
 export const metadata: Metadata = {
   title: "センバツシミュレーター - きのことゲーム部",

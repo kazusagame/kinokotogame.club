@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import ArticleHeader from "@/components/common/ArticleHeader";
-import ArticleFooter from "@/components/common/ArticleFooter";
-import PetitMatching from "@/components/article/petitMatching/PetitMatching";
+import ArticleHeader from "@/components/ArticleHeader";
+import ArticleFooter from "@/components/ArticleFooter";
+import PetitMatching from "@/features/archives/petit-matching/components/PetitMatching";
 
 export const metadata: Metadata = {
   title: "ぷち合わせモドキ - アーカイブス - きのことゲーム部",

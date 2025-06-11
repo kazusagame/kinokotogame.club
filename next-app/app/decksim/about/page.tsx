@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next-export-optimize-images/image";
-import ArticleHeader from "@/components/common/ArticleHeader";
-import ArticleFooter from "@/components/common/ArticleFooter";
+import ArticleHeader from "@/components/ArticleHeader";
+import ArticleFooter from "@/components/ArticleFooter";
 
 export const metadata: Metadata = {
   title: "使用方法 - センバツシミュレーター - きのことゲーム部",

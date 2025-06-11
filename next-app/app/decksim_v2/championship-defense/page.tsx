@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import ArticleFooter from "@/components/common/ArticleFooter";
-import DeckSimulator from "@/components/decksim/simulator/DeckSimulator";
+import ArticleFooter from "@/components/ArticleFooter";
+import DeckSimulator from "@/features/decksim/components/DeckSimulator";
 
 export const metadata: Metadata = {
   title: "聖櫻学園★カリスマ決定戦 守援 - センバツシミュレーター - きのことゲーム部",

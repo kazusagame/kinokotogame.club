@@ -1,9 +1,9 @@
 import { useId } from "react";
 import type { Metadata } from "next";
-import ArticleHeader from "@/components/common/ArticleHeader";
-import ArticleFooter from "@/components/common/ArticleFooter";
-import BoardTable from "@/components/article/BoardTable";
-import BoardMap from "@/components/article/BoardMap";
+import ArticleHeader from "@/components/ArticleHeader";
+import ArticleFooter from "@/components/ArticleFooter";
+import BoardTable from "@/features/archives/board/components/BoardTable";
+import BoardMap from "@/features/archives/board/components/BoardMap";
 
 export const metadata: Metadata = {
   title: "散策♪聖櫻ワールド - アーカイブス - きのことゲーム部",

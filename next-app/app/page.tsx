@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import TopHeader from "@/components/common/TopHeader";
-import ArticleFooter from "@/components/common/ArticleFooter";
-import MenuGrid from "@/components/common/MenuGrid";
-import MenuCard, { MenuCardProps } from "@/components/common/MenuCard";
+import TopHeader from "@/components/TopHeader";
+import ArticleFooter from "@/components/ArticleFooter";
+import MenuGrid from "@/components/MenuGrid";
+import MenuCard, { MenuCardProps } from "@/components/MenuCard";
 
 export const metadata: Metadata = {
   title: "きのことゲーム部",
