@@ -33,8 +33,11 @@ jobs:
         working-directory: next-app
 
       - name: Build with Next.js
-        run: NEXT_PUBLIC_DEPLOY_TARGET=github npx next build
+        run: npx next build
         working-directory: next-app
+        env:
+          NEXT_PUBLIC_DEPLOY_TARGET: github
+          NEXT_PUBLIC_BASE_PATH: /kinokotogame.club
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
