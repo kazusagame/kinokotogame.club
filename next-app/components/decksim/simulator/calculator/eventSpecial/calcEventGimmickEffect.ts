@@ -9,10 +9,6 @@ import {
   BONUS_DATA_PER_EVENT,
 } from "@/components/decksim/data/bonusData";
 
-import { calcPetitEffectsPowerDict } from "@/components/decksim/simulator/calculator/createEffectMatrix";
-import { calcLimitBreakPowerDict } from "@/components/decksim/simulator/calculator/createEffectMatrix";
-import { calcDeckBonusPowerDict } from "@/components/decksim/simulator/calculator/createEffectMatrix";
-
 import { returnNumber } from "@/lib/returnNumber";
 import { setDeepValue } from "@/lib/setDeepValue";
 
@@ -92,7 +88,6 @@ export const calcEventGimmickEffect = ({
     case "応援力効果":
       const petitEffectValue = calcPetitEffectEffect({
         rate,
-        inputData,
         intermediateResults,
         isGimmickDiffAdd,
       });
@@ -115,7 +110,6 @@ export const calcEventGimmickEffect = ({
     case "Ex進展ボーナス":
       const limitBreakValue = calcLimitBreakEffect({
         rate,
-        inputData,
         intermediateResults,
         isGimmickDiffAdd,
       });
@@ -127,7 +121,6 @@ export const calcEventGimmickEffect = ({
     case "センバツボーナス":
       const deckBonusValue = calcDeckBonusEffect({
         rate,
-        inputData,
         intermediateResults,
         isGimmickDiffAdd,
       });
@@ -236,37 +229,32 @@ const calcSceneEffect = ({
       const effectiveRate = BONUS_DATA_PER_EVENT[eventId];
       const bonusValue = 100;
       if (mainOrSub === "mainScenes") {
-        afterPowerDict.scenePower = Math.ceil(
+        afterPowerDict.scenePower =
           returnNumber(sceneData.basePower) *
-            (bonusValue / 100) *
-            (effectiveRate.mainScenes[keyName] / 100) *
-            (1 + rate / 100)
-        );
-        afterPowerDict.strapEffect = Math.ceil(
+          (bonusValue / 100) *
+          (effectiveRate.mainScenes[keyName] / 100) *
+          (1 + rate / 100);
+        afterPowerDict.strapEffect =
           returnNumber(sceneData.strap) *
-            (bonusValue / 100) *
-            (effectiveRate.mainStrap[keyName] / 100) *
-            (1 + rate / 100)
-        );
-        afterPowerDict.preciousEffect = Math.ceil(
+          (bonusValue / 100) *
+          (effectiveRate.mainStrap[keyName] / 100) *
+          (1 + rate / 100);
+        afterPowerDict.preciousEffect =
           preciousTotal *
-            (bonusValue / 100) *
-            (effectiveRate.mainPrecious[keyName] / 100) *
-            (1 + rate / 100)
-        );
+          (bonusValue / 100) *
+          (effectiveRate.mainPrecious[keyName] / 100) *
+          (1 + rate / 100);
       } else {
-        afterPowerDict.scenePower = Math.ceil(
+        afterPowerDict.scenePower =
           returnNumber(sceneData.basePower) *
-            (bonusValue / 100) *
-            (effectiveRate.subScenes[keyName] / 100) *
-            (1 + rate / 100)
-        );
-        afterPowerDict.preciousEffect = Math.ceil(
+          (bonusValue / 100) *
+          (effectiveRate.subScenes[keyName] / 100) *
+          (1 + rate / 100);
+        afterPowerDict.preciousEffect =
           preciousTotal *
-            (bonusValue / 100) *
-            (effectiveRate.subPrecious[keyName] / 100) *
-            (1 + rate / 100)
-        );
+          (bonusValue / 100) *
+          (effectiveRate.subPrecious[keyName] / 100) *
+          (1 + rate / 100);
       }
       const afterTotalPower =
         Math.ceil(afterPowerDict.scenePower) +
@@ -385,12 +373,10 @@ const calcPetitGirlEffect = ({
 
 const calcPetitEffectEffect = ({
   rate,
-  inputData,
   intermediateResults,
   isGimmickDiffAdd = true,
 }: {
   rate: number;
-  inputData: DeckSimulatorData;
   intermediateResults: IntermediateResults;
   isGimmickDiffAdd?: boolean;
 }): {
@@ -403,7 +389,6 @@ const calcPetitEffectEffect = ({
     expPower: 0,
     maxPower: 0,
   };
-  const eventId = inputData.dataType;
   const keyName = "petitEffects";
 
   (["mainScenes", "subScenes"] as const).forEach((mainOrSub) => {
@@ -413,11 +398,6 @@ const calcPetitEffectEffect = ({
     );
 
     keys.forEach((key) => {
-      const sceneData = inputData[mainOrSub]["attack"][Number(key)];
-      const preciousTotal =
-        intermediateResults[mainOrSub]["attack"][Number(key)]
-          .preciousSceneEffect?.total ?? 0;
-
       // 効果加算前の数値はeffectMatrixから数値を取得
       const beforePowerDict = intermediateResults[mainOrSub]["attack"][
         Number(key)
@@ -432,19 +412,10 @@ const calcPetitEffectEffect = ({
         Math.ceil(beforePowerDict.preciousEffect);
 
       // 効果加算後でPowerDictを再算出
-      const afterPowerDict = calcPetitEffectsPowerDict({
-        eventId,
-        mainOrSub,
-        attackOrDefense: "attack",
-        sceneData,
-        preciousTotal,
-        petitGirlsEffects: intermediateResults.petitGirls.effects,
-        bonusRate: 1 + rate / 100,
-      });
       const afterTotalPower =
-        Math.ceil(afterPowerDict.scenePower) +
-        Math.ceil(afterPowerDict.strapEffect) +
-        Math.ceil(afterPowerDict.preciousEffect);
+        Math.ceil(beforePowerDict.scenePower * (1 + rate / 100)) +
+        Math.ceil(beforePowerDict.strapEffect * (1 + rate / 100)) +
+        Math.ceil(beforePowerDict.preciousEffect * (1 + rate / 100));
 
       // 差を取って発動時の効果値を確定
       const diffPower = afterTotalPower - beforeTotalPower;
@@ -527,12 +498,10 @@ const calcGirlSkillEffect = ({
 
 const calcLimitBreakEffect = ({
   rate,
-  inputData,
   intermediateResults,
   isGimmickDiffAdd = true,
 }: {
   rate: number;
-  inputData: DeckSimulatorData;
   intermediateResults: IntermediateResults;
   isGimmickDiffAdd?: boolean;
 }): {
@@ -545,7 +514,6 @@ const calcLimitBreakEffect = ({
     expPower: 0,
     maxPower: 0,
   };
-  const eventId = inputData.dataType;
   const keyName = "limitBreak";
 
   (["mainScenes", "subScenes"] as const).forEach((mainOrSub) => {
@@ -555,11 +523,6 @@ const calcLimitBreakEffect = ({
     );
 
     keys.forEach((key) => {
-      const sceneData = inputData[mainOrSub]["attack"][Number(key)];
-      const preciousTotal =
-        intermediateResults[mainOrSub]["attack"][Number(key)]
-          .preciousSceneEffect?.total ?? 0;
-
       // 効果加算前の数値はeffectMatrixから数値を取得
       const beforePowerDict = intermediateResults[mainOrSub]["attack"][
         Number(key)
@@ -574,18 +537,10 @@ const calcLimitBreakEffect = ({
         Math.ceil(beforePowerDict.preciousEffect);
 
       // 効果加算後でPowerDictを再算出
-      const afterPowerDict = calcLimitBreakPowerDict({
-        eventId,
-        mainOrSub,
-        attackOrDefense: "attack",
-        sceneData,
-        preciousTotal,
-        bonusRate: 1 + rate / 100,
-      });
       const afterTotalPower =
-        Math.ceil(afterPowerDict.scenePower) +
-        Math.ceil(afterPowerDict.strapEffect) +
-        Math.ceil(afterPowerDict.preciousEffect);
+        Math.ceil(beforePowerDict.scenePower * (1 + rate / 100)) +
+        Math.ceil(beforePowerDict.strapEffect * (1 + rate / 100)) +
+        Math.ceil(beforePowerDict.preciousEffect * (1 + rate / 100));
 
       // 差を取って発動時の効果値を確定
       const diffPower = afterTotalPower - beforeTotalPower;
@@ -618,12 +573,10 @@ const calcLimitBreakEffect = ({
 
 const calcDeckBonusEffect = ({
   rate,
-  inputData,
   intermediateResults,
   isGimmickDiffAdd = true,
 }: {
   rate: number;
-  inputData: DeckSimulatorData;
   intermediateResults: IntermediateResults;
   isGimmickDiffAdd?: boolean;
 }): {
@@ -636,7 +589,6 @@ const calcDeckBonusEffect = ({
     expPower: 0,
     maxPower: 0,
   };
-  const eventId = inputData.dataType;
   const keyName = "deck";
 
   (["mainScenes", "subScenes"] as const).forEach((mainOrSub) => {
@@ -646,11 +598,6 @@ const calcDeckBonusEffect = ({
     );
 
     keys.forEach((key) => {
-      const sceneData = inputData[mainOrSub]["attack"][Number(key)];
-      const preciousTotal =
-        intermediateResults[mainOrSub]["attack"][Number(key)]
-          .preciousSceneEffect?.total ?? 0;
-
       // 効果加算前の数値はeffectMatrixから数値を取得
       const beforePowerDict = intermediateResults[mainOrSub]["attack"][
         Number(key)
@@ -665,19 +612,10 @@ const calcDeckBonusEffect = ({
         Math.ceil(beforePowerDict.preciousEffect);
 
       // 効果加算後でPowerDictを再算出
-      const afterPowerDict = calcDeckBonusPowerDict({
-        eventId,
-        mainOrSub,
-        attackOrDefense: "attack",
-        sceneData,
-        preciousTotal,
-        deckBonus: intermediateResults.deckBonus,
-        bonusRate: 1 + rate / 100,
-      });
       const afterTotalPower =
-        Math.ceil(afterPowerDict.scenePower) +
-        Math.ceil(afterPowerDict.strapEffect) +
-        Math.ceil(afterPowerDict.preciousEffect);
+        Math.ceil(beforePowerDict.scenePower * (1 + rate / 100)) +
+        Math.ceil(beforePowerDict.strapEffect * (1 + rate / 100)) +
+        Math.ceil(beforePowerDict.preciousEffect * (1 + rate / 100));
 
       // 差を取って発動時の効果値を確定
       const diffPower = afterTotalPower - beforeTotalPower;

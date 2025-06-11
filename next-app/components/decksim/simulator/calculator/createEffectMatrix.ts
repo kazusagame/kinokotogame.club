@@ -509,7 +509,6 @@ export const calcDeckBonusPowerDict = ({
   sceneData,
   preciousTotal,
   deckBonus,
-  bonusRate = 1,
 }: {
   eventId: DeckSimulatorEventId;
   mainOrSub: "mainScenes" | "subScenes";
@@ -517,7 +516,6 @@ export const calcDeckBonusPowerDict = ({
   sceneData: SceneParameters;
   preciousTotal: number;
   deckBonus: IntermediateResults["deckBonus"];
-  bonusRate?: number;
 }): PowerDict => {
   const keyName = "deck";
   const powerDict: PowerDict = {
@@ -529,8 +527,8 @@ export const calcDeckBonusPowerDict = ({
 
   const bonusValue =
     attackOrDefense === "attack"
-      ? ((deckBonus.attack ?? 0) + (deckBonus.both ?? 0)) * bonusRate
-      : ((deckBonus.defense ?? 0) + (deckBonus.both ?? 0)) * bonusRate;
+      ? ((deckBonus.attack ?? 0) + (deckBonus.both ?? 0))
+      : ((deckBonus.defense ?? 0) + (deckBonus.both ?? 0))
 
   if (mainOrSub === "mainScenes") {
     powerDict.scenePower =
@@ -788,7 +786,6 @@ export const calcPetitEffectsPowerDict = ({
   sceneData,
   preciousTotal,
   petitGirlsEffects,
-  bonusRate = 1,
 }: {
   eventId: DeckSimulatorEventId;
   mainOrSub: "mainScenes" | "subScenes";
@@ -796,7 +793,6 @@ export const calcPetitEffectsPowerDict = ({
   sceneData: SceneParameters;
   preciousTotal: number;
   petitGirlsEffects?: IntermediateResults["petitGirls"]["effects"];
-  bonusRate?: number;
 }): PowerDict => {
   const keyName = "petitEffects";
   const powerDict: PowerDict = {
@@ -864,9 +860,6 @@ export const calcPetitEffectsPowerDict = ({
       (petitGirlsEffects?.bestFriend?.all?.both ?? 0);
   }
 
-  // 外部から提供されるボーナス倍率を積算 (課外活動コンテスト、聖櫻ワールド用)
-  bonusValue *= bonusRate;
-
   if (mainOrSub === "mainScenes") {
     powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *
@@ -900,14 +893,12 @@ export const calcLimitBreakPowerDict = ({
   attackOrDefense,
   sceneData,
   preciousTotal,
-  bonusRate = 1,
 }: {
   eventId: DeckSimulatorEventId;
   mainOrSub: "mainScenes" | "subScenes";
   attackOrDefense: "attack" | "defense";
   sceneData: SceneParameters;
   preciousTotal: number;
-  bonusRate?: number;
 }): PowerDict => {
   const keyName = "limitBreak";
   const powerDict: PowerDict = {
@@ -916,7 +907,7 @@ export const calcLimitBreakPowerDict = ({
     preciousEffect: 0,
   };
   const effectiveRate = BONUS_DATA_PER_EVENT[eventId];
-  const bonusValue = BONUS_DATA_COMMON.limitBreak[attackOrDefense] * bonusRate;
+  const bonusValue = BONUS_DATA_COMMON.limitBreak[attackOrDefense];
 
   // レアリティが Luvでなく、かつEx進展済みではない場合は 0 のまま return
   if (sceneData.rarity !== "Luv" && sceneData.isLimitBreak === false) {

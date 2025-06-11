@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { MAX_SAVE_DATA_NUM } from "@/components/decksim/simulator/globalConfig";
+import { MAX_SAVE_DATA_NUM } from "@/components/decksim/simulator/global-config";
 import {
   EventId,
   EVENT_ID_TO_NAME_DICT,

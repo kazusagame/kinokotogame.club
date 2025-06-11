@@ -10,7 +10,7 @@ import {
   OriginLocalStorageData,
 } from "@/components/decksim/simulator/hook/useLocalStorageData";
 
-import { MAX_SAVE_DATA_NUM } from "@/components/decksim/simulator/globalConfig";
+import { MAX_SAVE_DATA_NUM } from "@/components/decksim/simulator/global-config";
 import { EventId } from "@/components/decksim/data/eventData";
 import { RaidwarSkillResultSummaryDiv } from "@/components/decksim/simulator/RaidwarSkillSimulator";
 import { RaidwarSkillResult } from "@/components/decksim/simulator/hook/useRaidwarSkillData";

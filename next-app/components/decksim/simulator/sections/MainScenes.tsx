@@ -21,7 +21,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorData";
 import { DeckSimulatorResult } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
-import { MAX_MAIN_GIRLS_NUM } from "@/components/decksim/simulator/globalConfig";
+import { MAX_MAIN_GIRLS_NUM } from "@/components/decksim/simulator/global-config";
 import { INIT_SKILL_LEVEL } from "@/components/decksim/data/skillData";
 
 import Tooltip from "@mui/material/Tooltip";

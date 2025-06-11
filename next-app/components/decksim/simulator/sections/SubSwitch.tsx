@@ -25,7 +25,7 @@ import { DeckSimulatorData } from "@/components/decksim/simulator/typeDefinition
 import { DeckSimulatorResult } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
 import { DeckSimulatorEventId } from "@/components/decksim/data/eventData";
 import { INIT_SKILL_LEVEL } from "@/components/decksim/data/skillData";
-import { MAX_SWITCH_OFF_GIRLS_NUM } from "@/components/decksim/simulator/globalConfig";
+import { MAX_SWITCH_OFF_GIRLS_NUM } from "@/components/decksim/simulator/global-config";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
 import { SortableItem } from "@/components/common/SortableItem";

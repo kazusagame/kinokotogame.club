@@ -64,7 +64,7 @@ export const calcTotalPerformance = ({
       keys.forEach((key) => {
         const effectTotal = scenesData[Number(key)]?.effectTotal;
 
-        // effectMatrixがない場合はreturn (通常ありえない)
+        // effectTotalがない場合はreturn (通常ありえない)
         if (!effectTotal) return;
 
         // レイドやメモストではここで有利不利タイプ補正や有利ガール補正の加算が必要になる。

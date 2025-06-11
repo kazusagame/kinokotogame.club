@@ -15,7 +15,7 @@ import {
   SKILL_DATA_PER_EVENT,
   SKILL_RATE_DATA,
 } from "@/components/decksim/data/skillData";
-import { MAX_MAIN_GIRLS_NUM } from "@/components/decksim/simulator/globalConfig";
+import { MAX_MAIN_GIRLS_NUM } from "@/components/decksim/simulator/global-config";
 
 import { setDeepValue } from "@/lib/setDeepValue";
 import { returnNumber } from "@/lib/returnNumber";

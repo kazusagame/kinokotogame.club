@@ -23,7 +23,7 @@ import {
   DeckSimulatorResult,
 } from "@/components/decksim/simulator/typeDefinition/DeckSimulatorResult";
 import { PRECIOUS_SCENES_DATA } from "@/components/decksim/data/preciousScenesData";
-import { MAX_PRECIOUS_SCENES_NUM } from "@/components/decksim/simulator/globalConfig";
+import { MAX_PRECIOUS_SCENES_NUM } from "@/components/decksim/simulator/global-config";
 
 import TextWithTooltip from "@/components/common/TextWithTooltip";
 import { SortableItem } from "@/components/common/SortableItem";

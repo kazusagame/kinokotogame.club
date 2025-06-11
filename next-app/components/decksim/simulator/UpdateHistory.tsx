@@ -6,6 +6,21 @@ export function UpdateHistory({
   handleCloseModal: () => void;
 }) {
   const modalId = useId();
+  const historyList = [
+    {
+      date: "2025/06/15",
+      desc: "リニューアル版でのたすけて！マイヒーロー、全国高校生課外活動コンテスト用のページを追加。",
+    },
+    {
+      date: "2025/06/08",
+      desc: "リニューアル版での部活対抗！勧誘★グランプリと聖櫻学園★カリスマ決定戦、聖櫻学園メモリアルストーリー、散策♪聖櫻ワールド、通常バトル用のページを追加。",
+    },
+    {
+      date: "2025/06/01",
+      desc: "リニューアル版でのおねがい★ハンターズ用のページを追加。",
+    },
+  ];
+
   return (
     <dialog id={modalId} className="modal modal-open" open>
       <div className="modal-box">
@@ -26,18 +41,12 @@ export function UpdateHistory({
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="p-1 md:p-2">2025/06/15</td>
-                  <td className="p-1 md:p-2 min-w-20">リニューアル版でのたすけて！マイヒーロー、全国高校生課外活動コンテスト用のページを追加。</td>
-                </tr>
-                <tr>
-                  <td className="p-1 md:p-2">2025/06/08</td>
-                  <td className="p-1 md:p-2 min-w-20">リニューアル版での部活対抗！勧誘★グランプリと聖櫻学園★カリスマ決定戦、聖櫻学園メモリアルストーリー、散策♪聖櫻ワールド、通常バトル用のページを追加。</td>
-                </tr>
-                <tr>
-                  <td className="p-1 md:p-2">2025/06/01</td>
-                  <td className="p-1 md:p-2 min-w-20">リニューアル版でのおねがい★ハンターズ用のページを追加。</td>
-                </tr>
+                {historyList.map(({ date, desc }) => (
+                  <tr key={date}>
+                    <td className="p-1 md:p-2">{date}</td>
+                    <td className="p-1 md:p-2 min-w-20">{desc}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

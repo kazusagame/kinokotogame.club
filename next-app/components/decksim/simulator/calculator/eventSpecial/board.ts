@@ -104,9 +104,9 @@ export const calcEventSpecialBoard = ({
           preciousEffect: 0,
         };
         const baseTotalPower =
-          basePowerDict.scenePower +
-          basePowerDict.strapEffect +
-          basePowerDict.preciousEffect;
+          Math.ceil(basePowerDict.scenePower) +
+          Math.ceil(basePowerDict.strapEffect) +
+          Math.ceil(basePowerDict.preciousEffect);
 
         const { estimatedPower, eventGimmickDiff } = scenesData[Number(key)];
         let baseDiff = eventGimmickDiff?.base ?? 0;
