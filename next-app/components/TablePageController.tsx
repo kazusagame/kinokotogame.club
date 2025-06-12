@@ -50,7 +50,7 @@ export default function TablePageController<T>({
       <div className="flex items-center justify-center gap-1">
         <p className="text-sm">表示数</p>
         <select
-          className="select select-bordered select-md mx-2 text-right"
+          className="select select-bordered select-md mx-2"
           value={table.getState().pagination.pageSize}
           onChange={(e) => {
             table.setPageSize(Number(e.target.value));
