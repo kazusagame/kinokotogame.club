@@ -23,6 +23,12 @@ const nextConfig = withExportImages({
         port: "",
         pathname: "/images/**",
       },
+      {
+        protocol: "https",
+        hostname: "kinokotogame.club",
+        port: "",
+        pathname: "/image/**",
+      },
     ],
   },
   allowedDevOrigins: ["192.168.0.211"],
