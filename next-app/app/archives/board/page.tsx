@@ -43,7 +43,6 @@ export default function Page() {
               jsonFileName={withBasePath("/json/board/reward_total_202411.json")}
               tableType="boardRewardTotal202411"
               tableSize="xs"
-              pageSize={8}
               initialColumnPinning={{ left: ["rank"] }}
             />
             <BoardTable
@@ -51,7 +50,6 @@ export default function Page() {
               jsonFileName={withBasePath("/json/board/reward_total_202405.json")}
               tableType="boardRewardTotal202405"
               tableSize="xs"
-              pageSize={8}
               initialColumnPinning={{ left: ["rank"] }}
             />
           </section>
@@ -65,7 +63,6 @@ export default function Page() {
               jsonFileName={withBasePath("/json/board/reward_round_202411.json")}
               tableType="boardRewardRound202411"
               tableSize="xs"
-              pageSize={8}
               initialColumnPinning={{ left: ["rank"] }}
             />
             <BoardTable
@@ -73,7 +70,6 @@ export default function Page() {
               jsonFileName={withBasePath("/json/board/reward_round_202405.json")}
               tableType="boardRewardRound202405"
               tableSize="xs"
-              pageSize={8}
               initialColumnPinning={{ left: ["rank"] }}
             />
           </section>
@@ -87,7 +83,6 @@ export default function Page() {
               jsonFileName={withBasePath("/json/board/reward_count_202411.json")}
               tableType="boardRewardCount202411"
               tableSize="xs"
-              pageSize={8}
               initialColumnPinning={{ left: ["rank"] }}
             />
             <BoardTable
@@ -95,7 +90,6 @@ export default function Page() {
               jsonFileName={withBasePath("/json/board/reward_count_202405.json")}
               tableType="boardRewardCount202405"
               tableSize="xs"
-              pageSize={8}
               initialColumnPinning={{ left: ["rank"] }}
             />
           </section>
@@ -200,7 +194,6 @@ export default function Page() {
             jsonFileName={withBasePath("/json/board/effect_202405.json")}
             tableType="boardEffect"
             tableSize="xs"
-            pageSize={8}
             disableColumnFilter
             initialColumnPinning={{ left: ["effect"] }}
           />

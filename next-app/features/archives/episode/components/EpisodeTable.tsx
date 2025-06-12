@@ -47,6 +47,7 @@ interface Props {
   enableNowrapHead?: boolean;
   enableNowrapBody?: boolean;
   pageSize?: number;
+  pageSizeList?: number[];
   disablePagination?: boolean;
   disableSearchBox?: boolean;
   disableColumnFilter?: boolean;

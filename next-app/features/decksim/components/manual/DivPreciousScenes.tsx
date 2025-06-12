@@ -20,6 +20,7 @@ export default function DivPreciousScenes() {
         enableNowrapHead
         enableNowrapBody
         pageSize={15}
+        pageSizeList={[5, 15, 30, 50, 100]}
         columnDef={columnDefPreciousScenes}
       />
       <div className="mt-2 md:pl-4">

@@ -30,6 +30,7 @@ interface Props<T> {
   enableNowrapHead?: boolean;
   enableNowrapBody?: boolean;
   pageSize?: number;
+  pageSizeList?: number[];
   disablePagination?: boolean;
   disableSearchBox?: boolean;
   disableColumnFilter?: boolean;
@@ -71,6 +72,7 @@ export default function GenericOpenTable<T>({
   enableNowrapHead,
   enableNowrapBody,
   pageSize,
+  pageSizeList,
   disablePagination,
   disableSearchBox,
   disableColumnFilter,
@@ -184,7 +186,7 @@ export default function GenericOpenTable<T>({
           </tbody>
         </table>
       </div>
-      {!disablePagination && <TablePageController<T> table={table} />}
+      {!disablePagination && <TablePageController<T> table={table} pageSizeList={pageSizeList}/>}
     </>
   );
 }

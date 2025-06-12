@@ -184,7 +184,7 @@ export default function Page() {
           イベントごとのシミュレーター
         </h2>
         <p className="text-sm pl-2 md:pl-4 my-4 text-red-700 underline">
-          ※ 7月上旬 に リンク先をリニューアル版に差し替えます。
+          7月上旬 に リンク先をリニューアル版に差し替えます。
           現行のバージョンも引き続きご使用いただけます。
         </p>
         <MenuGrid>

@@ -20,6 +20,7 @@ export default function DivPetitGirlsEffects() {
         enableNowrapHead
         enableNowrapBody
         pageSize={15}
+        pageSizeList={[5, 15, 30, 50, 100]}
         columnDef={columnDefPetitGirlsEffects}
       />
     </div>
