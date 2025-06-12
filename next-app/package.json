@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && next-export-optimize-images",
-    "start": "npx serve out",
+    "start": "npx serve out -c ../serve.json",
     "lint": "next lint"
   },
   "dependencies": {
