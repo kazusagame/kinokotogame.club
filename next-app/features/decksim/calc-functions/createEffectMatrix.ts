@@ -747,11 +747,6 @@ const calcMensColognePowerDict = ({
       ? returnNumber(commonData.playerData.mensCologne.cool.level) * 0.2
       : returnNumber(commonData.playerData.mensCologne.pop.level) * 0.2;
 
-  // タイプ不一致時は 0 のまま return
-  if (sceneData.type !== commonData.playerData.playerType) {
-    return powerDict;
-  }
-
   if (mainOrSub === "mainScenes") {
     powerDict.scenePower =
       (((returnNumber(sceneData.basePower) * bonusValue) / 100) *

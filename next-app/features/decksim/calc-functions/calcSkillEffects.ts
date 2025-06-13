@@ -116,11 +116,9 @@ const createBasePowerArray = ({
               ? "pop"
               : "sweet";
           const enemyType =
-            inputData.eventSpecial[eventId]?.enemyType ?? "通常タイプ";
+            inputData.eventSpecial[eventId]?.enemyType ?? "SWEETタイプ";
           const enemyTypeKey =
-            enemyType === "通常タイプ"
-              ? "normal"
-              : enemyType === "SWEETタイプ"
+            enemyType === "SWEETタイプ"
               ? "sweet"
               : enemyType === "COOLタイプ"
               ? "cool"
