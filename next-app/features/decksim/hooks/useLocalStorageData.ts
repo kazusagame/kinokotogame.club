@@ -63,10 +63,7 @@ export function useLocalStorageData<
               typeof parsedData === "object" &&
               parsedData?.version === 2 &&
               hasDataType(parsedData.data) &&
-              SAVE_DATA_COMPATIBILITY_TABLE[eventId] !== undefined &&
-              SAVE_DATA_COMPATIBILITY_TABLE[eventId].includes(
-                parsedData.data.dataType
-              )
+              parsedData.data.dataType === eventId
             )
           )
             continue;
@@ -173,7 +170,10 @@ export function useLocalStorageData<
                     loadData.data.dataType
                   )
                 ) {
-                  localStorage.setItem(key, reader.result);
+                  // dataTypeを現在のeventIdで書き換えてからlocalStorageに設定する。
+                  loadData.data.dataType = eventId;
+                  const convertData = JSON.stringify(loadData);
+                  localStorage.setItem(key, convertData);
                   const keyList = SAVE_DATA_SUMMARY_KEY_LIST[eventId] as
                     | (keyof T)[]
                     | undefined;
