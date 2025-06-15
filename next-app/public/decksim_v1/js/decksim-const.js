@@ -1126,6 +1126,12 @@ const PRECIOS_SCENES = {
     star1max: 5.0, star2max: 5.0, star3max: 5.0, star4max: 6.0, star5max: 6.5, factor: 1.07
   },
 
+  103: {
+    name: "[勘違いﾊﾟﾆｯｸ]加賀美茉莉", rarity: "3", condition: "morelimitbreak", threshold: 35,
+    range: "both", type: "Sweet", effect: "both", format: "percent",
+    star1max: 6.0, star2max: 6.0, star3max: 6.0, star4max: 7.0, star5max: 8.0, factor: 0.90
+  },
+
   /* 初期星2 */
   7: {
     name: "[緊張ﾁﾗｼ配ﾘ]白水六花", rarity: "2", condition: "higherrarity", threshold: 7,
