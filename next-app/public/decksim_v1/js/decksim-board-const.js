@@ -19,11 +19,11 @@ const BOARD_WEATHER_LIST = [
   },
   {
     id: "1",
-    name: "晴れ(15℃)",
+    name: "くもり(28℃)",
     "effect-list": [
       {
-        name: "POPガール攻援力",
-        condition: { type: "Pop" },
+        name: "SWEETガールの攻援力",
+        condition: { type: "Sweet" },
         effect: "girl",
         rate: 30,
       },
@@ -33,17 +33,17 @@ const BOARD_WEATHER_LIST = [
           /* */
         },
         effect: "spgirls",
-        rate: 15,
+        rate: 20,
       },
       {
-        name: "声援Lv.15以上ガールの攻援力",
-        condition: { higherskilllv: 15 },
+        name: "コスト25以上ガールの攻援力",
+        condition: { highercost: 25 },
         effect: "girl",
         rate: 30,
       },
       {
-        name: "COOLガール攻援力",
-        condition: { type: "Cool" },
+        name: "POPガールの攻援力",
+        condition: { type: "Pop" },
         effect: "girl",
         rate: -20,
       },
@@ -51,10 +51,10 @@ const BOARD_WEATHER_LIST = [
   },
   {
     id: "2",
-    name: "雨(14℃)",
+    name: "雨(26℃)",
     "effect-list": [
       {
-        name: "COOLガール攻援力",
+        name: "COOLガールの攻援力",
         condition: { type: "Cool" },
         effect: "girl",
         rate: 30,
@@ -74,7 +74,7 @@ const BOARD_WEATHER_LIST = [
         rate: 30,
       },
       {
-        name: "SWEETガール攻援力",
+        name: "SWEETガールの攻援力",
         condition: { type: "Sweet" },
         effect: "girl",
         rate: -20,
@@ -83,11 +83,11 @@ const BOARD_WEATHER_LIST = [
   },
   {
     id: "3",
-    name: "くもり(17℃)",
+    name: "晴れ(30℃)",
     "effect-list": [
       {
-        name: "SWEETガール攻援力",
-        condition: { type: "Sweet" },
+        name: "POPガールの攻援力",
+        condition: { type: "Pop" },
         effect: "girl",
         rate: 30,
       },
@@ -100,14 +100,14 @@ const BOARD_WEATHER_LIST = [
         rate: 30,
       },
       {
-        name: "コスト25以上ガールの攻援力",
-        condition: { highercost: 25 },
+        name: "声援Lv.15以上のガールの攻援力",
+        condition: { higherskilllv: 15 },
         effect: "girl",
         rate: 30,
       },
       {
-        name: "POPガール攻援力",
-        condition: { type: "Pop" },
+        name: "COOLガールの攻援力",
+        condition: { type: "Cool" },
         effect: "girl",
         rate: -20,
       },
@@ -115,7 +115,7 @@ const BOARD_WEATHER_LIST = [
   },
   {
     id: "4",
-    name: "晴れ(19℃)",
+    name: "晴れ(33℃)",
     "effect-list": [
       {
         name: "声援Lv.12以上かつコスト25以上ガールの攻援力",
@@ -129,7 +129,7 @@ const BOARD_WEATHER_LIST = [
           /* */
         },
         effect: "spgirls",
-        rate: 15,
+        rate: 20,
       },
       {
         name: "センバツボーナス効果",

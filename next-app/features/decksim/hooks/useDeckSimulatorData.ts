@@ -245,6 +245,10 @@ export function useDeckSimulatorData({
 
         // イベント固有系の設定は書き戻す
         nextData.eventSpecial = structuredClone(data.eventSpecial);
+        // 聖櫻ワールドでぷちガールちゃん詳細 (マス効果用)はもしあれば書き戻す
+        if (eventId === "board" && data.petitGirls.details) {
+          nextData.petitGirls.details = structuredClone(data.petitGirls.details);
+        };
 
         const rawData = importData as RawDataDeckSimulator;
 
