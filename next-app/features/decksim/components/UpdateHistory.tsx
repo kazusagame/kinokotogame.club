@@ -8,6 +8,10 @@ export function UpdateHistory({
   const modalId = useId();
   const historyList = [
     {
+      date: "2025/06/26",
+      desc: "散策♪聖櫻ワールドの天気データを2025年6月版に差し替え。",
+    },
+    {
       date: "2025/06/13",
       desc: "リニューアル版でのたすけて！マイヒーロー、全国高校生課外活動コンテスト用のページを追加。",
     },

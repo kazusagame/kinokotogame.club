@@ -314,7 +314,7 @@ export function BoardSpecialSection({
               />
             </h3>
             <div className="ml-2 md:ml-4">
-              <p className="text-sm mb-4">こちらの機能はまだテスト前です。</p>
+              <p className="text-sm mb-4">こちらの機能はゲーム側でコピーが出来なかったため使用できません_(:3 」∠ )_</p>
               <textarea
                 ref={textareaRef}
                 placeholder="こちらにステージ効果 → マス効果で表示されているマス効果の一覧を貼り付けます。その次に取得ボタンを押すと解析が行われて、上のマス効果の表に各効果値が自動で入力された状態になります。手動で1つずつ入力していく手間を省くことが出来ます。"
