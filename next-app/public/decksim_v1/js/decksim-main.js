@@ -56,20 +56,20 @@ function insertTitle() {
   let appendhtml = `
   <div class="simtype selectmark">
   <select name="simtype" class="simtype">
-  <option value="raid-first" data-url="/decksim_v1/raid-first/index.html">たすけて！マイヒーロー 前半</option>
-  <option value="raid-second-attack" data-url="/decksim_v1/raid-second-attack/index.html">たすけて！マイヒーロー 後半攻援</option>
-  <option value="raid-second-defence" data-url="/decksim_v1/raid-second-defence/index.html">たすけて！マイヒーロー 後半守援</option>
-  <option value="raid-mega" data-url="/decksim_v1/raid-mega/index.html">たすけて！マイヒーロー メガ悪男</option>
-  <option value="raidwar" data-url="/decksim_v1/raidwar/index.html">おねがい★ハンターズ</option>
-  <option value="raidwar-skill" data-url="/decksim_v1/raidwar-skill/index.html">おねがい★ハンターズ ハンター声援</option>
-  <option value="clubcup" data-url="/decksim_v1/clubcup/index.html">部活対抗！勧誘★グランプリ</option>
-  <option value="championship" data-url="/decksim_v1/championship/index.html">聖櫻学園★カリスマ決定戦 攻援</option>
-  <option value="championship-defence" data-url="/decksim_v1/championship-defence/index.html">聖櫻学園★カリスマ決定戦 守援</option>
-  <option value="tower" data-url="/decksim_v1/tower/index.html">聖櫻学園ﾒﾓﾘｱﾙｽﾄｰﾘｰ & 聖櫻ｽﾄｰﾘｰ 兼用</option>
-  <option value="divrace" data-url="/decksim_v1/divrace/index.html">全国高校生課外活動コンテスト</option>
-  <option value="board" data-url="/decksim_v1/board/index.html">散策♪聖櫻ワールド</option>
-  <option value="normal-battle" data-url="/decksim_v1/normal-battle/index.html">通常バトル</option>
-  <option value="backpage" data-url="/decksim/">1つ前のページに戻る</option>
+  <option value="raid-first" data-url="../raid-first/index.html">たすけて！マイヒーロー 前半</option>
+  <option value="raid-second-attack" data-url="../raid-second-attack/index.html">たすけて！マイヒーロー 後半攻援</option>
+  <option value="raid-second-defence" data-url="../raid-second-defence/index.html">たすけて！マイヒーロー 後半守援</option>
+  <option value="raid-mega" data-url="../raid-mega/index.html">たすけて！マイヒーロー メガ悪男</option>
+  <option value="raidwar" data-url="../raidwar/index.html">おねがい★ハンターズ</option>
+  <option value="raidwar-skill" data-url="../raidwar-skill/index.html">おねがい★ハンターズ ハンター声援</option>
+  <option value="clubcup" data-url="../clubcup/index.html">部活対抗！勧誘★グランプリ</option>
+  <option value="championship" data-url="../championship/index.html">聖櫻学園★カリスマ決定戦 攻援</option>
+  <option value="championship-defence" data-url="../championship-defence/index.html">聖櫻学園★カリスマ決定戦 守援</option>
+  <option value="tower" data-url="../tower/index.html">聖櫻学園ﾒﾓﾘｱﾙｽﾄｰﾘｰ & 聖櫻ｽﾄｰﾘｰ 兼用</option>
+  <option value="divrace" data-url="../divrace/index.html">全国高校生課外活動コンテスト</option>
+  <option value="board" data-url="../board/index.html">散策♪聖櫻ワールド</option>
+  <option value="normal-battle" data-url="../normal-battle/index.html">通常バトル</option>
+  <option value="backpage" data-url="../../decksim/">1つ前のページに戻る</option>
   </select>
   </div>`;
   $("#simtitle").append(appendhtml);

@@ -25,6 +25,14 @@ import {
   columnDefBoardRewardCount202411,
 } from "@/features/archives/board/table-column-defs/rewardCount202411";
 import {
+  RowDataBoardRewardTotal202506,
+  columnDefBoardRewardTotal202506,
+} from "@/features/archives/board/table-column-defs/rewardTotal202506";
+import {
+  RowDataBoardRewardRound202506,
+  columnDefBoardRewardRound202506,
+} from "@/features/archives/board/table-column-defs/rewardRound202506";
+import {
   RowDataBoardPoint,
   columnDefBoardPoint,
 } from "@/features/archives/board/table-column-defs/point";
@@ -105,6 +113,20 @@ export default function BoardTable(props: Props) {
         <GenericCollapseTable<RowDataBoardRewardCount202411>
           {...props}
           columnDef={columnDefBoardRewardCount202411}
+        />
+      );
+    case "boardRewardTotal202506":
+      return (
+        <GenericCollapseTable<RowDataBoardRewardTotal202506>
+          {...props}
+          columnDef={columnDefBoardRewardTotal202506}
+        />
+      );
+    case "boardRewardRound202506":
+      return (
+        <GenericCollapseTable<RowDataBoardRewardRound202506>
+          {...props}
+          columnDef={columnDefBoardRewardRound202506}
         />
       );
     case "boardPoint":

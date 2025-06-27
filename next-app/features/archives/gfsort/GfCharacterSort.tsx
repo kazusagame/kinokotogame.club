@@ -174,9 +174,9 @@ function CharacterSelect({
   const leftGirlName =
     sortTargetNameList[gameData.lstMember[gameData.cmp1][gameData.head1]];
   const leftGirlProfileId = CHARACTER_DATA[leftGirlName]["profileId"];
-  const rightGirName =
+  const rightGirlName =
     sortTargetNameList[gameData.lstMember[gameData.cmp2][gameData.head2]];
-  const rightGirlProfileId = CHARACTER_DATA[rightGirName]["profileId"];
+  const rightGirlProfileId = CHARACTER_DATA[rightGirlName]["profileId"];
 
   let leftDirPath = "/image/characterSort/";
   let rightDirPath = "/image/characterSort/";
@@ -249,13 +249,13 @@ function CharacterSelect({
           className="flex flex-col gap-2 items-center w-2/5 cursor-pointer"
           onClick={() => onClickLikeGirl(1)}
         >
-          <div className="flex items-center h-12">{rightGirName}</div>
+          <div className="flex items-center h-12">{rightGirlName}</div>
           <div className="w-full h-[500px] relative">
             {/* bathPathが存在する場合は本番環境から直リンする */}
             {process.env.NEXT_PUBLIC_BASE_PATH ? (
               <ImageRemote
                 src={`https://kinokotogame.club${rightDirPath}${rightGirlProfileId}.png`}
-                alt={leftGirlName}
+                alt={rightGirlName}
                 className="object-cover object-[center_bottom]"
                 fill
                 sizes="50vw"
@@ -264,7 +264,7 @@ function CharacterSelect({
             ) : (
               <Image
                 src={`${rightDirPath}${rightGirlProfileId}.png`}
-                alt={leftGirlName}
+                alt={rightGirlName}
                 className="object-cover object-[center_bottom]"
                 fill
                 sizes="50vw"
