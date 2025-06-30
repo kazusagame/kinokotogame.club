@@ -8,6 +8,10 @@ export function UpdateHistory({
   const modalId = useId();
   const historyList = [
     {
+      date: "2025/07/01",
+      desc: "声援データに単タイプ、主+副1、攻守超スーパー特大UPを追加。",
+    },
+    {
       date: "2025/06/26",
       desc: "散策♪聖櫻ワールドの天気データを2025年6月版に差し替え。",
     },

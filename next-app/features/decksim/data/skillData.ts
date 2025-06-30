@@ -123,6 +123,7 @@ export const SKILL_RATE_DATA: SkillRateData = {
           "特大": { value: 21 },
           "スーパー特大+": { value: 30 },
           "スーパー特大++": { value: 35 },
+          "超スーパー特大": { value: 41 },
         },
       },
       "副人数2" : {
@@ -164,6 +165,7 @@ export const SKILL_RATE_DATA: SkillRateData = {
           "スーパー特大": { value: 28 },
           "スーパー特大+": { value: 30 },
           "スーパー特大++": { value: 35 },
+          "超スーパー特大": { value: 41, isTemp: true },
         },
       },
     },
