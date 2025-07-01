@@ -16,7 +16,7 @@ export default function Page() {
     {
       id: 1,
       title: ["たすけて！", "マイヒーロー", "前半"],
-      path: "/decksim_v1/raid-first/index.html",
+      path: "./raid-first/",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -24,26 +24,17 @@ export default function Page() {
     },
     {
       id: 2,
-      title: ["たすけて！", "マイヒーロー", "後半攻援"],
-      path: "/decksim_v1/raid-second-attack/index.html",
+      title: ["たすけて！", "マイヒーロー", "後半"],
+      path: "./raid-second/",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
-      imgAlt: "たすけて！マイヒーロー 後半 攻援へのリンク",
-    },
-    {
-      id: 3,
-      title: ["たすけて！", "マイヒーロー", "後半守援"],
-      path: "/decksim_v1/raid-second-defence/index.html",
-      img: "/image/menu/18_decksim_common.png",
-      width: 640,
-      height: 460,
-      imgAlt: "たすけて！マイヒーロー 後半 守援へのリンク",
+      imgAlt: "たすけて！マイヒーロー 後半へのリンク",
     },
     {
       id: 4,
       title: ["たすけて！", "マイヒーロー", "メガ悪男"],
-      path: "/decksim_v1/raid-mega/index.html",
+      path: "./raid-mega/",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -52,7 +43,7 @@ export default function Page() {
     {
       id: 5,
       title: ["おねがい★", "ハンターズ"],
-      path: "/decksim_v1/raidwar/index.html",
+      path: "./raidwar/",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -70,7 +61,7 @@ export default function Page() {
     {
       id: 7,
       title: ["部活対抗！", "勧誘★", "グランプリ"],
-      path: "/decksim_v1/clubcup/index.html",
+      path: "./clubcup/",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -79,7 +70,7 @@ export default function Page() {
     {
       id: 8,
       title: ["聖櫻学園★", "カリスマ決定戦", "攻援"],
-      path: "/decksim_v1/championship/index.html",
+      path: "./championship/",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -88,7 +79,7 @@ export default function Page() {
     {
       id: 9,
       title: ["聖櫻学園★", "カリスマ決定戦", "守援"],
-      path: "/decksim_v1/championship-defence/index.html",
+      path: "./championship-defense/",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -97,7 +88,7 @@ export default function Page() {
     {
       id: 10,
       title: ["聖櫻学園", "メモリアル", "ストーリー"],
-      path: "/decksim_v1/tower/index.html",
+      path: "./tower/",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -106,7 +97,7 @@ export default function Page() {
     {
       id: 11,
       title: ["全国高校生", "課外活動", "コンテスト"],
-      path: "/decksim_v1/divrace/index.html",
+      path: "./divrace/",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -124,7 +115,7 @@ export default function Page() {
     {
       id: 13,
       title: ["散策♪", "聖櫻ワールド"],
-      path: "/decksim_v1/board/index.html",
+      path: "./board/",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -133,7 +124,7 @@ export default function Page() {
     {
       id: 14,
       title: ["通常バトル"],
-      path: "/decksim_v1/normal-battle/index.html",
+      path: "./normal-battle/",
       img: "/image/menu/18_decksim_common.png",
       width: 640,
       height: 460,
@@ -183,9 +174,9 @@ export default function Page() {
         <h2 className="text-xl mt-6 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
           イベントごとのシミュレーター
         </h2>
-        <p className="text-sm pl-2 md:pl-4 my-4 text-red-700 underline">
-          7月上旬 に リンク先をリニューアル版に差し替えます。
-          現行のバージョンも引き続きご使用いただけます。
+        <p className="text-sm/relaxed pl-2 md:pl-4 my-4 text-red-700">
+          7月1日にリンク先をリニューアル版に差し替えました。<br />
+          <Link href="#old-version" className="link">旧バージョンへのリンクは下の方にあります。</Link>
         </p>
         <MenuGrid>
           {eventMenuList.map((menuCard) => {
@@ -207,82 +198,19 @@ export default function Page() {
         <h2 className="text-2xl mt-4">お知らせ</h2>
         <div className="my-4 md:pl-4 max-w-screen-sm">
           <h2 className="text-xl mt-6 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
-            動作テスト中のリニューアル版について
+            センバツシミュレーターのリニューアルについて
           </h2>
           <div className="space-y-4 leading-7">
-            <div className="space-y-2">
-              <p className="md:pl-4">
-                <Link href="/decksim_v2/raid-first/" className="link">
-                  たすけて！マイヒーロー 前半
-                </Link>
-              </p>
-              <p className="md:pl-4">
-                <Link href="/decksim_v2/raid-second/" className="link">
-                  たすけて！マイヒーロー 後半
-                </Link>
-              </p>
-              <p className="md:pl-4">
-                <Link href="/decksim_v2/raid-mega/" className="link">
-                  たすけて！マイヒーロー メガ悪男
-                </Link>
-              </p>
-              <p className="md:pl-4">
-                <Link href="/decksim_v2/raidwar/" className="link">
-                  おねがい★ハンターズ
-                </Link>
-              </p>
-              <p className="md:pl-4">
-                <Link href="/decksim_v2/clubcup/" className="link">
-                  部活対抗！勧誘★グランプリ
-                </Link>
-              </p>
-              <p className="md:pl-4">
-                <Link href="/decksim_v2/championship/" className="link">
-                  聖櫻学園★カリスマ決定戦 攻援
-                </Link>
-              </p>
-              <p className="md:pl-4">
-                <Link href="/decksim_v2/championship-defense/" className="link">
-                  聖櫻学園★カリスマ決定戦 守援
-                </Link>
-              </p>
-              <p className="md:pl-4">
-                <Link href="/decksim_v2/tower/" className="link">
-                  聖櫻学園メモリアルストーリー
-                </Link>
-              </p>
-              <p className="md:pl-4">
-                <Link href="/decksim_v2/divrace/" className="link">
-                  全国高校生課外活動コンテスト
-                </Link>
-              </p>
-              <p className="md:pl-4">
-                <Link href="/decksim_v2/board/" className="link">
-                  散策♪聖櫻ワールド
-                </Link>
-              </p>
-              <p className="md:pl-4">
-                <Link href="/decksim_v2/normal-battle/" className="link">
-                  通常バトル
-                </Link>
-              </p>
-            </div>
             <p className="md:px-4">
-              上記は現在、動作テスト中のリニューアル版シミュレーターへのリンクです。
-              <br />
-              7月上旬 にリンクなどの差し替えを行う予定です。
-              その際に現行バージョンへのリンクも残しますので、もしリニューアル版が
-              好みに合わなければ現行バージョンを引き続きご利用ください。
+              7月1日にセンバツシミュレーターをリニューアル版に差し替えました。
+              基本的な作りは同じですが、使い勝手が若干変わっている部分があります。
             </p>
             <p className="md:px-4">
               新旧でデータの互換性はありません。
-              テスト中のリニューアル版で保存したデータは現行バージョンでは存在していない扱いになります。
+              リニューアル版で保存したデータは旧バージョンでは存在していない扱いになります。
             </p>
             <p className="md:px-4">
-              URフレンドぷちガールちゃん周りの設定はすべて暫定値が入っています。信用しないでください。
-            </p>
-            <p className="md:px-4">
-              基本的な作りは同じですが、使い勝手が若干変わっている部分があります。
+              URフレンドぷちガールちゃん周りの設定はまだ暫定値が入っています。信用しないでください。
             </p>
             <ul className="md:px-4 space-y-4">
               <li className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
@@ -313,12 +241,12 @@ export default function Page() {
             </ul>
           </div>
 
-          <h2 className="text-xl mt-6 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
+          <h2 id="old-version" className="text-xl mt-6 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
             旧版のシミュレーターへのリンク
           </h2>
           <div className="space-y-4 leading-7">
             <div className="space-y-2">
-              {/* <p className="md:pl-4">
+              <p className="md:pl-4">
                 <Link href="/decksim_v1/raid-first/index.html" className="link">
                   たすけて！マイヒーロー 前半
                 </Link>
@@ -348,7 +276,7 @@ export default function Page() {
                 <Link href="/decksim_v1/raidwar/index.html" className="link">
                   おねがい★ハンターズ
                 </Link>
-              </p> */}
+              </p>
               <p className="md:pl-4">
                 <Link
                   href="/decksim_v1/raidwar-skill/index.html"
@@ -357,7 +285,7 @@ export default function Page() {
                   おねがい★ハンターズ ハンター声援センバツ
                 </Link>
               </p>
-              {/* <p className="md:pl-4">
+              <p className="md:pl-4">
                 <Link href="/decksim_v1/clubcup/index.html" className="link">
                   部活対抗！勧誘★グランプリ
                 </Link>
@@ -400,19 +328,13 @@ export default function Page() {
                 >
                   通常バトル
                 </Link>
-              </p> */}
+              </p>
             </div>
-            <p className="md:px-4">
-              2024年の年末から少しずつサイトのリニューアルを行っております。
-              <br />
-              使い慣れた方を使い続けたい人もおられるかと思いますので、
-              こちらに旧版へのリンクを設置しています。
-            </p>
             <p className="md:px-4">
               旧版はデータ更新やバグ修正を終了しておりますのでご了承ください。
               <br />
               また、新旧でデータの互換性はありません。
-              旧版で保存したデータは新しいシミュレーターでは存在していない扱いになります。
+              旧バージョンで保存したデータは現在のシミュレーターでは存在していない扱いになります。
             </p>
           </div>
 
