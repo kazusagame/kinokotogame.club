@@ -280,7 +280,7 @@ function RegisteredPreciousScenesBlock({
   return (
     <div className="text-base border border-base-300 rounded-xl">
       <div
-        className={`grid grid-cols-3 ${gridColumnCss} gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl`}
+        className={`grid grid-cols-3 ${gridColumnCss} gap-2 md:gap-3 bg-base-300 text-center text-xs font-bold py-1 rounded-t-xl`}
       >
         <div>No.</div>
         <div>名称</div>
@@ -322,7 +322,7 @@ function RegisteredPreciousScenesBlock({
                 <SortableItem
                   key={key}
                   id={key}
-                  classStrings={`grid grid-cols-4 md:grid-cols-6 ${gridColumnCss} gap-2 md:gap-3 min-h-10 text-xs md:text-sm py-1 odd:bg-base-200 even:bg-base-100`}
+                  classStrings={`grid grid-cols-3 ${gridColumnCss} gap-2 md:gap-3 min-h-10 text-xs md:text-sm py-1 odd:bg-base-200 even:bg-base-100`}
                   itemCount={sceneCount}
                 >
                   <div className="flex items-center">{sceneProfile.name}</div>
