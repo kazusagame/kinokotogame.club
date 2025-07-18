@@ -46,7 +46,9 @@ export const calcPreciousSceneEffects = ({
       const scenesData =
         intermediateResults[mainOrSub]?.[attackOrDefense] ?? {};
 
-      const keys = Object.keys(scenesData).filter((key) => key !== "basePowerArray");
+      const keys = Object.keys(scenesData).filter(
+        (key) => key !== "basePowerArray"
+      );
 
       keys.forEach((key) => {
         const value = scenesData[Number(key)];
@@ -79,7 +81,10 @@ const calcEachPreciousSceneEffect = ({
   attackOrDefense: "attack" | "defense";
   preciousNum: number;
   preciousParameters: SelectPreciousSceneParameters;
-  limitBreakCount: { main: number; sub: number };
+  limitBreakCount: {
+    main: { SWEETタイプ: number; COOLタイプ: number; POPタイプ: number };
+    sub: { SWEETタイプ: number; COOLタイプ: number; POPタイプ: number };
+  };
 }) => {
   let sum = 0;
   (["mainScenes", "subScenes"] as const).forEach((mainOrSub) => {
@@ -129,7 +134,10 @@ const calcEachScene = ({
   mainOrSub: "mainScenes" | "subScenes";
   sceneParameters: SceneParameters;
   preciousParameters: SelectPreciousSceneParameters;
-  limitBreakCount: { main: number; sub: number };
+  limitBreakCount: {
+    main: { SWEETタイプ: number; COOLタイプ: number; POPタイプ: number };
+    sub: { SWEETタイプ: number; COOLタイプ: number; POPタイプ: number };
+  };
 }): number => {
   const { basePower, strap, type, rarity, cost, skillLv } = sceneParameters;
   const totalPower = returnNumber(basePower) + returnNumber(strap);
@@ -219,12 +227,26 @@ const calcEachScene = ({
       break;
 
     case "Ex進展ガールが多いほど":
+      const mainCount =
+        effectTarget === "全タイプ"
+          ? limitBreakCount.main.SWEETタイプ +
+            limitBreakCount.main.COOLタイプ +
+            limitBreakCount.main.POPタイプ
+          : limitBreakCount.main[effectTarget];
+      const subCount =
+        effectTarget === "全タイプ"
+          ? limitBreakCount.sub.SWEETタイプ +
+            limitBreakCount.sub.COOLタイプ +
+            limitBreakCount.sub.POPタイプ
+          : limitBreakCount.sub[effectTarget];
+
       top =
         effectRange === "主のみ"
-          ? limitBreakCount.main
+          ? mainCount
           : effectRange === "副のみ"
-          ? limitBreakCount.sub
-          : limitBreakCount.main + limitBreakCount.sub;
+          ? subCount
+          : mainCount + subCount;
+
       bottom = conditionThreshold as number;
 
       // estimatedCount に 自動カウント数を反映しておく
