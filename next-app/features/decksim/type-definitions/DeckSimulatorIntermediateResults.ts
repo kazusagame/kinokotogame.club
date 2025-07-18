@@ -108,15 +108,31 @@ export type IntermediateResults = DeckSimulatorSummaries & {
     attack: {
       [K: number]: SelectPreciousSceneParameters;
       limitBreakCount?: {
-        main: number;
-        sub: number;
+        main: {
+          SWEETタイプ: number;
+          COOLタイプ: number;
+          POPタイプ: number;
+        };
+        sub: {
+          SWEETタイプ: number;
+          COOLタイプ: number;
+          POPタイプ: number;
+        };
       };
     };
     defense: {
       [K: number]: SelectPreciousSceneParameters;
       limitBreakCount?: {
-        main: number;
-        sub: number;
+        main: {
+          SWEETタイプ: number;
+          COOLタイプ: number;
+          POPタイプ: number;
+        };
+        sub: {
+          SWEETタイプ: number;
+          COOLタイプ: number;
+          POPタイプ: number;
+        };
       };
     };
   };

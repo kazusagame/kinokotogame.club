@@ -175,8 +175,11 @@ export default function Page() {
           イベントごとのシミュレーター
         </h2>
         <p className="text-sm/relaxed pl-2 md:pl-4 my-4 text-red-700">
-          7月1日にリンク先をリニューアル版に差し替えました。<br />
-          <Link href="#old-version" className="link">旧バージョンへのリンクは下の方にあります。</Link>
+          7月1日にリンク先をリニューアル版に差し替えました。
+          <br />
+          <Link href="#old-version" className="link">
+            旧バージョンへのリンクは下の方にあります。
+          </Link>
         </p>
         <MenuGrid>
           {eventMenuList.map((menuCard) => {
@@ -241,7 +244,10 @@ export default function Page() {
             </ul>
           </div>
 
-          <h2 id="old-version" className="text-xl mt-6 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
+          <h2
+            id="old-version"
+            className="text-xl mt-6 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1"
+          >
             旧版のシミュレーターへのリンク
           </h2>
           <div className="space-y-4 leading-7">
@@ -337,7 +343,6 @@ export default function Page() {
               旧バージョンで保存したデータは現在のシミュレーターでは存在していない扱いになります。
             </p>
           </div>
-
           <h2 className="text-xl mt-4 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
             情報募集中
           </h2>
@@ -366,35 +371,15 @@ export default function Page() {
                 ゲーム内Id=3172893
               </Link>
             </p>
+            <p>
+
+            </p>
             <div className="mt-2 md:pl-4">
               <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
                 <span>
-                  [よそ見注意]朝比奈桃子 (SWEETガールの声援Lvが高いほど攻守UP)
+                  一時的に休止中です。
                 </span>
               </p>
-              <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
-                <span>
-                  [きみが一番]相楽エミ (POPガールの声援Lvが高いほど攻守UP)
-                </span>
-              </p>
-              <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
-                <span>
-                  [幸せの共有]月隈林子 (COOLガールの声援Lvが高いほど攻守UP)
-                </span>
-              </p>
-              <span>
-                → いくつかのパターンでの実際の効果値。★4の時の最大効果値。
-              </span>
-            </div>
-            <div className="mt-2 md:pl-4">
-              <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
-                <span>
-                  [勘違いﾊﾟﾆｯｸ]加賀美茉莉 (SWEETのEx進展ガールが多いほど攻守UP)
-                </span>
-              </p>
-              <span>
-                → いくつかのパターンでの実際の効果値。★4の時の最大効果値。
-              </span>
             </div>
           </div>
         </div>

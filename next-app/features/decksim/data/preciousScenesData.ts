@@ -482,7 +482,6 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectCondition: "声援Lvが高いほど", conditionThreshold: 16,
     value1: 5.0, value2: 5.0, value3: 5.0, value4: 6.0, value5: 7.0,
     factor: 0.75,
-    annotation: "現状、減衰係数などに推定値を使用しています。情報募集中です。"
   },
   98: {
     name: "[きみが一番]相楽エミ", rarity: 3, valueFormat: "割合(%)",
@@ -490,7 +489,6 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectCondition: "声援Lvが高いほど", conditionThreshold: 16,
     value1: 5.0, value2: 5.0, value3: 5.0, value4: 6.0, value5: 7.0,
     factor: 0.75,
-    annotation: "現状、減衰係数などに推定値を使用しています。情報募集中です。"
   },
   102: {
     name: "[幸せの共有]月隈林子", rarity: 3, valueFormat: "割合(%)",
@@ -498,7 +496,6 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectCondition: "声援Lvが高いほど", conditionThreshold: 16,
     value1: 5.0, value2: 5.0, value3: 5.0, value4: 6.0, value5: 7.0,
     factor: 0.75,
-    annotation: "現状、減衰係数などに推定値を使用しています。情報募集中です。"
   },
 
   100: {
@@ -514,8 +511,14 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "SWEETタイプ", effectRange: "主＋副", effectType: "攻守UP",
     effectCondition: "Ex進展ガールが多いほど", conditionThreshold: 35,
     value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
-    factor: 0.90,
-    annotation: "現状、減衰係数などに推定値を使用しています。情報募集中です。"
+    factor: 0.42,
+  },
+  104: {
+    name: "[伝えたくて]玉井麗巳", rarity: 3, valueFormat: "割合(%)",
+    effectTarget: "POPタイプ", effectRange: "主＋副", effectType: "攻守UP",
+    effectCondition: "Ex進展ガールが多いほど", conditionThreshold: 35,
+    value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
+    factor: 0.42,
   },
 
   /* 初期星2 */

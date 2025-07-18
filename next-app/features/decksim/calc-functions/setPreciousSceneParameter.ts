@@ -52,27 +52,37 @@ const calcLimitBreakCount = ({
     | keyof DeckSimulatorData["mainScenes"]
     | keyof DeckSimulatorData["subScenes"];
 }): {
-  main: number;
-  sub: number;
+  main: { SWEETタイプ: number; COOLタイプ: number; POPタイプ: number };
+  sub: { SWEETタイプ: number; COOLタイプ: number; POPタイプ: number };
 } => {
   const newCount = {
-    main: 0,
-    sub: 0,
+    main: {
+      SWEETタイプ: 0,
+      COOLタイプ: 0,
+      POPタイプ: 0,
+    },
+    sub: {
+      SWEETタイプ: 0,
+      COOLタイプ: 0,
+      POPタイプ: 0,
+    },
   };
 
   // 主センバツのカウント
   if (inputData.mainScenes[type] !== undefined) {
     Object.values(inputData.mainScenes[type]).forEach((value) => {
-      const { rarity, isLimitBreak } = value;
-      if (rarity === "Luv" || isLimitBreak === true) newCount.main += 1;
+      const { type: sceneType, rarity, isLimitBreak } = value;
+      if (rarity === "Luv" || isLimitBreak === true)
+        newCount.main[sceneType] += 1;
     });
   }
 
   // 副センバツのカウント
   if (inputData.subScenes[type] !== undefined) {
     Object.values(inputData.subScenes[type]).forEach((value) => {
-      const { rarity, isLimitBreak } = value;
-      if (rarity === "Luv" || isLimitBreak === true) newCount.sub += 1;
+      const { type: sceneType, rarity, isLimitBreak } = value;
+      if (rarity === "Luv" || isLimitBreak === true)
+        newCount.sub[sceneType] += 1;
     });
   }
 
