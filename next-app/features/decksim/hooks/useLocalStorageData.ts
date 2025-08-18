@@ -137,7 +137,7 @@ export function useLocalStorageData<
           const url = URL.createObjectURL(blob);
           const a = document.createElement("a");
           document.body.appendChild(a);
-          a.download = `${eventName}_データ${num}_${dateStr}`;
+          a.download = `${eventName}_データ${num}_${dateStr}.txt`;
           a.href = url;
           a.click();
           a.remove();
