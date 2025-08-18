@@ -8,6 +8,10 @@ export function UpdateHistory({
   const modalId = useId();
   const historyList = [
     {
+      date: "2025/08/18",
+      desc: "プレシャスシーンに[総選挙2024]メモリアルを追加。",
+    },
+    {
       date: "2025/07/18",
       desc: "プレシャスシーンに[伝えたくて]玉井麗巳を追加。[勘違いﾊﾟﾆｯｸ]加賀美茉莉の減衰係数を変更。",
     },
