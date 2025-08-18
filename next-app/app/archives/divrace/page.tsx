@@ -32,6 +32,13 @@ export default function Page() {
             最終ランキング ごほうび表
           </h2>
           <DivraceTable
+            title="第6回 (2025/09)"
+            jsonFileName={withBasePath("/json/divrace/reward_006.json")}
+            tableType="divraceReward006"
+            tableSize="xs"
+            initialColumnPinning={{ left: ["class", "grade", "rank"] }}
+          />
+          <DivraceTable
             title="第5回 (2025/03)"
             jsonFileName={withBasePath("/json/divrace/reward_005.json")}
             tableType="divraceReward005"
