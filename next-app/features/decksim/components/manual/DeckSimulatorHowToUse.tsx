@@ -390,8 +390,8 @@ export function DeckSimulatorHowToUse({
         <Image
           src="/image/decksim/deckSimulator/11_petit_girls.png"
           alt="ぷちセンバツのデータ登録画面"
-          width={1210}
-          height={442}
+          width={1184}
+          height={450}
           className="mt-4 mb-2 ml-4 w-5/6"
         />
         <div className="my-2 md:pl-4">

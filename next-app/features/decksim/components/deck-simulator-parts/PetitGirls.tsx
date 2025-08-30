@@ -175,17 +175,23 @@ function EffectsSelectionBlock({
                 <p className="text-base">{i + 1}:</p>
                 <div>
                   <label className="label cursor-pointer">
-                    <p className="text-base mr-2">レアリティUR</p>
-                    <input
-                      type="checkbox"
-                      name={`isRarityUr${i + 1}`}
-                      className="checkbox"
-                      checked={
-                        data.petitGirls.effects?.[i + 1]?.isRarityUr === true
+                    <p className="text-base mr-2">効果Lv</p>
+                    <select
+                      name={`effectLevel_${i + 1}`}
+                      className={`select select-sm select-bordered`}
+                      value={
+                        data.petitGirls.effects?.[i + 1]?.effectLevel ?? "20"
                       }
                       onChange={onChange}
-                      data-path={`petitGirls.effects.${i + 1}.isRarityUr`}
-                    />
+                      data-path={`petitGirls.effects.${i + 1}.effectLevel`}
+                    >
+                      <option value="20">
+                        20
+                      </option>
+                      <option value="22">
+                        22
+                      </option>
+                    </select>
                   </label>
                 </div>
               </div>
@@ -326,7 +332,10 @@ function EffectSelectModal({
               <div className="font-bold">マーカータイプ</div>
               <div className="flex gap-5 flex-wrap pl-0 sm:pl-2 md:pl-4 mt-3">
                 {["未選択", "ピンク", "イエロー", "ブルー"].map((type) => (
-                  <label key={type} className="label cursor-pointer flex items-center gap-2">
+                  <label
+                    key={type}
+                    className="label cursor-pointer flex items-center gap-2"
+                  >
                     <input
                       type="radio"
                       name="markerType"
@@ -357,7 +366,10 @@ function EffectSelectModal({
                   "2年生",
                   "3年生",
                 ].map((detail) => (
-                  <label key={detail} className="label cursor-pointer flex items-center gap-2">
+                  <label
+                    key={detail}
+                    className="label cursor-pointer flex items-center gap-2"
+                  >
                     <input
                       type="radio"
                       name="conditionDetail"
@@ -380,7 +392,10 @@ function EffectSelectModal({
               <div className="font-bold">効果タイプ</div>
               <div className="flex gap-5 flex-wrap pl-0 sm:pl-2 md:pl-4 mt-3">
                 {["未選択", "攻援UP", "守援UP", "攻守UP"].map((type) => (
-                  <label key={type} className="label cursor-pointer flex items-center gap-2">
+                  <label
+                    key={type}
+                    className="label cursor-pointer flex items-center gap-2"
+                  >
                     <input
                       type="radio"
                       name="effectType"

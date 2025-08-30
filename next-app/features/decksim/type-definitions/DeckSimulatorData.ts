@@ -97,7 +97,7 @@ export interface DeckSimulatorData {
         [K: number]: {
           id?: string;
         };
-        isRarityUr?: boolean;
+        effectLevel?: "20" | "22";
       };
     };
     details: {
