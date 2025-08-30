@@ -928,12 +928,12 @@ const handlePetitGirl = async ({
         }
       });
 
-      // レアリティがURの時にフラグをセットする処理も暫定で入れておく
+      // レアリティがURの時に応援力効果のLvを22に設定する処理も暫定で入れておく
       if (element?.["rarity"]?.["rarityShortName"] === "UR") {
         setDeepValue(
           nextData,
-          `petitGirls.effects.${outerIndex + 1}.isRarityUr`,
-          true
+          `petitGirls.effects.${outerIndex + 1}.effectLevel`,
+          "22"
         );
       }
     });

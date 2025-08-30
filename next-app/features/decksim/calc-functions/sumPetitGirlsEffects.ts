@@ -128,8 +128,8 @@ export const sumPetitGirlsEffects = ({
   };
 
   Object.values(inputData.petitGirls.effects).forEach((outerValue) => {
-    const isRarityUr = outerValue.isRarityUr ?? false;
-    const keys = Object.keys(outerValue).filter((key) => key !== "isRarityUr");
+    const effectLevel = outerValue.effectLevel ?? "20";
+    const keys = Object.keys(outerValue).filter((key) => key !== "effectLevel");
     keys.forEach((key) => {
       const id = outerValue[Number(key)].id;
       if (id === undefined) return;
@@ -137,14 +137,14 @@ export const sumPetitGirlsEffects = ({
         effectCondition,
         conditionDetail,
         effectType,
-        levelMaxValue,
-        levelMaxValueUr,
+        level20Value,
+        level22Value,
       } = PETIT_GIRLS_EFFECTS_DATA[Number(id)];
 
       const effectConditionKey = effectConditionMap[effectCondition] ?? null;
       const conditionDetailKey = conditionDetailMap[conditionDetail] ?? null;
       const effectTypeKey = effectTypeMap[effectType] ?? null;
-      const value = isRarityUr === true ? levelMaxValueUr : levelMaxValue;
+      const value = effectLevel === "22" ? level22Value : level20Value;
 
       if (effectConditionKey && conditionDetailKey && effectTypeKey) {
         if (effectConditionKey !== "grade") {

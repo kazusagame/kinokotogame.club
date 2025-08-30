@@ -128,7 +128,7 @@ export default function Page() {
           title="ぷちガールちゃん 応援力効果"
         >
           <p className="my-2 pl-2 text-sm">
-            ※ Lvmax時の効果値(UR)は暫定値です。
+            ※ Lv.22の効果値は暫定値です。
           </p>
           <DivPetitGirlsEffects />
         </SectionBonus>

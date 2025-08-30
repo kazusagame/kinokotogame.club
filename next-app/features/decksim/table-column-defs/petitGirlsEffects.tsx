@@ -56,25 +56,25 @@ export const columnDefPetitGirlsEffects = [
       textAlign: "left",
     },
   }),
-  columnHelper.accessor("levelMaxValue", {
-    header: "Lvmax時の効果値",
+  columnHelper.accessor("level20Value", {
+    header: "Lv.20効果値",
     cell: (info) => {
       return info.getValue() + " %";
     },
     sortingFn: "auto",
     meta: {
-      label: "Lvmax時の効果値",
+      label: "Lv.20効果値",
       textAlign: "right",
     },
   }),
-  columnHelper.accessor("levelMaxValueUr", {
-    header: "Lvmax時の効果値(UR)",
+  columnHelper.accessor("level22Value", {
+    header: "Lv.22効果値",
     cell: (info) => {
       return info.getValue() + " %";
     },
     sortingFn: "auto",
     meta: {
-      label: "Lvmax時の効果値(UR)",
+      label: "Lv.22効果値",
       textAlign: "right",
     },
   }),
