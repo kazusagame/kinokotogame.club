@@ -9,7 +9,7 @@ export function UpdateHistory({
   const historyList = [
     {
       date: "2025/08/30",
-      desc: "ぷちセンバツの応援力効果をレアリティ設定からLv選択式に変更。",
+      desc: "ぷちセンバツの応援力効果をレアリティ設定からLv選択式に変更。プレシャスシーンに[アツい展開]姫島木乃子を暫定値で追加。",
     },
     {
       date: "2025/08/18",

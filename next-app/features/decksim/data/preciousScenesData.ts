@@ -521,6 +521,15 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     factor: 0.42,
   },
 
+  106: {
+    name: "[アツい展開]姫島木乃子", rarity: 3, valueFormat: "割合(%)",
+    effectTarget: "POPタイプ", effectRange: "主＋副", effectType: "攻援UP",
+    effectCondition: "様々なガールで編成するほど", conditionThreshold: 25,
+    value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
+    factor: 1.6,
+    annotation: "減衰係数に推定値を使用しています。情報募集中です。",
+  },
+
   /* 初期星2 */
   7: {
     name: "[緊張ﾁﾗｼ配ﾘ]白水六花", rarity: 2, valueFormat: "割合(%)",
