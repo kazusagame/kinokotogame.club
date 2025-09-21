@@ -8,6 +8,10 @@ export function UpdateHistory({
   const modalId = useId();
   const historyList = [
     {
+      date: "2025/09/21",
+      desc: "全国高校生課外活動コンテストの風向きアイテムのデータを2025年9月版に差し替え。",
+    },
+    {
       date: "2025/08/30",
       desc: "ぷちセンバツの応援力効果をレアリティ設定からLv選択式に変更。プレシャスシーンに[アツい展開]姫島木乃子を暫定値で追加。",
     },

@@ -80,6 +80,13 @@ export default function Page() {
             pt獲得ごほうび表
           </h2>
           <DivraceTable
+            title="第6回 (2025/09)"
+            jsonFileName={withBasePath("/json/divrace/point_006.json")}
+            tableType="divracePoint"
+            tableSize="xs"
+            disableColumnFilter
+          />
+          <DivraceTable
             title="第5回 (2025/03)"
             jsonFileName={withBasePath("/json/divrace/point_005.json")}
             tableType="divracePoint"
@@ -121,7 +128,7 @@ export default function Page() {
             ベースステージ表
           </h2>
           <DivraceTable
-            title="第1～5回"
+            title="第1～6回"
             jsonFileName={withBasePath("/json/divrace/stage_base_001.json")}
             tableType="divraceStageBase"
             tableSize="xs"
@@ -134,7 +141,7 @@ export default function Page() {
             チャレンジステージ表
           </h2>
           <DivraceTable
-            title="第2～5回"
+            title="第2～6回"
             jsonFileName={withBasePath("/json/divrace/stage_challenge_002.json")}
             tableType="divraceStageChallenge"
             tableSize="xs"
