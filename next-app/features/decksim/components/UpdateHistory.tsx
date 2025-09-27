@@ -8,6 +8,10 @@ export function UpdateHistory({
   const modalId = useId();
   const historyList = [
     {
+      date: "2025/09/27",
+      desc: "フレンドぷちガールちゃんのレアリティUR周りの数値を一部差し替え。",
+    },
+    {
       date: "2025/09/21",
       desc: "全国高校生課外活動コンテストの風向きアイテムのデータを2025年9月版に差し替え。",
     },
