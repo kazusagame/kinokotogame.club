@@ -212,7 +212,6 @@ export default function DivBonusCommon() {
             <td>Precious★Friend+</td>
             <TdDataCell
               value={BONUS_DATA_COMMON.deck.preciousPlus.both.lv1}
-              isTemp
             />
             <TdDataCell
               value={BONUS_DATA_COMMON.deck.preciousPlus.both.lv2}
