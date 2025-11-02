@@ -526,8 +526,22 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "POPタイプ", effectRange: "主＋副", effectType: "攻援UP",
     effectCondition: "様々なガールで編成するほど", conditionThreshold: 25,
     value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
-    factor: 1.6,
-    annotation: "減衰係数に推定値を使用しています。情報募集中です。",
+    factor: 1.5,
+  },
+  107: {
+    name: "[私好みに]上条るい", rarity: 3, valueFormat: "割合(%)",
+    effectTarget: "COOLタイプ", effectRange: "主＋副", effectType: "攻援UP",
+    effectCondition: "様々なガールで編成するほど", conditionThreshold: 25,
+    value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
+    factor: 1.5,
+  },
+
+  108: {
+    name: "[13周年]メモリアル", rarity: 3, valueFormat: "割合(%)",
+    effectTarget: "全タイプ", effectRange: "主＋副", effectType: "攻援UP",
+    effectCondition: "声援Lvが高いほど", conditionThreshold: 18,
+    value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.5,
+    factor: 2.01,
   },
 
   /* 初期星2 */
