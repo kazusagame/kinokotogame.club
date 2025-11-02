@@ -1,3 +1,4 @@
+import { useId } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleHeader from "@/components/ArticleHeader";
@@ -162,6 +163,8 @@ export default function Page() {
     },
   ];
 
+  const checkboxId = useId();
+
   return (
     <>
       <div className="container mx-auto mb-6 px-2 md:px-6 lg:max-w-screen-lg">
@@ -260,105 +263,118 @@ export default function Page() {
             >
               旧版のシミュレーターへのリンク
             </h2>
-            <div className="space-y-4 leading-7">
-              <div className="space-y-2">
-                <p className="md:pl-4">
-                  <Link
-                    href="/decksim_v1/raid-first/index.html"
-                    className="link"
-                  >
-                    たすけて！マイヒーロー 前半
-                  </Link>
-                </p>
-                <p className="md:pl-4">
-                  <Link
-                    href="/decksim_v1/raid-second-attack/index.html"
-                    className="link"
-                  >
-                    たすけて！マイヒーロー 後半 攻援
-                  </Link>
-                </p>
-                <p className="md:pl-4">
-                  <Link
-                    href="/decksim_v1/raid-second-defence/index.html"
-                    className="link"
-                  >
-                    たすけて！マイヒーロー 後半 守援
-                  </Link>
-                </p>
-                <p className="md:pl-4">
-                  <Link
-                    href="/decksim_v1/raid-mega/index.html"
-                    className="link"
-                  >
-                    たすけて！マイヒーロー メガ悪男
-                  </Link>
-                </p>
-                <p className="md:pl-4">
-                  <Link href="/decksim_v1/raidwar/index.html" className="link">
-                    おねがい★ハンターズ
-                  </Link>
-                </p>
-                <p className="md:pl-4">
-                  <Link
-                    href="/decksim_v1/raidwar-skill/index.html"
-                    className="link"
-                  >
-                    おねがい★ハンターズ ハンター声援センバツ
-                  </Link>
-                </p>
-                <p className="md:pl-4">
-                  <Link href="/decksim_v1/clubcup/index.html" className="link">
-                    部活対抗！勧誘★グランプリ
-                  </Link>
-                </p>
-                <p className="md:pl-4">
-                  <Link
-                    href="/decksim_v1/championship/index.html"
-                    className="link"
-                  >
-                    聖櫻学園★カリスマ決定戦 攻援
-                  </Link>
-                </p>
-                <p className="md:pl-4">
-                  <Link
-                    href="/decksim_v1/championship-defence/index.html"
-                    className="link"
-                  >
-                    聖櫻学園★カリスマ決定戦 守援
-                  </Link>
-                </p>
-                <p className="md:pl-4">
-                  <Link href="/decksim_v1/tower/index.html" className="link">
-                    聖櫻学園メモリアルストーリー
-                  </Link>
-                </p>
-                <p className="md:pl-4">
-                  <Link href="/decksim_v1/divrace/index.html" className="link">
-                    全国高校生課外活動コンテスト
-                  </Link>
-                </p>
-                <p className="md:pl-4">
-                  <Link href="/decksim_v1/board/index.html" className="link">
-                    散策♪聖櫻ワールド
-                  </Link>
-                </p>
-                <p className="md:pl-4">
-                  <Link
-                    href="/decksim_v1/normal-battle/index.html"
-                    className="link"
-                  >
-                    通常バトル
-                  </Link>
-                </p>
+            <div className="collapse collapse-arrow border border-base-300 bg-base-200 my-2">
+              <input type="checkbox" id={checkboxId} />
+              <div className="collapse-title text-xl">開く / 閉じる</div>
+              <div className="collapse-content overflow-x-auto space-y-4 leading-7">
+                <div className="space-y-2">
+                  <p className="md:pl-4">
+                    <Link
+                      href="/decksim_v1/raid-first/index.html"
+                      className="link"
+                    >
+                      たすけて！マイヒーロー 前半
+                    </Link>
+                  </p>
+                  <p className="md:pl-4">
+                    <Link
+                      href="/decksim_v1/raid-second-attack/index.html"
+                      className="link"
+                    >
+                      たすけて！マイヒーロー 後半 攻援
+                    </Link>
+                  </p>
+                  <p className="md:pl-4">
+                    <Link
+                      href="/decksim_v1/raid-second-defence/index.html"
+                      className="link"
+                    >
+                      たすけて！マイヒーロー 後半 守援
+                    </Link>
+                  </p>
+                  <p className="md:pl-4">
+                    <Link
+                      href="/decksim_v1/raid-mega/index.html"
+                      className="link"
+                    >
+                      たすけて！マイヒーロー メガ悪男
+                    </Link>
+                  </p>
+                  <p className="md:pl-4">
+                    <Link
+                      href="/decksim_v1/raidwar/index.html"
+                      className="link"
+                    >
+                      おねがい★ハンターズ
+                    </Link>
+                  </p>
+                  <p className="md:pl-4">
+                    <Link
+                      href="/decksim_v1/raidwar-skill/index.html"
+                      className="link"
+                    >
+                      おねがい★ハンターズ ハンター声援センバツ
+                    </Link>
+                  </p>
+                  <p className="md:pl-4">
+                    <Link
+                      href="/decksim_v1/clubcup/index.html"
+                      className="link"
+                    >
+                      部活対抗！勧誘★グランプリ
+                    </Link>
+                  </p>
+                  <p className="md:pl-4">
+                    <Link
+                      href="/decksim_v1/championship/index.html"
+                      className="link"
+                    >
+                      聖櫻学園★カリスマ決定戦 攻援
+                    </Link>
+                  </p>
+                  <p className="md:pl-4">
+                    <Link
+                      href="/decksim_v1/championship-defence/index.html"
+                      className="link"
+                    >
+                      聖櫻学園★カリスマ決定戦 守援
+                    </Link>
+                  </p>
+                  <p className="md:pl-4">
+                    <Link href="/decksim_v1/tower/index.html" className="link">
+                      聖櫻学園メモリアルストーリー
+                    </Link>
+                  </p>
+                  <p className="md:pl-4">
+                    <Link
+                      href="/decksim_v1/divrace/index.html"
+                      className="link"
+                    >
+                      全国高校生課外活動コンテスト
+                    </Link>
+                  </p>
+                  <p className="md:pl-4">
+                    <Link href="/decksim_v1/board/index.html" className="link">
+                      散策♪聖櫻ワールド
+                    </Link>
+                  </p>
+                  <p className="md:pl-4">
+                    <Link
+                      href="/decksim_v1/normal-battle/index.html"
+                      className="link"
+                    >
+                      通常バトル
+                    </Link>
+                  </p>
+                </div>
               </div>
-              <p className="md:px-4">
-                旧版はデータ更新やバグ修正を終了しておりますのでご了承ください。
-                <br />
-                また、新旧でデータの互換性はありません。
-                旧バージョンで保存したデータは現在のシミュレーターでは存在していない扱いになります。
-              </p>
             </div>
+            <p className="md:px-4">
+              旧版はデータ更新やバグ修正を終了しておりますのでご了承ください。
+              <br />
+              また、新旧でデータの互換性はありません。
+              旧バージョンで保存したデータは現在のシミュレーターでは存在していない扱いになります。
+            </p>
           </div>
         </div>
       </div>
