@@ -8,6 +8,10 @@ export function UpdateHistory({
   const modalId = useId();
   const historyList = [
     {
+      date: "2025/11/16",
+      desc: "プレシャスシーンに[高鳴る鼓動]真白透子を追加。",
+    },
+    {
       date: "2025/11/02",
       desc: "プレシャスシーンに[私好みに]上条るい、[13周年]メモリアルを追加。[アツい展開]姫島木乃子の減衰係数を変更。",
     },
