@@ -8,6 +8,10 @@ export function UpdateHistory({
   const modalId = useId();
   const historyList = [
     {
+      date: "2025/11/26",
+      desc: "散策♪聖櫻ワールドの天気データを2025年11月版に差し替え。",
+    },
+    {
       date: "2025/11/16",
       desc: "プレシャスシーンに[高鳴る鼓動]真白透子を追加。",
     },
