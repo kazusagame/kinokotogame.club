@@ -39,6 +39,13 @@ export default function Page() {
               総合ランキング
             </h3>
             <BoardTable
+              title="2025/11 開催時"
+              jsonFileName={withBasePath("/json/board/reward_total_202511.json")}
+              tableType="boardRewardTotal202511"
+              tableSize="xs"
+              initialColumnPinning={{ left: ["rank"] }}
+            />
+            <BoardTable
               title="2025/06 開催時 (story)"
               jsonFileName={withBasePath("/json/board/reward_total_202506.json")}
               tableType="boardRewardTotal202506"
@@ -65,6 +72,13 @@ export default function Page() {
             <h3 className="text-lg mt-4 mb-2 pl-4 relative before:w-2 before:h-4 before:bg-secondary before:inline-block before:absolute before:left-0 before:top-2 before:rounded">
               ラウンドランキング
             </h3>
+            <BoardTable
+              title="2025/11 開催時"
+              jsonFileName={withBasePath("/json/board/reward_round_202511.json")}
+              tableType="boardRewardRound202511"
+              tableSize="xs"
+              initialColumnPinning={{ left: ["rank"] }}
+            />
             <BoardTable
               title="2025/06 開催時 (story)"
               jsonFileName={withBasePath("/json/board/reward_round_202506.json")}
@@ -93,7 +107,7 @@ export default function Page() {
               行動回数ランキング
             </h3>
             <BoardTable
-              title="2024/11 および 2025/06 開催時"
+              title="2024/11 ～ 現在"
               jsonFileName={withBasePath("/json/board/reward_count_202411.json")}
               tableType="boardRewardCount202411"
               tableSize="xs"
@@ -113,6 +127,13 @@ export default function Page() {
           <h2 className="text-xl mt-4 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
             散策pt ごほうび表
           </h2>
+          <BoardTable
+            title="2025/11 開催時"
+            jsonFileName={withBasePath("/json/board/point_202511.json")}
+            tableType="boardPoint"
+            tableSize="xs"
+            disableColumnFilter
+          />
           <BoardTable
             title="2025/06 開催時 (story)"
             jsonFileName={withBasePath("/json/board/point_202506.json")}
@@ -140,6 +161,15 @@ export default function Page() {
           <h2 className="text-xl mt-4 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
             ステージクリア ごほうび表
           </h2>
+          <BoardTable
+            title="2025/11 開催時"
+            jsonFileName={withBasePath("/json/board/stage_202511.json")}
+            tableType="boardStage"
+            tableSize="xs"
+            disableColumnFilter
+            disablePagination
+            initialColumnPinning={{ left: ["lv"] }}
+          />
           <BoardTable
             title="2025/06 開催時 (story)"
             jsonFileName={withBasePath("/json/board/stage_202506.json")}
@@ -173,6 +203,28 @@ export default function Page() {
           <h2 className="text-xl mt-4 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
             すごろくマップ
           </h2>
+          <div className="collapse collapse-arrow border border-base-300 bg-base-200 my-2">
+            <input type="checkbox" id={`${checkboxId}-202511`} />
+            <div className="collapse-title text-xl">2025/11 開催時</div>
+            <div className="collapse-content overflow-x-auto">
+              <BoardMap
+                title="Lv.1 教室"
+                jsonFileName={withBasePath("/json/board/map_Lv1_202511.json")}
+              />
+              <BoardMap
+                title="Lv.2 体育館"
+                jsonFileName={withBasePath("/json/board/map_Lv2_202511.json")}
+              />
+              <BoardMap
+                title="Lv.3 グラウンド"
+                jsonFileName={withBasePath("/json/board/map_Lv3_202511.json")}
+              />
+              <BoardMap
+                title="Lv.4 森園神社"
+                jsonFileName={withBasePath("/json/board/map_Lv4_202511.json")}
+              />
+            </div>
+          </div>
           <div className="collapse collapse-arrow border border-base-300 bg-base-200 my-2">
             <input type="checkbox" id={`${checkboxId}-202411`} />
             <div className="collapse-title text-xl">2024/11 および 2025/06 開催時</div>
@@ -234,6 +286,14 @@ export default function Page() {
             キューピッドマスで出会えるガール
           </h2>
           <BoardTable
+            title="2025/11 開催時"
+            jsonFileName={withBasePath("/json/board/cupid_202511.json")}
+            tableType="boardCupid"
+            tableSize="xs"
+            disableColumnFilter
+            disablePagination
+          />
+          <BoardTable
             title="2025/06 開催時 (story)"
             jsonFileName={withBasePath("/json/board/cupid_202506.json")}
             tableType="boardCupid"
@@ -263,6 +323,15 @@ export default function Page() {
           <h2 className="text-xl mt-4 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
             アイテムマスで貰えるアイテム
           </h2>
+          <BoardTable
+            title="2025/11 開催時"
+            jsonFileName={withBasePath("/json/board/item_202511.json")}
+            tableType="boardItem"
+            tableSize="xs"
+            pageSize={11}
+            disableColumnFilter
+            disablePagination
+          />
           <BoardTable
             title="2025/06 開催時 (story)"
             jsonFileName={withBasePath("/json/board/item_202506.json")}
