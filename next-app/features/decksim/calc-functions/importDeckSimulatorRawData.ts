@@ -604,7 +604,9 @@ const parseSceneParameter = ({
 } => {
   // シーン名からキャラクター名を取得する
   // テーマ部分を除去して、アネットはフルネームに変更。
-  const characterName = element["cardName"].replace(/\[.*\]/g, "").replace("アネット・O・唐澤", "アネット・オルガ・唐澤");
+  const characterName = element["cardName"]
+    .replace(/\[.*\]/g, "")
+    .replace("アネット・O・唐澤", "アネット・オルガ・唐澤");
 
   const basePowerNum =
     eventId === "raid-second" && deckType === "守援"
@@ -647,10 +649,23 @@ const parseSceneParameter = ({
   const skillLvNum = element["skillLevel"] ?? 1;
   const skillLv = String(skillLvNum);
 
-  const gradeStr = NAME_TO_PROFILE_CONVERT?.[characterName]?.grade ?? "---";
+  let gradeStr = NAME_TO_PROFILE_CONVERT?.[characterName]?.grade ?? "---";
+
+  /* 散策♪聖櫻ワールド用の特殊処理 */
+  /* eventId が "board" かつ 他校生徒 の場合は 学年を "その他" に上書きする。 */
+  /* マス効果の学年条件がそのようになっているため強制的にゲーム側に合わせる。 */
+  if (eventId === "board") {
+    const isOtherSchoolGirl =
+      NAME_TO_PROFILE_CONVERT?.[characterName]?.school !== "聖櫻学園";
+    if (isOtherSchoolGirl) {
+      gradeStr = "---";
+    }
+  }
+
   const grade = gradeStr !== "---" ? gradeStr : "その他";
 
-  const clubType = NAME_TO_PROFILE_CONVERT?.[characterName]?.clubType ?? "設定なし";
+  const clubType =
+    NAME_TO_PROFILE_CONVERT?.[characterName]?.clubType ?? "設定なし";
   const isClubMatch = clubType === loadCondition.clubType ? true : false;
 
   const isDate =
