@@ -37,14 +37,12 @@ jobs:
         working-directory: next-app
         env:
           NEXT_PUBLIC_DEPLOY_TARGET: github
-          NEXT_PUBLIC_BASE_PATH: /kinokotogame.club
 
       - name: Image optimization
         run: npx next-export-optimize-images
         working-directory: next-app
         env:
           NEXT_PUBLIC_DEPLOY_TARGET: github
-          NEXT_PUBLIC_BASE_PATH: /kinokotogame.club
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
