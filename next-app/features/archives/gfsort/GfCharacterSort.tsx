@@ -210,7 +210,7 @@ function CharacterSelect({
             {/* デプロイ先がgithubの場合は本番環境から直リンする */}
             {process.env.NEXT_PUBLIC_DEPLOY_TARGET === "github" ? (
               <ImageRemote
-                src={`https://kinokotogame.club${leftDirPath}${leftGirlProfileId}.png`}
+                src={`https://kinokotogame.mods.jp/public${leftDirPath}${leftGirlProfileId}.png`}
                 alt={leftGirlName}
                 className="object-cover object-[center_bottom]"
                 fill
@@ -254,7 +254,7 @@ function CharacterSelect({
             {/* デプロイ先がgithubの場合は本番環境から直リンする */}
             {process.env.NEXT_PUBLIC_DEPLOY_TARGET === "github" ? (
               <ImageRemote
-                src={`https://kinokotogame.club${rightDirPath}${rightGirlProfileId}.png`}
+                src={`https://kinokotogame.mods.jp/public${rightDirPath}${rightGirlProfileId}.png`}
                 alt={rightGirlName}
                 className="object-cover object-[center_bottom]"
                 fill
