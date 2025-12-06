@@ -21,9 +21,9 @@ const nextConfig = withExportImages({
       },
       {
         protocol: "https",
-        hostname: "kinokotogame.club",
+        hostname: "kinokotogame.mods.jp",
         port: "",
-        pathname: "/image/**",
+        pathname: "/public/image/**",
       },
     ],
   },
