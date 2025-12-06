@@ -47,8 +47,7 @@
 
 ## 公開先
 
-- GitHub Pages：https://dev.kinokotogame.club/
-- 本番環境：https://kinokotogame.club/
+- GitHub Pages：https://kinokotogame.club/
 
 ## ライセンス
 
