@@ -8,6 +8,10 @@ export function UpdateHistory({
   const modalId = useId();
   const historyList = [
     {
+      date: "2025/12/29",
+      desc: "プレシャスシーンに[小指の約束]浅見景を暫定値で追加。",
+    },
+    {
       date: "2025/11/26",
       desc: "散策♪聖櫻ワールドの天気データを2025年11月版に差し替え。",
     },
