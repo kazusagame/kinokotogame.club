@@ -218,18 +218,23 @@ export default function Page() {
                 </p>
               </div>
 
-              {/* <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-3">
+              <div className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-3">
                 <p>
-                  下記のプレシャスシーンについて、情報を提供していただける方がおられましたら↓までお寄せいただけたら嬉しいです。
+                  下記のプレシャスシーンについて情報を提供していただける方がおられましたらご連絡ください。
                   <br />
-                  いただいた情報はシミュレーターのデータとして使わせていただきます。
+                  いただいた情報はシミュレーターのデータで使わせていただきます。
                 </p>
                 <div className="mt-2 md:pl-4">
-                  <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-3">
-                    <span>一時的に休止中です。</span>
+                  <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-accent before:inline-block before:absolute before:left-0 before:top-[12px]">
+                    <span>
+                      [小指の約束]浅見景 (SWEETガールのコストが高いほど攻守UP)
+                    </span>
                   </p>
+                  <span className="pl-4">
+                    → いくつかのパターンでの実際の効果値。★4の時の最大効果値。
+                  </span>
                 </div>
-              </div> */}
+              </div>
 
               <div>
                 <p>ご連絡はこちらまで ↓</p>

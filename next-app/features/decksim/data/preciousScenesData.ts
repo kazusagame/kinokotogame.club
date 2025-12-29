@@ -551,6 +551,28 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     factor: 2.01,
   },
 
+  109: {
+    name: "[小指の約束]浅見景", rarity: 3, valueFormat: "割合(%)",
+    effectTarget: "SWEETタイプ", effectRange: "主＋副", effectType: "攻守UP",
+    effectCondition: "コストが高いほど", conditionThreshold: 32,
+    value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
+    factor: 1.55,
+  },
+  // 92: {
+  //   name: "[幸せタイム]椎名心実", rarity: 3, valueFormat: "割合(%)",
+  //   effectTarget: "COOLタイプ", effectRange: "主＋副", effectType: "攻守UP",
+  //   effectCondition: "コストが高いほど", conditionThreshold: 32,
+  //   value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
+  //   factor: 1.55,
+  // },
+  // 94: {
+  //   name: "[乙女ﾌｨﾙﾀｰ]戸村美知留", rarity: 3, valueFormat: "割合(%)",
+  //   effectTarget: "POPタイプ", effectRange: "主＋副", effectType: "攻守UP",
+  //   effectCondition: "コストが高いほど", conditionThreshold: 32,
+  //   value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
+  //   factor: 1.55,
+  // },
+
   /* 初期星2 */
   7: {
     name: "[緊張ﾁﾗｼ配ﾘ]白水六花", rarity: 2, valueFormat: "割合(%)",
