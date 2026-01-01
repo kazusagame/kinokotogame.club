@@ -86,7 +86,7 @@ export const SKILL_DATA_PER_EVENT: { [K in DeckSimulatorEventId]: SkillDataPerEv
 
 export type SkillStrength =
   | "中" | "中+" | "中++" | "大" | "特大" | "特大+" | "特大++" | "スーパー特大"
-  | "スーパー特大+" | "スーパー特大++" | "超スーパー特大"
+  | "スーパー特大+" | "スーパー特大++" | "超スーパー特大" | "超スーパー特大+"
 
 type SkillRateData = {
   [K in "単タイプ" | "全タイプ"]?: {
@@ -111,11 +111,13 @@ export const SKILL_RATE_DATA: SkillRateData = {
           "特大": { value: 20 },
           "スーパー特大": { value: 30 },
           "超スーパー特大": { value: 41 },
+          "超スーパー特大+": { value: 46 },
         },
         "守援": {
           "特大": { value: 20 },
           "スーパー特大": { value: 30 },
           "超スーパー特大": { value: 41 },
+          "超スーパー特大+": { value: 46 },
         },
         "攻守": {
           "中": { value: 8 },
@@ -124,6 +126,7 @@ export const SKILL_RATE_DATA: SkillRateData = {
           "スーパー特大+": { value: 30 },
           "スーパー特大++": { value: 35 },
           "超スーパー特大": { value: 41 },
+          "超スーパー特大+": { value: 46, isTemp: true  },
         },
       },
       "副人数2" : {
@@ -150,6 +153,7 @@ export const SKILL_RATE_DATA: SkillRateData = {
           "特大": { value: 20 },
           "スーパー特大": { value: 30 },
           "超スーパー特大": { value: 41, isTemp: true },
+          "超スーパー特大+": { value: 46, isTemp: true },
         },
         "守援": {
           "中": { value: 10 },
@@ -157,6 +161,7 @@ export const SKILL_RATE_DATA: SkillRateData = {
           "特大": { value: 20 },
           "スーパー特大": { value: 30 },
           "超スーパー特大": { value: 41, isTemp: true },
+          "超スーパー特大+": { value: 46, isTemp: true },
         },
         "攻守": {
           "中": { value: 8 },
@@ -166,6 +171,7 @@ export const SKILL_RATE_DATA: SkillRateData = {
           "スーパー特大+": { value: 30 },
           "スーパー特大++": { value: 35 },
           "超スーパー特大": { value: 41, isTemp: true },
+          "超スーパー特大+": { value: 46, isTemp: true },
         },
       },
     },

@@ -238,7 +238,7 @@ function RegisteredMainSkillsBlock({
       ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_75px_75px_65px_65px]"
       : eventId === "divrace" || eventId === "board"
       ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_85px_75px_65px_65px]"
-      : "lg:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_75px_65px_65px]"
+      : "lg:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_75px_65px_65px]";
 
   return (
     <div className="text-base border border-base-300 rounded-xl">
@@ -643,6 +643,7 @@ function SkillSelectModal({
                     })
                   }
                 >
+                  <option value="超スーパー特大+">超スーパー特大+UP</option>
                   <option value="超スーパー特大">超スーパー特大UP</option>
                   <option value="スーパー特大++">スーパー特大++UP</option>
                   <option value="スーパー特大+">スーパー特大+UP</option>

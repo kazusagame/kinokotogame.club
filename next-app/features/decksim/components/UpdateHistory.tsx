@@ -8,6 +8,10 @@ export function UpdateHistory({
   const modalId = useId();
   const historyList = [
     {
+      date: "2026/01/01",
+      desc: "声援データに単タイプ、主+副1、攻援超スーパー特大UP+を追加。",
+    },
+    {
       date: "2025/12/29",
       desc: "プレシャスシーンに[小指の約束]浅見景を暫定値で追加。",
     },
