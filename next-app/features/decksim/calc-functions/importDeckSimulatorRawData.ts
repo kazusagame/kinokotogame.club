@@ -739,7 +739,8 @@ const parseSkillParameter = ({
     | "スーパー特大"
     | "スーパー特大+"
     | "スーパー特大++"
-    | "超スーパー特大";
+    | "超スーパー特大"
+    | "超スーパー特大+";
 } => {
   const target = description.includes("POP")
     ? "POPタイプ"
@@ -777,6 +778,10 @@ const parseSkillParameter = ({
     ? "特大"
     : description.includes("中～")
     ? "大"
+    : description.includes("超ｽｰﾊﾟｰ特大+")
+    ? "超スーパー特大+"
+    : description.includes("超スーパー特大+")
+    ? "超スーパー特大+"
     : description.includes("超ｽｰﾊﾟｰ特大")
     ? "超スーパー特大"
     : description.includes("超スーパー特大")

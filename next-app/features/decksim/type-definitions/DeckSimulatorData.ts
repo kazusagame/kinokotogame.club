@@ -34,7 +34,8 @@ export interface SkillParameters {
     | "スーパー特大"
     | "スーパー特大+"
     | "スーパー特大++"
-    | "超スーパー特大";
+    | "超スーパー特大"
+    | "超スーパー特大+";
 }
 
 export interface DeckSimulatorData {
