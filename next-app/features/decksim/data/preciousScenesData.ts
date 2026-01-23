@@ -557,6 +557,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectCondition: "コストが高いほど", conditionThreshold: 32,
     value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
     factor: 1.55,
+    annotation: "減衰係数に推定値を使用しています。情報募集中です。",
   },
   // 92: {
   //   name: "[幸せタイム]椎名心実", rarity: 3, valueFormat: "割合(%)",
@@ -572,6 +573,15 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
   //   value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
   //   factor: 1.55,
   // },
+
+  110: {
+    name: "[頼れる先輩]夏海&睦", rarity: 3, valueFormat: "割合(%)",
+    effectTarget: "全タイプ", effectRange: "主＋副", effectType: "攻守UP",
+    effectCondition: "様々なガールで編成するほど", conditionThreshold: 20,
+    value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 7.5,
+    factor: 1.2,
+    annotation: "減衰係数に推定値を使用しています。情報募集中です。",
+  },
 
   /* 初期星2 */
   7: {
