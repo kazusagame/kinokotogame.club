@@ -1,4 +1,4 @@
-FROM node:22.9-slim
+FROM node:25.6-slim
 
 # パッケージのインストールとクリーンアップ
 RUN apt-get update -qq && \

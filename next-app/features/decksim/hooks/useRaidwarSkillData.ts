@@ -58,8 +58,7 @@ export const initRaidwarSkillSavedDataSummary: RaidwarSkillSavedDataSummary = {
   lastUpdate: "",
   memo: "",
 } as const;
-export interface RaidwarSkillLocalStorageData
-  extends RaidwarSkillSavedDataSummary {
+export interface RaidwarSkillLocalStorageData extends RaidwarSkillSavedDataSummary {
   version: number;
   data: RaidwarSkillData;
 }
@@ -84,11 +83,11 @@ interface RawDataRaidwarSkill {
 export function useRaidwarSkillData({
   simulatorTabButtonRef,
 }: {
-  simulatorTabButtonRef: React.RefObject<HTMLInputElement>;
+  simulatorTabButtonRef: React.RefObject<HTMLInputElement | null>;
 }) {
   const [data, setData] = useState(structuredClone(initData));
   const [resultSummary, setResultSummary] = useState(
-    structuredClone(initResultSummary)
+    structuredClone(initResultSummary),
   );
 
   const calcResultSummaries = useCallback((data: RaidwarSkillData) => {
@@ -116,7 +115,7 @@ export function useRaidwarSkillData({
       setData(nextData);
       calcResultSummaries(nextData);
     },
-    [data, calcResultSummaries]
+    [data, calcResultSummaries],
   );
 
   const handleChangeParameters = useCallback(
@@ -138,7 +137,7 @@ export function useRaidwarSkillData({
         calcResultSummaries(nextData);
       }
     },
-    [data, calcResultSummaries]
+    [data, calcResultSummaries],
   );
 
   const handleBlurParameters = useCallback(
@@ -167,7 +166,7 @@ export function useRaidwarSkillData({
         calcResultSummaries(nextData);
       }
     },
-    [data, calcResultSummaries]
+    [data, calcResultSummaries],
   );
 
   const handleLoadData = useCallback(
@@ -175,7 +174,7 @@ export function useRaidwarSkillData({
       setData(newData);
       calcResultSummaries(newData);
     },
-    [calcResultSummaries]
+    [calcResultSummaries],
   );
 
   const importRawDataRaidwarSkill = useCallback(
@@ -219,7 +218,7 @@ export function useRaidwarSkillData({
         }
       }
     },
-    [simulatorTabButtonRef, calcResultSummaries]
+    [simulatorTabButtonRef, calcResultSummaries],
   );
 
   const handleImportRawData = useCallback(
@@ -250,7 +249,7 @@ export function useRaidwarSkillData({
       // 同じファイルを再度読み込んだ場合に備えてvalueを空にする
       e.currentTarget.value = "";
     },
-    [importRawDataRaidwarSkill]
+    [importRawDataRaidwarSkill],
   );
 
   return {

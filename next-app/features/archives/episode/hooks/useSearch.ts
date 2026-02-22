@@ -29,7 +29,9 @@ const ALL_UNDEFINED = {
   "episode-etc": undefined,
 } as const;
 
-export default function useSearch(selectRef: RefObject<HTMLSelectElement>) {
+export default function useSearch(
+  selectRef: RefObject<HTMLSelectElement | null>,
+) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [result, setResult] = useState<{
     [K in Collection]:

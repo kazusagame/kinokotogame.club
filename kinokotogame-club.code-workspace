@@ -1,11 +1,12 @@
 {
   "folders": [
     {
-      "path": "."
-    }
+      "path": ".",
+    },
   ],
   "settings": {
     "cSpell.words": [
+      "appuser",
       "azuretools",
       "bradlc",
       "CEINTL",
@@ -47,7 +48,7 @@
       "thecatapi",
       "thedogapi",
       "WASD",
-      "WATCHPACK"
-    ]
-  }
+      "WATCHPACK",
+    ],
+  },
 }
