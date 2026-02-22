@@ -8,6 +8,10 @@ export function UpdateHistory({
   const modalId = useId();
   const historyList = [
     {
+      date: "2026/02/22",
+      desc: "プレシャスシーンに[至福の時間]村上文緒を暫定値で追加。",
+    },
+    {
       date: "2026/01/23",
       desc: "プレシャスシーンに[頼れる先輩]夏海&睦を暫定値で追加。",
     },

@@ -230,6 +230,11 @@ export default function Page() {
                       [小指の約束]浅見景 (SWEETガールのコストが高いほど攻守UP)
                     </span>
                   </p>
+                  <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-accent before:inline-block before:absolute before:left-0 before:top-[12px]">
+                    <span>
+                      [至福の時間]村上文緒 (COOLガールのコストが高いほど攻守UP)
+                    </span>
+                  </p>
                   <span className="pl-4">
                     → いくつかのコストでの実際の表示効果値。★4の時の最大効果値。
                   </span>
