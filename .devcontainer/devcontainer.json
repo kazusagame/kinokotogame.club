@@ -4,6 +4,8 @@
   "service": "next-app",
   "shutdownAction": "none",
   "workspaceFolder": "/workspaces",
+  "remoteUser": "appuser",
+  "updateRemoteUserUID": true,
   "customizations": {
     "vscode": {
       "extensions": [

@@ -15,7 +15,7 @@ import {
 } from "./characterSortAlgorithm";
 
 export default function useGameModeStatusData(
-  restartViewPoint: RefObject<HTMLDivElement>
+  restartViewPoint: RefObject<HTMLDivElement | null>,
 ) {
   const [gameMode, setGameMode] = useState<GameMode>({
     girlType: { SWEET: true, COOL: true, POP: true, "---": true },
@@ -34,7 +34,7 @@ export default function useGameModeStatusData(
     "new" | "inProgress" | "completed"
   >("new");
   const [gameData, setGameData] = useState<GameData>(
-    structuredClone(INITIAL_GAME_DATA)
+    structuredClone(INITIAL_GAME_DATA),
   );
 
   const sortTargetNameList: (keyof typeof CHARACTER_DATA)[] = useMemo(() => {

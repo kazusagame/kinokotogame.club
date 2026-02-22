@@ -1,8 +1,8 @@
 # キャラソート用キャラクターデータ
-/next-app/components/article/characterSort/characterData.ts
+/next-app/features/archives/gfsort/characterData.ts
 
 # センバツシミュレーター用データ
-/next-app/components/decksim/data/*.ts
+/next-app/features/decksim/data/*.ts
 
 # 旧センバツシミュレーター用データ
 /next-app/public/decksim_v1/js/decksim-const.js

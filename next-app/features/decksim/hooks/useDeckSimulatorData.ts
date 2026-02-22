@@ -110,8 +110,7 @@ export const initDeckSimulatorSavedDataSummary: DeckSimulatorSavedDataSummary =
     skillEffect: 0,
     isConvertPoint: false,
   } as const;
-export interface DeckSimulatorLocalStorageData
-  extends DeckSimulatorSavedDataSummary {
+export interface DeckSimulatorLocalStorageData extends DeckSimulatorSavedDataSummary {
   version: number;
   data: DeckSimulatorData;
 }
@@ -120,7 +119,7 @@ export function useDeckSimulatorData({
   simulatorTabButtonRef,
   eventId,
 }: {
-  simulatorTabButtonRef: React.RefObject<HTMLInputElement>;
+  simulatorTabButtonRef: React.RefObject<HTMLInputElement | null>;
   eventId: DeckSimulatorEventId;
 }) {
   const [data, setData] = useState(() => {
@@ -163,7 +162,7 @@ export function useDeckSimulatorData({
       calcDeckSimulatorResult({ inputData: data, commonData, summary });
       setResultSummary(summary);
     },
-    [eventId]
+    [eventId],
   );
 
   const handleChangeParameters = useCallback(
@@ -195,7 +194,7 @@ export function useDeckSimulatorData({
         calcResultSummaries({ data: nextData, commonData: nextCommonData });
       }
     },
-    [data, commonData, calcResultSummaries]
+    [data, commonData, calcResultSummaries],
   );
 
   const handleBlurParameters = useCallback(
@@ -226,7 +225,7 @@ export function useDeckSimulatorData({
         calcResultSummaries({ data: nextData, commonData: nextCommonData });
       }
     },
-    [data, commonData, calcResultSummaries]
+    [data, commonData, calcResultSummaries],
   );
 
   const handleLoadData = useCallback(
@@ -234,7 +233,7 @@ export function useDeckSimulatorData({
       setData(nextData);
       calcResultSummaries({ data: nextData, commonData: commonData });
     },
-    [calcResultSummaries, commonData]
+    [calcResultSummaries, commonData],
   );
 
   const importRawDataDeckSimulator = useCallback(
@@ -247,8 +246,10 @@ export function useDeckSimulatorData({
         nextData.eventSpecial = structuredClone(data.eventSpecial);
         // 聖櫻ワールドでぷちガールちゃん詳細 (マス効果用)はもしあれば書き戻す
         if (eventId === "board" && data.petitGirls.details) {
-          nextData.petitGirls.details = structuredClone(data.petitGirls.details);
-        };
+          nextData.petitGirls.details = structuredClone(
+            data.petitGirls.details,
+          );
+        }
 
         const rawData = importData as RawDataDeckSimulator;
 
@@ -277,7 +278,7 @@ export function useDeckSimulatorData({
       loadCondition,
       calcResultSummaries,
       simulatorTabButtonRef,
-    ]
+    ],
   );
 
   const handleImportRawData = useCallback(
@@ -306,7 +307,7 @@ export function useDeckSimulatorData({
       // 同じファイルを再度読み込んだ場合に備えてvalueを空にする
       e.currentTarget.value = "";
     },
-    [importRawDataDeckSimulator]
+    [importRawDataDeckSimulator],
   );
 
   // 直接、パスや値を受け取ってステートやサマリーの更新をトリガーする
@@ -336,7 +337,7 @@ export function useDeckSimulatorData({
         calcResultSummaries({ data: nextData, commonData: nextCommonData });
       }
     },
-    [data, commonData, calcResultSummaries]
+    [data, commonData, calcResultSummaries],
   );
 
   const handleLoadCondition = useCallback(
@@ -355,7 +356,7 @@ export function useDeckSimulatorData({
       nextData[property] = value;
       setLoadCondition(nextData);
     },
-    [loadCondition]
+    [loadCondition],
   );
 
   return {
@@ -434,7 +435,7 @@ const loadPlayerData = ({
 };
 
 const isPlayerData = (
-  obj: unknown
+  obj: unknown,
 ): obj is DeckSimulatorCommonData["playerData"] => {
   if (typeof obj !== "object" || obj === null) return false;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

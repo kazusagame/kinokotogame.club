@@ -159,18 +159,17 @@ export const initDivraceStageSavedDataSummary: DivraceStageSavedDataSummary = {
   totalNormal: 0,
   totalSpecial: 0,
 } as const;
-export interface DivraceStageLocalStorageData
-  extends DivraceStageSavedDataSummary {
+export interface DivraceStageLocalStorageData extends DivraceStageSavedDataSummary {
   version: number;
   data: DivraceStageData;
 }
 
 export function useDivraceStageData({}: {
-  simulatorTabButtonRef: React.RefObject<HTMLInputElement>;
+  simulatorTabButtonRef: React.RefObject<HTMLInputElement | null>;
 }) {
   const [data, setData] = useState(structuredClone(initData));
   const [resultSummary, setResultSummary] = useState(
-    structuredClone(initResultSummary)
+    structuredClone(initResultSummary),
   );
 
   // ステージ表の初期表示用
@@ -208,7 +207,7 @@ export function useDivraceStageData({}: {
       setData(nextData);
       calcResultSummaries(nextData);
     },
-    [data, calcResultSummaries]
+    [data, calcResultSummaries],
   );
 
   const handleBlurParameters = useCallback(
@@ -232,7 +231,7 @@ export function useDivraceStageData({}: {
       setData(nextData);
       calcResultSummaries(nextData);
     },
-    [data, calcResultSummaries]
+    [data, calcResultSummaries],
   );
 
   const handleAimCountRewardDict = useCallback(
@@ -252,7 +251,7 @@ export function useDivraceStageData({}: {
         calcResultSummaries(nextData);
       }
     },
-    [data, calcResultSummaries]
+    [data, calcResultSummaries],
   );
 
   const handleLoadData = useCallback(
@@ -260,7 +259,7 @@ export function useDivraceStageData({}: {
       setData(newData);
       calcResultSummaries(newData);
     },
-    [calcResultSummaries]
+    [calcResultSummaries],
   );
 
   return {
