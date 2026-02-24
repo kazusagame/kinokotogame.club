@@ -8,6 +8,10 @@ export function UpdateHistory({
   const modalId = useId();
   const historyList = [
     {
+      date: "2026/02/24",
+      desc: "散策♪聖櫻ワールドの天気データを2026年2月版に差し替え。",
+    },
+    {
       date: "2026/02/22",
       desc: "プレシャスシーンに[至福の時間]村上文緒を暫定値で追加。",
     },
