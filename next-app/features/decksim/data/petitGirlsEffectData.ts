@@ -71,6 +71,21 @@ export const PETIT_GIRLS_EFFECTS_DATA: {
   74: { name: "SWEETﾀｲﾌﾟの攻守小UP", effectCondition: "タイプ", conditionDetail: "SWEETタイプ", effectType: "攻守UP", markerType: "イエロー", level20Value: 3, level22Value: 3.2 },
   78: { name: "COOLﾀｲﾌﾟの攻守小UP", effectCondition: "タイプ", conditionDetail: "COOLタイプ", effectType: "攻守UP", markerType: "イエロー", level20Value: 3, level22Value: 3.2 },
 
+  // 80: { name: "全ﾀｲﾌﾟの攻援中UP", effectCondition: "タイプ", conditionDetail: "全タイプ", effectType: "攻援UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+  84: { name: "POPﾀｲﾌﾟの攻援中UP", effectCondition: "タイプ", conditionDetail: "POPタイプ", effectType: "攻援UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+  88: { name: "SWEETﾀｲﾌﾟの攻援中UP", effectCondition: "タイプ", conditionDetail: "SWEETタイプ", effectType: "攻援UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+  92: { name: "COOLﾀｲﾌﾟの攻援中UP", effectCondition: "タイプ", conditionDetail: "COOLタイプ", effectType: "攻援UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+
+  // 81: { name: "全ﾀｲﾌﾟの守援中UP", effectCondition: "タイプ", conditionDetail: "全タイプ", effectType: "守援UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+  85: { name: "POPﾀｲﾌﾟの守援中UP", effectCondition: "タイプ", conditionDetail: "POPタイプ", effectType: "守援UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+  89: { name: "SWEETﾀｲﾌﾟの守援中UP", effectCondition: "タイプ", conditionDetail: "SWEETタイプ", effectType: "守援UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+  93: { name: "COOLﾀｲﾌﾟの守援中UP", effectCondition: "タイプ", conditionDetail: "COOLタイプ", effectType: "守援UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+
+  // 82: { name: "全ﾀｲﾌﾟの攻守中UP", effectCondition: "タイプ", conditionDetail: "全タイプ", effectType: "攻守UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+  // 86: { name: "POPﾀｲﾌﾟの攻守中UP", effectCondition: "タイプ", conditionDetail: "POPタイプ", effectType: "攻守UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+  // 90: { name: "SWEETﾀｲﾌﾟの攻守中UP", effectCondition: "タイプ", conditionDetail: "SWEETタイプ", effectType: "攻守UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+  // 94: { name: "COOLﾀｲﾌﾟの攻守中UP", effectCondition: "タイプ", conditionDetail: "COOLタイプ", effectType: "攻守UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+
   130: { name: "本命ｶﾞｰﾙの攻守UP", effectCondition: "本命ガール", conditionDetail: "全タイプ", effectType: "攻守UP", markerType: "ブルー", level20Value: 11, level22Value: 12 },
   146: { name: "ﾃﾞｰﾄ中のｶﾞｰﾙの攻守UP", effectCondition: "デート中", conditionDetail: "全タイプ", effectType: "攻守UP", markerType: "ブルー", level20Value: 11, level22Value: 12 },
   162: { name: "ﾀｯﾁﾎﾞｰﾅｽの効果UP", effectCondition: "タッチ", conditionDetail: "全タイプ", effectType: "攻守UP", markerType: "ブルー", level20Value: 11, level22Value: 12 },
@@ -127,6 +142,18 @@ export const PETIT_GIRLS_EFFECTS_DATA: {
   294: { name: "1年生の攻守小UP", effectCondition: "学年", conditionDetail: "1年生", effectType: "攻守UP", markerType: "イエロー", level20Value: 3, level22Value: 3.2 },
   298: { name: "2年生の攻守小UP", effectCondition: "学年", conditionDetail: "2年生", effectType: "攻守UP", markerType: "イエロー", level20Value: 3, level22Value: 3.2 },
   302: { name: "3年生の攻守小UP", effectCondition: "学年", conditionDetail: "3年生", effectType: "攻守UP", markerType: "イエロー", level20Value: 3, level22Value: 3.2 },
+
+  306: { name: "1年生の攻援中UP", effectCondition: "学年", conditionDetail: "1年生", effectType: "攻援UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+  310: { name: "2年生の攻援中UP", effectCondition: "学年", conditionDetail: "2年生", effectType: "攻援UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+  314: { name: "3年生の攻援中UP", effectCondition: "学年", conditionDetail: "3年生", effectType: "攻援UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+
+  307: { name: "1年生の守援中UP", effectCondition: "学年", conditionDetail: "1年生", effectType: "守援UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+  311: { name: "2年生の守援中UP", effectCondition: "学年", conditionDetail: "2年生", effectType: "守援UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+  315: { name: "3年生の守援中UP", effectCondition: "学年", conditionDetail: "3年生", effectType: "守援UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+
+  // 308: { name: "1年生の攻守中UP", effectCondition: "学年", conditionDetail: "1年生", effectType: "攻守UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+  // 312: { name: "2年生の攻守中UP", effectCondition: "学年", conditionDetail: "2年生", effectType: "攻守UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
+  // 316: { name: "3年生の攻守中UP", effectCondition: "学年", conditionDetail: "3年生", effectType: "攻守UP", markerType: "イエロー", level20Value: 5, level22Value: 5.3 },
 } as const;
 
 export const PETIT_GIRLS_EFFECTS_NAME_TO_ID: {
@@ -192,6 +219,21 @@ export const PETIT_GIRLS_EFFECTS_NAME_TO_ID: {
   "SWEETﾀｲﾌﾟの攻守小UP": 74,
   "COOLﾀｲﾌﾟの攻守小UP": 78,
 
+  // "全ﾀｲﾌﾟの攻援中UP": 80,
+  "POPﾀｲﾌﾟの攻援中UP": 84,
+  "SWEETﾀｲﾌﾟの攻援中UP": 88,
+  "COOLﾀｲﾌﾟの攻援中UP": 92,
+
+  // "全ﾀｲﾌﾟの守援中UP": 81,
+  "POPﾀｲﾌﾟの守援中UP": 85,
+  "SWEETﾀｲﾌﾟの守援中UP": 89,
+  "COOLﾀｲﾌﾟの守援中UP": 93,
+
+  // "全ﾀｲﾌﾟの攻守中UP": 82,
+  // "POPﾀｲﾌﾟの攻守中UP": 86,
+  // "SWEETﾀｲﾌﾟの攻守中UP": 90,
+  // "COOLﾀｲﾌﾟの攻守中UP": 94,
+
   "本命ｶﾞｰﾙの攻守UP": 130,
   "ﾃﾞｰﾄ中のｶﾞｰﾙの攻守UP": 146,
   "ﾀｯﾁﾎﾞｰﾅｽの効果UP": 162,
@@ -248,4 +290,16 @@ export const PETIT_GIRLS_EFFECTS_NAME_TO_ID: {
   "1年生の攻守小UP": 294,
   "2年生の攻守小UP": 298,
   "3年生の攻守小UP": 302,
+
+  "1年生の攻援中UP": 306,
+  "2年生の攻援中UP": 310,
+  "3年生の攻援中UP": 314,
+
+  "1年生の守援中UP": 307,
+  "2年生の守援中UP": 311,
+  "3年生の守援中UP": 315,
+
+  // "1年生の攻守中UP": 308,
+  // "2年生の攻守中UP": 312,
+  // "3年生の攻守中UP": 316,
 } as const;
