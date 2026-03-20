@@ -8,6 +8,10 @@ export function UpdateHistory({
   const modalId = useId();
   const historyList = [
     {
+      date: "2026/03/20",
+      desc: "ぷちセンバツの応援力効果にタイプ系および学年系の片面中UPを追加。Lv22の数値は暫定値。",
+    },
+    {
       date: "2026/02/24",
       desc: "散策♪聖櫻ワールドの天気データを2026年2月版に差し替え。",
     },
