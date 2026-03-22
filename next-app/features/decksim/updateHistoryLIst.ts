@@ -1,9 +1,13 @@
 interface UpdateHistoryList {
   date: string;
   desc: string;
-};
+}
 
 export const updateHistoryList: UpdateHistoryList[] = [
+  {
+    date: "2026/03/22",
+    desc: "全国高校生課外活動コンテストの風向きアイテムのデータを2026年3月版に差し替え。",
+  },
   {
     date: "2026/03/20",
     desc: "ぷちセンバツの応援力効果にタイプ系および学年系の片面中UPを追加。Lv22の数値は暫定値。",
