@@ -19,7 +19,8 @@
         "crystal-spider.jsdoc-generator",
         "dbaeumer.vscode-eslint",
         "ecmel.vscode-html-css",
-        "bradlc.vscode-tailwindcss"
+        "bradlc.vscode-tailwindcss",
+        "GitHub.vscode-pull-request-github"
       ]
     }
   }
