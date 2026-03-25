@@ -5,6 +5,10 @@ interface UpdateHistoryList {
 
 export const updateHistoryList: UpdateHistoryList[] = [
   {
+    date: "2026/03/25",
+    desc: "プレシャスシーンに[全力応援！]白水六花を追加。",
+  },
+  {
     date: "2026/03/22",
     desc: "全国高校生課外活動コンテストの風向きアイテムのデータを2026年3月版に差し替え。",
   },
