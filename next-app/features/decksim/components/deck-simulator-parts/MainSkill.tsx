@@ -124,7 +124,7 @@ export function MainSkill({
     const key = e.currentTarget.dataset.key;
     const newData = removeKeyAndReindex(
       skillData,
-      Number(key)
+      Number(key),
     ) as DeckSimulatorData["mainSkills"][typeof typeIndex];
     if (newData === undefined) return;
     setValueAtPath({
@@ -134,7 +134,7 @@ export function MainSkill({
   };
 
   const handleReorder = (
-    newData: NonNullable<DeckSimulatorData["mainSkills"]["attack" | "defense"]>
+    newData: NonNullable<DeckSimulatorData["mainSkills"]["attack" | "defense"]>,
   ) => {
     setValueAtPath({
       path: `mainSkills.${typeIndex}`,
@@ -199,7 +199,7 @@ function RegisteredMainSkillsBlock({
   handleReorder: (
     newSkillData: NonNullable<
       DeckSimulatorData["mainSkills"]["attack" | "defense"]
-    >
+    >,
   ) => void;
 }) {
   const orderedKeys = Object.keys(skillData);
@@ -214,7 +214,7 @@ function RegisteredMainSkillsBlock({
         delay: 250,
         tolerance: 10,
       },
-    })
+    }),
   );
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -235,10 +235,10 @@ function RegisteredMainSkillsBlock({
 
   const gridColumnCss =
     eventId === "clubcup"
-      ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_75px_75px_65px_65px]"
+      ? "xl:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_75px_75px_65px_65px]"
       : eventId === "divrace" || eventId === "board"
-      ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_85px_75px_65px_65px]"
-      : "lg:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_75px_65px_65px]";
+        ? "xl:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_85px_75px_65px_65px]"
+        : "xl:grid-cols-[45px_40px_90px_55px_60px_60px_125px_75px_85px_75px_65px_65px]";
 
   return (
     <div className="text-base border border-base-300 rounded-xl">
@@ -397,7 +397,7 @@ function RegisteredMainSkillsBlock({
                         style: "decimal",
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
-                      }
+                      },
                     )}{" "}
                     %
                   </div>

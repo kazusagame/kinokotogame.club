@@ -126,7 +126,7 @@ export function SubSwitch({
     const key = e.currentTarget.dataset.key;
     const newData = removeKeyAndReindex(
       skillData,
-      Number(key)
+      Number(key),
     ) as DeckSimulatorData["subSwitches"][typeof typeIndex];
     if (newData === undefined) return;
     setValueAtPath({
@@ -136,7 +136,9 @@ export function SubSwitch({
   };
 
   const handleReorder = (
-    newData: NonNullable<DeckSimulatorData["subSwitches"]["attack" | "defense"]>
+    newData: NonNullable<
+      DeckSimulatorData["subSwitches"]["attack" | "defense"]
+    >,
   ) => {
     setValueAtPath({
       path: `subSwitches.${typeIndex}`,
@@ -207,7 +209,7 @@ function RegisteredSubSwitchesBlock({
   handleReorder: (
     newSkillData: NonNullable<
       DeckSimulatorData["subSwitches"]["attack" | "defense"]
-    >
+    >,
   ) => void;
 }) {
   const orderedKeys = Object.keys(skillData);
@@ -222,7 +224,7 @@ function RegisteredSubSwitchesBlock({
         delay: 250,
         tolerance: 10,
       },
-    })
+    }),
   );
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -243,10 +245,10 @@ function RegisteredSubSwitchesBlock({
 
   const gridColumnCss =
     eventId === "clubcup"
-      ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_55px_75px_85px_75px_75px_65px_65px]"
+      ? "xl:grid-cols-[45px_40px_90px_55px_60px_60px_55px_75px_85px_75px_75px_65px_65px]"
       : eventId === "divrace" || eventId === "board"
-      ? "lg:grid-cols-[45px_40px_90px_55px_60px_60px_55px_75px_85px_85px_75px_65px_65px]"
-      : "lg:grid-cols-[45px_40px_90px_55px_60px_60px_55px_75px_85px_75px_65px_65px]";
+        ? "xl:grid-cols-[45px_40px_90px_55px_60px_60px_55px_75px_85px_85px_75px_65px_65px]"
+        : "xl:grid-cols-[45px_40px_90px_55px_60px_60px_55px_75px_85px_75px_65px_65px]";
 
   return (
     <div className="text-base border border-base-300 rounded-xl">
@@ -405,7 +407,7 @@ function RegisteredSubSwitchesBlock({
                         style: "decimal",
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
-                      }
+                      },
                     )}{" "}
                     %
                   </div>
