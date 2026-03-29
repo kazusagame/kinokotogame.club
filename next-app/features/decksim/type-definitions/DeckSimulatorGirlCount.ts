@@ -27,4 +27,8 @@ export interface DeckSimulatorGirlCount {
     true: CountPerType;
     false: CountPerType;
   };
+  isLimitBreak: {
+    true: CountPerType;
+    false: CountPerType;
+  };
 }

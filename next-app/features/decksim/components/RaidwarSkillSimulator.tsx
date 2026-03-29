@@ -47,7 +47,7 @@ export default function RaidwarSkillSimulator() {
   }, []);
 
   const handleClickIndividualSave = (
-    e: React.MouseEvent<HTMLButtonElement>
+    e: React.MouseEvent<HTMLButtonElement>,
   ) => {
     const num = e.currentTarget.dataset.num;
     if (window.localStorage) {
@@ -600,7 +600,7 @@ export function RaidwarSkillResultSummaryDiv({
   const [startPage, setStartPage] = useState<number>(0);
   const chunks: string[][] = [];
   const maxPageNum: number = Math.ceil(
-    Object.keys(resultSummary.summaries).length / 3
+    Object.keys(resultSummary.summaries).length / 3,
   );
   for (let page = startPage; page < maxPageNum; page++) {
     chunks[page - startPage] = [];

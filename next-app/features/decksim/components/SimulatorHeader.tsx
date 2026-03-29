@@ -4,6 +4,7 @@ import ThemeControllerMenu from "@/components/ThemeControllerMenu";
 import MenuIcon from "@mui/icons-material/Menu";
 import FileOpenIcon from "@mui/icons-material/FileOpen";
 import SaveIcon from "@mui/icons-material/Save";
+import InfoOutlineIcon from "@mui/icons-material/InfoOutlined";
 
 import {
   OriginSavedDataSummary,
@@ -29,8 +30,10 @@ import {
 } from "@/features/decksim/components/DeckSimulator";
 import { DeckSimulatorResult } from "@/features/decksim/type-definitions/DeckSimulatorResult";
 import { DeckSimulatorSavedDataSummary } from "@/features/decksim/type-definitions/DeckSimulatorSavedDataSummary";
+import { DeckSimulatorGirlCount } from "@/features/decksim/type-definitions/DeckSimulatorGirlCount";
 
 import { UpdateHistory } from "@/features/decksim/components/UpdateHistory";
+import { GirlCount } from "@/features/decksim/components/GirlCount";
 
 interface HeaderProps<T, U, V> {
   eventId: EventId;
@@ -38,6 +41,8 @@ interface HeaderProps<T, U, V> {
   isFixHeader: boolean;
   data: T;
   resultSummary: U;
+  girlCount?: DeckSimulatorGirlCount;
+
   savedDataSummaries: V[];
   currentDataNum?: number;
   handleFixHeader: () => void;
@@ -58,13 +63,14 @@ export default function SimulatorHeader<
   T,
   U extends ResultSummary,
   V extends OriginSavedDataSummary,
-  W extends OriginLocalStorageData
+  W extends OriginLocalStorageData,
 >({
   eventId,
   title,
   isFixHeader,
   data,
   resultSummary,
+  girlCount,
   savedDataSummaries,
   currentDataNum,
   handleFixHeader,
@@ -111,6 +117,7 @@ export default function SimulatorHeader<
         currentDataNum={currentDataNum}
       />
       <div className="ml-auto" />
+      <InfoButton eventId={eventId} girlCount={girlCount} />
       <div className="dropdown dropdown-end mr-2 my-auto">
         <div
           tabIndex={0}
@@ -149,7 +156,7 @@ export default function SimulatorHeader<
 function LoadButton<
   T,
   U extends OriginSavedDataSummary,
-  V extends OriginLocalStorageData
+  V extends OriginLocalStorageData,
 >({
   eventId,
   handleLoadData,
@@ -167,12 +174,12 @@ function LoadButton<
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const handleClickLoadButton = () => {
     const dialogElement = document.getElementById(
-      modalId
+      modalId,
     ) as HTMLDialogElement | null;
     dialogElement?.showModal();
   };
   const handleClickIndividualLoad = (
-    e: React.MouseEvent<HTMLButtonElement>
+    e: React.MouseEvent<HTMLButtonElement>,
   ) => {
     const num = e.currentTarget.dataset.num;
     if (window.localStorage) {
@@ -279,7 +286,7 @@ function SaveButton<T extends OriginSavedDataSummary>({
   const modalId = useId();
   const handleClickSaveButton = () => {
     const dialogElement = document.getElementById(
-      modalId
+      modalId,
     ) as HTMLDialogElement | null;
     dialogElement?.showModal();
   };
@@ -438,6 +445,41 @@ function SavedDataPerEventDiv({
         <DeckSimulatorSavedDataDiv
           eventId={eventId}
           savedDataSummary={savedDataSummary as DeckSimulatorSavedDataSummary}
+        />
+      )}
+    </>
+  );
+}
+
+function InfoButton({
+  eventId,
+  girlCount,
+}: {
+  eventId: EventId;
+  girlCount: DeckSimulatorGirlCount | undefined;
+}) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
+  return (
+    <>
+      {eventId !== "raidwar-skill" && eventId !== "divrace-stage" && (
+        <div
+          role="button"
+          onClick={() => setModalOpen(true)}
+          className="flex flex-col justify-center items-center m-4 md:m-6"
+        >
+          <InfoOutlineIcon />
+          <p className="text-xs whitespace-nowrap">情報</p>
+        </div>
+      )}
+      {modalOpen && (
+        <GirlCount
+          eventId={eventId}
+          girlCount={girlCount}
+          handleCloseModal={handleCloseModal}
         />
       )}
     </>
