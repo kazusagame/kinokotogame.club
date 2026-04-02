@@ -133,7 +133,7 @@ export function MainScenes({
     const key = e.currentTarget.dataset.key;
     const newData = removeKeyAndReindex(
       sceneData,
-      Number(key)
+      Number(key),
     ) as DeckSimulatorData["mainScenes"][typeof typeIndex];
     if (newData === undefined) return;
     setValueAtPath({
@@ -143,7 +143,7 @@ export function MainScenes({
   };
 
   const handleReorder = (
-    newData: NonNullable<DeckSimulatorData["mainScenes"]["attack" | "defense"]>
+    newData: NonNullable<DeckSimulatorData["mainScenes"]["attack" | "defense"]>,
   ) => {
     setValueAtPath({
       path: `mainScenes.${typeIndex}`,
@@ -335,7 +335,7 @@ function RegisteredMainScenesBlock({
   handleReorder: (
     newSkillData: NonNullable<
       DeckSimulatorData["mainScenes"]["attack" | "defense"]
-    >
+    >,
   ) => void;
 }) {
   const orderedKeys = Object.keys(sceneData);
@@ -350,7 +350,7 @@ function RegisteredMainScenesBlock({
         delay: 250,
         tolerance: 10,
       },
-    })
+    }),
   );
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -379,14 +379,14 @@ function RegisteredMainScenesBlock({
     eventId === "normal-battle"
       ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_40px_80px_40px_65px_65px]"
       : eventId === "clubcup"
-      ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_40px_80px_40px_60px_65px_65px]"
-      : eventId === "tower"
-      ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_40px_80px_40px_65px_65px]"
-      : eventId === "divrace"
-      ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_40px_80px_40px_80px_40px_65px_65px]"
-      : eventId === "board"
-      ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_80px_40px_80px_40px_65px_65px]"
-      : "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_40px_80px_40px_65px_65px]";
+        ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_40px_80px_40px_60px_65px_65px]"
+        : eventId === "tower"
+          ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_40px_80px_40px_65px_65px]"
+          : eventId === "divrace"
+            ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_40px_80px_40px_80px_40px_65px_65px]"
+            : eventId === "board"
+              ? "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_80px_40px_80px_40px_65px_65px]"
+              : "xl:grid-cols-[45px_60px_60px_45px_40px_40px_40px_45px_40px_40px_40px_40px_40px_40px_80px_40px_65px_65px]";
   const isClubMatchValid =
     eventId === "raid-first" ||
     eventId === "raid-second" ||
@@ -511,7 +511,7 @@ function RegisteredMainScenesBlock({
                             style: "decimal",
                             minimumFractionDigits: 1,
                             maximumFractionDigits: 1,
-                          }
+                          },
                         )}{" "}
                         %
                       </div>

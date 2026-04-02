@@ -43,6 +43,7 @@ export default function DeckSimulator({
     data,
     commonData,
     resultSummary,
+    girlCount,
     loadCondition,
     handleChangeParameters,
     handleBlurParameters,
@@ -77,7 +78,7 @@ export default function DeckSimulator({
   /* 保存ボタンクリック時にローカルストレージ上の該当番号のデータを更新するとともに、
      内部で持つセーブデータサマリーを更新する。 */
   const handleClickIndividualSave = (
-    e: React.MouseEvent<HTMLButtonElement>
+    e: React.MouseEvent<HTMLButtonElement>,
   ) => {
     const num = e.currentTarget.dataset.num;
     if (window.localStorage) {
@@ -152,12 +153,12 @@ export default function DeckSimulator({
       handleSaveDataSummaries(
         Number(num) - 1,
         "skillEffect",
-        attackSkillEffect
+        attackSkillEffect,
       );
       handleSaveDataSummaries(
         Number(num) - 1,
         "isConvertPoint",
-        isConvertPoint
+        isConvertPoint,
       );
       setCurrentDataNum(Number(num));
     }
@@ -176,6 +177,7 @@ export default function DeckSimulator({
         isFixHeader={isFixHeader}
         data={data}
         resultSummary={resultSummary}
+        girlCount={girlCount}
         savedDataSummaries={savedDataSummaries}
         currentDataNum={currentDataNum}
         handleFixHeader={handleFixHeader}
@@ -524,7 +526,7 @@ function DataExportAndImport({
     specialGirlName2: string;
   };
   handleLoadCondition: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => void;
 }) {
   return (
@@ -962,7 +964,7 @@ export function DeckSimulatorResultSummaryDiv({
                           style: "decimal",
                           minimumFractionDigits: 1,
                           maximumFractionDigits: 1,
-                        }
+                        },
                       )}{" "}
                       %
                     </p>
@@ -1021,7 +1023,7 @@ export function DeckSimulatorSavedDataDiv({
                 style: "decimal",
                 minimumFractionDigits: 1,
                 maximumFractionDigits: 1,
-              }
+              },
             )} %`}</span>
           </p>
         )}
