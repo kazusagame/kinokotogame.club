@@ -5,6 +5,10 @@ interface UpdateHistoryList {
 
 export const updateHistoryList: UpdateHistoryList[] = [
   {
+    date: "2026/04/02",
+    desc: "ガールの集計情報表示機能を追加。",
+  },
+  {
     date: "2026/03/25",
     desc: "プレシャスシーンに[全力応援！]白水六花を追加。",
   },

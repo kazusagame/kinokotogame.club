@@ -4,7 +4,7 @@ interface CountPerType {
   POPタイプ: number;
 }
 
-export interface DeckSimulatorGirlCount {
+interface GirlCountPerDeckType {
   rarity: {
     Luv: CountPerType;
     UR: CountPerType;
@@ -12,10 +12,10 @@ export interface DeckSimulatorGirlCount {
     SR: CountPerType;
   };
   cost: {
-    [K: number]: CountPerType;
+    [K: string]: CountPerType;
   };
   skillLv: {
-    [K: number]: CountPerType;
+    [K: string]: CountPerType;
   };
   grade: {
     "1年生": CountPerType;
@@ -31,4 +31,9 @@ export interface DeckSimulatorGirlCount {
     true: CountPerType;
     false: CountPerType;
   };
+}
+
+export interface DeckSimulatorGirlCount {
+  attack: GirlCountPerDeckType;
+  defense: GirlCountPerDeckType;
 }

@@ -117,27 +117,53 @@ export interface DeckSimulatorLocalStorageData extends DeckSimulatorSavedDataSum
   data: DeckSimulatorData;
 }
 export const initDeckSimulatorGirlCount: DeckSimulatorGirlCount = {
-  rarity: {
-    Luv: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
-    UR: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
-    SSR: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
-    SR: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+  attack: {
+    rarity: {
+      Luv: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+      UR: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+      SSR: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+      SR: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+    },
+    cost: {},
+    skillLv: {},
+    grade: {
+      "1年生": { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+      "2年生": { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+      "3年生": { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+      その他: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+    },
+    isClubMatch: {
+      true: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+      false: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+    },
+    isLimitBreak: {
+      true: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+      false: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+    },
   },
-  cost: {},
-  skillLv: {},
-  grade: {
-    "1年生": { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
-    "2年生": { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
-    "3年生": { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
-    その他: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
-  },
-  isClubMatch: {
-    true: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
-    false: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
-  },
-  isLimitBreak: {
-    true: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
-    false: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+  defense: {
+    rarity: {
+      Luv: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+      UR: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+      SSR: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+      SR: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+    },
+    cost: {},
+    skillLv: {},
+    grade: {
+      "1年生": { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+      "2年生": { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+      "3年生": { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+      その他: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+    },
+    isClubMatch: {
+      true: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+      false: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+    },
+    isLimitBreak: {
+      true: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+      false: { SWEETタイプ: 0, COOLタイプ: 0, POPタイプ: 0 },
+    },
   },
 };
 
@@ -190,7 +216,7 @@ export function useDeckSimulatorData({
       summary.initCondition = false;
       calcDeckSimulatorResult({ inputData: data, commonData, summary });
       setResultSummary(summary);
-      const girlCount = aggregateGirlCount({ inputData: data });
+      const girlCount = aggregateGirlCount({ inputData: data, eventId });
       setGirlCount(girlCount);
     },
     [eventId],
