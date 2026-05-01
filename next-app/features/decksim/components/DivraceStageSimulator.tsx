@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import Image from "next-export-optimize-images/image";
+import Image from "next/image";
 
 import WarningIcon from "@mui/icons-material/Warning";
 
@@ -52,7 +52,7 @@ export default function DivraceStageSimulator() {
   }, []);
 
   const handleClickIndividualSave = (
-    e: React.MouseEvent<HTMLButtonElement>
+    e: React.MouseEvent<HTMLButtonElement>,
   ) => {
     const num = e.currentTarget.dataset.num;
     if (window.localStorage) {
@@ -444,7 +444,7 @@ function StageTable({
                           {
                             style: "decimal",
                             useGrouping: true,
-                          }
+                          },
                         )}
                         onChange={onChangeParameters}
                         onBlur={onBlurParameters}
@@ -482,7 +482,7 @@ function StageTable({
                           {
                             style: "decimal",
                             useGrouping: true,
-                          }
+                          },
                         )}
                       </td>
                       <td className="text-right">
@@ -491,7 +491,7 @@ function StageTable({
                           {
                             style: "decimal",
                             useGrouping: true,
-                          }
+                          },
                         )}
                       </td>
                       <td className="text-right">
@@ -500,7 +500,7 @@ function StageTable({
                           {
                             style: "decimal",
                             useGrouping: true,
-                          }
+                          },
                         )}
                       </td>
                       {summary[stageType][i + 1].totalDamage <
@@ -518,7 +518,7 @@ function StageTable({
                             {
                               style: "decimal",
                               useGrouping: true,
-                            }
+                            },
                           )}
                         </td>
                       ) : (
@@ -528,7 +528,7 @@ function StageTable({
                             {
                               style: "decimal",
                               useGrouping: true,
-                            }
+                            },
                           )}
                         </td>
                       )}
@@ -878,14 +878,14 @@ export function DivraceStageResultSummaryDiv({
     {
       style: "decimal",
       useGrouping: true,
-    }
+    },
   );
   const challengeSpecial = summary.challenge.totalSpecial.toLocaleString(
     "ja-JP",
     {
       style: "decimal",
       useGrouping: true,
-    }
+    },
   );
   const challengeSummary = [
     `チャレンジステージ Lv${challengeLv}`,

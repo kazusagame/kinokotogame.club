@@ -1,11 +1,9 @@
-import withExportImages from "next-export-optimize-images";
-
-const nextConfig = withExportImages({
+const nextConfig = {
   reactStrictMode: true,
   output: "export",
   trailingSlash: true,
   images: {
-    deviceSizes: [640, 960, 1280, 1600, 1920],
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -28,6 +26,6 @@ const nextConfig = withExportImages({
     ],
   },
   allowedDevOrigins: ["192.168.0.211"],
-});
+};
 
 export default nextConfig;

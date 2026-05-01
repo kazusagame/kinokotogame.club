@@ -1,4 +1,4 @@
-import Image from "next-export-optimize-images/image";
+import Image from "next/image";
 
 import { DeckSimulatorEventId } from "@/features/decksim/data/eventData";
 
@@ -65,7 +65,8 @@ export function DeckSimulatorHowToUse({
           </p>
           <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-secondary before:inline-block before:absolute before:left-0 before:top-[12px]">
             このヘッダー部は常に画面上部に表示する設定になっていますが、
-            右側のその他のメニューボタン <MenuIcon /> から変更することが可能です。
+            右側のその他のメニューボタン <MenuIcon />{" "}
+            から変更することが可能です。
           </p>
           <table className="table table-xs md:table-md w-auto my-4 text-base bg-base-200">
             <tbody>
