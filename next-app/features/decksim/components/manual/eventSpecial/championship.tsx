@@ -1,4 +1,4 @@
-import Image from "next-export-optimize-images/image";
+import Image from "next/image";
 
 export function ChampionshipSpecialManual() {
   return (
@@ -45,12 +45,12 @@ export function ChampionshipSpecialManual() {
             </tr>
             <tr>
               <td className="whitespace-nowrap">SP応援効果（攻援）</td>
-              <td>
-                SP応援効果の攻援の合計値を入力します。
-              </td>
+              <td>SP応援効果の攻援の合計値を入力します。</td>
             </tr>
             <tr>
-              <td className="whitespace-nowrap">結果を獲得ポイントで表示する</td>
+              <td className="whitespace-nowrap">
+                結果を獲得ポイントで表示する
+              </td>
               <td>
                 チェックを入れると計算結果が発揮値表示から獲得ポイント表示に変わります。
                 ただし、実際のゲーム中では残りのHPを上回る分はポイントになりません。

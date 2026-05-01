@@ -1,4 +1,4 @@
-import Image from "next-export-optimize-images/image";
+import Image from "next/image";
 import ImageRemote from "next/image";
 import { useRef, CSSProperties } from "react";
 

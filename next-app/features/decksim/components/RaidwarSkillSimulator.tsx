@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import Image from "next-export-optimize-images/image";
+import Image from "next/image";
 
 import TextWithTooltip from "@/components/TextWithTooltip";
 import SimulatorHeader from "@/features/decksim/components/SimulatorHeader";

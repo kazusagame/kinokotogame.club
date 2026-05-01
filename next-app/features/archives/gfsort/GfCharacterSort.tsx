@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import Link from "next/link";
-import Image from "next-export-optimize-images/image";
+import Image from "next/image";
 import ImageRemote from "next/image";
 
 const imageLoader = ({ src }: { src: string }) => {
@@ -31,22 +31,22 @@ export default function GfCharacterSort() {
   useConditionalKeyPress(
     ["4", "A", "a"],
     () => handleClickLikeGirl(-1),
-    gameStatus === "inProgress"
+    gameStatus === "inProgress",
   );
   useConditionalKeyPress(
     ["6", "D", "d"],
     () => handleClickLikeGirl(1),
-    gameStatus === "inProgress"
+    gameStatus === "inProgress",
   );
   useConditionalKeyPress(
     ["8", "W", "w"],
     () => handleClickLikeGirl(0),
-    gameStatus === "inProgress"
+    gameStatus === "inProgress",
   );
   useConditionalKeyPress(
     ["2", "S", "s"],
     () => handleClickLikeGirl(2),
-    gameStatus === "inProgress"
+    gameStatus === "inProgress",
   );
 
   return (
@@ -335,10 +335,10 @@ function ResultTable({
                     result.type === "POP"
                       ? "text-center px-2 py-1 bg-pop"
                       : result.type === "COOL"
-                      ? "text-center px-2 py-1 bg-cool"
-                      : result.type === "SWEET"
-                      ? "text-center px-2 py-1 bg-sweet"
-                      : "text-center px-2 py-1"
+                        ? "text-center px-2 py-1 bg-cool"
+                        : result.type === "SWEET"
+                          ? "text-center px-2 py-1 bg-sweet"
+                          : "text-center px-2 py-1"
                   }
                 >
                   {result.type}

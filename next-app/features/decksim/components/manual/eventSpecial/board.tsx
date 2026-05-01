@@ -1,4 +1,4 @@
-import Image from "next-export-optimize-images/image";
+import Image from "next/image";
 
 export function BoardSpecialManual() {
   return (
@@ -72,7 +72,8 @@ export function BoardSpecialManual() {
                 こちらはマス効果の数値を手動で入力する手間を省くための機能です。
                 ただし、まだテスト前のため期待した動作にならないかもしれません。
                 <br />
-                ゲーム中のステージ効果 → マス効果で表示されているマス効果の一覧を
+                ゲーム中のステージ効果 →
+                マス効果で表示されているマス効果の一覧を
                 コピーして貼り付けます。その次に取得ボタンを押すと解析が行われて、
                 上のマス効果の表に各効果値が自動で入力された状態になります。
               </td>

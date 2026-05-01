@@ -1,4 +1,4 @@
-import Image from "next-export-optimize-images/image";
+import Image from "next/image";
 
 export function ClubcupSpecialManual() {
   return (
@@ -30,7 +30,9 @@ export function ClubcupSpecialManual() {
               </td>
             </tr>
             <tr>
-              <td className="whitespace-nowrap">結果を獲得ポイントで表示する</td>
+              <td className="whitespace-nowrap">
+                結果を獲得ポイントで表示する
+              </td>
               <td>
                 チェックを入れると計算結果が発揮値表示から獲得ポイント表示に変わります。
                 以降の選択は獲得ポイント表示のときにだけ使用されます。
@@ -45,9 +47,7 @@ export function ClubcupSpecialManual() {
             </tr>
             <tr>
               <td className="whitespace-nowrap">炭酸本数</td>
-              <td>
-                1本での全力勧誘か3本での全力勧誘×3かを選択します。
-              </td>
+              <td>1本での全力勧誘か3本での全力勧誘×3かを選択します。</td>
             </tr>
             <tr>
               <td className="whitespace-nowrap">SP応援効果</td>
@@ -67,7 +67,8 @@ export function ClubcupSpecialManual() {
             <tr>
               <td className="whitespace-nowrap">対戦相手の声援効果 Down率</td>
               <td>
-                対戦相手の声援効果 Down率を入力します。数値が大きいほど獲得ptが下がります。
+                対戦相手の声援効果
+                Down率を入力します。数値が大きいほど獲得ptが下がります。
                 何か想定したいDown率がある場合は入力してください。
               </td>
             </tr>

@@ -1,4 +1,4 @@
-import Image from "next-export-optimize-images/image";
+import Image from "next/image";
 
 export function RaidMegaSpecialManual() {
   return (
@@ -18,9 +18,7 @@ export function RaidMegaSpecialManual() {
           <tbody>
             <tr>
               <td className="whitespace-nowrap">SP応援効果</td>
-              <td>
-                SP応援効果の合計値を入力します。
-              </td>
+              <td>SP応援効果の合計値を入力します。</td>
             </tr>
             <tr>
               <td className="whitespace-nowrap">悪男のタイプ</td>
@@ -38,17 +36,21 @@ export function RaidMegaSpecialManual() {
             <tr>
               <td className="whitespace-nowrap">攻援力UP</td>
               <td>
-                ヒーロー声援によるガールの攻援力UP合計値を指定します。上限は 100 % です。
+                ヒーロー声援によるガールの攻援力UP合計値を指定します。上限は 100
+                % です。
               </td>
             </tr>
             <tr>
               <td className="whitespace-nowrap">守備力DOWN</td>
               <td>
-                ヒーロー声援によるメガ悪男の守備力DOWN合計値を指定します。上限は 50 % です。
+                ヒーロー声援によるメガ悪男の守備力DOWN合計値を指定します。上限は
+                50 % です。
               </td>
             </tr>
             <tr>
-              <td className="whitespace-nowrap">結果を獲得ポイントで表示する</td>
+              <td className="whitespace-nowrap">
+                結果を獲得ポイントで表示する
+              </td>
               <td>
                 チェックを入れると計算結果が発揮値表示から獲得ポイント表示に変わります。
                 ただし、実際のゲーム中では残りのHPを上回る分はポイントになりません。
