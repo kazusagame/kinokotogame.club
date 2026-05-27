@@ -5,6 +5,10 @@ interface UpdateHistoryList {
 
 export const updateHistoryList: UpdateHistoryList[] = [
   {
+    date: "2026/05/27",
+    desc: "プレシャスシーンに[居留守失敗]篠宮りさを暫定値で追加。",
+  },
+  {
     date: "2026/05/01",
     desc: "プレシャスシーンに[お手本披露]九重忍、[二人飯]白水六花、[勇気を胸に]真白透子のレアリティ星6のデータを暫定値で追加。",
   },
