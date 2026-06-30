@@ -59,7 +59,7 @@ export const calcTotalPerformance = ({
 
       const scenesData = intermediateResults[mainOrSub][attackOrDefense] ?? {};
       const keys = Object.keys(scenesData).filter(
-        (key) => key !== "basePowerArray"
+        (key) => key !== "basePowerArray",
       );
       keys.forEach((key) => {
         const effectTotal = scenesData[Number(key)]?.effectTotal;
@@ -75,34 +75,34 @@ export const calcTotalPerformance = ({
             sceneType === "SWEETタイプ"
               ? "sweet"
               : sceneType === "COOLタイプ"
-              ? "cool"
-              : sceneType === "POPタイプ"
-              ? "pop"
-              : "sweet";
+                ? "cool"
+                : sceneType === "POPタイプ"
+                  ? "pop"
+                  : "sweet";
           const enemyType =
             inputData.eventSpecial[eventId]?.enemyType ?? "通常タイプ";
           const enemyTypeKey =
             enemyType === "通常タイプ"
               ? "normal"
               : enemyType === "SWEETタイプ"
-              ? "sweet"
-              : enemyType === "COOLタイプ"
-              ? "cool"
-              : enemyType === "POPタイプ"
-              ? "pop"
-              : "normal";
+                ? "sweet"
+                : enemyType === "COOLタイプ"
+                  ? "cool"
+                  : enemyType === "POPタイプ"
+                    ? "pop"
+                    : "normal";
           const effectMap = BONUS_DATA_PER_EVENT[eventId].eventUniqueBonus!
             .typeAdvantage.value as RaidTypeAdvantageSuperRareBonusMap;
           const effectValue = effectMap[enemyTypeKey][sceneTypeKey] ?? 0;
 
           effectTotal.min = Math.ceil(
-            effectTotal.min * (1 + effectValue / 100)
+            effectTotal.min * (1 + effectValue / 100),
           );
           effectTotal.expDif = Math.ceil(
-            effectTotal.expDif * (1 + effectValue / 100)
+            effectTotal.expDif * (1 + effectValue / 100),
           );
           effectTotal.maxDif = Math.ceil(
-            effectTotal.maxDif * (1 + effectValue / 100)
+            effectTotal.maxDif * (1 + effectValue / 100),
           );
         } else if (eventId === "raid-mega") {
           const sceneData = inputData[mainOrSub][attackOrDefense]![Number(key)];
@@ -111,20 +111,20 @@ export const calcTotalPerformance = ({
             sceneType === "SWEETタイプ"
               ? "sweet"
               : sceneType === "COOLタイプ"
-              ? "cool"
-              : sceneType === "POPタイプ"
-              ? "pop"
-              : "sweet";
+                ? "cool"
+                : sceneType === "POPタイプ"
+                  ? "pop"
+                  : "sweet";
           const enemyType =
             inputData.eventSpecial[eventId]?.enemyType ?? "SWEETタイプ";
           const enemyTypeKey =
             enemyType === "SWEETタイプ"
               ? "sweet"
               : enemyType === "COOLタイプ"
-              ? "cool"
-              : enemyType === "POPタイプ"
-              ? "pop"
-              : "normal";
+                ? "cool"
+                : enemyType === "POPタイプ"
+                  ? "pop"
+                  : "normal";
           const effectMap = BONUS_DATA_PER_EVENT[eventId].eventUniqueBonus!
             .typeAdvantage.value as RaidTypeAdvantageMegaBonusMap;
           const effectValue = effectMap[enemyTypeKey][sceneTypeKey] ?? 0;
@@ -132,7 +132,7 @@ export const calcTotalPerformance = ({
           // 攻援力UPバフはシーンとストラップ効果分にのみ掛かり、
           // プレシャスシーン効果分には掛からないためここで加算する。
           let attackUpBuff = returnNumber(
-            inputData.eventSpecial["raid-mega"]?.attackUpBuff ?? 100
+            inputData.eventSpecial["raid-mega"]?.attackUpBuff ?? 100,
           );
           if (attackUpBuff < -100) attackUpBuff = -100;
           if (attackUpBuff > 100) attackUpBuff = 100;
@@ -153,19 +153,19 @@ export const calcTotalPerformance = ({
                       effectTotal.min += Math.ceil(
                         value *
                           (1 + effectValue.scenes / 100) *
-                          (1 + attackUpBuff / 100)
+                          (1 + attackUpBuff / 100),
                       );
                     } else {
                       effectTotal.expDif += Math.ceil(
                         value *
                           (BONUS_DATA_COMMON.limitBreak.probability / 100) *
                           (1 + effectValue.scenes / 100) *
-                          (1 + attackUpBuff / 100)
+                          (1 + attackUpBuff / 100),
                       );
                       effectTotal.maxDif += Math.ceil(
                         value *
                           (1 + effectValue.scenes / 100) *
-                          (1 + attackUpBuff / 100)
+                          (1 + attackUpBuff / 100),
                       );
                     }
                   } else if (innerKey === "strapEffect") {
@@ -173,43 +173,43 @@ export const calcTotalPerformance = ({
                       effectTotal.min += Math.ceil(
                         value *
                           (1 + effectValue.strap / 100) *
-                          (1 + attackUpBuff / 100)
+                          (1 + attackUpBuff / 100),
                       );
                     } else {
                       effectTotal.expDif += Math.ceil(
                         value *
                           (BONUS_DATA_COMMON.limitBreak.probability / 100) *
                           (1 + effectValue.strap / 100) *
-                          (1 + attackUpBuff / 100)
+                          (1 + attackUpBuff / 100),
                       );
                       effectTotal.maxDif += Math.ceil(
                         value *
                           (1 + effectValue.strap / 100) *
-                          (1 + attackUpBuff / 100)
+                          (1 + attackUpBuff / 100),
                       );
                     }
                   } else if (innerKey === "preciousEffect") {
                     // 基礎とデートボーナス分には有利/不利タイプ補正を加算しない。
                     if (outerKey === "base" || outerKey === "date") {
-                      effectTotal.min += value;
+                      effectTotal.min += Math.ceil(value);
                     } else if (outerKey !== "limitBreak") {
                       effectTotal.min += Math.ceil(
-                        value * (1 + effectValue.precious / 100)
+                        value * (1 + effectValue.precious / 100),
                       );
                     } else {
                       effectTotal.expDif += Math.ceil(
                         value *
                           (BONUS_DATA_COMMON.limitBreak.probability / 100) *
-                          (1 + effectValue.precious / 100)
+                          (1 + effectValue.precious / 100),
                       );
                       effectTotal.maxDif += Math.ceil(
-                        value * (1 + effectValue.precious / 100)
+                        value * (1 + effectValue.precious / 100),
                       );
                     }
                   }
-                }
+                },
               );
-            }
+            },
           );
         } else if (eventId === "tower") {
           // 声援の受け手が有利なガールの場合はボーナスを加算する
@@ -225,13 +225,13 @@ export const calcTotalPerformance = ({
               effectMap[sceneRarity][`lv${sceneSkillLv}`] ?? 0;
 
             effectTotal.min = Math.ceil(
-              effectTotal.min * (1 + effectValue / 100)
+              effectTotal.min * (1 + effectValue / 100),
             );
             effectTotal.expDif = Math.ceil(
-              effectTotal.expDif * (1 + effectValue / 100)
+              effectTotal.expDif * (1 + effectValue / 100),
             );
             effectTotal.maxDif = Math.ceil(
-              effectTotal.maxDif * (1 + effectValue / 100)
+              effectTotal.maxDif * (1 + effectValue / 100),
             );
           }
         }
@@ -277,7 +277,7 @@ export const calcTotalPerformance = ({
           if (eventId === "clubcup") {
             totalPerformance.skillEffect! += skillEffect ?? 0;
           }
-        }
+        },
       );
 
       // イベントごとの声援の最大発動数
@@ -296,7 +296,7 @@ export const calcTotalPerformance = ({
           skillMaxNum -= 1;
         } else {
           skillPerformance[attackOrDefense].expPower += Math.ceil(
-            (power * rate) / 100
+            (power * rate) / 100,
           );
         }
       });
@@ -321,7 +321,7 @@ export const calcTotalPerformance = ({
     const petitGirlsTotalPower = Math.ceil(
       (returnNumber(inputData.petitGirls.totalPower[attackOrDefense]) *
         BONUS_DATA_PER_EVENT[eventId].petitGirls.base) /
-        100
+        100,
     );
     totalPerformance.minPower! += petitGirlsTotalPower;
     totalPerformance.expPower! += petitGirlsTotalPower;
