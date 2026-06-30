@@ -16,6 +16,11 @@ export default function Page() {
   const checkboxId = useId();
   const eventList = [
     {
+      title: "2026/06 開催時 (story)",
+      id: "202606",
+      mapList: ["教室", "中庭", "グラウンド", "公園"],
+    },
+    {
       title: "2026/02 開催時 (story)",
       id: "202602",
       mapList: ["教室", "グラウンド", "体育館", "公園"],
@@ -71,7 +76,7 @@ export default function Page() {
                 <BoardTable
                   title={event.title}
                   jsonFileName={withBasePath(
-                    `/json/board/reward_total_${event.id}.json`,
+                    `/json/board/${event.id}/reward_total.json`,
                   )}
                   tableType={`boardRewardTotal${event.id}`}
                   tableSize="xs"
@@ -90,7 +95,7 @@ export default function Page() {
                 <BoardTable
                   title={event.title}
                   jsonFileName={withBasePath(
-                    `/json/board/reward_round_${event.id}.json`,
+                    `/json/board/${event.id}/reward_round.json`,
                   )}
                   tableType={`boardRewardRound${event.id}`}
                   tableSize="xs"
@@ -108,7 +113,7 @@ export default function Page() {
               <BoardTable
                 title="2024/11 ～ 現在"
                 jsonFileName={withBasePath(
-                  "/json/board/reward_count_202411.json",
+                  "/json/board/202411/reward_count.json",
                 )}
                 tableType="boardRewardCount202411"
                 tableSize="xs"
@@ -119,7 +124,7 @@ export default function Page() {
               <BoardTable
                 title="2024/05 開催時"
                 jsonFileName={withBasePath(
-                  "/json/board/reward_count_202405.json",
+                  "/json/board/202405/reward_count.json",
                 )}
                 tableType="boardRewardCount202405"
                 tableSize="xs"
@@ -138,7 +143,7 @@ export default function Page() {
               <BoardTable
                 title={event.title}
                 jsonFileName={withBasePath(
-                  `/json/board/point_${event.id}.json`,
+                  `/json/board/${event.id}/point.json`,
                 )}
                 tableType="boardPoint"
                 tableSize="xs"
@@ -157,7 +162,7 @@ export default function Page() {
               <BoardTable
                 title={event.title}
                 jsonFileName={withBasePath(
-                  `/json/board/stage_${event.id}.json`,
+                  `/json/board/${event.id}/stage.json`,
                 )}
                 tableType="boardStage"
                 tableSize="xs"
@@ -186,7 +191,7 @@ export default function Page() {
                     key={map}
                     title={`Lv.${index + 1} ${map}`}
                     jsonFileName={withBasePath(
-                      `/json/board/map_Lv${index + 1}_${event.id}.json`,
+                      `/json/board/${event.id}/map_Lv${index + 1}.json`,
                     )}
                   />
                 ))}
@@ -201,7 +206,7 @@ export default function Page() {
           </h2>
           <BoardTable
             title="2024/05 ～ 現在"
-            jsonFileName={withBasePath("/json/board/effect_202405.json")}
+            jsonFileName={withBasePath(`/json/board/202405/effect.json`)}
             tableType="boardEffect"
             tableSize="xs"
             disableColumnFilter
@@ -218,7 +223,7 @@ export default function Page() {
               <BoardTable
                 title={event.title}
                 jsonFileName={withBasePath(
-                  `/json/board/cupid_${event.id}.json`,
+                  `/json/board/${event.id}/cupid.json`,
                 )}
                 tableType="boardCupid"
                 tableSize="xs"
@@ -237,7 +242,7 @@ export default function Page() {
             <div key={event.id} className="ml-4">
               <BoardTable
                 title={event.title}
-                jsonFileName={withBasePath(`/json/board/item_${event.id}.json`)}
+                jsonFileName={withBasePath(`/json/board/${event.id}/item.json`)}
                 tableType="boardItem"
                 tableSize="xs"
                 pageSize={11}
