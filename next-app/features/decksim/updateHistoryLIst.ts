@@ -5,6 +5,10 @@ interface UpdateHistoryList {
 
 export const updateHistoryList: UpdateHistoryList[] = [
   {
+    date: "2026/07/24",
+    desc: "プレシャスシーンに[お仕事ﾓｰﾄﾞ]見吉奈央を暫定値で追加。",
+  },
+  {
     date: "2026/06/26",
     desc: "散策♪聖櫻ワールドの天気データを2026年6月版に差し替え。",
   },
