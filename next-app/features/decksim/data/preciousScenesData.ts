@@ -741,6 +741,14 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     factor: 0.85,
   },
 
+  117: {
+    name: "[総選挙2025]メモリアル", rarity: 2, valueFormat: "割合(%)",
+    effectTarget: "全タイプ", effectRange: "主＋副", effectType: "攻援UP",
+    effectCondition: "Ex進展ガールが多いほど", conditionThreshold: 35,
+    value1: 3.5, value2: 3.5, value3: 4.5, value4: 5.5, value5: 6.5,
+    factor: 1.2,
+  },
+
   /* 初期星1 */
   16: {
     name: "クロエ・ルメール", rarity: 1, valueFormat: "固定値",
