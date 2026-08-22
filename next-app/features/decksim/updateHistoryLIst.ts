@@ -5,6 +5,10 @@ interface UpdateHistoryList {
 
 export const updateHistoryList: UpdateHistoryList[] = [
   {
+    date: "2026/08/22",
+    desc: "勧誘★グランプリのページで副センバツのスイッチOFFガールの3人目以降の声援効果が合計値に可算されてしまうバグを修正。プレシャスシーンに[人形錬成]甘利燈を暫定値で追加。",
+  },
+  {
     date: "2026/08/05",
     desc: "プレシャスシーンに[総選挙2025]メモリアルを追加。",
   },

@@ -82,22 +82,22 @@ const createBasePowerArray = ({
             sceneType === "SWEETタイプ"
               ? "sweet"
               : sceneType === "COOLタイプ"
-              ? "cool"
-              : sceneType === "POPタイプ"
-              ? "pop"
-              : "sweet";
+                ? "cool"
+                : sceneType === "POPタイプ"
+                  ? "pop"
+                  : "sweet";
           const enemyType =
             inputData.eventSpecial[eventId]?.enemyType ?? "通常タイプ";
           const enemyTypeKey =
             enemyType === "通常タイプ"
               ? "normal"
               : enemyType === "SWEETタイプ"
-              ? "sweet"
-              : enemyType === "COOLタイプ"
-              ? "cool"
-              : enemyType === "POPタイプ"
-              ? "pop"
-              : "normal";
+                ? "sweet"
+                : enemyType === "COOLタイプ"
+                  ? "cool"
+                  : enemyType === "POPタイプ"
+                    ? "pop"
+                    : "normal";
           const effectMap = BONUS_DATA_PER_EVENT[eventId].eventUniqueBonus!
             .typeAdvantage.value as RaidTypeAdvantageSuperRareBonusMap;
           const effectValue = effectMap[enemyTypeKey][sceneTypeKey] ?? 0;
@@ -111,20 +111,20 @@ const createBasePowerArray = ({
             sceneType === "SWEETタイプ"
               ? "sweet"
               : sceneType === "COOLタイプ"
-              ? "cool"
-              : sceneType === "POPタイプ"
-              ? "pop"
-              : "sweet";
+                ? "cool"
+                : sceneType === "POPタイプ"
+                  ? "pop"
+                  : "sweet";
           const enemyType =
             inputData.eventSpecial[eventId]?.enemyType ?? "SWEETタイプ";
           const enemyTypeKey =
             enemyType === "SWEETタイプ"
               ? "sweet"
               : enemyType === "COOLタイプ"
-              ? "cool"
-              : enemyType === "POPタイプ"
-              ? "pop"
-              : "normal";
+                ? "cool"
+                : enemyType === "POPタイプ"
+                  ? "pop"
+                  : "normal";
           const effectMap = BONUS_DATA_PER_EVENT[eventId].eventUniqueBonus!
             .typeAdvantage.value as RaidTypeAdvantageMegaBonusMap;
           const effectValue = effectMap[enemyTypeKey][sceneTypeKey] ?? {
@@ -136,7 +136,7 @@ const createBasePowerArray = ({
           // 攻援力UPバフはシーンとストラップ効果分にのみ掛かり、
           // プレシャスシーン効果分には掛からないためここで加算する。
           let attackUpBuff = returnNumber(
-            inputData.eventSpecial["raid-mega"]?.attackUpBuff ?? 100
+            inputData.eventSpecial["raid-mega"]?.attackUpBuff ?? 100,
           );
           if (attackUpBuff < -100) attackUpBuff = -100;
           if (attackUpBuff > 100) attackUpBuff = 100;
@@ -171,7 +171,7 @@ const createBasePowerArray = ({
       setDeepValue(
         intermediateResults,
         `${mainOrSub}.${attackOrDefense}.basePowerArray`,
-        newData
+        newData,
       );
     });
   });
@@ -196,10 +196,10 @@ const calcSkillEffectValues = ({
           range === "主のみ"
             ? "副人数0"
             : Number(skillData.subRange) === 0
-            ? "副人数0"
-            : Number(skillData.subRange) === 1
-            ? "副人数1"
-            : "副人数2";
+              ? "副人数0"
+              : Number(skillData.subRange) === 1
+                ? "副人数1"
+                : "副人数2";
         const baseValue =
           SKILL_RATE_DATA[target]?.[range]?.[subRange]?.[skillData.type]?.[
             skillData.strength
@@ -211,7 +211,7 @@ const calcSkillEffectValues = ({
         setDeepValue(
           intermediateResults,
           `${mainOrSub}.${attackOrDefense}.${key}.estimatedEffect`,
-          effectValue
+          effectValue,
         );
       });
     });
@@ -244,7 +244,7 @@ const calcSkillPerformanceValues = ({
           setDeepValue(
             intermediateResults,
             `${mainOrSub}.${attackOrDefense}.${key}.estimatedPower`,
-            0
+            0,
           );
           return;
         }
@@ -254,7 +254,7 @@ const calcSkillPerformanceValues = ({
           setDeepValue(
             intermediateResults,
             `${mainOrSub}.${attackOrDefense}.${key}.estimatedPower`,
-            0
+            0,
           );
           return;
         }
@@ -296,7 +296,7 @@ const calcSkillPerformanceValues = ({
         setDeepValue(
           intermediateResults,
           `${mainOrSub}.${attackOrDefense}.${key}.estimatedPower`,
-          sum
+          sum,
         );
       });
     });
@@ -331,16 +331,17 @@ const sumSkillArrayMultiplication = ({
 
     const { scenePower, strapEffect, preciousEffect } = powerArray[index];
     sum += Math.ceil(
-      (((scenePower * skillEffectValue) / 100) * skillEffectiveRate.scene) / 100
+      (((scenePower * skillEffectValue) / 100) * skillEffectiveRate.scene) /
+        100,
     );
     sum += Math.ceil(
       (((strapEffect * skillEffectValue) / 100) * skillEffectiveRate.strap) /
-        100
+        100,
     );
     sum += Math.ceil(
       (((preciousEffect * skillEffectValue) / 100) *
         skillEffectiveRate.precious) /
-        100
+        100,
     );
   }
 
@@ -383,7 +384,7 @@ const setSkillRate = ({
 
         Object.values(skillsData).forEach((skillData) => {
           const index = skillEstimatedPowerArray.indexOf(
-            skillData.estimatedPower ?? 0
+            skillData.estimatedPower ?? 0,
           );
           // 一度使ったindexは除外
           skillEstimatedPowerArray[index] = -1;
@@ -415,7 +416,11 @@ const setSkillEffect = ({
     Object.values(skillsData).forEach((skillData) => {
       // 発揮値を5000で割った数値をここでは丸め込みをせずに加算。
       const value = (skillData?.estimatedPower ?? 0) / 5000;
-      skillData.skillEffect = value;
+      const rate = skillData?.estimatedRate ?? 0;
+
+      // 主センバツを6人以上、副センバツスイッチOFFガールを3人以上設定した場合に備えて
+      // 発動率を掛けた数値を声援効果に設定する。
+      skillData.skillEffect = (value * rate) / 100;
     });
   });
 };
