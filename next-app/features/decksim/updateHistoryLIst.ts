@@ -5,6 +5,10 @@ interface UpdateHistoryList {
 
 export const updateHistoryList: UpdateHistoryList[] = [
   {
+    date: "2026/09/21",
+    desc: "全国高校生課外活動コンテストの風向きアイテムのデータを2026年9月版に差し替え。",
+  },
+  {
     date: "2026/08/22",
     desc: "勧誘★グランプリのページで副センバツのスイッチOFFガールの3人目以降の声援効果が合計値に可算されてしまうバグを修正。プレシャスシーンに[人形錬成]甘利燈を暫定値で追加。",
   },
