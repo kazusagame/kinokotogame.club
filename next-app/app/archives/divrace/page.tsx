@@ -32,6 +32,13 @@ export default function Page() {
             最終ランキング ごほうび表
           </h2>
           <DivraceTable
+            title="第8回 (2026/09)"
+            jsonFileName={withBasePath("/json/divrace/reward_008.json")}
+            tableType="divraceReward008"
+            tableSize="xs"
+            initialColumnPinning={{ left: ["class", "grade", "rank"] }}
+          />
+          <DivraceTable
             title="第7回 (2026/03)"
             jsonFileName={withBasePath("/json/divrace/reward_007.json")}
             tableType="divraceReward007"
@@ -86,6 +93,13 @@ export default function Page() {
           <h2 className="text-xl mt-4 mb-2 pl-4 relative before:w-2 before:h-6 before:bg-primary before:inline-block before:absolute before:left-0 before:top-1">
             pt獲得ごほうび表
           </h2>
+          <DivraceTable
+            title="第8回 (2026/09)"
+            jsonFileName={withBasePath("/json/divrace/point_008.json")}
+            tableType="divracePoint"
+            tableSize="xs"
+            disableColumnFilter
+          />
           <DivraceTable
             title="第7回 (2026/03)"
             jsonFileName={withBasePath("/json/divrace/point_007.json")}
@@ -142,7 +156,7 @@ export default function Page() {
             ベースステージ表
           </h2>
           <DivraceTable
-            title="第1～7回"
+            title="第1回～"
             jsonFileName={withBasePath("/json/divrace/stage_base_001.json")}
             tableType="divraceStageBase"
             tableSize="xs"
@@ -155,7 +169,7 @@ export default function Page() {
             チャレンジステージ表
           </h2>
           <DivraceTable
-            title="第2～7回"
+            title="第2回～"
             jsonFileName={withBasePath(
               "/json/divrace/stage_challenge_002.json",
             )}
