@@ -15,6 +15,7 @@ import {
 import { NAME_TO_PROFILE_CONVERT } from "@/lib/girlsProfile";
 import { DeckSimulatorEventId } from "@/features/decksim/data/eventData";
 import { PETIT_GIRLS_EFFECTS_NAME_TO_ID } from "@/features/decksim/data/petitGirlsEffectData";
+import { SkillStrength } from "@/features/decksim/data/skillData";
 
 import { setDeepValue } from "@/lib/setDeepValue";
 
@@ -280,7 +281,7 @@ const handleMainSkill = async ({
       }
 
       // 声援効果名から各パラメータを読み取る
-      if (description && !description.includes("DOWN")) {
+      if (description) {
         const { target, range, subRange, type, strength } = parseSkillParameter(
           { description }
         );
@@ -313,7 +314,7 @@ const handleMainSkill = async ({
       }
 
       // 声援効果名から各パラメータを読み取る
-      if (description && !description.includes("DOWN")) {
+      if (description) {
         const { target, range, subRange, type, strength } = parseSkillParameter(
           { description }
         );
@@ -515,7 +516,7 @@ const handleSubSwitch = async ({
 
       // 声援効果名から各パラメータを読み取る
       const description = element?.["skillList"]?.[0]?.["description"] ?? "";
-      if (description && !description.includes("DOWN")) {
+      if (description) {
         const { target, range, subRange, type, strength } = parseSkillParameter(
           { description }
         );
@@ -553,7 +554,7 @@ const handleSubSwitch = async ({
 
       // 声援効果名から各パラメータを読み取る
       const description = element?.["skillList"]?.[0]?.["description"] ?? "";
-      if (description && !description.includes("DOWN")) {
+      if (description) {
         const { target, range, subRange, type, strength } = parseSkillParameter(
           { description }
         );
@@ -728,19 +729,7 @@ const parseSkillParameter = ({
   range: "主＋副" | "主のみ" | "副のみ";
   subRange: string;
   type: "攻援" | "守援" | "攻守";
-  strength:
-    | "中"
-    | "中+"
-    | "中++"
-    | "大"
-    | "特大"
-    | "特大+"
-    | "特大++"
-    | "スーパー特大"
-    | "スーパー特大+"
-    | "スーパー特大++"
-    | "超スーパー特大"
-    | "超スーパー特大+";
+  strength: SkillStrength;
 } => {
   const target = description.includes("POP")
     ? "POPタイプ"
@@ -770,7 +759,9 @@ const parseSkillParameter = ({
   const isIncludeDefence = description.includes("守援");
   const type = isIncludeAttack ? "攻援" : isIncludeDefence ? "守援" : "攻守";
 
-  const strength = description.includes("ｽｰﾊﾟｰ特大～")
+  const strength = description.includes("DOWN")
+    ? "無効"
+    : description.includes("ｽｰﾊﾟｰ特大～")
     ? "スーパー特大++"
     : description.includes("特大～")
     ? "スーパー特大"

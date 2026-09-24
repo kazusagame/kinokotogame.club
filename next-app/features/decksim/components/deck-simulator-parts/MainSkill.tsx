@@ -361,9 +361,9 @@ function RegisteredMainSkillsBlock({
                     {value.type}
                   </div>
                   <div className="flex justify-center items-center">
-                    {`${value.strength}UP`}
+                    {value.strength !== "無効" ? `${value.strength}UP` : "無効 (DOWN系)"}
                   </div>
-                  {summary?.estimatedEffect ? (
+                  {(summary?.estimatedEffect || value.strength === "無効") ? (
                     <div className="flex justify-end items-center pr-4">
                       {`${formatNumber(summary?.estimatedEffect ?? 0)} %`}
                     </div>
@@ -655,6 +655,7 @@ function SkillSelectModal({
                   <option value="中++">中++UP</option>
                   <option value="中+">中+UP</option>
                   <option value="中">中UP</option>
+                  <option value="無効">無効 (DOWN系)</option>
                 </select>
               </div>
             </div>

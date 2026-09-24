@@ -161,6 +161,15 @@ export default function Page() {
       height: 460,
       imgAlt: "計算式へのリンク",
     },
+    {
+      id: 4,
+      title: ["センバツ", "生データの", "活用方法"],
+      path: "./use-raw-data/",
+      img: "/image/menu/99_blank.png",
+      width: 640,
+      height: 460,
+      imgAlt: "センバツ生データの活用方法へのリンク",
+    },
   ];
 
   const checkboxId = useId();
