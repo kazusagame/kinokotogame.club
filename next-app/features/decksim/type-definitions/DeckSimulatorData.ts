@@ -1,4 +1,6 @@
 import { DeckSimulatorEventId } from "@/features/decksim/data/eventData";
+import { SkillStrength } from "@/features/decksim/data/skillData";
+
 
 export interface SceneParameters {
   basePower: string;
@@ -23,19 +25,7 @@ export interface SkillParameters {
   range: "主＋副" | "主のみ" | "副のみ";
   subRange: string;
   type: "攻援" | "守援" | "攻守";
-  strength:
-    | "中"
-    | "中+"
-    | "中++"
-    | "大"
-    | "特大"
-    | "特大+"
-    | "特大++"
-    | "スーパー特大"
-    | "スーパー特大+"
-    | "スーパー特大++"
-    | "超スーパー特大"
-    | "超スーパー特大+";
+  strength: SkillStrength;
 }
 
 export interface DeckSimulatorData {

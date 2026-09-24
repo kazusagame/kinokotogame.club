@@ -5,6 +5,10 @@ interface UpdateHistoryList {
 
 export const updateHistoryList: UpdateHistoryList[] = [
   {
+    date: "2026/09/24",
+    desc: "声援の効果強度の選択肢に[無効 (DOWN系)]を追加。",
+  },
+  {
     date: "2026/09/21",
     desc: "全国高校生課外活動コンテストの風向きアイテムのデータを2026年9月版に差し替え。",
   },

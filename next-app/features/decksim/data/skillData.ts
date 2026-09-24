@@ -86,7 +86,7 @@ export const SKILL_DATA_PER_EVENT: { [K in DeckSimulatorEventId]: SkillDataPerEv
 
 export type SkillStrength =
   | "中" | "中+" | "中++" | "大" | "特大" | "特大+" | "特大++" | "スーパー特大"
-  | "スーパー特大+" | "スーパー特大++" | "超スーパー特大" | "超スーパー特大+"
+  | "スーパー特大+" | "スーパー特大++" | "超スーパー特大" | "超スーパー特大+" | "無効"
 
 type SkillRateData = {
   [K in "単タイプ" | "全タイプ"]?: {
