@@ -928,7 +928,7 @@ const handlePetitGirl = async ({
     mainPetitgirls.forEach((element, outerIndex) => {
       element["effects"].forEach((effect, innerIndex) => {
         const effectId = PETIT_GIRLS_EFFECTS_NAME_TO_ID?.[effect["effectName"]];
-        if (effectId) {
+        if (effectId || effectId === 0) {
           setDeepValue(
             nextData,
             `petitGirls.effects.${outerIndex + 1}.${innerIndex + 1}`,
