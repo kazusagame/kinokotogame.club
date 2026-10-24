@@ -16,6 +16,7 @@ import { NAME_TO_PROFILE_CONVERT } from "@/lib/girlsProfile";
 import { DeckSimulatorEventId } from "@/features/decksim/data/eventData";
 import { PETIT_GIRLS_EFFECTS_NAME_TO_ID } from "@/features/decksim/data/petitGirlsEffectData";
 import { SkillStrength } from "@/features/decksim/data/skillData";
+import { PRECIOUS_SCENES_DATA } from "@/features/decksim/data/preciousScenesData";
 
 import { setDeepValue } from "@/lib/setDeepValue";
 
@@ -853,6 +854,9 @@ const handlePreciousScene = async ({
       const preciousId = element["preciousId"];
       const rarity = element["level"];
 
+      // データ未登録のプレシャスシーンの場合はスキップ
+      if (PRECIOUS_SCENES_DATA[preciousId] === undefined) return;
+
       setDeepValue(nextData, `preciousScenes.attack.${index + 1}`, {
         id: String(preciousId),
         rarity: String(rarity),
@@ -865,6 +869,9 @@ const handlePreciousScene = async ({
     defenceDeckList.forEach((element, index) => {
       const preciousId = element["preciousId"];
       const rarity = element["level"];
+
+      // データ未登録のプレシャスシーンの場合はスキップ
+      if (PRECIOUS_SCENES_DATA[preciousId] === undefined) return;
 
       setDeepValue(nextData, `preciousScenes.defense.${index + 1}`, {
         id: String(preciousId),

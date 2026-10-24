@@ -619,6 +619,31 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
   //   factor: 1.05,
   // },
 
+  118: {
+    name: "[Ｃｏｍｅ！]神楽坂砂夜", rarity: 3, valueFormat: "割合(%)",
+    effectTarget: "COOLタイプ", effectRange: "主＋副", effectType: "攻援UP",
+    effectCondition: "声援Lvが高いほど", conditionThreshold: 18,
+    value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
+    factor: 0.75,
+    annotation: "減衰係数に推定値を使用しています。情報募集中です。",
+  },
+  // 87: {
+  //   name: "[贅沢ﾀｲﾑ]天都かなた", rarity: 3, valueFormat: "割合(%)",
+  //   effectTarget: "SWEETタイプ", effectRange: "主＋副", effectType: "攻援UP",
+    // effectCondition: "声援Lvが高いほど", conditionThreshold: 18,
+    // value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
+    // factor: 0.75,
+    // annotation: "減衰係数に推定値を使用しています。情報募集中です。",
+  // },
+  // 89: {
+  //   name: "[想い感じて]春宮つぐみ", rarity: 3, valueFormat: "割合(%)",
+  //   effectTarget: "POPタイプ", effectRange: "主＋副", effectType: "攻援UP",
+    // effectCondition: "声援Lvが高いほど", conditionThreshold: 18,
+    // value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
+    // factor: 0.75,
+    // annotation: "減衰係数に推定値を使用しています。情報募集中です。",
+  // },
+
   /* 初期星2 */
   7: {
     name: "[緊張ﾁﾗｼ配ﾘ]白水六花", rarity: 2, valueFormat: "割合(%)",
