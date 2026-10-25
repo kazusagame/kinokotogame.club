@@ -25,8 +25,9 @@ export interface PreciousScenes {
   value6?: number,
   factor?: number,
   factor6?: number,
-  annotation?: string,
   isTemp?: boolean,
+  isTemp6?: boolean,
+  annotation?: string,
 }
 
 export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
@@ -36,7 +37,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "SWEETタイプ", effectRange: "主＋副", effectType: "攻援UP",
     effectCondition: "コストが高いほど", conditionThreshold: 23, conditionThreshold6: 31,
     value1: 4.0, value2: 4.0, value3: 4.0, value4: 4.5, value5: 5.0, value6: 7.0,
-    factor: 1.5, factor6: 1.12,
+    factor: 1.5, factor6: 1.12, isTemp6: true,
     annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   3: {
@@ -44,7 +45,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "COOLタイプ", effectRange: "主＋副", effectType: "攻援UP",
     effectCondition: "コストが高いほど", conditionThreshold: 23, conditionThreshold6: 31,
     value1: 4.0, value2: 4.0, value3: 4.0, value4: 4.5, value5: 5.0, value6: 7.0,
-    factor: 1.5, factor6: 1.12,
+    factor: 1.5, factor6: 1.12, isTemp6: true,
     annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   5: {
@@ -52,7 +53,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "POPタイプ", effectRange: "主＋副", effectType: "攻援UP",
     effectCondition: "コストが高いほど", conditionThreshold: 23, conditionThreshold6: 31,
     value1: 4.0, value2: 4.0, value3: 4.0, value4: 4.5, value5: 5.0, value6: 7.0,
-    factor: 1.5, factor6: 1.12,
+    factor: 1.5, factor6: 1.12, isTemp6: true,
     annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
 
@@ -80,7 +81,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "COOLタイプ", effectRange: "主＋副", effectType: "攻援UP", effectType6: "攻援UP",
     effectCondition: "声援Lvが高いほど", conditionThreshold: 15, conditionThreshold6: 17,
     value1: 4.0, value2: 4.0, value3: 4.0, value4: 4.5, value5: 5.0, value6: 5.5,
-    factor: 0.75, factor6: 0.75,
+    factor: 0.75, factor6: 0.75, isTemp6: true,
     annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   30: {
@@ -88,7 +89,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "POPタイプ", effectRange: "主＋副", effectType: "攻援UP", effectType6: "攻援UP",
     effectCondition: "声援Lvが高いほど", conditionThreshold: 15, conditionThreshold6: 17,
     value1: 4.0, value2: 4.0, value3: 4.0, value4: 4.5, value5: 5.0, value6: 5.5,
-    factor: 0.75, factor6: 0.75,
+    factor: 0.75, factor6: 0.75, isTemp6: true,
     annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   31: {
@@ -96,7 +97,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "SWEETタイプ", effectRange: "主＋副", effectType: "攻援UP", effectType6: "攻援UP",
     effectCondition: "声援Lvが高いほど", conditionThreshold: 15, conditionThreshold6: 17,
     value1: 4.0, value2: 4.0, value3: 4.0, value4: 4.5, value5: 5.0, value6: 5.5,
-    factor: 0.75, factor6: 0.75,
+    factor: 0.75, factor6: 0.75, isTemp6: true,
     annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
 
@@ -199,7 +200,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectCondition: "Ex進展ガールが多いほど", conditionThreshold: 35, conditionThreshold6: 35,
     additionalCondition6: "たすけて！マイヒーロー限定",
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 6.5,
-    factor: 1.18, factor6: 1.18,
+    factor: 1.18, factor6: 1.18, isTemp6: true,
     annotation: "星6で効果が攻守UP化 & たすけて！マイヒーロー限定になる。星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   58: {
@@ -208,7 +209,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectCondition: "Ex進展ガールが多いほど", conditionThreshold: 35, conditionThreshold6: 35,
     additionalCondition6: "たすけて！マイヒーロー限定",
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 6.5,
-    factor: 1.18, factor6: 1.18,
+    factor: 1.18, factor6: 1.18, isTemp6: true,
     annotation: "星6で効果が攻守UP化 & たすけて！マイヒーロー限定になる。星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   59: {
@@ -217,7 +218,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectCondition: "Ex進展ガールが多いほど", conditionThreshold: 35, conditionThreshold6: 35,
     additionalCondition6: "たすけて！マイヒーロー限定",
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 6.5,
-    factor: 1.18, factor6: 1.18,
+    factor: 1.18, factor6: 1.18, isTemp6: true,
     annotation: "星6で効果が攻守UP化 & たすけて！マイヒーロー限定になる。星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
 
@@ -226,7 +227,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "SWEETタイプ", effectRange: "主＋副", effectType: "攻守UP", effectType6: "攻守UP",
     effectCondition: "様々なガールで編成するほど", conditionThreshold: 20, conditionThreshold6: 20,
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 6.5,
-    factor: 0.4, factor6: 0.4,
+    factor: 0.4, factor6: 0.4, isTemp6: true,
     annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   62: {
@@ -234,7 +235,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "COOLタイプ", effectRange: "主＋副", effectType: "攻守UP", effectType6: "攻守UP",
     effectCondition: "様々なガールで編成するほど", conditionThreshold: 20, conditionThreshold6: 20,
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 6.5,
-    factor: 0.4, factor6: 0.4,
+    factor: 0.4, factor6: 0.4, isTemp6: true,
     annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   66: {
@@ -242,7 +243,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "POPタイプ", effectRange: "主＋副", effectType: "攻守UP", effectType6: "攻守UP",
     effectCondition: "様々なガールで編成するほど", conditionThreshold: 20, conditionThreshold6: 20,
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 6.5,
-    factor: 0.4, factor6: 0.4,
+    factor: 0.4, factor6: 0.4, isTemp6: true,
     annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
 
@@ -251,7 +252,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "POPタイプ", effectRange: "主＋副", effectType: "攻援UP",
     effectCondition: "コストが高いほど", conditionThreshold: 27, conditionThreshold6: 33,
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 7.5,
-    factor: 1.5, factor6: 1.11,
+    factor: 1.5, factor6: 1.11, isTemp6: true,
     annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   64: {
@@ -259,7 +260,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "SWEETタイプ", effectRange: "主＋副", effectType: "攻援UP",
     effectCondition: "コストが高いほど", conditionThreshold: 27, conditionThreshold6: 33,
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 7.5,
-    factor: 1.5, factor6: 1.11,
+    factor: 1.5, factor6: 1.11, isTemp6: true,
     annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
   67: {
@@ -267,7 +268,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "COOLタイプ", effectRange: "主＋副", effectType: "攻援UP",
     effectCondition: "コストが高いほど", conditionThreshold: 27, conditionThreshold6: 33,
     value1: 4.5, value2: 4.5, value3: 4.5, value4: 5.5, value5: 6.0, value6: 7.5,
-    factor: 1.5, factor6: 1.11,
+    factor: 1.5, factor6: 1.11, isTemp6: true,
     annotation: "星6の減衰係数に推定値を使用しています。情報募集中です。",
   },
 
@@ -566,7 +567,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "SWEETタイプ", effectRange: "主＋副", effectType: "攻守UP",
     effectCondition: "コストが高いほど", conditionThreshold: 32,
     value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
-    factor: 1.55,
+    factor: 1.55, isTemp: true,
     annotation: "減衰係数に推定値を使用しています。情報募集中です。",
   },
   111: {
@@ -574,7 +575,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "COOLタイプ", effectRange: "主＋副", effectType: "攻守UP",
     effectCondition: "コストが高いほど", conditionThreshold: 32,
     value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
-    factor: 1.55,
+    factor: 1.55, isTemp: true,
     annotation: "減衰係数に推定値を使用しています。情報募集中です。",
   },
   113: {
@@ -582,7 +583,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "POPタイプ", effectRange: "主＋副", effectType: "攻守UP",
     effectCondition: "コストが高いほど", conditionThreshold: 32,
     value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
-    factor: 1.55,
+    factor: 1.55, isTemp: true,
     annotation: "減衰係数に推定値を使用しています。情報募集中です。",
   },
 
@@ -591,7 +592,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "全タイプ", effectRange: "主＋副", effectType: "攻守UP",
     effectCondition: "様々なガールで編成するほど", conditionThreshold: 20,
     value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 7.5,
-    factor: 1.2,
+    factor: 1.2, isTemp: true,
     annotation: "減衰係数に推定値を使用しています。情報募集中です。",
   },
 
@@ -600,7 +601,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "COOLタイプ", effectRange: "主＋副", effectType: "攻守UP",
     effectCondition: "声援Lvが高いほど", conditionThreshold: 17,
     value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
-    factor: 1.05,
+    factor: 1.05, isTemp: true,
     annotation: "減衰係数に推定値を使用しています。情報募集中です。",
   },
   116: {
@@ -608,7 +609,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "POPタイプ", effectRange: "主＋副", effectType: "攻守UP",
     effectCondition: "声援Lvが高いほど", conditionThreshold: 17,
     value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
-    factor: 1.05,
+    factor: 1.05, isTemp: true,
     annotation: "減衰係数に推定値を使用しています。情報募集中です。",
   },
   // 97: {
@@ -616,7 +617,8 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
   //   effectTarget: "SWEETタイプ", effectRange: "主＋副", effectType: "攻守UP",
   //   effectCondition: "声援Lvが高いほど", conditionThreshold: 17,
   //   value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
-  //   factor: 1.05,
+  //   factor: 1.05, isTemp: true,
+  //   annotation: "減衰係数に推定値を使用しています。情報募集中です。",
   // },
 
   118: {
@@ -624,7 +626,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     effectTarget: "COOLタイプ", effectRange: "主＋副", effectType: "攻援UP",
     effectCondition: "声援Lvが高いほど", conditionThreshold: 18,
     value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
-    factor: 0.75,
+    factor: 0.75, isTemp: true,
     annotation: "減衰係数に推定値を使用しています。情報募集中です。",
   },
   // 87: {
@@ -632,7 +634,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
   //   effectTarget: "SWEETタイプ", effectRange: "主＋副", effectType: "攻援UP",
     // effectCondition: "声援Lvが高いほど", conditionThreshold: 18,
     // value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
-    // factor: 0.75,
+    // factor: 0.75, isTemp: true,
     // annotation: "減衰係数に推定値を使用しています。情報募集中です。",
   // },
   // 89: {
@@ -640,7 +642,7 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
   //   effectTarget: "POPタイプ", effectRange: "主＋副", effectType: "攻援UP",
     // effectCondition: "声援Lvが高いほど", conditionThreshold: 18,
     // value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
-    // factor: 0.75,
+    // factor: 0.75, isTemp: true,
     // annotation: "減衰係数に推定値を使用しています。情報募集中です。",
   // },
 

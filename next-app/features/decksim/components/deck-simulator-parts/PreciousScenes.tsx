@@ -16,12 +16,11 @@ import {
 } from "@dnd-kit/sortable";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 
-import {
-  DeckSimulatorData,
-} from "@/features/decksim/type-definitions/DeckSimulatorData";
-import {
-  DeckSimulatorResult,
-} from "@/features/decksim/type-definitions/DeckSimulatorResult";
+import Tooltip from "@mui/material/Tooltip";
+import WarningIcon from "@mui/icons-material/Warning";
+
+import { DeckSimulatorData } from "@/features/decksim/type-definitions/DeckSimulatorData";
+import { DeckSimulatorResult } from "@/features/decksim/type-definitions/DeckSimulatorResult";
 import { PRECIOUS_SCENES_DATA } from "@/features/decksim/data/preciousScenesData";
 import { MAX_PRECIOUS_SCENES_NUM } from "@/features/decksim/global-config";
 
@@ -34,7 +33,7 @@ type SceneSelectModalProps = {
   title: string;
   onSubmit: (
     selectedScene: SelectState,
-    currentFilterState: FilterState
+    currentFilterState: FilterState,
   ) => void;
   onClose: (selectedScene: SelectState, filterState: FilterState) => void;
   initialSelected: SelectState;
@@ -64,7 +63,7 @@ export function PreciousScenes({
   summary: DeckSimulatorResult;
   type: "攻援" | "守援";
   onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
   setValueAtPath: (obj: {
@@ -104,7 +103,7 @@ export function PreciousScenes({
 
   const handleSceneSelect = (
     selectedScene: { id: string | null; rarity: string | null },
-    currentFilterState: FilterState
+    currentFilterState: FilterState,
   ) => {
     if (resolveModal) {
       resolveModal(selectedScene);
@@ -146,7 +145,7 @@ export function PreciousScenes({
     const key = e.currentTarget.dataset.key;
     const newData = removeKeyAndReindex(
       sceneData,
-      Number(key)
+      Number(key),
     ) as DeckSimulatorData["preciousScenes"][typeof typeIndex];
     if (newData === undefined) return;
     setValueAtPath({
@@ -158,7 +157,7 @@ export function PreciousScenes({
   const handleReorder = (
     newData: NonNullable<
       DeckSimulatorData["preciousScenes"]["attack" | "defense"]
-    >
+    >,
   ) => {
     setValueAtPath({
       path: `preciousScenes.${typeIndex}`,
@@ -233,7 +232,7 @@ function RegisteredPreciousScenesBlock({
     | "attack"
     | "defense"];
   onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
   handleEditButton: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -241,7 +240,7 @@ function RegisteredPreciousScenesBlock({
   handleReorder: (
     newScenesData: NonNullable<
       DeckSimulatorData["preciousScenes"]["attack" | "defense"]
-    >
+    >,
   ) => void;
 }) {
   const orderedKeys = Object.keys(sceneData);
@@ -256,7 +255,7 @@ function RegisteredPreciousScenesBlock({
         delay: 250,
         tolerance: 10,
       },
-    })
+    }),
   );
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -357,9 +356,30 @@ function RegisteredPreciousScenesBlock({
                       <p>―</p>
                     )}
                   </div>
-                  <div className="flex justify-center items-center">
-                    {formatNumber(summary?.estimatedPower ?? 0)}
-                  </div>
+                  {(Number(value.rarity) <= 5 && sceneProfile.isTemp) ||
+                  (Number(value.rarity) === 6 && sceneProfile.isTemp6) ? (
+                    <Tooltip
+                      title="このプレシャスシーンとレアリティの組み合わせは未検証のため、計算結果の誤差が大きくなる可能性がございます。あらかじめご了承ください。"
+                      arrow
+                      enterTouchDelay={250}
+                      leaveTouchDelay={5000}
+                    >
+                      <div className="flex justify-center items-center bg-warning text-warning-content relative pl-7">
+                        <WarningIcon
+                          style={{
+                            position: "absolute",
+                            left: "5px",
+                            top: "calc(50% - 12px)",
+                          }}
+                        />
+                        {formatNumber(summary?.estimatedPower ?? 0)}
+                      </div>
+                    </Tooltip>
+                  ) : (
+                    <div className="flex justify-center items-center">
+                      {formatNumber(summary?.estimatedPower ?? 0)}
+                    </div>
+                  )}
                   <div className="flex justify-center items-center">
                     <button
                       className="btn btn-xs md:btn-sm btn-primary"
@@ -429,7 +449,7 @@ function SceneSelectModal({
     string | null
   >(initialFilterState.effectTarget);
   const [selectedEffectType, setSelectedEffectType] = useState<string | null>(
-    initialFilterState.effectType
+    initialFilterState.effectType,
   );
 
   const handleFilterChange =
@@ -442,15 +462,16 @@ function SceneSelectModal({
   const filteredOptions = Object.entries(PRECIOUS_SCENES_DATA)
     .filter(
       ([_, value]) =>
-        !selectedInitialRarity || String(value.rarity) === selectedInitialRarity
+        !selectedInitialRarity ||
+        String(value.rarity) === selectedInitialRarity,
     )
     .filter(
       ([_, value]) =>
-        !selectedEffectTarget || value.effectTarget === selectedEffectTarget
+        !selectedEffectTarget || value.effectTarget === selectedEffectTarget,
     )
     .filter(
       ([_, value]) =>
-        !selectedEffectType || value.effectType === selectedEffectType
+        !selectedEffectType || value.effectType === selectedEffectType,
     )
     .sort(([a], [b]) => Number(a) - Number(b));
 
@@ -590,10 +611,10 @@ function SceneSelectModal({
                       value.effectTarget === "SWEETタイプ"
                         ? "bg-sweet"
                         : value.effectTarget === "COOLタイプ"
-                        ? "bg-cool"
-                        : value.effectTarget === "POPタイプ"
-                        ? "bg-pop"
-                        : "bg-base-100"
+                          ? "bg-cool"
+                          : value.effectTarget === "POPタイプ"
+                            ? "bg-pop"
+                            : "bg-base-100"
                     }
                   >
                     {value.name}
