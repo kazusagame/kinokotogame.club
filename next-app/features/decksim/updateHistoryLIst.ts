@@ -5,6 +5,10 @@ interface UpdateHistoryList {
 
 export const updateHistoryList: UpdateHistoryList[] = [
   {
+    date: "2026/10/25",
+    desc: "未検証のプレシャスシーンとレアリティの組み合わせを使用時の計算結果の誤差について通知する機能を追加。",
+  },
+  {
     date: "2026/10/24",
     desc: "プレシャスシーンに[Ｃｏｍｅ！]神楽坂砂夜を暫定値で追加。",
   },
