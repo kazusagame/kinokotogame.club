@@ -473,7 +473,7 @@ function SceneSelectModal({
       ([_, value]) =>
         !selectedEffectType || value.effectType === selectedEffectType,
     )
-    .sort(([a], [b]) => Number(a) - Number(b));
+    .sort(([a], [b]) => Number(b) - Number(a));
 
   const selectedSceneInitialRarity =
     selectedScene.id === null
