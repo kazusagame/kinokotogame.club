@@ -646,6 +646,15 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     // annotation: "減衰係数に推定値を使用しています。情報募集中です。",
   // },
 
+
+  121: {
+    name: "[14周年]メモリアル", rarity: 3, valueFormat: "割合(%)",
+    effectTarget: "全タイプ", effectRange: "主＋副", effectType: "攻援UP",
+    effectCondition: "コストが高いほど", conditionThreshold: 33,
+    value1: 5.0, value2: 5.0, value3: 5.0, value4: 6.0, value5: 7.0,
+    factor: 2.5
+  },
+
   /* 初期星2 */
   7: {
     name: "[緊張ﾁﾗｼ配ﾘ]白水六花", rarity: 2, valueFormat: "割合(%)",
