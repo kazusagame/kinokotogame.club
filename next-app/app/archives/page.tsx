@@ -12,8 +12,17 @@ export const metadata: Metadata = {
 export default function Page() {
   const miniGamesMenuList: MenuCardProps[] = [
     {
+      id: 3,
+      title: ["ぷち合わせ", "モドキ"],
+      path: "./petit-matching/",
+      img: "/image/menu/33_petit-matching.png",
+      width: 640,
+      height: 460,
+      imgAlt: "ぷち合わせモドキへのリンク",
+    },
+    {
       id: 1,
-      title: ["キャラソート"],
+      title: ["キャラソート", "（公開終了）"],
       path: "./gfsort/",
       img: "/image/menu/51_gfsort.png",
       width: 640,
@@ -22,23 +31,12 @@ export default function Page() {
     },
     {
       id: 2,
-      title: ["キャラ名", "タイピング", "（外部サイト）"],
-      path: "https://ankey.io/wordbooks/chpg0pa23akg02q3e0ng/",
+      title: ["キャラ名", "タイピング", "（公開終了）"],
+      path: "",
       img: "/image/menu/52_gftyping.png",
       width: 640,
       height: 460,
       imgAlt: "キャラ名タイピングへのリンク",
-      isNewTab: true,
-      isNoReferrer: true,
-    },
-    {
-      id: 3,
-      title: ["ぷち合わせ", "モドキ"],
-      path: "./petit-matching/",
-      img: "/image/menu/33_petit-matching.png",
-      width: 640,
-      height: 460,
-      imgAlt: "ぷち合わせモドキへのリンク",
     },
   ];
 

@@ -18,7 +18,9 @@ export default function Page() {
             <span className="whitespace-nowrap">ガールフレンド(仮)</span>{" "}
             <span className="whitespace-nowrap">キャラソート</span>
           </h1>
-          <p className="leading-7">・最終更新日: 2024年12月27日</p>
+          <p className="leading-7">
+            ・2026年11月8日に公開を終了しました。Thank you for playing!
+          </p>
         </section>
         <GfCharacterSort />
       </div>
