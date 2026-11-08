@@ -207,16 +207,11 @@ function CharacterSelect({
         >
           <div className="flex items-center h-12">{leftGirlName}</div>
           <div className="w-full h-[500px] relative">
-            {/* デプロイ先がgithubの場合は本番環境から直リンする */}
+            {/* デプロイ先がgithubの場合はブランク表示 */}
             {process.env.NEXT_PUBLIC_DEPLOY_TARGET === "github" ? (
-              <ImageRemote
-                src={`https://kinokotogame.mods.jp/public${leftDirPath}${leftGirlProfileId}.png`}
-                alt={leftGirlName}
-                className="object-cover object-[center_bottom]"
-                fill
-                sizes="50vw"
-                loader={imageLoader}
-              />
+              <div className="h-full flex items-center justify-center">
+                {leftGirlName}
+              </div>
             ) : (
               <Image
                 src={`${leftDirPath}${leftGirlProfileId}.png`}
@@ -251,16 +246,11 @@ function CharacterSelect({
         >
           <div className="flex items-center h-12">{rightGirlName}</div>
           <div className="w-full h-[500px] relative">
-            {/* デプロイ先がgithubの場合は本番環境から直リンする */}
+            {/* デプロイ先がgithubの場合はブランク表示 */}
             {process.env.NEXT_PUBLIC_DEPLOY_TARGET === "github" ? (
-              <ImageRemote
-                src={`https://kinokotogame.mods.jp/public${rightDirPath}${rightGirlProfileId}.png`}
-                alt={rightGirlName}
-                className="object-cover object-[center_bottom]"
-                fill
-                sizes="50vw"
-                loader={imageLoader}
-              />
+              <div className="h-full flex items-center justify-center">
+                {rightGirlName}
+              </div>
             ) : (
               <Image
                 src={`${rightDirPath}${rightGirlProfileId}.png`}
