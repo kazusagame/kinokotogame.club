@@ -612,14 +612,14 @@ export const PRECIOUS_SCENES_DATA: { [K: number]: PreciousScenes } = {
     factor: 1.05, isTemp: true,
     annotation: "減衰係数に推定値を使用しています。情報募集中です。",
   },
-  // 97: {
-  //   name: "[よそ見注意]朝比奈桃子", rarity: 3, valueFormat: "割合(%)",
-  //   effectTarget: "SWEETタイプ", effectRange: "主＋副", effectType: "攻守UP",
-  //   effectCondition: "声援Lvが高いほど", conditionThreshold: 17,
-  //   value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
-  //   factor: 1.05, isTemp: true,
-  //   annotation: "減衰係数に推定値を使用しています。情報募集中です。",
-  // },
+  119: {
+    name: "[あなたの形]笹原野々花", rarity: 3, valueFormat: "割合(%)",
+    effectTarget: "SWEETタイプ", effectRange: "主＋副", effectType: "攻守UP",
+    effectCondition: "声援Lvが高いほど", conditionThreshold: 17,
+    value1: 6.0, value2: 6.0, value3: 6.0, value4: 7.0, value5: 8.0,
+    factor: 1.05, isTemp: true,
+    annotation: "減衰係数に推定値を使用しています。情報募集中です。",
+  },
 
   118: {
     name: "[Ｃｏｍｅ！]神楽坂砂夜", rarity: 3, valueFormat: "割合(%)",

@@ -274,6 +274,12 @@ export default function Page() {
                       [人形錬成]甘利燈 (POPガールの声援Lvが高いほど攻守UP)
                     </span>
                   </p>
+                  <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-accent before:inline-block before:absolute before:left-0 before:top-[12px]">
+                    <span>
+                      [あなたの形]笹原野々花
+                      (SWEETガールの声援Lvが高いほど攻守UP)
+                    </span>
+                  </p>
                   <span className="pl-4">
                     → いくつかの声援Lvでの実際の表示効果値。★4の時の最大効果値。
                   </span>
@@ -281,7 +287,8 @@ export default function Page() {
                 <div className="mt-2 md:pl-4">
                   <p className="pl-4 relative before:w-2 before:h-2 before:rounded-full before:bg-accent before:inline-block before:absolute before:left-0 before:top-[12px]">
                     <span>
-                      [Ｃｏｍｅ！]神楽坂砂夜 (COOLガールの声援Lvが高いほど攻援UP)
+                      [Ｃｏｍｅ！]神楽坂砂夜
+                      (COOLガールの声援Lvが高いほど攻援UP)
                     </span>
                   </p>
                   <span className="pl-4">

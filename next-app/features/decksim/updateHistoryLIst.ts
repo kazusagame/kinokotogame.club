@@ -5,6 +5,10 @@ interface UpdateHistoryList {
 
 export const updateHistoryList: UpdateHistoryList[] = [
   {
+    date: "2026/11/22",
+    desc: "プレシャスシーンに[あなたの形]笹原野々花を暫定値で追加。",
+  },
+  {
     date: "2026/11/01",
     desc: "プレシャスシーンに[14周年]メモリアルを追加。",
   },
